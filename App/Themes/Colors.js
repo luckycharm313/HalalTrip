@@ -1,8 +1,13 @@
 const colors = {
   background: '#1F0808',
+  transparent : 'rgba(0,0,0,0)',
+  primary : '#1ba0e1',
+  inputBox : '#EFEFF4',
+  grey : '#979797',
   font : {
     default : '#ffffff',
-    dark : '#000000'
+    dark : '#000000',
+    textHintColor : '#8A8A8F'
   }
 }
 
