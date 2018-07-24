@@ -28,13 +28,12 @@ class SignInScreen extends Component {
   render () {
     let renderTabView = null
     if(this.state.routeIndex == 1)
-      renderTabView = <SignIn />
+      renderTabView = <SignIn nav = {this.props.navigation} />
     else
       renderTabView = <SignUp />
-      
+
     return (
       <View style={styles.mainContainer}>
-          <KeyboardAvoidingView behavior='position'>
           <ImageBackground style={styles.header_section} source={Images.image1}>
             <View style={styles.header_txt_section}>
               <Text style={styles.header_txt_title}>Halal Trip Thailand</Text>
@@ -49,11 +48,9 @@ class SignInScreen extends Component {
               </TouchableOpacity>
             </View>
           </ImageBackground>
-          </KeyboardAvoidingView>
+          
           <View style={styles.tab_body_section} >
-            {/* <KeyboardAvoidingView behavior='position'> */}
-              { renderTabView }
-            {/* </KeyboardAvoidingView> */}
+            { renderTabView }
           </View>        
       </View>
     )

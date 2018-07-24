@@ -18,6 +18,13 @@ export default class SignIn extends Component {
 
   }
 
+  _onForgotPassword = () => {
+    this.props.nav.navigate('ForgotPasswordScreen')
+  }
+  _onSignIn = () => {
+    this.props.nav.navigate('HomeScreen')
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
@@ -54,11 +61,11 @@ export default class SignIn extends Component {
           onChange = {this._onChangePassword}
           maxLength = {100}/>
         
-        <TouchableOpacity style={styles.btnSignIn}>
+        <TouchableOpacity style={styles.btnSignIn} onPress={this._onSignIn}>
           <Text style={styles.txtSignIn}>Sign In</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.btnForgot}>
+        <TouchableOpacity style={styles.btnForgot} onPress={this._onForgotPassword}>
           <Text style={styles.txtForgot}>Forgot Password?</Text>
         </TouchableOpacity>
 
