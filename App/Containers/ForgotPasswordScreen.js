@@ -19,7 +19,7 @@ class ForgotPasswordScreen extends Component {
   render () {
     const {goBack} = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <View style={[styles.mainContainer, styles.container]}>
       
         <View style={styles.navbar}>
           <TouchableOpacity style={styles.backIcon} onPress = {() => goBack()}>

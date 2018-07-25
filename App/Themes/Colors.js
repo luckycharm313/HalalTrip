@@ -4,11 +4,12 @@ const colors = {
   primary : '#1ba0e1',
   inputBox : '#EFEFF4',
   grey : '#979797',
+  lightGrey : '#666666',
   font : {
     default : '#ffffff',
     dark : '#000000',
     textHintColor : '#8A8A8F'
-  }
+  },
 }
 
 export default colors

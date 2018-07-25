@@ -65,6 +65,7 @@ export default class LaunchScreen extends Component {
               <View style={styles.place_section}>
                 <FlatList
                   horizontal
+                  showsHorizontalScrollIndicator={false}
                   data={this.state.data}
                   renderItem={this._renderItem}
                   keyExtractor={(item, index) => index}

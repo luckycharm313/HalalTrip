@@ -23,7 +23,7 @@ const metrics = {
   icons: {
     tiny: 15,
     small: 20,
-    medium: 30,
+    medium: 28,
     large: 45,
     xl: 50
   },
@@ -36,6 +36,17 @@ const metrics = {
 
   width_10 : (width < height ? width : height) * 0.25,
   height_10 : (width < height ? height : width) * 0.12,
+
+  width_30 : (width < height ? width : height) * 0.32,
+  height_30 : (width < height ? width : height) * 0.4,
+
+  width_35 : (width < height ? width : height) * 0.4,
+  height_20 : (width < height ? width : height) * 0.25,
+
+  width_90 : (width < height ? width : height) * 0.9,
+  height_60 : (width < height ? width : height) * 0.5,
+
+  width_60 : (width < height ? width : height) * 0.6,
 }
 
 export default metrics

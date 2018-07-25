@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
 
   interested_section : {
-    marginTop : Metrics.middleMargin,
+    marginTop : Metrics.section,
     marginLeft: Metrics.middleMargin,
   },
   place_section : {    
