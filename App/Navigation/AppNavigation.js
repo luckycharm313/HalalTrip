@@ -1,8 +1,10 @@
-import React from 'react';
-import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {Platform} from "react-native";
+import {Platform} from "react-native"
+import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import HotelDetailScreen from '../Containers/HotelDetailScreen'
 
+import MapHotelScreen from '../Containers/MapHotelScreen'
 import AccountScreen from '../Containers/AccountScreen'
 import RestaurantScreen from '../Containers/RestaurantScreen'
 import HotelScreen from '../Containers/HotelScreen'
@@ -27,6 +29,7 @@ const HomeStack = StackNavigator({
 
 const PlaceStack = StackNavigator({
   PlaceScreen: { screen: PlaceScreen },
+  MapHotelScreen: { screen: MapHotelScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -36,6 +39,7 @@ const PlaceStack = StackNavigator({
 
 const HotelStack = StackNavigator({
   HotelScreen: { screen: HotelScreen },
+  HotelDetailScreen: { screen: HotelDetailScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -82,14 +86,16 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({
-    ForgotPasswordScreen: { screen: ForgotPasswordScreen },
-    SignInScreen: { screen: SignInScreen },
-    LaunchInterestScreen: { screen: LaunchInterestScreen },
-    LaunchScreen: { screen: LaunchScreen },
-    mainNavigator: mainNavigator
+  HotelDetailScreen: { screen: HotelDetailScreen },
+  ForgotPasswordScreen: { screen: ForgotPasswordScreen },
+  SignInScreen: { screen: SignInScreen },
+  LaunchInterestScreen: { screen: LaunchInterestScreen },
+  LaunchScreen: { screen: LaunchScreen },
+  mainNavigator: mainNavigator,
+
   }, {
     headerMode: 'none',
-    initialRouteName: 'mainNavigator',
+    initialRouteName: 'HotelDetailScreen',
     navigationOptions: {
       headerStyle: styles.header,
       lazy: false,

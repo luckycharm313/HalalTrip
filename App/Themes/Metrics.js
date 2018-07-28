@@ -34,6 +34,8 @@ const metrics = {
     logo: 200
   },
 
+  height_map : (width < height ? height : width) * 0.5,
+
   width_10 : (width < height ? width : height) * 0.25,
   height_10 : (width < height ? height : width) * 0.12,
 

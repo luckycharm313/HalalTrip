@@ -8,6 +8,7 @@ const images = {
   oval_deactive: require('../Images/oval_deactive.png'),
   facebook: require('../Images/facebook.png'),
   googleplus: require('../Images/googleplus.png'),
+  map : require('../Images/map.jpg'),
 }
 
 export default images
