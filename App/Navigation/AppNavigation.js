@@ -86,7 +86,7 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({
-  HotelDetailScreen: { screen: HotelDetailScreen },
+  // HotelDetailScreen: { screen: HotelDetailScreen },
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },
   LaunchInterestScreen: { screen: LaunchInterestScreen },
@@ -95,7 +95,7 @@ const PrimaryNav = StackNavigator({
 
   }, {
     headerMode: 'none',
-    initialRouteName: 'HotelDetailScreen',
+    initialRouteName: 'LaunchScreen',
     navigationOptions: {
       headerStyle: styles.header,
       lazy: false,

@@ -9,6 +9,17 @@ const images = {
   facebook: require('../Images/facebook.png'),
   googleplus: require('../Images/googleplus.png'),
   map : require('../Images/map.jpg'),
+  map_default : require('../Images/map_default.png'),
+  icon_bathtub : require('../Images/icon_bathtub.png'),
+  icon_bed : require('../Images/icon_bed.png'),
+  icon_food : require('../Images/icon_food.png'),
+  icon_image : require('../Images/icon_image.png'),
+  icon_shape : require('../Images/icon_shape.png'),
+  icon_sofa : require('../Images/icon_sofa.png'),
+  icon_tv : require('../Images/icon_tv.png'),
+  icon_water : require('../Images/icon_water.png'),
+  icon_wifi : require('../Images/icon_wifi.png'),
+  icon_square_meters : require('../Images/icon_square_meters.png'),  
 }
 
 export default images

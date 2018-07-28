@@ -59,7 +59,7 @@ class HotelScreen extends Component {
     />
   )
   _onHotelDetail = () =>{
-    this.props.navigation.navigate('');
+    this.props.navigation.navigate('HotelDetailScreen');
   }
   render () {
     const {title, rating, location, cost, review} = this.state.featuredHotel

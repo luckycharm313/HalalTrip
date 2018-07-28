@@ -15,7 +15,6 @@ export default StyleSheet.create({
   },
   map_view :{
     height : Metrics.height_map,
-    borderWidth : 1,
   },
 
   section : {

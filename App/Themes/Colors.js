@@ -5,6 +5,7 @@ const colors = {
   inputBox : '#EFEFF4',
   grey : '#979797',
   lightGrey : '#666666',
+  lightBlack : '#EFEFF4',
   font : {
     default : '#ffffff',
     dark : '#000000',
