@@ -20,6 +20,7 @@ const images = {
   icon_water : require('../Images/icon_water.png'),
   icon_wifi : require('../Images/icon_wifi.png'),
   icon_square_meters : require('../Images/icon_square_meters.png'),  
+  icon_money : require('../Images/icon_money.png'),  
 }
 
 export default images

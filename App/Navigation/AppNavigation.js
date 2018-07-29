@@ -2,6 +2,8 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import RestaurantDetailScreen from '../Containers/RestaurantDetailScreen'
+import CuisinesScreen from '../Containers/CuisinesScreen'
 import HotelDetailScreen from '../Containers/HotelDetailScreen'
 
 import MapHotelScreen from '../Containers/MapHotelScreen'
@@ -49,6 +51,8 @@ const HotelStack = StackNavigator({
 
 const RestaurantStack = StackNavigator({
   RestaurantScreen: { screen: RestaurantScreen },
+  CuisinesScreen: { screen: CuisinesScreen },
+  RestaurantDetailScreen: { screen: RestaurantDetailScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -70,7 +74,7 @@ const mainNavigator = TabNavigator({
   Place : { screen: PlaceStack },
   Hotel : { screen: HotelStack },
   Restaurant : { screen: RestaurantStack },
-  Account :{ screen: AccountStack },
+  Account : { screen: AccountStack },
 },
 {
   tabBarComponent: TabBarBottom,
@@ -86,7 +90,6 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({
-  // HotelDetailScreen: { screen: HotelDetailScreen },
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },
   LaunchInterestScreen: { screen: LaunchInterestScreen },
@@ -95,7 +98,7 @@ const PrimaryNav = StackNavigator({
 
   }, {
     headerMode: 'none',
-    initialRouteName: 'LaunchScreen',
+    initialRouteName: 'mainNavigator',
     navigationOptions: {
       headerStyle: styles.header,
       lazy: false,
