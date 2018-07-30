@@ -19,23 +19,25 @@ class SavedScreen extends Component {
 
   render () {
     return (
-      <View style={[styles.mainContainer, styles.container]}>
-        <View style = {styles.navbar}>
-          <NavBar nav = {this.props.navigation} />          
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style = {styles.navbar}>
+            <NavBar nav = {this.props.navigation} />          
+          </View>
+          <ScrollableTabView
+            style = {styles.tabs}
+            tabBarUnderlineStyle = {style = { backgroundColor: Colors.primary}}
+            tabBarBackgroundColor = {Colors.font.default}
+            tabBarActiveTextColor = {Colors.font.dark}
+            tabBarInactiveTextColor = {Colors.font.textHintColor}
+            tabBarTextStyle = {{fontSize : Fonts.size.regular, fontFamily  : Fonts.type.base}}
+            initialPage={0}
+          >
+            <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} /> 
+            <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} /> 
+            <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} /> 
+          </ScrollableTabView>
         </View>
-        <ScrollableTabView
-          style = {styles.tabs}
-          tabBarUnderlineStyle = {style = { backgroundColor: Colors.primary}}
-          tabBarBackgroundColor = {Colors.font.default}
-          tabBarActiveTextColor = {Colors.font.dark}
-          tabBarInactiveTextColor = {Colors.font.textHintColor}
-          tabBarTextStyle = {{fontSize : Fonts.size.regular, fontFamily  : Fonts.type.base}}
-          initialPage={0}
-        >
-          <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} /> 
-          <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} /> 
-          <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} /> 
-        </ScrollableTabView>
       </View>
     )
   }

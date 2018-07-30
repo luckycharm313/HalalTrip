@@ -54,29 +54,33 @@ class MapHotelScreen extends Component {
 
   render () {
     return (
-      <ScrollView style={[styles.mainContainer, styles.container]}>
-        <View style = {styles.navbar}>
-          <NavBar nav = {this.props.navigation} />
+        <View style = {styles.mainContainer}>
+          <ScrollView style={styles.container}>
+            <View style = {styles.navbar}>
+              <NavBar nav = {this.props.navigation} />
+            </View>
+            <View style = {styles.map_view}>
+              <Image source={Images.map} style = {styles.map_img} />
+            </View>
+            <View style={styles.body_section}>
+              <View style={styles.section}>
+                <View style={styles.section_header}>
+                  <Text style={styles.txtSectionTitle}>Find hotel in Milan, Italy</Text>
+                  <TouchableOpacity style={styles.more_area}>
+                    <Text style={styles.txtLabelSm}>Hide info</Text>
+                  </TouchableOpacity>
+                </View>
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={this.state.hotelData}
+                    renderItem={this._renderHotelItem}
+                    keyExtractor={(item, index) => index}
+                  />
+              </View>
+            </View>
+          </ScrollView>
         </View>
-        <View style = {styles.map_view}>
-          <Image source={Images.map} resizeMode='contain'/>
-        </View>
-        <View style={styles.section}>
-          <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Find hotel in Milan, Italy</Text>
-            <TouchableOpacity style={styles.more_area}>
-              <Text style={styles.txtLabelSm}>Hide info</Text>
-            </TouchableOpacity>
-          </View>
-          <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={this.state.hotelData}
-              renderItem={this._renderHotelItem}
-              keyExtractor={(item, index) => index}
-            />
-        </View>
-      </ScrollView>
     )
   }
 }

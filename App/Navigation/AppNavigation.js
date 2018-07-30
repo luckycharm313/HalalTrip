@@ -102,7 +102,7 @@ const PrimaryNav = StackNavigator({
   mainNavigator: mainNavigator,
   }, {
     headerMode: 'none',
-    initialRouteName: 'NotificationScreen',
+    initialRouteName: 'LaunchScreen',
     navigationOptions: {
       headerStyle: styles.header,
       lazy: false,

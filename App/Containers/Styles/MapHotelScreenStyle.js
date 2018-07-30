@@ -10,14 +10,21 @@ export default StyleSheet.create({
   navbar :{
     width: '100%',
     position : 'absolute',
-    top : Platform.OS=='ios' ? 20: 0,
+    // top : Platform.OS=='ios' ? 20: 0,
     zIndex : 1000,
   },
-  map_view :{
-    height : Metrics.height_map,
+  map_view : {
+    height : Metrics.height_map,    
   },
-
+  
+  map_img :{
+    flex : 1,    
+  },
+  body_section:{
+    flex : 1,
+  },
   section : {
+    marginBottom :Metrics.section,
     marginTop : Metrics.section,
     marginLeft : Metrics.paddingHorizontal,
   },

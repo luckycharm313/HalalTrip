@@ -67,23 +67,25 @@ class PlaceScreen extends Component {
 
   render () {
     return (
-      <ScrollView style={[styles.mainContainer, styles.container]}>
-        <View style={styles.row_view}>
-          <View style={styles.col_md_6}>
-            {
-              this.state.data.map((element, index) => {
-                if (index % 2 == 1) return null;
-                return this._renderPlaceItem(element)   
-              })
-            }
-          </View>
-          <View style={styles.col_md_6}>
-            {
-              this.state.data.map((element, index) => {
-                if (index % 2 == 0) return null;
-                return this._renderPlaceItem(element)   
-              })
-            }
+      <ScrollView style={styles.mainContainer}>
+        <View style={styles.container}>
+          <View style={styles.row_view}>
+            <View style={styles.col_md_6}>
+              {
+                this.state.data.map((element, index) => {
+                  if (index % 2 == 1) return null;
+                  return this._renderPlaceItem(element)   
+                })
+              }
+            </View>
+            <View style={styles.col_md_6}>
+              {
+                this.state.data.map((element, index) => {
+                  if (index % 2 == 0) return null;
+                  return this._renderPlaceItem(element)   
+                })
+              }
+            </View>
           </View>
         </View>
       </ScrollView>

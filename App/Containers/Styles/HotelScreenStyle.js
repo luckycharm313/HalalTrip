@@ -4,6 +4,7 @@ import { ApplicationStyles, Metrics, Colors, Fonts, Images } from '../../Themes/
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container : {
+    flex : 1,
     backgroundColor : Colors.font.default,
   },
   header_section :{

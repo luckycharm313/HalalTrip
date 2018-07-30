@@ -4,12 +4,13 @@ import { ApplicationStyles, Metrics, Colors, Fonts, Images } from '../../Themes/
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container : {
+    flex : 1,
     backgroundColor : Colors.font.default,
   },
   navbar :{
     // width: '100%',
-    // position : 'absolute',
-    top : Platform.OS=='ios' ? 20: 0,
+    // // position : 'absolute',
+    // top : Platform.OS=='ios' ? 20: 0,
     //zIndex : 1000,
   },
   header_section :{

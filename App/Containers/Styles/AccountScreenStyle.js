@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container :{
     alignItems : 'center',
     backgroundColor : Colors.font.default,
-    borderWidth : 1,
+    flex : 1,
   },
   view_wallpaper : {
     width : '100%',

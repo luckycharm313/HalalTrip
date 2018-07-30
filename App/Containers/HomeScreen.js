@@ -161,7 +161,8 @@ class HomeScreen extends Component {
 
   render () {
     return (
-      <ScrollView style={[styles.mainContainer, styles.container]}>
+      <ScrollView style={styles.mainContainer}>
+        <View style={styles.container}>
           <ImageBackground style={styles.header_section} source={Images.image1}>
             <View style={styles.header_txt_section}>
               <Text style={styles.header_txt_title}>Explore the world</Text>
@@ -259,6 +260,7 @@ class HomeScreen extends Component {
           <View style={styles.deactive_section}>
             <FreeCredit />
           </View>
+        </View>
       </ScrollView>
     )
   }

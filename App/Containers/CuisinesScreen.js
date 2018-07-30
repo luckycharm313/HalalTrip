@@ -51,21 +51,23 @@ class CuisinesScreen extends Component {
 
   render () {
     return (
-      <ScrollView style={[styles.mainContainer, styles.container]}>
-        <View style = {styles.navbar}>
-          <NavBar nav = {this.props.navigation} />
-        </View>
-        <View style={styles.header_section}>
-          <Text style={styles.header_txt_title}>All Cuisines</Text>
-        </View>
-        <View style={styles.body_section}>
-          <FlatList
-              data={this.state.cuisinesData}
-              renderItem={this._renderCuisinesList}
-              keyExtractor={(item, index) => index}
-            />
-        </View>
-      </ScrollView>
+      <View style={styles.mainContainer}>
+        <ScrollView style={styles.container}>
+          <View style = {styles.navbar}>
+            <NavBar nav = {this.props.navigation} />
+          </View>
+          <View style={styles.header_section}>
+            <Text style={styles.header_txt_title}>All Cuisines</Text>
+          </View>
+          <View style={styles.body_section}>
+            <FlatList
+                data={this.state.cuisinesData}
+                renderItem={this._renderCuisinesList}
+                keyExtractor={(item, index) => index}
+              />
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }
