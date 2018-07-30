@@ -61,7 +61,7 @@ class HotelScreen extends Component {
   _onHotelDetail = () =>{
     this.props.navigation.navigate('HotelDetailScreen');
   }
-  
+
   render () {
     const {title, rating, location, cost, review} = this.state.featuredHotel
     return (
@@ -135,10 +135,10 @@ class HotelScreen extends Component {
           <Text style={styles.header_txt_title_md}>All Hotels</Text>
           <View style={styles.hotel_list_view}>
             <FlatList
-                  data={this.state.hotelData}
-                  renderItem={this._renderHotelItem}
-                  keyExtractor={(item, index) => index}
-                />
+              data={this.state.hotelData}
+              renderItem={this._renderHotelItem}
+              keyExtractor={(item, index) => index}
+            />
           </View>
         </View>
       </ScrollView>

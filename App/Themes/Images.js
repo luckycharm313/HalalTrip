@@ -21,6 +21,8 @@ const images = {
   icon_wifi : require('../Images/icon_wifi.png'),
   icon_square_meters : require('../Images/icon_square_meters.png'),  
   icon_money : require('../Images/icon_money.png'),  
+  wallpaper : require('../Images/wallpaper.png'),
+  avatar : require('../Images/avatar.png'),
 }
 
 export default images
