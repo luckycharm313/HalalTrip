@@ -9,6 +9,7 @@ import styles from './Styles/SignInScreenStyle'
 import { Images, Colors } from '../Themes'
 import SignIn from '../Components/SignIn'
 import SignUp from '../Components/SignUp'
+import UserAction from '../Redux/UserRedux'
 
 class SignInScreen extends Component {
   constructor(props) {
@@ -25,12 +26,48 @@ class SignInScreen extends Component {
     this.setState({routeIndex : 2})
   }
 
+  _signUp=(_username, _email, _password)=>{
+    this.props.userSignup (_username, _email, _password)
+  }
+  
+  _signIn=(_email, _password)=>{
+    this.props.userLogin (_email, _password)
+  }
+  
+  _SignUpWithFacebook = () => {
+
+  }
+
+  _SignUpWithGoogle =()=> {
+    this.props.userGoogleSignup()
+  }
+
+  _SignInWithFacebook =()=> {
+  }
+  
+  _SignInWithGoogle =()=> {
+  }
+  
+  componentWillReceiveProps (nextProps){
+    if(nextProps.error){
+      alert("Something Error")
+      return
+    }
+      
+    if(nextProps.isRegistered){
+      alert("Signup successful")
+      this.setState({routeIndex : 1})
+    }
+      
+  }
+  
+
   render () {
     let renderTabView = null
     if(this.state.routeIndex == 1)
-      renderTabView = <SignIn nav = {this.props.navigation} />
+      renderTabView = <SignIn nav = {this.props.navigation} signIn = {(_email, _password)=>this._signIn(_email, _password)} signInWithFacebook = {this._SignInWithFacebook} signInWithGoogle = {this._SignInWithGoogle}/>
     else
-      renderTabView = <SignUp />
+      renderTabView = <SignUp signUp = {(_username, _email, _password)=>this._signUp(_username, _email, _password)} signUpWithFacebook = {this._SignUpWithFacebook} signUpWithGoogle = {this._SignUpWithGoogle}/>
 
     return (
       <View style={styles.mainContainer}>
@@ -57,13 +94,18 @@ class SignInScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({user}) => {
   return {
+    isRegistered : user.isRegistered,
+    isError : user.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    userSignup: (username, email, paswword) => dispatch(UserAction.userSignup(username, email, paswword)),
+    userLogin: (email, paswword) => dispatch(UserAction.userLogin(email, paswword)),
+    userGoogleSignup: () => dispatch(UserAction.userGoogleSignup()),
   }
 }
 

@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "738581788549",
+    "firebase_url": "https://halatripthailand-1533173812512.firebaseio.com",
+    "project_id": "halatripthailand-1533173812512",
+    "storage_bucket": "halatripthailand-1533173812512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738581788549:android:dd30e733b5b13903",
+        "android_client_info": {
+          "package_name": "com.halaltripthailand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "738581788549-23eki5i8crmg3hubi8c0pn19k10edo0o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.halaltripthailand",
+            "certificate_hash": "193b42a2289e4d63eba73eca4b4afd4e21dd6fff"
+          }
+        },
+        {
+          "client_id": "738581788549-ce8q4k6q6s6b7guj6dcpplpclrfhdahs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.halaltripthailand",
+            "certificate_hash": "5faf78b6362f568d7b0a2b6ce35751cb284f4187"
+          }
+        },
+        {
+          "client_id": "738581788549-md5601ei1a8ge1kfiqnurgihbvdb6m2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA7lcWwGrRD7TfPG5c5GDg2vRzdhuRAaA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "738581788549-md5601ei1a8ge1kfiqnurgihbvdb6m2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

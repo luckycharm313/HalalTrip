@@ -14,15 +14,14 @@ export default class SignIn extends Component {
     };
   }
 
-  _onChangeEmail = () => {
-
-  }
-
   _onForgotPassword = () => {
     this.props.nav.navigate('ForgotPasswordScreen')
   }
   _onSignIn = () => {
-    this.props.nav.navigate('HomeScreen')
+    if(this.state._email == null || this.state._password == null)
+      alert('Invalid Input data')
+    else
+      this.props.signIn(this.state._email, this.state._password)    
   }
 
   render () {
@@ -37,18 +36,18 @@ export default class SignIn extends Component {
           autoCapitalize = {'none'}
           autoCorrect = {false}
           placeholder = {'Email'}
+          validators = {'isEmail'}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
           returnKeyType = 'go'
           selectionColor = {Colors.textHintColor}
           onChangeText = {(_email) => { this.setState({_email: _email})}}
-          onChange = {this._onChangeEmail}
           maxLength = {100}/>
         
         <TextInput
           ref = {'password'}
           name = {'Password' }
-          type = {'TextInput'}
+          secureTextEntry={true}
           underlineColorAndroid = {Colors.transparent}
           autoCapitalize = {'none'}
           autoCorrect = {false}
@@ -58,7 +57,6 @@ export default class SignIn extends Component {
           returnKeyType = 'go'
           selectionColor = {Colors.textHintColor}
           onChangeText = {(_password) => { this.setState({_password: _password})}}
-          onChange = {this._onChangePassword}
           maxLength = {100}/>
         
         <TouchableOpacity style={styles.btnSignIn} onPress={this._onSignIn}>
@@ -77,7 +75,7 @@ export default class SignIn extends Component {
 
         <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#cf4332'}]}>
           <Image style={styles.social_icon} source={Images.googleplus} resizeMode='contain' />
-          <Text style={styles.social_txt}>Signin with Google+</Text>
+          <Text style={styles.social_txt}>Signin with Google</Text>
           <View style={styles.hiddenView} />
         </TouchableOpacity>
         </KeyboardAvoidingView>

@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 // Styles
+import MainAction from '../Redux/MainRedux'
 import styles from './Styles/HomeScreenStyle'
 import { Images, Colors } from '../Themes'
 import CategoryItem from '../Components/CategoryItem'
@@ -159,6 +160,10 @@ class HomeScreen extends Component {
     />
   )
 
+  componentWillMount(){
+    this.props.loadData()
+  }
+
   render () {
     return (
       <ScrollView style={styles.mainContainer}>
@@ -273,6 +278,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadData: () => dispatch(MainAction.loadData()),
   }
 }
 
