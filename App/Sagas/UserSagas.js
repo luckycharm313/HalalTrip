@@ -6,6 +6,8 @@ import {AsyncStorage, Platform} from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
+import API from '../Services/Api'
+
 export function * signUp (api, action) {
   const { username, email, password } = action
   const response = yield call(api._signUp, username, email, password)
@@ -74,23 +76,41 @@ export function * signUpWithGoogle (api, action) {
 export function * logIn (api, action) {
   const { email, password } = action
   const response = yield call(api._logIn, email, password)
-
+  
   console.log('signin response => ', response)
   
   // success?
   if (response.ok) {
     const temp = path(['data'], response)
-    console.log('signin response data => ', temp)
+    
     const {token} = temp
+    /*** store token in server */
+    let push_token = ''
+        
+    let param = new FormData();
+    param.append("user_email", email)
+    param.append("user_token", token)
+    param.append("user_push_token", push_token)
+    
+    const res = yield call(api._registerToken, param)
+    /** end store token in server **/ 
 
-    try {
-      yield AsyncStorage.setItem('token', JSON.stringify(token))
-    } catch (error) {
-      yield put(UserActions.userFailure())  
+    if (res.ok) {
+      try {
+        yield AsyncStorage.setItem('token', JSON.stringify(token))        
+      } catch (error) {
+        yield put(UserActions.userFailure())  
+      }
+  
+      yield API.setToken(JSON.parse(yield AsyncStorage.getItem('token'))) // set global token variable.
+
+      yield put(UserActions.userSuccess(temp))
+      yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
     }
-
-    yield put(UserActions.userSuccess(temp))
-    yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
+    else{
+      yield put(UserActions.userFailure())
+    }
+    
   } else {
     yield put(UserActions.userFailure())
   }

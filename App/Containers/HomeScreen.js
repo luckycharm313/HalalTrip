@@ -16,55 +16,57 @@ import DestinationItem from '../Components/DestinationItem'
 import TrendItem from '../Components/TrendItem'
 import Redeem from '../Components/Redeem'
 import FreeCredit from '../Components/FreeCredit'
+import Spinkit from '../Components/Spinkit'
 
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryData : [
-        {
-          title : 'Hotels',
-          detail : '736 hotels',
-          img_url : Images.image1,
-        },
-        {
-          title : 'Activities',
-          detail : '762 activities',
-          img_url : Images.image2,
-        },
-        {
-          title : 'Restaurants',
-          detail : '549 restaurants',
-          img_url : Images.image3,
-        },
-      ],
-      hotelData : [
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image4,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '4',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.2',
-          img_url : Images.image3,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image2,
-        },
-      ],
+      appLoading : false,
+      // categoryData : [
+      //   {
+      //     title : 'Hotels',
+      //     detail : '736 hotels',
+      //     img_url : Images.image1,
+      //   },
+      //   {
+      //     title : 'Activities',
+      //     detail : '762 activities',
+      //     img_url : Images.image2,
+      //   },
+      //   {
+      //     title : 'Restaurants',
+      //     detail : '549 restaurants',
+      //     img_url : Images.image3,
+      //   },
+      // ],
+      // hotelData : [
+      //   {
+      //     title : 'New Clayton Hotel Birminghan',
+      //     rating : '5',
+      //     location : 'Bimingham City Center',
+      //     cost : '$239',
+      //     review : '8.8',
+      //     img_url : Images.image4,
+      //   },
+      //   {
+      //     title : 'New Clayton Hotel Birminghan',
+      //     rating : '4',
+      //     location : 'Bimingham City Center',
+      //     cost : '$239',
+      //     review : '8.2',
+      //     img_url : Images.image3,
+      //   },
+      //   {
+      //     title : 'New Clayton Hotel Birminghan',
+      //     rating : '5',
+      //     location : 'Bimingham City Center',
+      //     cost : '$239',
+      //     review : '8.8',
+      //     img_url : Images.image2,
+      //   },
+      // ],
       activityData : [
         {
           title : 'Deepest Diving Pool in Indonesia',
@@ -161,10 +163,19 @@ class HomeScreen extends Component {
   )
 
   componentWillMount(){
+    this.setState({appLoading : true})
     this.props.loadData()
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({appLoading : nextProps.fetching})
+  }
   render () {
+    console.log(" appLoading => ", this.state.appLoading)
+    if (this.state.appLoading) {
+      return <Spinkit size={30} type="FadingCircle" color={Colors.primary} />
+    }
+
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.container}>
@@ -184,9 +195,9 @@ class HomeScreen extends Component {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.categoryData}
+                data={this.props.categoryData}
                 renderItem={this._renderCategoryItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
           
@@ -201,9 +212,9 @@ class HomeScreen extends Component {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.hotelData}
+                data={this.props.hotelTotalData}
                 renderItem={this._renderHotelItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
           
@@ -220,7 +231,7 @@ class HomeScreen extends Component {
                 showsHorizontalScrollIndicator={false}
                 data={this.state.activityData}
                 renderItem={this._renderActivityItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
 
@@ -237,7 +248,7 @@ class HomeScreen extends Component {
                 showsHorizontalScrollIndicator={false}
                 data={this.state.destinationData}
                 renderItem={this._renderDestinationItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
 
@@ -254,7 +265,7 @@ class HomeScreen extends Component {
                 showsHorizontalScrollIndicator={false}
                 data={this.state.trendData}
                 renderItem={this._renderTrendItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
           
@@ -271,8 +282,11 @@ class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({main, category, hotel}) => {
   return {
+    errorMsg : main.errorMsg,
+    categoryData : category.categoryData,
+    hotelTotalData : hotel.hotelTotalData,
   }
 }
 

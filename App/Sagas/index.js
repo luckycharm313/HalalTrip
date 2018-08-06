@@ -7,14 +7,17 @@ import DebugConfig from '../Config/DebugConfig'
 
 import { StartupTypes } from '../Redux/StartupRedux'
 import { UserTypes } from '../Redux/UserRedux'
+import { MainTypes } from '../Redux/MainRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { signUp, signUpWithGoogle, logIn } from './UserSagas'
+import { loadData } from './MainSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
+const main_api = API.main()
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 // const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
@@ -30,5 +33,8 @@ export default function * root () {
     takeLatest(UserTypes.USER_SIGNUP, signUp, user_api),
     takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, user_api),
     takeLatest(UserTypes.USER_LOGIN, logIn, user_api),
+
+    // main saga : category, hotel, activity, restaurant
+    takeLatest(MainTypes.LOAD_DATA, loadData, main_api),
   ])
 }

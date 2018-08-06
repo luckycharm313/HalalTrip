@@ -23,7 +23,7 @@ class LaunchInterestScreen extends Component {
 
   activityComponet = (title) => {
     return (
-      <TouchableOpacity style={styles.activityComponet}>
+      <TouchableOpacity style={styles.activityComponet} key={title}>
         <Text style={styles.txt_activity}>{title}</Text>
       </TouchableOpacity>
     )

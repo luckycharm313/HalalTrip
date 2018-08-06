@@ -17,14 +17,16 @@ export default class HotelItem extends Component {
   // }
 
   render () {
-    const {title, rating, location, cost, review, img_url} = this.props.data
+    const {title, rating, location, img_url} = this.props.data
 
+    const cost = '$239'
+    const review = '8.8'
     return (
       <TouchableOpacity style={styles.container}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={img_url} >
+          source={{uri: img_url}} >
           <Icon name="heart" style = {styles.icon_heart} />  
         </ImageBackground>
         <Text style={styles.txt_rating}>{rating} Stars</Text>          

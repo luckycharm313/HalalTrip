@@ -1,8 +1,17 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
 import {AsyncStorage} from 'react-native'
+
+// yield AsyncStorage.getItem('token')
+let token = ""
+
+const setToken = (_token) => {
+  token = _token
+  console.log("set Token => ", token)
+}
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {
+
   // ------
   // STEP 1
   // ------
@@ -59,7 +68,7 @@ const create = (baseURL = 'https://api.github.com/') => {
 }
 
 
-const user = (baseURL = 'http://www.halaltripthailand.com/wp-json/') => {
+const user = (baseURL = 'http://www.halaltripthailand.com/') => {
   const _api = apisauce.create({
     // base URL is read from the "constructor"
     baseURL,
@@ -84,18 +93,44 @@ const user = (baseURL = 'http://www.halaltripthailand.com/wp-json/') => {
     // 10 second timeout...
     timeout: 10000
   })
-
-  const _signUp = (username, email, password) => _api.post('wp/v2/users', {username: username, email: email, password : password} )
-  const _logIn = (email, password) => api.post('jwt-auth/v1/token ', {username: email, password : password} )
-
+  
+  const _signUp = (username, email, password) => _api.post('wp-json/wp/v2/users', {username: username, email: email, password : password} )
+  const _logIn = (email, password) => api.post('wp-json/jwt-auth/v1/token ', {username: email, password : password} )
+  const _registerToken = (param) => api.post('halaltrip/api/user/registerToken', param )
   return {
     _signUp,
     _logIn,
+    _registerToken,
+  }
+}
+
+const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
+  
+  const api = apisauce.create({
+    // base URL is read from the "constructor"
+    baseURL,
+    // here are some default headers
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/json'      
+    },
+    // 10 second timeout...
+    timeout: 10000
+  })
+   
+  const _getCategory = () => api.get('api/category/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getHotel = () => api.get('api/hotel/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+
+  return {
+    _getCategory,
+    _getHotel
   }
 }
 
 // let's return back our create method as the default.
 export default {
+  setToken,
   create,
-  user
+  user,
+  main,
 }

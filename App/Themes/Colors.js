@@ -6,6 +6,7 @@ const colors = {
   grey : '#979797',
   lightGrey : '#666666',
   lightBlack : '#EFEFF4',
+  spin: '#333333',
   font : {
     default : '#ffffff',
     dark : '#000000',

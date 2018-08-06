@@ -68,7 +68,7 @@ export default class LaunchScreen extends Component {
                   showsHorizontalScrollIndicator={false}
                   data={this.state.data}
                   renderItem={this._renderItem}
-                  keyExtractor={(item, index) => index}
+                  keyExtractor={(item, index) => index.toString()}
                 />
               </View>
               <View style={styles.bottom_section}>
