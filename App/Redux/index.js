@@ -11,6 +11,7 @@ export const reducers = combineReducers({
   main: require('./MainRedux').reducer,
   category: require('./CategoryRedux').reducer,
   hotel: require('./HotelRedux').reducer,
+  place: require('./PlaceRedux').reducer,
 })
 
 export default () => {

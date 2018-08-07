@@ -1,14 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-import {AsyncStorage} from 'react-native'
 
-// yield AsyncStorage.getItem('token')
-let token = ""
-
-const setToken = (_token) => {
-  token = _token
-  console.log("set Token => ", token)
-}
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {
 
@@ -118,18 +110,21 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
     timeout: 10000
   })
    
-  const _getCategory = () => api.get('api/category/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
-  const _getHotel = () => api.get('api/hotel/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getCategory = (token) => api.get('api/category/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getHotel = (token) => api.get('api/hotel/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getPlace = (token) => api.get('api/place/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getHotelByPlace = (param, token) => api.post('api/place/hotel', param, { headers : {'Authorization': `Bearer ${token}`} })
 
   return {
     _getCategory,
-    _getHotel
+    _getHotel,
+    _getPlace,
+    _getHotelByPlace
   }
 }
 
 // let's return back our create method as the default.
 export default {
-  setToken,
   create,
   user,
   main,

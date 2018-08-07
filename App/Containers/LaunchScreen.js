@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, Text, Image, View, ImageBackground, FlatList} from 'react-native'
+import { TouchableOpacity, Text, Image, View, ImageBackground, FlatList, AsyncStorage} from 'react-native'
 import { Images } from '../Themes'
 
 // Styles
@@ -41,7 +41,14 @@ export default class LaunchScreen extends Component {
       data = {item}
     />
   )
-
+  componentWillMount(){
+    AsyncStorage.getItem('token', (err, token) => {
+      console.log(" app token => ", token)
+      if(token !== null){
+        this.props.navigation.navigate('HomeScreen')
+      }
+    });
+  }
   _onClickNext = () => {
     this.props.navigation.navigate('LaunchInterestScreen')
   }

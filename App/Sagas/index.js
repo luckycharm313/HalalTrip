@@ -8,12 +8,14 @@ import DebugConfig from '../Config/DebugConfig'
 import { StartupTypes } from '../Redux/StartupRedux'
 import { UserTypes } from '../Redux/UserRedux'
 import { MainTypes } from '../Redux/MainRedux'
+import { PlaceTypes } from '../Redux/PlaceRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { signUp, signUpWithGoogle, logIn } from './UserSagas'
 import { loadData } from './MainSagas'
+import { getHotelByPlace } from './PlaceSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -36,5 +38,8 @@ export default function * root () {
 
     // main saga : category, hotel, activity, restaurant
     takeLatest(MainTypes.LOAD_DATA, loadData, main_api),
+
+    // place saga:
+    takeLatest(PlaceTypes.GET_HOTEL_BY_PLACE, getHotelByPlace, main_api),
   ])
 }

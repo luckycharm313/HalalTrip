@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, FlatList, ScrollView, Image} from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
+import PlaceAction from '../Redux/PlaceRedux'
 // Styles
 import styles from './Styles/MapHotelScreenStyle'
 import { Images } from '../Themes'
@@ -16,35 +16,25 @@ class MapHotelScreen extends Component {
   };
 
   constructor(props) {
-    super(props);
+    super(props)
+    const {navigation} = this.props
+    const { state : {params}} = navigation
+
     this.state = {
-      hotelData : [
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image4,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '4',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.2',
-          img_url : Images.image3,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image2,
-        },
-      ]
+      placeId : params.placeId,
+      placeTitle : params.placeTitle,
     }
+  }
+  componentWillMount(){
+    this.props.getHotelByPlace(this.state.placeId)
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log("componentWillReceiveProps => ",nextProps.placeCategoryData['hotelData'])
+  }
+
+  componentDidMount(){
+    console.log("componentDidMount => ",this.props.placeCategoryData['hotelData'])
   }
   _renderHotelItem = ({item}) => (
     <HotelItem
@@ -52,7 +42,9 @@ class MapHotelScreen extends Component {
     />
   )
 
+
   render () {
+    
     return (
         <View style = {styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -60,12 +52,40 @@ class MapHotelScreen extends Component {
               <NavBar nav = {this.props.navigation} />
             </View>
             <View style = {styles.map_view}>
-              <Image source={Images.map} style = {styles.map_img} />
+              <MapView
+                style={{flex : 1}}
+                provider={ PROVIDER_GOOGLE }
+                initialRegion={{
+                  latitude: 51.532083540964,
+                  longitude: -0.10918060010135,
+                  latitudeDelta: 0.0922 + (0.0922 / 0.7),
+                  longitudeDelta: 0.0421 + (0.0421/ 0.7),
+                }}
+                zoomEnabled = {true}
+                showsUserLocation={ true }
+              >
+              {
+                this.props.placeCategoryData['hotelData'].map((element, index) => {
+                  console.log("ddd", element['street_lat'])
+                  return(
+                    <MapView.Marker
+                      title ={element['title']}
+                      coordinate={ {
+                        latitude : parseFloat(element['street_lat']),
+                        longitude: parseFloat(element['street_lng']),
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421, }}
+                    />  
+                  )
+                  
+                })
+              }                
+              </MapView>
             </View>
             <View style={styles.body_section}>
               <View style={styles.section}>
                 <View style={styles.section_header}>
-                  <Text style={styles.txtSectionTitle}>Find hotel in Milan, Italy</Text>
+                  <Text style={styles.txtSectionTitle}>Find hotel in {this.state.placeTitle}</Text>
                   <TouchableOpacity style={styles.more_area}>
                     <Text style={styles.txtLabelSm}>Hide info</Text>
                   </TouchableOpacity>
@@ -73,9 +93,9 @@ class MapHotelScreen extends Component {
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    data={this.state.hotelData}
+                    data={this.props.placeCategoryData['hotelData']}
                     renderItem={this._renderHotelItem}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => index.toString()}
                   />
               </View>
             </View>
@@ -85,13 +105,15 @@ class MapHotelScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({place}) => {
   return {
+    placeCategoryData : place.placeCategoryData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getHotelByPlace: (placeId) => dispatch(PlaceAction.getHotelByPlace(placeId)),
   }
 }
 

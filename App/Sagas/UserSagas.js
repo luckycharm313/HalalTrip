@@ -6,8 +6,6 @@ import {AsyncStorage, Platform} from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-import API from '../Services/Api'
-
 export function * signUp (api, action) {
   const { username, email, password } = action
   const response = yield call(api._signUp, username, email, password)
@@ -102,8 +100,6 @@ export function * logIn (api, action) {
         yield put(UserActions.userFailure())  
       }
   
-      yield API.setToken(JSON.parse(yield AsyncStorage.getItem('token'))) // set global token variable.
-
       yield put(UserActions.userSuccess(temp))
       yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
     }
