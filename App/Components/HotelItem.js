@@ -5,16 +5,9 @@ import styles from './Styles/HotelItemStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 export default class HotelItem extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  _goToHotelDetail=()=>{
+    this.props.nav.navigate('HotelDetailScreen', {hotelId : this.props.data.id});
+  }
 
   render () {
     const {title, rating, location, img_url} = this.props.data
@@ -22,7 +15,7 @@ export default class HotelItem extends Component {
     const cost = '$239'
     const review = '8.8'
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this._goToHotelDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}

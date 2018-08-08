@@ -9,6 +9,7 @@ import { StartupTypes } from '../Redux/StartupRedux'
 import { UserTypes } from '../Redux/UserRedux'
 import { MainTypes } from '../Redux/MainRedux'
 import { PlaceTypes } from '../Redux/PlaceRedux'
+import { HotelTypes } from '../Redux/HotelRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -16,6 +17,7 @@ import { startup } from './StartupSagas'
 import { signUp, signUpWithGoogle, logIn } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace } from './PlaceSagas'
+import { loadHotelData, getHotelDetail } from './HotelSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -41,5 +43,10 @@ export default function * root () {
 
     // place saga:
     takeLatest(PlaceTypes.GET_HOTEL_BY_PLACE, getHotelByPlace, main_api),
+    
+    // hotel saga:
+    takeLatest(HotelTypes.GET_HOTEL_DETAIL, getHotelDetail, main_api),
+    takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
+    
   ])
 }

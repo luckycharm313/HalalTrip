@@ -1,32 +1,76 @@
-/* ***********************************************************
-* A short word on how to use this automagically generated file.
-* We're often asked in the ignite gitter channel how to connect
-* to a to a third party api, so we thought we'd demonstrate - but
-* you should know you can use sagas for other flow control too.
-*
-* Other points:
-*  - You'll need to add this saga to sagas/index.js
-*  - This template uses the api declared in sagas/index.js, so
-*    you'll need to define a constant in that file.
-*************************************************************/
-
 import { call, put } from 'redux-saga/effects'
 import HotelActions from '../Redux/HotelRedux'
+import {AsyncStorage} from 'react-native'
 // import { HotelSelectors } from '../Redux/HotelRedux'
 
-export function * getHotel (api, action) {
-  const { data } = action
-  // get current data from Store
-  // const currentData = yield select(HotelSelectors.getData)
-  // make the call to the api
-  const response = yield call(api.gethotel, data)
+export function * loadHotelData (api, action) {
+  
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  /*** Hotel part **/
+  const responseHotel = yield call(api._getHotel, token)
+  
+  if (responseHotel.ok) {
+    const { data, code, message } = responseHotel.data    
+    if(code == 'success'){
+      yield put(HotelActions.hotelSuccess(data))
 
-  // success?
-  if (response.ok) {
-    // You might need to change the response here - do this with a 'transform',
-    // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(HotelActions.hotelSuccess(response.data))
+      data.sort(function(a, b) {
+          return b.rating - a.rating;
+      })
+      
+      let featuredCategoryId = data[0].id
+      let param = new FormData();
+      param.append("hotelId", featuredCategoryId)
+      const responseHotelDetail = yield call(api._getHotelDetail, param, token)
+
+      if (responseHotelDetail.ok) {
+        const { data, code, message } = responseHotelDetail.data 
+
+        if(code == 'success'){
+          yield put(HotelActions.hotelDetailSuccess(data))
+        }
+        else{
+          yield put(HotelActions.hotelFailure(message))
+          return    
+        }
+      }
+      else{
+        yield put(HotelActions.hotelFailure("Internet Error"))
+        return    
+      }
+    }
+    else{
+      yield put(HotelActions.hotelFailure(message))
+      return
+    }    
   } else {
-    yield put(HotelActions.hotelFailure())
+    yield put(HotelActions.hotelFailure("Internet Error"))
+    return
+  }
+}
+
+export function * getHotelDetail (api, action) {
+  const { hotelId } = action
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+
+  let param = new FormData();
+  param.append("hotelId", hotelId)
+  const responseHotelDetail = yield call(api._getHotelDetail, param, token)
+
+  if (responseHotelDetail.ok) {
+    const { data, code, message } = responseHotelDetail.data 
+
+    if(code == 'success'){
+      console.log("hotel detail data =>", data);
+      yield put(HotelActions.hotelDetailSuccess(data))
+    }
+    else{
+      yield put(HotelActions.hotelFailure(message))
+      return    
+    }
+  }
+  else{
+    yield put(HotelActions.hotelFailure("Internet Error"))
+    return    
   }
 }

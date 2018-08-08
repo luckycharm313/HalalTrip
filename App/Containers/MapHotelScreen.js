@@ -39,6 +39,7 @@ class MapHotelScreen extends Component {
   _renderHotelItem = ({item}) => (
     <HotelItem
       data = {item}
+      nav ={this.props.navigation}
     />
   )
 

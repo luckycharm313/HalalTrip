@@ -65,6 +65,7 @@ class HomeScreen extends Component {
 
   _renderHotelItem = ({item}) => (
     <HotelItem
+      nav={this.props.navigation}
       data = {item}
     />
   )

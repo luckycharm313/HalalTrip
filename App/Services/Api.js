@@ -114,12 +114,14 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   const _getHotel = (token) => api.get('api/hotel/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getPlace = (token) => api.get('api/place/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getHotelByPlace = (param, token) => api.post('api/place/hotel', param, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getHotelDetail = (param, token) => api.post('api/hotel/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
 
   return {
     _getCategory,
     _getHotel,
     _getPlace,
-    _getHotelByPlace
+    _getHotelByPlace,
+    _getHotelDetail
   }
 }
 

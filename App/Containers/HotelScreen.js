@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './Styles/HotelScreenStyle'
 import { Images, Colors } from '../Themes'
 import HotelList from '../Components/HotelList'
+import HotelAction from '../Redux/HotelRedux'
 
 class HotelScreen extends Component {
 
@@ -16,54 +17,29 @@ class HotelScreen extends Component {
     super(props);
     this.state = {
       filterData: ['Jun 6-9', '2 guests'],
-      featuredHotelImages : [Images.image1, Images.image4, Images.image2, Images.image3, Images.image4, Images.image2, Images.image3],
-      featuredHotel : {
-        title : 'New Clayton Hotel Birminghan',
-        rating : '5',
-        location : 'Bimingham City Center',
-        cost : '$239',
-        review : '8.8'
-      },
-      hotelData : [
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image4,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '4',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.2',
-          img_url : Images.image3,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image2,
-        },
-      ]
     }
   }
   
   _renderHotelItem = ({item}) => (
     <HotelList
       data = {item}
+      nav={this.props.navigation}
     />
   )
   _onHotelDetail = () =>{
-    this.props.navigation.navigate('HotelDetailScreen');
+    this.props.navigation.navigate('HotelDetailScreen', {hotelId : this.props.hotelDetailData.id})
+  }
+
+  componentWillMount(){
+    this.props.loadHotelData()
   }
 
   render () {
-    const {title, rating, location, cost, review} = this.state.featuredHotel
+    const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
+    const {title, rating, location, detailImages} = __data
+    let _detailImages = detailImages ? detailImages : []
+    const cost = '$239'
+    const review = '8.8'
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.container}>
@@ -96,7 +72,7 @@ class HotelScreen extends Component {
               <View style={styles.filter_actions}>
                 {
                   this.state.filterData.map(element => (
-                    <View style={styles.filter_view}>
+                    <View style={styles.filter_view} key={element.title}>
                       <Text style={styles.filter_label}>{element}</Text>
                     </View>
                   ))
@@ -112,8 +88,8 @@ class HotelScreen extends Component {
             <Text style={styles.header_txt_title_md}>Featured Hotel</Text>
             <ScrollView horizontal={true} style={styles.hotel_img_section} showsHorizontalScrollIndicator={false}>
                 {
-                  this.state.featuredHotelImages.map(element => (
-                    <Image style={styles.img_featured_hotel} source={element}/>
+                  _detailImages.map(element => (
+                    <Image style={styles.img_featured_hotel} source={{uri : element}} key={element}/>
                   ))
                 }
             </ScrollView>
@@ -136,9 +112,9 @@ class HotelScreen extends Component {
             <Text style={styles.header_txt_title_md}>All Hotels</Text>
             <View style={styles.hotel_list_view}>
               <FlatList
-                data={this.state.hotelData}
+                data={this.props.hotelTotalData}
                 renderItem={this._renderHotelItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
             </View>
           </View>
@@ -148,13 +124,16 @@ class HotelScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({hotel}) => {
   return {
+    hotelTotalData : hotel.hotelTotalData,
+    hotelDetailData : hotel.hotelDetailData,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadHotelData: () => dispatch(HotelAction.loadHotelData()),
   }
 }
 

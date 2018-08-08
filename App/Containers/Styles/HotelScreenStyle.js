@@ -119,7 +119,7 @@ export default StyleSheet.create({
     paddingVertical : 2,
   },
   txt_location : {
-    width: Metrics.width_35,
+    
     color: Colors.font.textHintColor,
     fontSize        : Fonts.size.medium,
     fontFamily      : Fonts.type.base,

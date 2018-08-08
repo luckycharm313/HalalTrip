@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import StarRating from 'react-native-star-rating';
-
+import HotelAction from '../Redux/HotelRedux'
 // Styles
 import styles from './Styles/HotelDetailScreenStyle'
 import { Images, Colors } from '../Themes'
@@ -19,7 +19,12 @@ class HotelDetailScreen extends Component {
   
   constructor(props) {
     super(props);
+    super(props)
+    const {navigation} = this.props
+    const { state : {params}} = navigation
+
     this.state = {
+      hotelId : params.hotelId,
       amenityList : [Images.icon_bed, Images.icon_sofa, Images.icon_bathtub, Images.icon_tv, Images.icon_food],
       filterData : ['Breakfast included', '2 Beds', 'Bookable', 'Free Cancellation'],
       filterImage : [Images.image1, Images.image2, Images.image3, Images.image4, Images.image1, Images.image3, ],
@@ -51,6 +56,11 @@ class HotelDetailScreen extends Component {
       ],
     }
   }
+
+  componentWillMount(){
+    this.props.getHotelDetail(this.state.hotelId)
+  }
+
   _moreComponentRender = (element) =>{
     return(
       <TouchableOpacity style={styles.view_more_component}>
@@ -61,17 +71,22 @@ class HotelDetailScreen extends Component {
   _renderHotelItem = ({item}) => (
     <HotelItem
       data = {item}
+      nav = {this.props.navigation}
     />
   )
   render () {
+    const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
+    const {title, rating, location, detailImages, description, img_url} = __data
+    let _detailImages = detailImages ? detailImages : []
+
     return (
-      <ScrollView style={styles.mainContainer}>
-        <View style = {styles.container}>
+      <View style={styles.mainContainer}>
+        <ScrollView style = {styles.container}>
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={Images.image1}>
-            <View style={styles.photo_action}> 
+          <ImageBackground style={styles.view_photo} source={{uri : img_url}}>
+            {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
                 <Text style={styles.txt_number}>1/5</Text>
               </View>
@@ -79,16 +94,16 @@ class HotelDetailScreen extends Component {
                 <Icon name="apps" style = {styles.icon_all} />
                 <Text style={styles.txt_btn}>View All Photo</Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
           </ImageBackground>
 
           <View style={styles.title_location_section}>
             <View style={styles.hotel_review_view}>
-              <Text style={styles.txt_review}>5 Stars Hotel</Text>
+              <Text style={styles.txt_review}>{rating} Stars Hotel</Text>
               <StarRating
                 disabled={false}
                 maxStars={5}
-                rating={4}
+                rating={rating}
                 fullStarColor={Colors.primary}
                 emptyStar={'ios-star-outline'}
                 fullStar={'ios-star'}
@@ -98,12 +113,12 @@ class HotelDetailScreen extends Component {
               />
             </View>
             <View style={styles.hotel_title_view}>
-              <Text style={styles.txt_hotel_title}>New Clayton Hotel Birmingham</Text>
+              <Text style={styles.txt_hotel_title}>{title}</Text>
             </View>
             <View style={styles.hotel_location_view}>
               <View style={styles.hotel_location_section}>
                 <Text style={styles.txt_location_label}>Location</Text>
-                <Text style={styles.txt_location_detail}>Albert Street, Birmmingham City Center, Birmingham, United Kingdom B5 5JE</Text>
+                <Text style={styles.txt_location_detail}>{location}</Text>
                 <TouchableOpacity style={styles.btn_nearby}>
                   <Text style={styles.txt_nearby}>Explore Nearby</Text>
                 </TouchableOpacity>
@@ -132,7 +147,7 @@ class HotelDetailScreen extends Component {
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
               <Text style={styles.txt_description_label}>Description</Text>
-              <Text style={styles.txt_description_detail} numberOfLines={3} ellipsizeMode ={'tail'}>The world famous sea house in earth, this is a gated property, architects, neighborhood live next door. You will find feeling that...</Text>
+              <Text style={styles.txt_description_detail} numberOfLines={3} ellipsizeMode ={'tail'}>{description}</Text>
             </View>
             <View style={styles.description_view}>
               <Text style={styles.txt_description_label}>Amenities</Text>
@@ -148,22 +163,22 @@ class HotelDetailScreen extends Component {
 
           <View style={styles.filter_section}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Filter</Text>
+              {/* <Text style={styles.txt_description_label}>Filter</Text>
               <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
                 {
                   this.state.filterData.map(element => (
                     <Text style={styles.txt_filter}>{element}</Text>
                   ))
                 }
-              </ScrollView>
+              </ScrollView> */}
               <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                 {
-                  this.state.filterImage.map(element => (
-                    <Image style={styles.img_filter} source={element}/>
+                  _detailImages.map(element => (
+                    <Image style={styles.img_filter} source={{uri :element}}/>
                   ))
                 }
               </ScrollView>
-              <View style={styles.description_filter_view}>
+              {/* <View style={styles.description_filter_view}>
                 <Text style={styles.txt_filter}>
                   <Image style={styles.img_shape} source={Images.icon_shape}/> 
                   &nbsp;&nbsp;30&nbsp;
@@ -205,14 +220,14 @@ class HotelDetailScreen extends Component {
                     <Text style={styles.txt_booking}>Book Now</Text>
                   </View>
                 </View>
-              </View>
+              </View> 
               <View style={styles.more_compoent_btn}>
                 {this._moreComponentRender("Show more 5 rooms")}
-              </View>
+              </View>*/}
             </View>          
           </View>
 
-          <View style={styles.reviews_section}>
+          {/* <View style={styles.reviews_section}>
             <Text style={styles.txt_description_label}>Reviews</Text>
             <View style={styles.reviews_view}>
               <Image style={styles.img_review} source={Images.image1}/> 
@@ -227,7 +242,7 @@ class HotelDetailScreen extends Component {
             <View style={styles.more_compoent_btn}>
               {this._moreComponentRender("Read all 237 reviews")}
             </View>
-          </View>
+          </View> */}
 
           <View style={styles.reviews_section}>
             <Text style={styles.txt_description_label}>More Options</Text>
@@ -250,24 +265,27 @@ class HotelDetailScreen extends Component {
             <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.state.hotelData}
+                  data={this.props.hotelTotalData}
                   renderItem={this._renderHotelItem}
-                  keyExtractor={(item, index) => index}
+                  keyExtractor={(item, index) => index.toString()}
                 />
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({hotel}) => {
   return {
+    hotelDetailData : hotel.hotelDetailData,
+    hotelTotalData : hotel.hotelTotalData,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getHotelDetail: (hotelId) => dispatch(HotelAction.getHotelDetail(hotelId)),
   }
 }
 

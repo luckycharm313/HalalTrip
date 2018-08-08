@@ -5,26 +5,22 @@ import styles from './Styles/HotelListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 export default class HotelList extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
+  _goToHotelDetail=()=>{
+    this.props.nav.navigate('HotelDetailScreen', {hotelId : this.props.data.id});
+  }
+  
   render () {
-    const {title, rating, location, cost, review, img_url} = this.props.data
+    const {title, rating, location, img_url} = this.props.data
+
+    const cost = '$239'
+    const review = '8.8'
 
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this._goToHotelDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={img_url} >
+          source={{uri: img_url}} >
           <Icon name="heart" style = {styles.icon_heart} />  
         </ImageBackground>
         <View style={styles.detail}>
