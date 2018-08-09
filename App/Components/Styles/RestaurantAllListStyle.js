@@ -11,7 +11,8 @@ export default StyleSheet.create({
     width: 100,
     height : 100,  
     borderRadius : 10,
-    alignItems : 'flex-end'
+    alignItems : 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.2)'
   },
   
   icon_heart : {

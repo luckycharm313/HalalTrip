@@ -7,29 +7,21 @@ import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
 
 export default class RoomList extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  
   _onRestaurantDetail =()=>{
-    this.props.nav.navigate('RestaurantDetailScreen')
+    this.props.nav.navigate('RestaurantDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
   }
 
   render () {
-    const {title, country, location, review, img_url} = this.props.data
-
+    const {title, country, location, rating, img_url} = this.props.data
+    const _rating = Number.parseFloat(rating)
+    // const review=''
     return (
       <TouchableOpacity style={styles.container} onPress = {this._onRestaurantDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={img_url} >
+          source={{uri: img_url}} >
           <Icon name="heart" style = {styles.icon_heart} />  
         </ImageBackground>
         <Text style={styles.txt_rating}>{country}</Text>          
@@ -42,7 +34,7 @@ export default class RoomList extends Component {
           <StarRating
             disabled={false}
             maxStars={5}
-            rating={4}
+            rating={_rating}
             fullStarColor={Colors.primary}
             emptyStar={'ios-star-outline'}
             fullStar={'ios-star'}
@@ -50,7 +42,7 @@ export default class RoomList extends Component {
             iconSet={'Ionicons'}
             starSize = {15}
           />
-          <Text style={styles.txt_md}>{review}</Text>
+          <Text style={styles.txt_md}>{rating}</Text>
         </View>
       </TouchableOpacity>
     )

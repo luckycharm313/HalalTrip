@@ -4,13 +4,14 @@ import { Metrics, Colors, Fonts } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginRight : Metrics.baseMargin,
+    marginRight : Metrics.baseMargin,    
   },
   img : {
     width: 120,
     height : 120,  
     borderRadius : 10,
-    alignItems : 'flex-end'
+    alignItems : 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.2)'
   },
   icon_heart : {
     color: Colors.font.default,

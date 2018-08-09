@@ -7,15 +7,15 @@ import { Images, Colors } from '../Themes'
 export default class CuisinesItem extends Component {
   
   render () {
-    const {title, detail, img_url} = this.props.data
+    const {title, restaurant_count, img_url} = this.props.data
     return (
       <ImageBackground 
         style={styles.container}
-        source={img_url}
+        source={{uri :img_url}}
         imageStyle={{ borderRadius: 8 }} >
         <View style={styles.opacity_view} >
           <Text style={styles.txt_title}>{title}</Text>
-          <Text style={styles.txt_detail}>{detail}</Text>
+          <Text style={styles.txt_detail}>{restaurant_count} Restaurants</Text>
         </View>
       </ImageBackground>
     )

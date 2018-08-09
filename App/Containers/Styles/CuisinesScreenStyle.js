@@ -36,9 +36,16 @@ export default StyleSheet.create({
     flexDirection : 'row',
     alignItems : 'center', 
   },
-  img_review :{
+  opacity_view : {
     width: 60,
     height : 60,
+    backgroundColor: 'rgba(0,0,0,0.2)', 
+    borderRadius : 10,
+  },
+
+  img_review :{
+    width: '100%',
+    height : '100%',
     borderRadius : 10,
   },
   item_view :{

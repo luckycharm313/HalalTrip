@@ -34,14 +34,16 @@ class CuisinesScreen extends Component {
   }
 
   _renderCuisinesList = ({item}) =>{
-    const {title, detail, img_url} = item
+    const {title, restaurant_count, img_url} = item
     return (
       <TouchableOpacity style={styles.view_cuisines}>
         <View style={styles.resturant_view}>
-          <Image style={styles.img_review} source={img_url}/>
+          <View style={styles.opacity_view} >
+            <Image style={styles.img_review} source={{uri :img_url}}/>
+          </View>
           <View style={styles.item_view}>
             <Text style={styles.txt_label}>{title}</Text>
-            <Text style={styles.txt_detail}>{detail}</Text>
+            <Text style={styles.txt_detail}>{restaurant_count} Restaurants</Text>
           </View>
         </View>
         <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -50,6 +52,7 @@ class CuisinesScreen extends Component {
   }
 
   render () {
+    const cuisineData = this.props.cuisineData ? this.props.cuisineData : []
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
@@ -61,9 +64,9 @@ class CuisinesScreen extends Component {
           </View>
           <View style={styles.body_section}>
             <FlatList
-                data={this.state.cuisinesData}
+                data={cuisineData}
                 renderItem={this._renderCuisinesList}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
         </ScrollView>
@@ -72,8 +75,9 @@ class CuisinesScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({restaurant}) => {
   return {
+    cuisineData : restaurant.cuisineData,
   }
 }
 

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import StarRating from 'react-native-star-rating';
+import ViewMoreText from 'react-native-view-more-text'
+
 import HotelAction from '../Redux/HotelRedux'
 // Styles
 import styles from './Styles/HotelDetailScreenStyle'
@@ -18,7 +20,6 @@ class HotelDetailScreen extends Component {
   };
   
   constructor(props) {
-    super(props);
     super(props)
     const {navigation} = this.props
     const { state : {params}} = navigation
@@ -74,11 +75,13 @@ class HotelDetailScreen extends Component {
       nav = {this.props.navigation}
     />
   )
+
   render () {
     const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
-    const {title, rating, location, detailImages, description, img_url} = __data
+    const {title, rating, location, detailImages, description, img_url, amenity} = __data
     let _detailImages = detailImages ? detailImages : []
-
+    let _amenity = amenity ? amenity : []
+    console.log("detail data _amenity =>", _amenity)
     return (
       <View style={styles.mainContainer}>
         <ScrollView style = {styles.container}>
@@ -146,15 +149,15 @@ class HotelDetailScreen extends Component {
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Description</Text>
-              <Text style={styles.txt_description_detail} numberOfLines={3} ellipsizeMode ={'tail'}>{description}</Text>
+              <Text style={styles.txt_description_label}>Description</Text>              
+              <Text style={styles.txt_description_detail} >{description}</Text>
             </View>
             <View style={styles.description_view}>
               <Text style={styles.txt_description_label}>Amenities</Text>
               <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
                 {
-                  this.state.amenityList.map(element => (
-                    <Image style={styles.img_amenity} source={element}/>
+                  _amenity.map(element => (
+                    <Text style={styles.txt_amenity}>{element}</Text>
                   ))
                 }
               </ScrollView>

@@ -10,44 +10,13 @@ import { Images, Colors } from '../Themes'
 import CuisinesItem from '../Components/CuisinesItem'
 import RestaurantList from '../Components/RestaurantList'
 import RestaurantAllList from '../Components/RestaurantAllList'
+import RestaurantAction from '../Redux/RestaurantRedux'
 
 class RestaurantScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       filterData: ['Dates', 'Guests'],
-      cuisinesData : [{
-        title : 'Japanese',
-        detail : '84 Restaurants',
-        img_url : Images.image4,
-      },{
-        title : 'Italian',
-        detail : '356 Restaurants',
-        img_url : Images.image1,
-      },{
-        title : 'Mexican',
-        detail : '38 Restaurants',
-        img_url : Images.image2,
-      }],
-      restaurantData : [{
-        title : 'Coco Bamboo Resto & Bar',
-        country : 'Italian',
-        location : 'Milan City Center',
-        review : '4.9',
-        img_url : Images.image4,
-      },{
-        title : 'Moon Rodrigo Mezzanine',
-        country : 'Mexican',
-        location : 'Birmingham',
-        review : '4.9',
-        img_url : Images.image1,
-      },{
-        title : 'Elia & Sushi Today',
-        country : 'Japanese',
-        location : 'Tokyo',
-        review : '4.9',
-        img_url : Images.image2,
-      }],
     }
   }
   _renderCuisinesItem = ({item})=> {
@@ -59,13 +28,21 @@ class RestaurantScreen extends Component {
   }
 
   _renderAllRestaurants = ({item})=> {
-    return( <RestaurantAllList data = {item} /> ) 
+    return( <RestaurantAllList data = {item} nav ={this.props.navigation} /> ) 
   }
 
   _onCuisines = ()=>{
     this.props.navigation.navigate('CuisinesScreen');
   }
+  
+  componentWillMount(){
+    this.props.loadRestaurantData()
+  }
+
   render () {
+    const cuisineData = this.props.cuisineData ? this.props.cuisineData : []
+    const restaurantData = this.props.restaurantData ? this.props.restaurantData : []
+
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.container}>
@@ -98,7 +75,7 @@ class RestaurantScreen extends Component {
               <View style={styles.filter_actions}>
                 {
                   this.state.filterData.map(element => (
-                    <View style={styles.filter_view}>
+                    <View style={styles.filter_view} key={element}>
                       <Text style={styles.filter_label}>{element}</Text>
                     </View>
                   ))
@@ -121,9 +98,9 @@ class RestaurantScreen extends Component {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.cuisinesData}
+                data={cuisineData}
                 renderItem={this._renderCuisinesItem}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
 
@@ -138,9 +115,9 @@ class RestaurantScreen extends Component {
             <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.restaurantData}
+                data={restaurantData}
                 renderItem={this._renderTrendingData}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index) => index.toString()}
               />
           </View>
 
@@ -149,9 +126,9 @@ class RestaurantScreen extends Component {
               <Text style={styles.txtSectionTitle}>All Restaurants</Text>
             </View>
             <FlatList
-              data={this.state.restaurantData}
+              data={restaurantData}
               renderItem={this._renderAllRestaurants}
-              keyExtractor={(item, index) => index}
+              keyExtractor={(item, index) => index.toString()}
             />
           </View>
         </View>
@@ -160,13 +137,16 @@ class RestaurantScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({restaurant}) => {
   return {
+    cuisineData : restaurant.cuisineData,
+    restaurantData : restaurant.restaurantData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadRestaurantData: () => dispatch(RestaurantAction.loadRestaurantData()),
   }
 }
 

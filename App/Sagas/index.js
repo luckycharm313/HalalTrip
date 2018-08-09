@@ -10,6 +10,7 @@ import { UserTypes } from '../Redux/UserRedux'
 import { MainTypes } from '../Redux/MainRedux'
 import { PlaceTypes } from '../Redux/PlaceRedux'
 import { HotelTypes } from '../Redux/HotelRedux'
+import { RestaurantTypes } from '../Redux/RestaurantRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -18,6 +19,7 @@ import { signUp, signUpWithGoogle, logIn } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail } from './HotelSagas'
+import { loadRestaurantData, getRestaurantDetail } from './RestaurantSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -47,6 +49,10 @@ export default function * root () {
     // hotel saga:
     takeLatest(HotelTypes.GET_HOTEL_DETAIL, getHotelDetail, main_api),
     takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
+
+    // restaurant saga :
+    takeLatest(RestaurantTypes.LOAD_RESTAURANT_DATA, loadRestaurantData, main_api),
+    takeLatest(RestaurantTypes.GET_RESTAURANT_DETAIL, getRestaurantDetail, main_api),
     
   ])
 }

@@ -188,6 +188,12 @@ export default StyleSheet.create({
     fontSize        : Fonts.size.small,
     fontFamily      : Fonts.type.base,
   },
+  txt_amenity: {
+    color: Colors.font.textHintColor,
+    fontSize        : Fonts.size.small,
+    fontFamily      : Fonts.type.base,
+    marginRight : Metrics.baseMargin
+  },
   img_amenity : {
     width : 25,
     height : 20,
