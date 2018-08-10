@@ -8,8 +8,11 @@ export default StyleSheet.create({
     height : Metrics.screenHeight,
   },
   skip_section : {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent : 'flex-end'
+    justifyContent : 'flex-end',
+    position: 'absolute',
+    top : 0
   },
   btn_skip : {
     paddingHorizontal : Metrics.paddingHorizontal,
@@ -22,8 +25,9 @@ export default StyleSheet.create({
   },
 
   title_section : {
-    marginTop : Metrics.marginTop_40,
+    // marginTop : Metrics.marginTop_40,
     paddingHorizontal : Metrics.middleMargin,    
+    marginBottom : 50,
   },
   txt_place_title : {
     color: Colors.font.default,
@@ -38,8 +42,9 @@ export default StyleSheet.create({
   },
 
   place_section : {
-    marginTop : Metrics.doubleBaseMargin,
+    // marginTop : Metrics.doubleBaseMargin,
     marginLeft: Metrics.middleMargin,
+    marginBottom : 80,
   },
 
   bottom_section : {

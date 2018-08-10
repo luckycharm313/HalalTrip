@@ -45,7 +45,8 @@ class MapHotelScreen extends Component {
 
 
   render () {
-    
+    const placeCategoryData = this.props.placeCategoryData ? this.props.placeCategoryData : []
+    const hotelData = placeCategoryData.hotelData? placeCategoryData.hotelData:[]
     return (
         <View style = {styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -66,8 +67,7 @@ class MapHotelScreen extends Component {
                 showsUserLocation={ true }
               >
               {
-                this.props.placeCategoryData['hotelData'].map((element, index) => {
-                  console.log("ddd", element['street_lat'])
+                hotelData.map((element, index) => {
                   return(
                     <MapView.Marker
                       title ={element['title']}
@@ -77,8 +77,7 @@ class MapHotelScreen extends Component {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421, }}
                     />  
-                  )
-                  
+                  )                  
                 })
               }                
               </MapView>

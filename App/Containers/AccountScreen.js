@@ -74,6 +74,9 @@ class AccountScreen extends Component {
               <Text style={styles.txt_setting}>Logout</Text>
               <Icon name="settings-power" style = {styles.icon_setting} />
             </TouchableOpacity>
+            <TouchableOpacity style={styles.setting_option} >
+              <Text style={styles.txt_setting}></Text>
+            </TouchableOpacity>
           </ScrollView>
         </View>
       </View>

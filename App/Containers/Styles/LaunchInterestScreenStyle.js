@@ -5,12 +5,13 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   bg_container : {
     width : Metrics.screenWidth,
-    height : Metrics.screenHeight,
+    height : Metrics.screenHeight,    
   },
 
   title_section : {
-    marginTop : Metrics.marginTop_40+50,
+    marginBottom : 50,
     paddingHorizontal : Metrics.middleMargin,    
+    
   },
   txt_place_title : {
     color: Colors.font.default,
@@ -25,7 +26,7 @@ export default StyleSheet.create({
   },
 
   interested_section : {
-    marginTop : Metrics.section,
+    marginBottom : 80,
     marginLeft: Metrics.middleMargin,
   },
   place_section : {    

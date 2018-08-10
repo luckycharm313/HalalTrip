@@ -34,7 +34,7 @@ class LaunchInterestScreen extends Component {
         <ImageBackground
           style={styles.bg_container}
           source={Images.image1}>
-           <View style={{backgroundColor: 'rgba(0,0,0,0.5)', flex : 1}} >
+           <View style={{backgroundColor: 'rgba(0,0,0,0.5)', flex : 1,justifyContent : 'flex-end',}} >
               <View style={styles.title_section}>
                 <Text style={styles.txt_place_title}>Choose your interest</Text>
                 <Text style={styles.txt_place_description}>Which type of activity are you interested in?</Text>

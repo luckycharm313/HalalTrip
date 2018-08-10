@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
 import styles from './Styles/RestaurantListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
 
-export default class RoomList extends Component {
+class RestaurantList extends Component {
   
   _onRestaurantDetail =()=>{
     this.props.nav.navigate('RestaurantDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
+  }
+
+  _onSave=()=>{
+    const id = this.props.data.id
+    console.log("restaurnat saved id ==> ", id)
   }
 
   render () {
@@ -22,7 +27,9 @@ export default class RoomList extends Component {
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
           source={{uri: img_url}} >
-          <Icon name="heart" style = {styles.icon_heart} />  
+          <TouchableOpacity onPress = {this._onSave}>
+            <Icon name="heart" style = {styles.icon_heart} />  
+          </TouchableOpacity>
         </ImageBackground>
         <Text style={styles.txt_rating}>{country}</Text>          
         <Text style={styles.txt_title}>{title}</Text>          
@@ -48,3 +55,15 @@ export default class RoomList extends Component {
     )
   }
 }
+
+const mapStateToProps = ({restaurant}) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantList)

@@ -86,9 +86,9 @@ class SignInScreen extends Component {
             </View>
           </ImageBackground>
           
-          <View style={styles.tab_body_section} >
+          <ScrollView style={styles.tab_body_section} >
             { renderTabView }
-          </View>        
+          </ScrollView>        
       </View>
     )
   }
