@@ -19,7 +19,7 @@ import { signUp, signUpWithGoogle, logIn } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail } from './HotelSagas'
-import { loadRestaurantData, getRestaurantDetail } from './RestaurantSagas'
+import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail} from './RestaurantSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -53,6 +53,9 @@ export default function * root () {
     // restaurant saga :
     takeLatest(RestaurantTypes.LOAD_RESTAURANT_DATA, loadRestaurantData, main_api),
     takeLatest(RestaurantTypes.GET_RESTAURANT_DETAIL, getRestaurantDetail, main_api),
+    takeLatest(RestaurantTypes.SAVE_RESTAURANT_TOTAL, saveRestaurantTotal, main_api),
+    takeLatest(RestaurantTypes.LOAD_SAVED_DATA, loadSavedData, main_api),
+    takeLatest(RestaurantTypes.GET_SAVED_DETAIL, getSavedDetail, main_api),
     
   ])
 }

@@ -12,9 +12,15 @@ import HotelTab from '../Components/HotelTab'
 import ActivityTab from '../Components/ActivityTab'
 import RestaurantTab from '../Components/RestaurantTab'
 
+import RestaurantAction from '../Redux/RestaurantRedux'
+
 class SavedScreen extends Component {
   static navigationOptions = {
     tabBarVisible: false,
+  }
+
+  componentWillMount(){
+    this.props.loadSavedData()
   }
 
   render () {
@@ -31,11 +37,11 @@ class SavedScreen extends Component {
             tabBarActiveTextColor = {Colors.font.dark}
             tabBarInactiveTextColor = {Colors.font.textHintColor}
             tabBarTextStyle = {{fontSize : Fonts.size.regular, fontFamily  : Fonts.type.base}}
-            initialPage={0}
+            initialPage={2}
           >
             <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} /> 
             <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} /> 
-            <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} /> 
+            <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} data = {this.props.savedRestaurantData}/> 
           </ScrollableTabView>
         </View>
       </View>
@@ -43,13 +49,15 @@ class SavedScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({restaurant}) => {
   return {
+    savedRestaurantData : restaurant.savedRestaurantData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadSavedData: () => dispatch(RestaurantAction.loadSavedData()),
   }
 }
 

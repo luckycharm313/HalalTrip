@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
 import styles from './Styles/RestaurantListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
+import RestaurantAction from '../Redux/RestaurantRedux'
 
 class RestaurantList extends Component {
   
@@ -14,13 +16,40 @@ class RestaurantList extends Component {
 
   _onSave=()=>{
     const id = this.props.data.id
-    console.log("restaurnat saved id ==> ", id)
+    this.props.saveRestaurantTotal(this.props.data)
+  }
+
+  _getPlaceName = (arrName) =>{
+    if(arrName){
+      let full_name= ''
+      arrName.forEach((element, index) => {
+        if(index > 0){
+          full_name += ", "+element['place']
+        }
+        else{
+          full_name = element['place']
+        }
+      })
+      return full_name
+    }
+    else{
+      return ''
+    }    
   }
 
   render () {
-    const {title, country, location, rating, img_url} = this.props.data
+    const {id, title, placeName, location, rating, img_url} = this.props.data
     const _rating = Number.parseFloat(rating)
+    let country = this._getPlaceName(placeName)
+    
     // const review=''
+    let icon = <Icon name="heart" style = {styles.icon_heart} />
+    this.props.savedIds.forEach(element => {
+      if(element == id){
+        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
+      }  
+    })
+
     return (
       <TouchableOpacity style={styles.container} onPress = {this._onRestaurantDetail}>
         <ImageBackground 
@@ -28,7 +57,7 @@ class RestaurantList extends Component {
           imageStyle={{ borderRadius: 10}}
           source={{uri: img_url}} >
           <TouchableOpacity onPress = {this._onSave}>
-            <Icon name="heart" style = {styles.icon_heart} />  
+          { icon }            
           </TouchableOpacity>
         </ImageBackground>
         <Text style={styles.txt_rating}>{country}</Text>          
@@ -58,11 +87,13 @@ class RestaurantList extends Component {
 
 const mapStateToProps = ({restaurant}) => {
   return {
+    savedIds : restaurant.savedIds
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    saveRestaurantTotal : (data) =>dispatch(RestaurantAction.saveRestaurantTotal(data)),
   }
 }
 

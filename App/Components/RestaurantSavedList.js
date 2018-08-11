@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
-import styles from './Styles/RestaurantAllListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
 import RestaurantAction from '../Redux/RestaurantRedux'
+import styles from './Styles/RestaurantSavedListStyle'
 
-class RestaurantAllList extends Component {
+class RestaurantSavedList extends Component {
   _onRestaurantDetail =()=>{
-    this.props.nav.navigate('RestaurantDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
+    this.props.nav.navigate('RestaurantSavedDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
   }
   
   _onSave=()=>{
@@ -21,14 +21,16 @@ class RestaurantAllList extends Component {
   _getPlaceName = (arrName) =>{
     if(arrName){
       let full_name= ''
-      arrName.forEach((element, index) => {
+      for (var index in arrName) {
+        let element = arrName[index]
         if(index > 0){
           full_name += ", "+element['place']
         }
         else{
           full_name = element['place']
         }
-      })
+      }
+      
       return full_name
     }
     else{
@@ -41,14 +43,6 @@ class RestaurantAllList extends Component {
     const _rating = Number.parseFloat(rating)
     let country = this._getPlaceName(placeName)
     
-    // const review=''
-    let icon = <Icon name="heart" style = {styles.icon_heart} />
-    this.props.savedIds.forEach(element => {
-      if(element == id){
-        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
-      }  
-    })
-
     return (
       <TouchableOpacity style={styles.container} onPress = {this._onRestaurantDetail}>
         <ImageBackground 
@@ -56,7 +50,7 @@ class RestaurantAllList extends Component {
           imageStyle={{ borderRadius: 10}}
           source={{uri : img_url}} >
           <TouchableOpacity onPress = {this._onSave}>
-          { icon }            
+            <FontAwesome name="heart" style = {styles.icon_heart_save} />
           </TouchableOpacity> 
         </ImageBackground>
         <View style={styles.detail_view}>
@@ -100,4 +94,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantAllList)
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantSavedList)

@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import RestaurantSavedDetailScreen from '../Containers/RestaurantSavedDetailScreen'
 import NotificationScreen from '../Containers/NotificationScreen'
 import SavedScreen from '../Containers/SavedScreen'
 import RestaurantDetailScreen from '../Containers/RestaurantDetailScreen'
@@ -66,6 +67,7 @@ const AccountStack = StackNavigator({
   AccountScreen: { screen: AccountScreen },
   NotificationScreen: { screen: NotificationScreen },
   SavedScreen: { screen: SavedScreen },
+  RestaurantSavedDetailScreen: { screen: RestaurantSavedDetailScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -93,8 +95,7 @@ const mainNavigator = TabNavigator({
   },  
 })
 
-const PrimaryNav = StackNavigator({
-  NotificationScreen: { screen: NotificationScreen },
+const PrimaryNav = StackNavigator({  
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },
   LaunchInterestScreen: { screen: LaunchInterestScreen },

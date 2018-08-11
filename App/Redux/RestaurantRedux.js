@@ -10,7 +10,14 @@ const { Types, Creators } = createActions({
   restaurantFailure: ['errorMsg'],
   cuisineSuccess : ['payload'],
   detailSuccess : ['payload', 'temp'],
-  getRestaurantDetail : ['restaurantId']
+  getRestaurantDetail : ['restaurantId'],
+  saveRestaurantTotal : ['data'],
+  saveSuccess : ['payload'],
+  deleteSuccess: ['payload'],
+  loadSavedData : null,
+  loadTotalSuccess : ['payload'],
+  getSavedDetail :['restaurantId'],
+  loadDetailSuccess :['payload'],
 })
 
 export const RestaurantTypes = Types
@@ -27,7 +34,10 @@ export const INITIAL_STATE = Immutable({
   cuisineData : null,
   restaurantDetailData : null,
   subRestaurantData: null,
+  savedIds : [],
   CF : 1,
+  savedRestaurantData:null,
+  savedRestaurantDetailData : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -46,7 +56,31 @@ export const request = (state, { data }) =>
 export const success = (state, action) => {
   const { payload } = action
   let cf = state.CF * (-1)
+  
   return state.merge({ fetching: false, error: null, restaurantData: payload, errorMsg: null, CF : cf })
+}
+
+export const saveSuccess = (state, action) => {
+  const { payload } = action
+  let cf = state.CF * (-1)
+  let savedIDs = []
+  Array.prototype.forEach.call(state.savedIds, element => {
+    savedIDs.push(element)
+  });
+  savedIDs.push(payload)
+  return state.merge({ fetching: false, error: null, savedIds: savedIDs, errorMsg: null, CF : cf })
+}
+
+export const deleteSuccess = (state, action) => {
+  const { payload } = action
+  let cf = state.CF * (-1)
+  let savedIDs = []
+  Array.prototype.forEach.call(state.savedIds, element => {
+    if(element != payload)
+      savedIDs.push(element)
+  });
+  
+  return state.merge({ fetching: false, error: null, savedIds: savedIDs, errorMsg: null, CF : cf })
 }
 
 export const cuisineSuccess = (state, action) => {
@@ -59,6 +93,19 @@ export const detailSuccess = (state, action) => {
   const { payload, temp } = action
   let cf = state.CF * (-1)
   return state.merge({ fetching: false, error: null, restaurantDetailData: payload, subRestaurantData: temp, errorMsg: null, CF : cf })
+}
+
+export const loadTotalSuccess = (state, action) => {
+  const { payload} = action
+  let cf = state.CF * (-1)
+  return state.merge({ fetching: false, error: null, savedRestaurantData: payload, errorMsg: null, CF : cf })
+}
+
+export const loadDetailSuccess = (state, action) => {
+  const { payload} = action
+  let cf = state.CF * (-1)
+  console.log("eee", payload)
+  return state.merge({ fetching: false, error: null, savedRestaurantDetailData: payload, errorMsg: null, CF : cf })
 }
 
 // Something went wrong somewhere.
@@ -76,5 +123,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.RESTAURANT_SUCCESS]: success,
   [Types.CUISINE_SUCCESS]: cuisineSuccess,
   [Types.DETAIL_SUCCESS]: detailSuccess,
-  [Types.RESTAURANT_FAILURE]: failure
+  [Types.SAVE_SUCCESS]: saveSuccess,
+  [Types.DELETE_SUCCESS]: deleteSuccess,
+  [Types.RESTAURANT_FAILURE]: failure,
+  [Types.SAVE_RESTAURANT_TOTAL]: request,
+  [Types.LOAD_SAVED_DATA]: request,
+  [Types.LOAD_TOTAL_SUCCESS]: loadTotalSuccess,
+  [Types.GET_SAVED_DETAIL]: request,
+  [Types.LOAD_DETAIL_SUCCESS]: loadDetailSuccess,
 })

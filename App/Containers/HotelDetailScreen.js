@@ -81,7 +81,8 @@ class HotelDetailScreen extends Component {
     const {title, rating, location, detailImages, description, img_url, amenity} = __data
     let _detailImages = detailImages ? detailImages : []
     let _amenity = amenity ? amenity : []
-    console.log("detail data _amenity =>", _amenity)
+    let _rating = Number.parseFloat(rating)
+
     return (
       <View style={styles.mainContainer}>
         <ScrollView style = {styles.container}>
@@ -106,7 +107,7 @@ class HotelDetailScreen extends Component {
               <StarRating
                 disabled={false}
                 maxStars={5}
-                rating={rating}
+                rating={_rating}
                 fullStarColor={Colors.primary}
                 emptyStar={'ios-star-outline'}
                 fullStar={'ios-star'}
@@ -157,7 +158,7 @@ class HotelDetailScreen extends Component {
               <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
                 {
                   _amenity.map(element => (
-                    <Text style={styles.txt_amenity}>{element}</Text>
+                    <Text style={styles.txt_amenity} key={element}>{element}</Text>
                   ))
                 }
               </ScrollView>
@@ -177,7 +178,7 @@ class HotelDetailScreen extends Component {
               <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                 {
                   _detailImages.map(element => (
-                    <Image style={styles.img_filter} source={{uri :element}}/>
+                    <Image style={styles.img_filter} source={{uri :element}} key={element}/>
                   ))
                 }
               </ScrollView>

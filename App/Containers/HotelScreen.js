@@ -72,7 +72,7 @@ class HotelScreen extends Component {
               <View style={styles.filter_actions}>
                 {
                   this.state.filterData.map(element => (
-                    <View style={styles.filter_view} key={element.title}>
+                    <View style={styles.filter_view} key={element}>
                       <Text style={styles.filter_label}>{element}</Text>
                     </View>
                   ))
