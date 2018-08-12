@@ -18,7 +18,7 @@ import { startup } from './StartupSagas'
 import { signUp, signUpWithGoogle, logIn } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace } from './PlaceSagas'
-import { loadHotelData, getHotelDetail } from './HotelSagas'
+import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
 import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail} from './RestaurantSagas'
 
 /* ------------- API ------------- */
@@ -49,6 +49,8 @@ export default function * root () {
     // hotel saga:
     takeLatest(HotelTypes.GET_HOTEL_DETAIL, getHotelDetail, main_api),
     takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
+    takeLatest(HotelTypes.SAVE_HOTEL_TOTAL, saveHotelTotal, main_api),
+    takeLatest(HotelTypes.GET_SAVED_HOTEL_DETAIL, getSavedHotelDetail, main_api),
 
     // restaurant saga :
     takeLatest(RestaurantTypes.LOAD_RESTAURANT_DATA, loadRestaurantData, main_api),

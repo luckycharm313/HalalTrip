@@ -1,6 +1,7 @@
 import {AsyncStorage} from 'react-native'
 import { call, put, select } from 'redux-saga/effects'
 import RestaurantActions from '../Redux/RestaurantRedux'
+import HotelActions from '../Redux/HotelRedux'
 // import { RestaurantSelectors } from '../Redux/RestaurantRedux'
 import {
   insertNewResTotal, 
@@ -12,6 +13,8 @@ import {
   insertNewResDetail,
   deleteResDetail,
   querySelectResDetail,
+
+  queryAllHotelTotal,
 } from '../../databases/allSchemas'
 
 export function * loadRestaurantData (api, action) {
@@ -152,6 +155,11 @@ export function * loadSavedData (api, action) {
   const allResTotal = Array.from(_allResTotal)
   console.log(" all Res Total =>", allResTotal)
   yield put(RestaurantActions.loadTotalSuccess(allResTotal))
+  
+  const _allHotelTotal = yield queryAllHotelTotal()
+  const allHotelTotal = Array.from(_allHotelTotal)
+  console.log(" all Hotel Total =>", allHotelTotal)
+ yield put(HotelActions.loadHotelSuccess(allHotelTotal))
 }
 
 export function * getSavedDetail (api, action) {

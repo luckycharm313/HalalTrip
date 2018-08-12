@@ -9,12 +9,12 @@ import ViewMoreText from 'react-native-view-more-text'
 
 import HotelAction from '../Redux/HotelRedux'
 // Styles
-import styles from './Styles/HotelDetailScreenStyle'
+import styles from './Styles/HotelSavedDetailScreenStyle'
 import { Images, Colors } from '../Themes'
 import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
 
-class HotelDetailScreen extends Component {
+class HotelSavedDetailScreen extends Component {
   static navigationOptions = {
     tabBarVisible: false,
   };
@@ -32,7 +32,7 @@ class HotelDetailScreen extends Component {
   }
 
   componentWillMount(){
-    this.props.getHotelDetail(this.state.hotelId)
+    this.props.getSavedHotelDetail(this.state.hotelId)
   }
 
   _moreComponentRender = (element) =>{
@@ -50,10 +50,10 @@ class HotelDetailScreen extends Component {
   )
 
   render () {
-    const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
+    const __data = this.props.hotelSavedDetailData ? this.props.hotelSavedDetailData : []
     const {title, rating, location, detailImages, description, img_url, amenity} = __data
-    let _detailImages = detailImages ? detailImages : []
-    let _amenity = amenity ? amenity : []
+    let _detailImages = detailImages ? JSON.parse(detailImages) : []
+    let _amenity = amenity ? JSON.parse(amenity) : []
     let _rating = Number.parseFloat(rating)
 
     return (
@@ -237,7 +237,7 @@ class HotelDetailScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.reviews_section}>
+          {/* <View style={styles.reviews_section}>
             <Text style={[styles.txt_description_label,{marginBottom : 15}]}>Similar Hotels Nearby</Text>
             <FlatList
                   horizontal
@@ -246,7 +246,7 @@ class HotelDetailScreen extends Component {
                   renderItem={this._renderHotelItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
-          </View>
+          </View> */}
         </ScrollView>
       </View>
     )
@@ -255,15 +255,14 @@ class HotelDetailScreen extends Component {
 
 const mapStateToProps = ({hotel}) => {
   return {
-    hotelDetailData : hotel.hotelDetailData,
-    hotelTotalData : hotel.hotelTotalData,
+    hotelSavedDetailData : hotel.hotelSavedDetailData,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getHotelDetail: (hotelId) => dispatch(HotelAction.getHotelDetail(hotelId)),
+    getSavedHotelDetail: (hotelId) => dispatch(HotelAction.getSavedHotelDetail(hotelId)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotelDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HotelSavedDetailScreen)

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
-import styles from './Styles/HotelListStyle'
+import styles from './Styles/HotelSavedListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import HotelAction from '../Redux/HotelRedux'
 
-class HotelList extends Component {
+class HotelSavedList extends Component {
   _goToHotelDetail=()=>{
-    this.props.nav.navigate('HotelDetailScreen', {hotelId : this.props.data.id});
+    this.props.nav.navigate('HotelSavedDetailScreen', {hotelId : this.props.data.id});
   }
   
   _onSave=()=>{
@@ -68,4 +68,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HotelList)
+export default connect(mapStateToProps, mapDispatchToProps)(HotelSavedList)

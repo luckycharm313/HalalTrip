@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
 import ScrollableTabView from 'react-native-scrollable-tab-view'
 // Styles
 import styles from './Styles/SavedScreenStyle'
@@ -24,6 +22,7 @@ class SavedScreen extends Component {
   }
 
   render () {
+    
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
@@ -37,9 +36,9 @@ class SavedScreen extends Component {
             tabBarActiveTextColor = {Colors.font.dark}
             tabBarInactiveTextColor = {Colors.font.textHintColor}
             tabBarTextStyle = {{fontSize : Fonts.size.regular, fontFamily  : Fonts.type.base}}
-            initialPage={2}
+            initialPage={0}
           >
-            <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} /> 
+            <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} data = {this.props.savedHotelData} /> 
             <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} /> 
             <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} data = {this.props.savedRestaurantData}/> 
           </ScrollableTabView>
@@ -49,9 +48,10 @@ class SavedScreen extends Component {
   }
 }
 
-const mapStateToProps = ({restaurant}) => {
+const mapStateToProps = ({restaurant, hotel}) => {
   return {
-    savedRestaurantData : restaurant.savedRestaurantData
+    savedRestaurantData : restaurant.savedRestaurantData,
+    savedHotelData: hotel.savedHotelData,
   }
 }
 

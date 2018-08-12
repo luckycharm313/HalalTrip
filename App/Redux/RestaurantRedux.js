@@ -104,7 +104,6 @@ export const loadTotalSuccess = (state, action) => {
 export const loadDetailSuccess = (state, action) => {
   const { payload} = action
   let cf = state.CF * (-1)
-  console.log("eee", payload)
   return state.merge({ fetching: false, error: null, savedRestaurantDetailData: payload, errorMsg: null, CF : cf })
 }
 

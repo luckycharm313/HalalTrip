@@ -93,7 +93,7 @@ class MapHotelScreen extends Component {
                 <FlatList
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                    data={this.props.placeCategoryData['hotelData']}
+                    data={hotelData}
                     renderItem={this._renderHotelItem}
                     keyExtractor={(item, index) => index.toString()}
                   />

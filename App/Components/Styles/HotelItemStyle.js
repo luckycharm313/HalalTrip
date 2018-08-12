@@ -18,6 +18,12 @@ export default StyleSheet.create({
     fontFamily      : Fonts.type.base,
     margin : Metrics.baseMargin,
   },
+  icon_heart_save : {
+    color: Colors.primary,
+    fontSize        : Fonts.size.regular,
+    fontFamily      : Fonts.type.base,
+    margin : Metrics.baseMargin,
+  },
   txt_title: {
     width: Metrics.width_35,
     color: Colors.font.dark,

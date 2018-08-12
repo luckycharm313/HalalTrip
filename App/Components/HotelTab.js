@@ -3,54 +3,29 @@ import React, { Component } from 'react'
 import { View, Text, FlatList } from 'react-native'
 import styles from './Styles/HotelTabStyle'
 import { Images, Colors } from '../Themes'
-import HotelList from '../Components/HotelList'
+import HotelSavedList from '../Components/HotelSavedList'
 
 export default class HotelTab extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hotelData : [
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image4,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '4',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.2',
-          img_url : Images.image3,
-        },
-        {
-          title : 'New Clayton Hotel Birminghan',
-          rating : '5',
-          location : 'Bimingham City Center',
-          cost : '$239',
-          review : '8.8',
-          img_url : Images.image2,
-        },
-      ]
-    }
+    
   }
 
   _renderHotelItem = ({item}) => (
-    <HotelList
+    <HotelSavedList
       data = {item}
+      nav={this.props.nav}
     />
   )
 
   render () {
+    const data = this.props.data? this.props.data: []
     return (
       <View style={styles.container}>
          <FlatList
-              data={this.state.hotelData}
+              data={data}
               renderItem={this._renderHotelItem}
-              keyExtractor={(item, index) => index}
+              keyExtractor={(item, index) => index.toString()}
             />
       </View>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import HotelSavedDetailScreen from '../Containers/HotelSavedDetailScreen'
 import RestaurantSavedDetailScreen from '../Containers/RestaurantSavedDetailScreen'
 import NotificationScreen from '../Containers/NotificationScreen'
 import SavedScreen from '../Containers/SavedScreen'
@@ -68,6 +69,7 @@ const AccountStack = StackNavigator({
   NotificationScreen: { screen: NotificationScreen },
   SavedScreen: { screen: SavedScreen },
   RestaurantSavedDetailScreen: { screen: RestaurantSavedDetailScreen },
+  HotelSavedDetailScreen: { screen: HotelSavedDetailScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
