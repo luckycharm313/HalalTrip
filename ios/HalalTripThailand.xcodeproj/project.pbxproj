@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -13,6 +14,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* HalalTripThailandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HalalTripThailandTests.m */; };
 		02D67D390B44478983360D99 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C12CFA543064FD691687535 /* libRNVectorIcons.a */; };
+		08D66D9D308D4ED1AC3EAEE5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D56CF52CAF46C9AC7ABB6F /* SystemConfiguration.framework */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -22,6 +24,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1D3BF5DFACC5C92B9FBE5BF8 /* libPods-HalalTripThailand-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A4011B567B35300208BAEE /* libPods-HalalTripThailand-tvOS.a */; };
 		1E7AEB073EE4483FBE42804A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85D554DD88C74C348EFE714E /* Foundation.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -36,7 +39,18 @@
 		2D16E6881FA4F8E400B85C8A /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D16E6891FA4F8E400B85C8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* HalalTripThailandTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HalalTripThailandTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
+		2E4DD615FFFD4CF027EC40FB /* libPods-HalalTripThailand.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 486B3812F369B1FB96F05284 /* libPods-HalalTripThailand.a */; };
+		3F7E74E094EDD3FF4F2425CE /* libPods-HalalTripThailand-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB422B8638AA2F55D962959 /* libPods-HalalTripThailand-tvOSTests.a */; };
 		41BD1716F32E48B9895867A1 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D107E56A73E748468D312C93 /* Entypo.ttf */; };
+		50190E9D21230657005CE4F0 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867043E8BC53481985435FE3 /* SafariServices.framework */; };
+		50190E9E21230664005CE4F0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889923F8B73F48EE86E9245E /* AddressBook.framework */; };
+		50190E9F21230675005CE4F0 /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190E9B21230632005CE4F0 /* libRNGoogleSignin.a */; };
+		50190EB42123073A005CE4F0 /* GoogleNetworkingUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EAE21230739005CE4F0 /* GoogleNetworkingUtilities.framework */; };
+		50190EB52123073A005CE4F0 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EAF21230739005CE4F0 /* GoogleUtilities.framework */; };
+		50190EB62123073A005CE4F0 /* GoogleAppUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EB021230739005CE4F0 /* GoogleAppUtilities.framework */; };
+		50190EB72123073A005CE4F0 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EB121230739005CE4F0 /* GoogleSymbolUtilities.framework */; };
+		50190EB82123073A005CE4F0 /* GoogleAuthUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EB221230739005CE4F0 /* GoogleAuthUtilities.framework */; };
+		50190EB92123073A005CE4F0 /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50190EB32123073A005CE4F0 /* GoogleSignIn.framework */; };
 		550DF015D8C646BF9BA33063 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C800F54513ED4B52B0FD9FF4 /* libReactNativeConfig.a */; };
 		59529E777A2646D69509EA13 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1647272FF6FE43639D55D5BF /* Octicons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -45,19 +59,13 @@
 		80BEB77444FE44799403A94C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D470E67CDBC242CBB2E73E07 /* EvilIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8CF0A7C3DEFC46808C3427F9 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C7C6EDB04D5425B8C05258E /* MaterialCommunityIcons.ttf */; };
+		A1348685038F42A1AC583898 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6674332E2561423B923B2729 /* libc++.tbd */; };
 		AA9BDE1E51F14979AC19E3DC /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9958F210B15A469C81E9C19E /* Zocial.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		BBD639A13D8F4EABB35D0E42 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A66D6D862C4E68B6B8FC8B /* libRCTFBSDK.a */; };
 		C7B2918D6B644F168645D8DA /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5521829726724DC19E17FE44 /* MaterialIcons.ttf */; };
 		D48CDC199EC24B5AB8CD4760 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A2F02F192B44ADF94A47F46 /* SimpleLineIcons.ttf */; };
-		84E9D7E84A174418BE10645A /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BA100BB4FF47F4A3C0951A /* libRNGoogleSignin.a */; };
-		6D4268FDF4DB4AF2A5117194 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 867043E8BC53481985435FE3 /* SafariServices.framework */; };
-		08D66D9D308D4ED1AC3EAEE5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D56CF52CAF46C9AC7ABB6F /* SystemConfiguration.framework */; };
-		3C8D71CC74524B59B2B41ACF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889923F8B73F48EE86E9245E /* AddressBook.framework */; };
-		0B19C332214C4FFCA208623A /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D22102AB49422AB9D04FDA /* libAirMaps.a */; };
-		FF038B3B64F3411BB0DA0862 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD2FA8D14744C3D9F7F5AFB /* libz.tbd */; };
 		F3FB974D55C747BB866D7D59 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4D09CA160CF47D087EB230A /* libRealmReact.a */; };
-		A1348685038F42A1AC583898 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6674332E2561423B923B2729 /* libc++.tbd */; };
+		FF038B3B64F3411BB0DA0862 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FFD2FA8D14744C3D9F7F5AFB /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,12 +307,19 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
-		501B32302111AE77001F4634 /* PBXContainerItemProxy */ = {
+		50190D172122E20B005CE4F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8FDB56A76CD74DC29631E08F /* RCTFBSDK.xcodeproj */;
+			containerPortal = ADEC7242CE534C75ABB63124 /* RealmReact.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
-			remoteInfo = RCTFBSDK;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
+		};
+		50190E9A21230632005CE4F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 50190E6F21230632005CE4F0 /* RNGoogleSignin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
+			remoteInfo = RNGoogleSignin;
 		};
 		501B32332111AE77001F4634 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -367,6 +382,8 @@
 		00E356EE1AD99517003FC87E /* HalalTripThailandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HalalTripThailandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HalalTripThailandTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalalTripThailandTests.m; sourceTree = "<group>"; };
+		021CFCAC60AB8AFAF6DAEA0D /* Pods-HalalTripThailand.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand.release.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand/Pods-HalalTripThailand.release.xcconfig"; sourceTree = "<group>"; };
+		08C8E3DD2A8978042072C229 /* Pods-HalalTripThailand-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand-tvOSTests/Pods-HalalTripThailand-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		0A2F02F192B44ADF94A47F46 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -383,34 +400,45 @@
 		2D02E47B1E0B4A5D006451C7 /* HalalTripThailand-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HalalTripThailand-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* HalalTripThailand-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HalalTripThailand-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D22102AB49422AB9D04FDA /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
+		486B3812F369B1FB96F05284 /* libPods-HalalTripThailand.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HalalTripThailand.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C12CFA543064FD691687535 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
+		4CB422B8638AA2F55D962959 /* libPods-HalalTripThailand-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HalalTripThailand-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		50190E6F21230632005CE4F0 /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
+		50190EAE21230739005CE4F0 /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleNetworkingUtilities.framework"; sourceTree = "<group>"; };
+		50190EAF21230739005CE4F0 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleUtilities.framework"; sourceTree = "<group>"; };
+		50190EB021230739005CE4F0 /* GoogleAppUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleAppUtilities.framework"; sourceTree = "<group>"; };
+		50190EB121230739005CE4F0 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleSymbolUtilities.framework"; sourceTree = "<group>"; };
+		50190EB221230739005CE4F0 /* GoogleAuthUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAuthUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleAuthUtilities.framework"; sourceTree = "<group>"; };
+		50190EB32123073A005CE4F0 /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSignIn.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleSignIn.framework"; sourceTree = "<group>"; };
+		543E90D64B26069C3A19C6F9 /* Pods-HalalTripThailand-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand-tvOS/Pods-HalalTripThailand-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5521829726724DC19E17FE44 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6674332E2561423B923B2729 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7B3FE5F3EE68290A91F0327E /* Pods-HalalTripThailand-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand-tvOSTests/Pods-HalalTripThailand-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		80A66D6D862C4E68B6B8FC8B /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		85D554DD88C74C348EFE714E /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		8617E8A478FB46F1A8948119 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
-		8FDB56A76CD74DC29631E08F /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
+		867043E8BC53481985435FE3 /* SafariServices.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		889923F8B73F48EE86E9245E /* AddressBook.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		9958F210B15A469C81E9C19E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		9F354170C9D2412BA40FE5AC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		A5D56CF52CAF46C9AC7ABB6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		ADEC7242CE534C75ABB63124 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		C800F54513ED4B52B0FD9FF4 /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		CA28AE6609D540E78E09710E /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		D107E56A73E748468D312C93 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D470E67CDBC242CBB2E73E07 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		D8D87CD5F866D2973AED8B5F /* Pods-HalalTripThailand-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand-tvOS/Pods-HalalTripThailand-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		E4A4011B567B35300208BAEE /* libPods-HalalTripThailand-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HalalTripThailand-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4D09CA160CF47D087EB230A /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
+		E5BA100BB4FF47F4A3C0951A /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = "<group>"; };
+		E95D97124DDE77FE766BE980 /* Pods-HalalTripThailand.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HalalTripThailand.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HalalTripThailand/Pods-HalalTripThailand.debug.xcconfig"; sourceTree = "<group>"; };
 		F28B289DBC8D484B93D48EA2 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
-		8BC7B0E66B0D424EA1E6A85F /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; name = "RNGoogleSignin.xcodeproj"; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		E5BA100BB4FF47F4A3C0951A /* libRNGoogleSignin.a */ = {isa = PBXFileReference; name = "libRNGoogleSignin.a"; path = "libRNGoogleSignin.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		867043E8BC53481985435FE3 /* SafariServices.framework */ = {isa = PBXFileReference; name = "SafariServices.framework"; path = "System/Library/Frameworks/SafariServices.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		A5D56CF52CAF46C9AC7ABB6F /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		889923F8B73F48EE86E9245E /* AddressBook.framework */ = {isa = PBXFileReference; name = "AddressBook.framework"; path = "System/Library/Frameworks/AddressBook.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		4602BF42E0A042AABA196182 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		33D22102AB49422AB9D04FDA /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		FFD2FA8D14744C3D9F7F5AFB /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
-		ADEC7242CE534C75ABB63124 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		E4D09CA160CF47D087EB230A /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		6674332E2561423B923B2729 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		FFD2FA8D14744C3D9F7F5AFB /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,11 +454,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50190E9E21230664005CE4F0 /* AddressBook.framework in Frameworks */,
+				50190E9D21230657005CE4F0 /* SafariServices.framework in Frameworks */,
+				50190E9F21230675005CE4F0 /* libRNGoogleSignin.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
+				50190EB62123073A005CE4F0 /* GoogleAppUtilities.framework in Frameworks */,
+				50190EB92123073A005CE4F0 /* GoogleSignIn.framework in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
+				50190EB52123073A005CE4F0 /* GoogleUtilities.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
@@ -439,17 +473,16 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+				50190EB72123073A005CE4F0 /* GoogleSymbolUtilities.framework in Frameworks */,
+				50190EB42123073A005CE4F0 /* GoogleNetworkingUtilities.framework in Frameworks */,
 				02D67D390B44478983360D99 /* libRNVectorIcons.a in Frameworks */,
 				550DF015D8C646BF9BA33063 /* libReactNativeConfig.a in Frameworks */,
-				BBD639A13D8F4EABB35D0E42 /* libRCTFBSDK.a in Frameworks */,
-				84E9D7E84A174418BE10645A /* libRNGoogleSignin.a in Frameworks */,
-				6D4268FDF4DB4AF2A5117194 /* SafariServices.framework in Frameworks */,
 				08D66D9D308D4ED1AC3EAEE5 /* SystemConfiguration.framework in Frameworks */,
-				3C8D71CC74524B59B2B41ACF /* AddressBook.framework in Frameworks */,
-				0B19C332214C4FFCA208623A /* libAirMaps.a in Frameworks */,
 				FF038B3B64F3411BB0DA0862 /* libz.tbd in Frameworks */,
+				50190EB82123073A005CE4F0 /* GoogleAuthUtilities.framework in Frameworks */,
 				F3FB974D55C747BB866D7D59 /* libRealmReact.a in Frameworks */,
 				A1348685038F42A1AC583898 /* libc++.tbd in Frameworks */,
+				2E4DD615FFFD4CF027EC40FB /* libPods-HalalTripThailand.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +498,7 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
+				1D3BF5DFACC5C92B9FBE5BF8 /* libPods-HalalTripThailand-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */,
+				3F7E74E094EDD3FF4F2425CE /* libPods-HalalTripThailand-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,14 +633,39 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50190EB021230739005CE4F0 /* GoogleAppUtilities.framework */,
+				50190EB221230739005CE4F0 /* GoogleAuthUtilities.framework */,
+				50190EAE21230739005CE4F0 /* GoogleNetworkingUtilities.framework */,
+				50190EB32123073A005CE4F0 /* GoogleSignIn.framework */,
+				50190EB121230739005CE4F0 /* GoogleSymbolUtilities.framework */,
+				50190EAF21230739005CE4F0 /* GoogleUtilities.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				867043E8BC53481985435FE3 /* SafariServices.framework */,
 				A5D56CF52CAF46C9AC7ABB6F /* SystemConfiguration.framework */,
 				889923F8B73F48EE86E9245E /* AddressBook.framework */,
 				FFD2FA8D14744C3D9F7F5AFB /* libz.tbd */,
 				6674332E2561423B923B2729 /* libc++.tbd */,
+				486B3812F369B1FB96F05284 /* libPods-HalalTripThailand.a */,
+				E4A4011B567B35300208BAEE /* libPods-HalalTripThailand-tvOS.a */,
+				4CB422B8638AA2F55D962959 /* libPods-HalalTripThailand-tvOSTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50190D142122E20B005CE4F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50190D182122E20B005CE4F0 /* libRealmReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50190E7021230632005CE4F0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50190E9B21230632005CE4F0 /* libRNGoogleSignin.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		501B32032111AE70001F4634 /* Recovered References */ = {
@@ -614,6 +674,9 @@
 				4C12CFA543064FD691687535 /* libRNVectorIcons.a */,
 				C800F54513ED4B52B0FD9FF4 /* libReactNativeConfig.a */,
 				80A66D6D862C4E68B6B8FC8B /* libRCTFBSDK.a */,
+				E5BA100BB4FF47F4A3C0951A /* libRNGoogleSignin.a */,
+				33D22102AB49422AB9D04FDA /* libAirMaps.a */,
+				E4D09CA160CF47D087EB230A /* libRealmReact.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -630,14 +693,6 @@
 			isa = PBXGroup;
 			children = (
 				501B32342111AE77001F4634 /* libReactNativeConfig.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		501B322D2111AE76001F4634 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				501B32312111AE77001F4634 /* libRCTFBSDK.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -663,6 +718,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				50190E6F21230632005CE4F0 /* RNGoogleSignin.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -677,9 +733,6 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F28B289DBC8D484B93D48EA2 /* RNVectorIcons.xcodeproj */,
 				8617E8A478FB46F1A8948119 /* ReactNativeConfig.xcodeproj */,
-				8FDB56A76CD74DC29631E08F /* RCTFBSDK.xcodeproj */,
-				8BC7B0E66B0D424EA1E6A85F /* RNGoogleSignin.xcodeproj */,
-				4602BF42E0A042AABA196182 /* AirMaps.xcodeproj */,
 				ADEC7242CE534C75ABB63124 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
@@ -704,6 +757,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				879907536D044D3BAB8FD455 /* Resources */,
 				501B32032111AE70001F4634 /* Recovered References */,
+				98D7F35FA934FE6D52895963 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -736,6 +790,19 @@
 				9958F210B15A469C81E9C19E /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		98D7F35FA934FE6D52895963 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E95D97124DDE77FE766BE980 /* Pods-HalalTripThailand.debug.xcconfig */,
+				021CFCAC60AB8AFAF6DAEA0D /* Pods-HalalTripThailand.release.xcconfig */,
+				543E90D64B26069C3A19C6F9 /* Pods-HalalTripThailand-tvOS.debug.xcconfig */,
+				D8D87CD5F866D2973AED8B5F /* Pods-HalalTripThailand-tvOS.release.xcconfig */,
+				7B3FE5F3EE68290A91F0327E /* Pods-HalalTripThailand-tvOSTests.debug.xcconfig */,
+				08C8E3DD2A8978042072C229 /* Pods-HalalTripThailand-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
@@ -772,10 +839,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HalalTripThailand" */;
 			buildPhases = (
+				B4A4AA86C8B8DE232FF36014 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				8412894B0E54998D1FA22BAF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -790,6 +859,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HalalTripThailand-tvOS" */;
 			buildPhases = (
+				F731560187E58AB6D8F70232 /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
@@ -808,6 +878,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HalalTripThailand-tvOSTests" */;
 			buildPhases = (
+				B60997880DABA2DE467D2119 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -871,10 +942,6 @@
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
 				},
 				{
-					ProductGroup = 501B322D2111AE76001F4634 /* Products */;
-					ProjectRef = 8FDB56A76CD74DC29631E08F /* RCTFBSDK.xcodeproj */;
-				},
-				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -913,6 +980,14 @@
 				{
 					ProductGroup = 501B322B2111AE76001F4634 /* Products */;
 					ProjectRef = 8617E8A478FB46F1A8948119 /* ReactNativeConfig.xcodeproj */;
+				},
+				{
+					ProductGroup = 50190D142122E20B005CE4F0 /* Products */;
+					ProjectRef = ADEC7242CE534C75ABB63124 /* RealmReact.xcodeproj */;
+				},
+				{
+					ProductGroup = 50190E7021230632005CE4F0 /* Products */;
+					ProjectRef = 50190E6F21230632005CE4F0 /* RNGoogleSignin.xcodeproj */;
 				},
 				{
 					ProductGroup = 501B32292111AE76001F4634 /* Products */;
@@ -1154,11 +1229,18 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		501B32312111AE77001F4634 /* libRCTFBSDK.a */ = {
+		50190D182122E20B005CE4F0 /* libRealmReact.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libRCTFBSDK.a;
-			remoteRef = 501B32302111AE77001F4634 /* PBXContainerItemProxy */;
+			path = libRealmReact.a;
+			remoteRef = 50190D172122E20B005CE4F0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		50190E9B21230632005CE4F0 /* libRNGoogleSignin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGoogleSignin.a;
+			remoteRef = 50190E9A21230632005CE4F0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		501B32342111AE77001F4634 /* libReactNativeConfig.a */ = {
@@ -1285,6 +1367,78 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		8412894B0E54998D1FA22BAF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HalalTripThailand/Pods-HalalTripThailand-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HalalTripThailand/Pods-HalalTripThailand-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4A4AA86C8B8DE232FF36014 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HalalTripThailand-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B60997880DABA2DE467D2119 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HalalTripThailand-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F731560187E58AB6D8F70232 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HalalTripThailand-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1366,6 +1520,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = HalalTripThailandTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1396,6 +1551,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = HalalTripThailandTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1415,18 +1571,23 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E95D97124DDE77FE766BE980 /* Pods-HalalTripThailand.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"$(PROJECT_DIR)/../node_modules/react-native-google-signin/ios/GoogleSdk",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = HalalTripThailand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1442,17 +1603,22 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 021CFCAC60AB8AFAF6DAEA0D /* Pods-HalalTripThailand.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"$(PROJECT_DIR)/../node_modules/react-native-google-signin/ios/GoogleSdk",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(PROJECT_DIR)/../node_modules/react-native-google-signin/ios/RNGoogleSignin",
 				);
 				INFOPLIST_FILE = HalalTripThailand/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1468,6 +1634,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 543E90D64B26069C3A19C6F9 /* Pods-HalalTripThailand-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1486,6 +1653,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = "HalalTripThailand-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1507,6 +1675,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8D87CD5F866D2973AED8B5F /* Pods-HalalTripThailand-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1525,6 +1694,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = "HalalTripThailand-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1546,6 +1716,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B3FE5F3EE68290A91F0327E /* Pods-HalalTripThailand-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1563,6 +1734,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = "HalalTripThailand-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1584,6 +1756,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08C8E3DD2A8978042072C229 /* Pods-HalalTripThailand-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1601,6 +1774,7 @@
 					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-google-signin/ios/RNGoogleSignin/**",
 				);
 				INFOPLIST_FILE = "HalalTripThailand-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

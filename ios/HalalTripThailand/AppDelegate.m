@@ -9,6 +9,8 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+@import GoogleMaps;
+#import "RNGoogleSignin.h"
 
 @implementation AppDelegate
 
@@ -29,7 +31,17 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [GMSServices provideAPIKey:@"AIzaSyCZAsvwKmqVVk2KPKYT_YidlYKEPPyHwa4"];
   return YES;
 }
-
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+  
+  return
+  [RNGoogleSignin application:application
+                      openURL:url
+            sourceApplication:sourceApplication
+                   annotation:annotation
+   ];
+}
 @end
