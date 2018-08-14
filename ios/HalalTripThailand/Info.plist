@@ -86,6 +86,19 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+	<false/>  
+  <key>CFBundleURLTypes</key>
+  <array>
+    <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb292524561324868</string>
+      </array>
+    </dict>
+  </array>
+  <key>FacebookAppID</key>
+  <string>292524561324868</string>
+  <key>FacebookDisplayName</key>
+  <string>HalalTripThailand</string>
 </dict>
 </plist>
