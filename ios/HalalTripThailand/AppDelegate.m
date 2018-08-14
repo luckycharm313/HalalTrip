@@ -12,6 +12,7 @@
 @import GoogleMaps;
 #import "RNGoogleSignin.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "RNSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -34,6 +35,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [GMSServices provideAPIKey:@"AIzaSyCZAsvwKmqVVk2KPKYT_YidlYKEPPyHwa4"];
+  [RNSplashScreen show];
   return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
