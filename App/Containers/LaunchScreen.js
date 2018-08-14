@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, Image, View, ImageBackground, FlatList, AsyncStorage} from 'react-native'
 import { Images } from '../Themes'
-
+import SplashScreen from 'react-native-splash-screen'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 import PlaceWithBottomName from '../Components/PlaceWithBottomName'
@@ -51,6 +51,14 @@ export default class LaunchScreen extends Component {
   }
   _onClickNext = () => {
     this.props.navigation.navigate('LaunchInterestScreen')
+  }
+  
+  _onClickSkip = () => {
+    this.props.navigation.navigate('SignInScreen')
+  }
+  
+  componentDidMount() {
+    SplashScreen.hide();
   }
 
   render () {

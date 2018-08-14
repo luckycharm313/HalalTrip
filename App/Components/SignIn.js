@@ -15,7 +15,7 @@ export default class SignIn extends Component {
   }
 
   _onForgotPassword = () => {
-    this.props.nav.navigate('ForgotPasswordScreen')
+    // this.props.nav.navigate('ForgotPasswordScreen')
   }
   _onSignIn = () => {
     if(this.state._email == null || this.state._password == null)

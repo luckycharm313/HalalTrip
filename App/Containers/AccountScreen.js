@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 // Styles
 import styles from './Styles/AccountScreenStyle'
 import { Images, Colors } from '../Themes'
+import UserAction from '../Redux/UserRedux'
 
 class AccountScreen extends Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class AccountScreen extends Component {
         this.props.navigation.navigate('SavedScreen')
         break
       case 'notification':
-        this.props.navigation.navigate('NotificationScreen')
+        // this.props.navigation.navigate('NotificationScreen')
+        break
+      case 'logout':
+        this.props.logOut()
         break
     }
   }
@@ -70,7 +74,7 @@ class AccountScreen extends Component {
               <Text style={styles.txt_setting}>About</Text>
               <Icon name="info" style = {styles.icon_setting} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.setting_option} >
+            <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'logout')} >
               <Text style={styles.txt_setting}>Logout</Text>
               <Icon name="settings-power" style = {styles.icon_setting} />
             </TouchableOpacity>
@@ -91,6 +95,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    logOut: () => dispatch(UserAction.logOut()),
   }
 }
 

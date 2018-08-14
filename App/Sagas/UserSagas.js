@@ -9,10 +9,7 @@ import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 export function * signUp (api, action) {
   const { username, email, password } = action
   const response = yield call(api._signUp, username, email, password)
-
-  // console.log('signup response => ', response)
   
-  // success?
   if (response.ok) {
     yield put(UserActions.userRegister())
   } else {
@@ -32,9 +29,9 @@ export function * signUpWithGoogle (api, action) {
   try {
     const configPlatform = {
       ...Platform.select({
-        // ios: {
-        //   iosClientId: config.iosClientId,
-        // },
+        ios: {
+          iosClientId: "738581788549-32gb3hbo5atr0o8nqppbu1ej5amc3b9p.apps.googleusercontent.com",
+        },
         android: {},
       }),
     }
@@ -58,17 +55,6 @@ export function * signUpWithGoogle (api, action) {
     yield put(UserActions.userFailure())
     return
   }
-  
-  // const response = yield call(api._signUp, username, email, password)
-
-  // // console.log('signup response => ', response)
-  
-  // // success?
-  // if (response.ok) {
-  //   yield put(UserActions.userRegister())
-  // } else {
-  //   yield put(UserActions.userFailure())
-  // }
 }
 
 export function * logIn (api, action) {
@@ -110,4 +96,9 @@ export function * logIn (api, action) {
   } else {
     yield put(UserActions.userFailure())
   }
+}
+
+export function * logout (api, action) {
+  const token = yield AsyncStorage.clear()
+  yield put(NavigationActions.navigate({ routeName: 'LaunchScreen'} ));
 }

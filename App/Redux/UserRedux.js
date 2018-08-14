@@ -9,7 +9,8 @@ const { Types, Creators } = createActions({
   userGoogleSignup : null,
   userSuccess: ['payload'],
   userRegister: null,
-  userFailure: null
+  userFailure: null,
+  logOut : null,
 })
 
 export const UserTypes = Types
@@ -55,4 +56,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USER_REGISTER]: register,
   [Types.USER_SUCCESS]: success,
   [Types.USER_FAILURE]: failure,
+  [Types.LOG_OUT]: request,
 })

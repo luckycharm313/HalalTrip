@@ -35,7 +35,7 @@ class SignInScreen extends Component {
   }
   
   _SignUpWithFacebook = () => {
-
+    this.props.userFacebookSignup()
   }
 
   _SignUpWithGoogle =()=> {
@@ -106,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
     userSignup: (username, email, paswword) => dispatch(UserAction.userSignup(username, email, paswword)),
     userLogin: (email, paswword) => dispatch(UserAction.userLogin(email, paswword)),
     userGoogleSignup: () => dispatch(UserAction.userGoogleSignup()),
+    userFacebookSignup: () => dispatch(UserAction.userFacebookSignup()),
   }
 }
 
