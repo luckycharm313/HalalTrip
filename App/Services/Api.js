@@ -92,7 +92,7 @@ const user = (baseURL = 'http://www.halaltripthailand.com/') => {
   return {
     _signUp,
     _logIn,
-    _registerToken,
+    _registerToken,    
   }
 }
 
@@ -118,6 +118,7 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   const _getCuisine = (token) => api.get('api/restaurant/cuisine', {}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getRestaurant = (token) => api.get('api/restaurant/all', {}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getRestaurantDetail = (param, token) => api.post('api/restaurant/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
+  const _socialRegister = (param) => api.post('api/user/socialRegister', param)
 
   return {
     _getCategory,
@@ -127,7 +128,8 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
     _getHotelDetail,
     _getCuisine,
     _getRestaurant,
-    _getRestaurantDetail
+    _getRestaurantDetail,
+    _socialRegister
   }
 }
 

@@ -15,7 +15,7 @@ import { RestaurantTypes } from '../Redux/RestaurantRedux'
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
-import { signUp, signUpWithGoogle, logIn, logout } from './UserSagas'
+import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
@@ -37,10 +37,11 @@ export default function * root () {
 
     // user sagas
     takeLatest(UserTypes.USER_SIGNUP, signUp, user_api),
-    takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, user_api),
     takeLatest(UserTypes.USER_LOGIN, logIn, user_api),
     takeLatest(UserTypes.LOG_OUT, logout, user_api),
-
+    takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, main_api),
+    takeLatest(UserTypes.USER_FACEBOOK_SIGNUP, signUpWithFacebook, main_api),
+    
     // main saga : category, hotel, activity, restaurant
     takeLatest(MainTypes.LOAD_DATA, loadData, main_api),
 

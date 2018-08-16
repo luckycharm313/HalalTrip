@@ -34,18 +34,20 @@ class SignInScreen extends Component {
     this.props.userLogin (_email, _password)
   }
   
-  _SignUpWithFacebook = () => {
-    this.props.userFacebookSignup()
-  }
+  // _SignUpWithFacebook = () => {
+  //   this.props.userFacebookSignup()
+  // }
 
-  _SignUpWithGoogle =()=> {
-    this.props.userGoogleSignup()
-  }
+  // _SignUpWithGoogle =()=> {
+  //   this.props.userGoogleSignup()
+  // }
 
   _SignInWithFacebook =()=> {
+    this.props.userFacebookSignup()
   }
   
   _SignInWithGoogle =()=> {
+    this.props.userGoogleSignup()
   }
   
   componentWillReceiveProps (nextProps){
@@ -67,7 +69,7 @@ class SignInScreen extends Component {
     if(this.state.routeIndex == 1)
       renderTabView = <SignIn nav = {this.props.navigation} signIn = {(_email, _password)=>this._signIn(_email, _password)} signInWithFacebook = {this._SignInWithFacebook} signInWithGoogle = {this._SignInWithGoogle}/>
     else
-      renderTabView = <SignUp signUp = {(_username, _email, _password)=>this._signUp(_username, _email, _password)} signUpWithFacebook = {this._SignUpWithFacebook} signUpWithGoogle = {this._SignUpWithGoogle}/>
+      renderTabView = <SignUp signUp = {(_username, _email, _password)=>this._signUp(_username, _email, _password)} /*signUpWithFacebook = {this._SignUpWithFacebook} signUpWithGoogle = {this._SignUpWithGoogle}*//>
 
     return (
       <View style={styles.mainContainer}>

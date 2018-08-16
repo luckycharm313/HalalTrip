@@ -4,7 +4,7 @@ import { Metrics, Colors, Fonts, ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical : Metrics.baseMargin,
+    paddingVertical : Metrics.doubleBaseMargin,
     paddingHorizontal : Metrics.paddingHorizontal,
   },
   input_area : {
@@ -15,14 +15,14 @@ export default StyleSheet.create({
     color: Colors.font.dark,
     fontSize   : Fonts.size.regular,
     fontFamily : Fonts.type.base,
-    marginTop : Metrics.smallMargin,
+    marginTop : Metrics.baseMargin,
   },
   btnSignIn : {
     alignItems : 'center',
     backgroundColor : Colors.primary,
     borderRadius : 8,
     paddingVertical : Metrics.marginVertical,
-    marginTop : Metrics.baseMargin,
+    marginTop : Metrics.paddingHorizontal,
   },
   txtSignIn : {
     color: Colors.font.default,

@@ -22,13 +22,13 @@ export default class SignUp extends Component {
       this.props.signUp(this.state._name, this.state._email, this.state._password)
   }
 
-  _SignUpWithFacebook (){
-    this.props.signUpWithFacebook()
-  }
+  // _SignUpWithFacebook (){
+  //   this.props.signUpWithFacebook()
+  // }
   
-  _SignUpWithGoogle (){
-    this.props.signUpWithGoogle()
-  }
+  // _SignUpWithGoogle (){
+  //   this.props.signUpWithGoogle()
+  // }
 
   render () {
     return (
@@ -88,7 +88,7 @@ export default class SignUp extends Component {
           <Text style={styles.text_policy}>By clicking Sign up, you will create an account and agree to ours Terms of Service and Privacy Policy</Text>
         </View>
 
-        <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]} onPress={this._SignUpWithFacebook.bind(this)}>
+        {/* <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]} onPress={this._SignUpWithFacebook.bind(this)}>
           <Image style={styles.social_icon} source={Images.facebook} resizeMode='contain' />
           <Text style={styles.social_txt}>Signup with Facebook</Text>
           <View style={styles.hiddenView} />
@@ -98,7 +98,7 @@ export default class SignUp extends Component {
           <Image style={styles.social_icon} source={Images.googleplus} resizeMode='contain' />
           <Text style={styles.social_txt}>Signup with Google</Text>
           <View style={styles.hiddenView} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         </KeyboardAvoidingView>
       </ScrollView>
     )

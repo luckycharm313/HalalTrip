@@ -24,6 +24,14 @@ export default class SignIn extends Component {
       this.props.signIn(this.state._email, this.state._password)    
   }
 
+  _SignInWithFacebook (){
+    this.props.signInWithFacebook()
+  }
+  
+  _SignInWithGoogle (){
+    this.props.signInWithGoogle()
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
@@ -67,13 +75,13 @@ export default class SignIn extends Component {
           <Text style={styles.txtForgot}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]}>
+        <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]} onPress={this._SignInWithFacebook.bind(this)}>
           <Image style={styles.social_icon} source={Images.facebook} resizeMode='contain' />
           <Text style={styles.social_txt}>Signin with Facebook</Text>
           <View style={styles.hiddenView} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#cf4332'}]}>
+        <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#cf4332'}]} onPress={this._SignInWithGoogle.bind(this)}>
           <Image style={styles.social_icon} source={Images.googleplus} resizeMode='contain' />
           <Text style={styles.social_txt}>Signin with Google</Text>
           <View style={styles.hiddenView} />
