@@ -150,13 +150,16 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-signin')
+    compile (project(':react-native-google-signin')){
+        exclude group: "com.google.android.gms" // very important
+    }
     compile project(':react-native-splash-screen')
     compile project(':realm')
     compile project(':react-native-config')
     compile project(':react-native-vector-icons')
     compile project(':react-native-maps')
     compile project(':react-native-fbsdk')
+    compile "com.google.android.gms:play-services-auth:15.0.0"
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:27.1.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
@@ -168,3 +171,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+apply plugin: 'com.google.gms.google-services'

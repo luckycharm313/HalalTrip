@@ -4,7 +4,7 @@ import UserActions from '../Redux/UserRedux'
 import { path } from 'ramda'
 import {AsyncStorage, Platform} from 'react-native'
 import { NavigationActions } from 'react-navigation';
-import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+import { GoogleSignin } from 'react-native-google-signin';
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager,
@@ -27,71 +27,80 @@ export function * signUp (api, action) {
 export function * signUpWithGoogle (api, action) {
 
   try {
-    console.log("here")
-    yield GoogleSignin.hasPlayServices({ autoResolve: true });  
-    console.log("after")
+    yield GoogleSignin.hasPlayServices();
   } catch (error) {
     yield put(UserActions.userFailure())
     return
   }
   
-  // try {
-  //   const configPlatform = {
-  //     ...Platform.select({
-  //       ios: {
-  //         iosClientId: "738581788549-32gb3hbo5atr0o8nqppbu1ej5amc3b9p.apps.googleusercontent.com",
-  //       },
-  //       android: {},
-  //     }),
-  //   }
+  try {
+    const configPlatform = {
+      ...Platform.select({
+        ios: {
+          iosClientId: "738581788549-32gb3hbo5atr0o8nqppbu1ej5amc3b9p.apps.googleusercontent.com",
+        },
+        android: {},
+      }),
+    }
 
-  //   yield GoogleSignin.configure({
-  //     ...configPlatform,
-  //     // webClientId: config.webClientId,
-  //     offlineAccess: false,
-  //   })  
-  // } catch (error) {
-  //   yield put(UserActions.userFailure())
-  //   return
-  // }
-  
-  // try {      
-  //   const userData = yield GoogleSignin.signIn();
-  //   const {idToken, user} = userData
-  //   const {email, name } = user
-  //   console.log("google signin data => ", userData)
-  //   console.log("google signin idToken => ", idToken)
-  //   console.log("google signin email => ", email)
-  //   let push_token = ''
+    yield GoogleSignin.configure({
+      ...configPlatform,
+      // webClientId: config.webClientId,
+      offlineAccess: false,
+    })  
+  } catch (error) {
+    yield put(UserActions.userFailure())
+    return
+  }
+  try {      
+    const userData = yield GoogleSignin.signIn();
+    const {idToken, user} = userData
+    const {email, name } = user
+    console.log("google signin data => ", userData)
+    console.log("google signin idToken => ", idToken)
+    console.log("google signin email => ", email)
+    let push_token = ''
 
-  //   let param = new FormData();
-  //   param.append("user_email", email)
-  //   param.append("user_token", idToken)
-  //   param.append("user_push_token", push_token)
+    let param = new FormData();
+    param.append("user_email", email)
+    param.append("user_token", idToken)
+    param.append("user_push_token", push_token)
     
-  //   const res = yield call(api._socialRegister, param)
+    const res = yield call(api._socialRegister, param)
 
-  //   console.log("google signin server register => ", res)
+    console.log("google signin server register => ", res)
     
-  //   if (res.ok) {
-  //     const { data, code, message } = res.data
+    if (res.ok) {
+      const { data, code, message } = res.data
       
-  //     if(code == 'success'){
-  //       yield put(UserActions.userRegister())
-  //     }
-  //     else{
-  //       yield put(UserActions.userFailure())
-  //       return
-  //     }
-  //   } else {
-  //     yield put(UserActions.userFailure())
-  //     return
-  //   }
+      if(code == 'success'){
+        try {
+          yield AsyncStorage.setItem('token', JSON.stringify(accessToken))        
+        } catch (error) {
+          yield put(UserActions.userFailure())  
+        }
 
-  // } catch (error) {
-  //   yield put(UserActions.userFailure())
-  //   return
-  // }
+        let _temp = {
+          user_email : email,
+          user_display_name : name,
+          token : idToken
+        }
+        yield put(UserActions.userSuccess(_temp))
+        yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
+      }
+      else{
+        yield put(UserActions.userFailure())
+        return
+      }
+    } else {
+      yield put(UserActions.userFailure())
+      return
+    }
+
+  } catch (error) {
+    yield put(UserActions.userFailure())
+    return
+  }
 }
 
 export function * signUpWithFacebook (api, action) {

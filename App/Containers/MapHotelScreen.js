@@ -29,13 +29,6 @@ class MapHotelScreen extends Component {
     this.props.getHotelByPlace(this.state.placeId)
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log("componentWillReceiveProps => ",nextProps.placeCategoryData['hotelData'])
-  }
-
-  componentDidMount(){
-    console.log("componentDidMount => ",this.props.placeCategoryData['hotelData'])
-  }
   _renderHotelItem = ({item}) => (
     <HotelItem
       data = {item}
