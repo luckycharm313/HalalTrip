@@ -61,18 +61,6 @@ const create = (baseURL = 'https://api.github.com/') => {
 
 
 const user = (baseURL = 'http://www.halaltripthailand.com/') => {
-  const _api = apisauce.create({
-    // base URL is read from the "constructor"
-    baseURL,
-    // here are some default headers
-    headers: {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC93d3cuaGFsYWx0cmlwdGhhaWxhbmQuY29tIiwiaWF0IjoxNTMyOTgyNzcwLCJuYmYiOjE1MzI5ODI3NzAsImV4cCI6MTUzMzU4NzU3MCwiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiNCJ9fX0.JSmCeYj-lI_a9V6PZWrxHIdpfpbmWG-IMNIfHmsaugs'
-    },
-    // 10 second timeout...
-    timeout: 10000
-  })
   
   const api = apisauce.create({
     // base URL is read from the "constructor"
@@ -86,13 +74,15 @@ const user = (baseURL = 'http://www.halaltripthailand.com/') => {
     timeout: 10000
   })
   
-  const _signUp = (username, email, password) => _api.post('wp-json/wp/v2/users', {username: username, email: email, password : password} )
-  const _logIn = (email, password) => api.post('wp-json/jwt-auth/v1/token ', {username: email, password : password} )
+  const _getNonce = () => api.get('api/get_nonce/?controller=user&method=register', {} )
+  const _signUp = (param) => api.post('api/user/register/', param )
+  const _logIn = (param) => api.post('/api/user/generate_auth_cookie', param )
   const _registerToken = (param) => api.post('halaltrip/api/user/registerToken', param )
   return {
     _signUp,
     _logIn,
-    _registerToken,    
+    _registerToken,  
+    _getNonce  
   }
 }
 

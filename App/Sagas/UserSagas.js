@@ -15,11 +15,30 @@ const {
 
 export function * signUp (api, action) {
   const { username, email, password } = action
-  const response = yield call(api._signUp, username, email, password)
+  const resNonce = yield call(api._getNonce)
+  console.log("resNonce => ", resNonce)
+  if(resNonce.ok){
+    const { nonce } = resNonce.data
+
+    let param = new FormData();
+    param.append("insecure", "cool")
+    param.append("nonce", nonce)
+    param.append("email", email)
+    param.append("username", username)
+    param.append("display_name", username)
+    param.append("user_pass", password)
+
+    const response = yield call(api._signUp, param)
   
-  if (response.ok) {
-    yield put(UserActions.userRegister())
-  } else {
+    if (response.ok) {
+      yield put(UserActions.userRegister())
+    } else {
+      alert("sign up error")
+      yield put(UserActions.userFailure())
+    }
+  }
+  else{
+    alert("sign up error")
     yield put(UserActions.userFailure())
   }
 }
@@ -157,42 +176,62 @@ export function * signUpWithFacebook (api, action) {
 
 export function * logIn (api, action) {
   const { email, password } = action
-  const response = yield call(api._logIn, email, password)
-  
-  console.log('signin response => ', response)
-  
-  // success?
-  if (response.ok) {
-    const temp = path(['data'], response)
-    
-    const {token} = temp
-    /*** store token in server */
-    let push_token = ''
-        
+  const resNonce = yield call(api._getNonce)
+  console.log("resNonce => ", resNonce)
+  if(resNonce.ok){
+    const { nonce } = resNonce.data
     let param = new FormData();
-    param.append("user_email", email)
-    param.append("user_token", token)
-    param.append("user_push_token", push_token)
-    
-    const res = yield call(api._registerToken, param)
-    /** end store token in server **/ 
+    param.append("insecure", "cool")
+    param.append("nonce", nonce)
+    param.append("username", email)
+    param.append("password", password)
 
-    if (res.ok) {
-      try {
-        yield AsyncStorage.setItem('token', JSON.stringify(token))        
-      } catch (error) {
-        yield put(UserActions.userFailure())  
-      }
+
+    const response = yield call(api._logIn, param)
+    console.log("res login ", response)
+    // success?
+    if (response.ok) {
+      const temp = path(['data'], response)
+      
+      const {cookie} = temp
+      /*** store token in server */
+      let push_token = ''
+          
+      let param = new FormData();
+      param.append("user_email", email)
+      param.append("user_token", cookie)
+      param.append("user_push_token", push_token)
+      
+      const res = yield call(api._registerToken, param)
+      /** end store token in server **/ 
   
-      yield put(UserActions.userSuccess(temp))
-      yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
-    }
-    else{
-      yield put(UserActions.userFailure())
-    }
+      if (res.ok) {
+        try {
+          yield AsyncStorage.setItem('token', JSON.stringify(cookie))        
+        } catch (error) {
+          yield put(UserActions.userFailure())  
+        }
     
-  } else {
+        yield put(UserActions.userSuccess(temp.user))
+        yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
+      }
+      else{
+        alert("login error")
+        yield put(UserActions.userFailure())
+        return
+      }
+      
+    } else {
+      alert("login error")
+      yield put(UserActions.userFailure())
+      return
+    }
+
+  }
+  else{
+    alert("login error")
     yield put(UserActions.userFailure())
+    return
   }
 }
 
