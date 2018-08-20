@@ -10,7 +10,7 @@ const ApplicationStyles = {
     mainContainer: {
       flex: 1,
       paddingTop: Platform.OS=='ios' ? 20: 0,
-      backgroundColor: Colors.primary
+      backgroundColor: Colors.font.default
     },
     container: {
       flex: 1,

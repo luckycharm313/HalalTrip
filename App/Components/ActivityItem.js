@@ -3,31 +3,33 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
 import styles from './Styles/ActivityItemStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
 
 export default class ActivityItem extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  
+  _onActivityDetail = () => {
+    this.props.nav.navigate('ActivityDetailScreen', {activityId : this.props.data.id});
+  }
 
   render () {
-    const {title, sub_title, location, cost, review, img_url} = this.props.data
+    const {title, sub_title, location,rating, img_url} = this.props.data
+    
+    const cost = '$239'
+    const review = '8.8'
+    let _rating = Number.parseFloat(rating)
+    let icon = <Icon name="heart" style = {styles.icon_heart} />
 
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this._onActivityDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={img_url} >
-          <Icon name="heart" style = {styles.icon_heart} />  
+          source={{uri: img_url}} >
+          <TouchableOpacity onPress = {this._onSave}>
+          { icon }            
+          </TouchableOpacity> 
         </ImageBackground>
         <Text style={styles.txt_rating}>{sub_title}</Text>          
         <Text style={styles.txt_title}>{title}</Text>          
@@ -40,7 +42,7 @@ export default class ActivityItem extends Component {
           <StarRating
             disabled={false}
             maxStars={5}
-            rating={4}
+            rating={_rating}
             fullStarColor={Colors.primary}
             emptyStar={'ios-star-outline'}
             fullStar={'ios-star'}

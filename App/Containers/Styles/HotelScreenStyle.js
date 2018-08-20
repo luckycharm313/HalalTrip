@@ -9,7 +9,7 @@ export default StyleSheet.create({
   },
   header_section :{
     paddingHorizontal : Metrics.paddingHorizontal,
-    paddingVertical : Metrics.section,
+    paddingVertical : Metrics.paddingHorizontal,
   },
   label_section :{
     flexDirection : 'row',

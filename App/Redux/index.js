@@ -13,6 +13,8 @@ export const reducers = combineReducers({
   hotel: require('./HotelRedux').reducer,
   place: require('./PlaceRedux').reducer,
   restaurant: require('./RestaurantRedux').reducer,
+  activity: require('./ActivityRedux').reducer,
+  trend : require('./TrendRedux').reducer,
 })
 
 export default () => {

@@ -18,9 +18,27 @@ export function * getHotelByPlace (api, action) {
     const { data, code, message } = response.data    
     if(code == 'success'){
       
-      yield put(PlaceActions.placeCategorySuccess(data))
+      const res = yield call(api._getRestaurantByPlace, param, token)
+      console.log("place restaurant response => ", res)
+      if(res.ok){
+        const { data, code, message } = res.data
+        if(code == 'success'){
+          yield put(PlaceActions.placeCategorySuccess(response.data.data, data))
+        }
+        else{
+          alert(message)
+          yield put(PlaceActions.placeFailure(message))
+          return    
+        }
+      }
+      else{
+        alert("Network Error")
+        yield put(PlaceActions.placeFailure("Network Error"))
+        return    
+      }
     }
     else{
+      alert(message)
       yield put(PlaceActions.placeFailure(message))
       return
     }
@@ -28,5 +46,32 @@ export function * getHotelByPlace (api, action) {
   } else {
     yield put(PlaceActions.placeFailure("Network Error"))
     return
+  }
+}
+export function * getRestaurantPlace (api, action) {
+  const {placeId } = action
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+
+  let param = new FormData();
+  param.append("placeId", placeId)
+  
+  const response = yield call(api._getRestaurantByPlace, param, token)
+
+  console.log("get restaurant place response=>", response)
+  if(response.ok){
+    const { data, code, message } = response.data
+    if(code == 'success'){
+      yield put(PlaceActions.placeRestaurantSuccess(data))
+    }
+    else{
+      alert(message)
+      yield put(PlaceActions.placeFailure(message))
+      return    
+    }
+  }
+  else{
+    alert("Network Error")
+    yield put(PlaceActions.placeFailure("Network Error"))
+    return    
   }
 }

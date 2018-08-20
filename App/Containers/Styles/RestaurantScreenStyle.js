@@ -89,7 +89,7 @@ export default StyleSheet.create({
 
   // category section
   section : {
-    marginTop : Metrics.section,
+    marginTop : Metrics.baseMargin,
     marginLeft : Metrics.paddingHorizontal,
   },
   txtSectionTitle : {

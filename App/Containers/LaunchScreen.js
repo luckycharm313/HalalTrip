@@ -50,7 +50,8 @@ export default class LaunchScreen extends Component {
     });
   }
   _onClickNext = () => {
-    this.props.navigation.navigate('LaunchInterestScreen')
+    // this.props.navigation.navigate('LaunchInterestScreen')
+    this.props.navigation.navigate('SignInScreen')
   }
   
   _onClickSkip = () => {
@@ -68,11 +69,11 @@ export default class LaunchScreen extends Component {
           style={styles.bg_container}
           source={Images.image1}>
            <View style={{backgroundColor: 'rgba(0,0,0,0.5)', flex : 1, justifyContent : 'flex-end'}} >
-              <View style={styles.skip_section}>
+              {/* <View style={styles.skip_section}>
                 <TouchableOpacity onPress={this._onClickSkip} style={styles.btn_skip}>
                   <Text style={styles.txt_skip}>Skip</Text>
                 </TouchableOpacity>
-              </View>
+              </View> */}
               <View style={styles.title_section}>
                 <Text style={styles.txt_place_title}>Choose a wonderful place</Text>
                 <Text style={styles.txt_place_description}>Find the best place you want and enjoy your trip with your lover</Text>
@@ -86,12 +87,17 @@ export default class LaunchScreen extends Component {
                   keyExtractor={(item, index) => index.toString()}
                 />
               </View>
-              <View style={styles.bottom_section}>
+              {/* <View style={styles.bottom_section}>
                 <View style={styles.oval_section}>
                   <Image style={styles.oval_image_first_child} source = {Images.oval_active} resizeMode='contain' />
                   <Image style={styles.oval_image} source = {Images.oval_deactive} resizeMode='contain' />
                   <Image style={styles.oval_image} source = {Images.oval_deactive} resizeMode='contain' />
                 </View>
+                <TouchableOpacity onPress={this._onClickNext} style={styles.btn_skip}>
+                  <Text style={styles.txt_skip}>Next</Text>
+                </TouchableOpacity>
+              </View> */}
+              <View style={styles.bottom_section}>
                 <TouchableOpacity onPress={this._onClickNext} style={styles.btn_skip}>
                   <Text style={styles.txt_skip}>Next</Text>
                 </TouchableOpacity>

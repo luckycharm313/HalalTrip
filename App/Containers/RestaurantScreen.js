@@ -20,7 +20,7 @@ class RestaurantScreen extends Component {
     }
   }
   _renderCuisinesItem = ({item})=> {
-    return( <CuisinesItem data = {item} /> ) 
+    return( <CuisinesItem data = {item} nav ={this.props.navigation} /> ) 
   }
 
   _renderTrendingData = ({item})=> {
@@ -49,11 +49,11 @@ class RestaurantScreen extends Component {
           <View style={styles.header_section}>
             <View style={styles.label_section}>
               <Text style={styles.header_txt_title}>Restaurants</Text>
-              <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
+              {/* <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
                 <Text style={styles.txtFilter}>Filters</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
-            <View style={styles.search_section}>
+            {/* <View style={styles.search_section}>
               <Icon name="search" style = {styles.icon_search} />
               <TextInput
                 ref = {'search'}
@@ -84,7 +84,7 @@ class RestaurantScreen extends Component {
               <TouchableOpacity style={styles.map_location}>
                 <Icon name="location-on" style = {styles.icon_location} />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.section}>

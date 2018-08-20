@@ -50,18 +50,26 @@ export default StyleSheet.create({
   bottom_section : {
     width: '100%',
     flexDirection: 'row',
-    justifyContent : 'space-between',
+    justifyContent : 'flex-end',
     alignItems: 'center',
     position: 'absolute',
     bottom: Metrics.marginBottom_30,
   },
-  oval_section : {
-    flexDirection: 'row',
-  },
-  oval_image_first_child : {
-    marginLeft : Metrics.paddingHorizontal,
-  },
-  oval_image: {
-    marginLeft : Metrics.smallMargin,
-  },
+  // bottom_section : {
+  //   width: '100%',
+  //   flexDirection: 'row',
+  //   justifyContent : 'space-between',
+  //   alignItems: 'center',
+  //   position: 'absolute',
+  //   bottom: Metrics.marginBottom_30,
+  // },
+  // oval_section : {
+  //   flexDirection: 'row',
+  // },
+  // oval_image_first_child : {
+  //   marginLeft : Metrics.paddingHorizontal,
+  // },
+  // oval_image: {
+  //   marginLeft : Metrics.smallMargin,
+  // },
 })

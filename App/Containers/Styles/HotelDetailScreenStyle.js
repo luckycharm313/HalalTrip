@@ -216,7 +216,7 @@ export default StyleSheet.create({
     marginRight : Metrics.baseMargin,
   },
   filter_image_section : {
-    marginTop : Metrics.section,
+    marginTop : Metrics.baseMargin,
   },
   img_filter : {
     width : 80,

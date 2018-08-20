@@ -151,6 +151,7 @@ export function * saveRestaurantTotal (api, action) {
 }
 
 export function * loadSavedData (api, action) {
+
   const _allResTotal = yield queryAllResTotal()
   const allResTotal = Array.from(_allResTotal)
   console.log(" all Res Total =>", allResTotal)

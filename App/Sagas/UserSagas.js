@@ -49,6 +49,7 @@ export function * signUpWithGoogle (api, action) {
     yield GoogleSignin.hasPlayServices();
   } catch (error) {
     yield put(UserActions.userFailure())
+    alert("GoogleSignin error")
     return
   }
   
@@ -68,6 +69,7 @@ export function * signUpWithGoogle (api, action) {
       offlineAccess: false,
     })  
   } catch (error) {
+    alert("GoogleSignin error")
     yield put(UserActions.userFailure())
     return
   }
@@ -112,11 +114,13 @@ export function * signUpWithGoogle (api, action) {
         return
       }
     } else {
+      alert("GoogleSignin error")
       yield put(UserActions.userFailure())
       return
     }
 
   } catch (error) {
+    alert("GoogleSignin error")
     yield put(UserActions.userFailure())
     return
   }
@@ -164,10 +168,12 @@ export function * signUpWithFacebook (api, action) {
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
       }
       else{
+        alert("Facebook error")
         yield put(UserActions.userFailure())
         return
       }
     } else {
+      alert("Facebook error")
       yield put(UserActions.userFailure())
       return
     }
@@ -204,14 +210,15 @@ export function * logIn (api, action) {
       
       const res = yield call(api._registerToken, param)
       /** end store token in server **/ 
-  
+      console.log(" login response ", res)
       if (res.ok) {
         try {
           yield AsyncStorage.setItem('token', JSON.stringify(cookie))        
         } catch (error) {
-          yield put(UserActions.userFailure())  
+          alert(error)
+          yield put(UserActions.userFailure())
+          return
         }
-    
         yield put(UserActions.userSuccess(temp.user))
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
       }

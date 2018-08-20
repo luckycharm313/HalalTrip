@@ -23,6 +23,7 @@ export default class PlaceItem extends Component {
 
   _onFindHotel=()=>{
     this.props.nav.navigate('MapHotelScreen', {placeTitle : this.props.data.title, placeId : this.props.data.id});
+    
   }
 
   render () {

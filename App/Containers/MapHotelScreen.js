@@ -9,6 +9,7 @@ import styles from './Styles/MapHotelScreenStyle'
 import { Images } from '../Themes'
 import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
+import RestaurantList from '../Components/RestaurantList'
 
 class MapHotelScreen extends Component {
   static navigationOptions = {
@@ -35,11 +36,60 @@ class MapHotelScreen extends Component {
       nav ={this.props.navigation}
     />
   )
+  
+  _renderRestaurantItem = ({item}) => (
+    <RestaurantList
+      data = {item}
+      nav ={this.props.navigation}
+    />
+  )
 
 
   render () {
-    const placeCategoryData = this.props.placeCategoryData ? this.props.placeCategoryData : []
-    const hotelData = placeCategoryData.hotelData? placeCategoryData.hotelData:[]
+    const placeHotelData = this.props.placeHotelData ? this.props.placeHotelData : []
+    const hotelData = placeHotelData.hotelData? placeHotelData.hotelData:[]
+    
+    const placeRestaurantData = this.props.placeRestaurantData ? this.props.placeRestaurantData : []
+    const restaurantData = placeRestaurantData.restaurantData? placeRestaurantData.restaurantData:[]
+
+    let location = [...hotelData, ...restaurantData]
+    let hotelView =''
+    let restaurantView =''
+
+    if(hotelData.length > 0){
+      hotelView =( <View style={styles.section}>
+                    <View style={styles.section_header}>
+                      <Text style={styles.txtSectionTitle}>Find hotel in {this.state.placeTitle}</Text>
+                      {/* <TouchableOpacity style={styles.more_area}>
+                        <Text style={styles.txtLabelSm}>Hide info</Text>
+                      </TouchableOpacity> */}
+                    </View>
+                    <FlatList
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={hotelData}
+                        renderItem={this._renderHotelItem}
+                        keyExtractor={(item, index) => index.toString()}
+                      />
+                  </View>)
+    }
+
+    if(restaurantData.length > 0 ){
+      restaurantView = 
+          (<View style={styles.section}>
+            <View style={styles.section_header}>
+              <Text style={styles.txtSectionTitle}>Find restaurant in {this.state.placeTitle}</Text>
+            </View>
+            <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={restaurantData}
+                renderItem={this._renderRestaurantItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
+          </View>)
+    }
+
     return (
         <View style = {styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -60,8 +110,9 @@ class MapHotelScreen extends Component {
                 showsUserLocation={ true }
               >
               {
-                hotelData.map((element, index) => {
+                location.map((element, index) => {
                   return(
+                    <View key={index}>
                     <MapView.Marker
                       title ={element['title']}
                       coordinate={ {
@@ -70,27 +121,15 @@ class MapHotelScreen extends Component {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421, }}
                     />  
+                    </View>
                   )                  
                 })
               }                
               </MapView>
             </View>
             <View style={styles.body_section}>
-              <View style={styles.section}>
-                <View style={styles.section_header}>
-                  <Text style={styles.txtSectionTitle}>Find hotel in {this.state.placeTitle}</Text>
-                  <TouchableOpacity style={styles.more_area}>
-                    <Text style={styles.txtLabelSm}>Hide info</Text>
-                  </TouchableOpacity>
-                </View>
-                <FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    data={hotelData}
-                    renderItem={this._renderHotelItem}
-                    keyExtractor={(item, index) => index.toString()}
-                  />
-              </View>
+              { hotelView }
+              { restaurantView }              
             </View>
           </ScrollView>
         </View>
@@ -100,7 +139,8 @@ class MapHotelScreen extends Component {
 
 const mapStateToProps = ({place}) => {
   return {
-    placeCategoryData : place.placeCategoryData
+    placeHotelData : place.placeHotelData,
+    placeRestaurantData : place.placeRestaurantData
   }
 }
 

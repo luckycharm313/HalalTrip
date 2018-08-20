@@ -3,9 +3,10 @@ import { Metrics, Colors, Fonts } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    marginRight : Metrics.baseMargin,
+    marginRight : Metrics.baseMargin,    
   },
   img : {
+    backgroundColor : Colors.lightBlack,
     width: Metrics.width_90,
     height : Metrics.height_60,  
     borderRadius : 10,
@@ -13,6 +14,12 @@ export default StyleSheet.create({
   },
   icon_heart : {
     color: Colors.font.default,
+    fontSize        : Fonts.size.regular,
+    fontFamily      : Fonts.type.base,
+    margin : Metrics.baseMargin,
+  },
+  icon_heart_save : {
+    color: Colors.primary,
     fontSize        : Fonts.size.regular,
     fontFamily      : Fonts.type.base,
     margin : Metrics.baseMargin,

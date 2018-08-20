@@ -57,9 +57,22 @@ class HomeScreen extends Component {
     };
   }
 
+  _discoverDestinations = () => (
+    this.props.navigation.navigate('PlaceScreen')
+  )
+  
+  _seeAllPlaces = () => (
+    this.props.navigation.navigate('PlaceScreen')
+  )
+  
+  _seeAllHotels = () => (
+    this.props.navigation.navigate('HotelScreen')
+  )
+  
   _renderCategoryItem = ({item}) => (
     <CategoryItem
       data = {item}
+      nav={this.props.navigation}
     />
   )
 
@@ -73,18 +86,21 @@ class HomeScreen extends Component {
   _renderActivityItem = ({item}) => (
     <ActivityItem
       data = {item}
+      nav={this.props.navigation}
     />
   )
   
   _renderDestinationItem = ({item}) => (
     <DestinationItem
       data = {item}
+      nav={this.props.navigation}
     />
   )
   
   _renderTrendItem = ({item}) => (
     <TrendItem
       data = {item}
+      nav={this.props.navigation}
     />
   )
 
@@ -131,7 +147,7 @@ class HomeScreen extends Component {
             <View style={styles.section}>
               <View style={styles.section_header}>
                 <Text style={styles.txtSectionTitle}>Popular Hotels</Text>
-                <TouchableOpacity style={styles.more_area}>
+                <TouchableOpacity style={styles.more_area} onPress={this._seeAllHotels}>
                   <Text style={styles.txtLabelSm}>See all</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
                 </TouchableOpacity>
@@ -148,15 +164,15 @@ class HomeScreen extends Component {
             <View style={styles.section}>
               <View style={styles.section_header}>
                 <Text style={styles.txtSectionTitle}>Popular Actvities</Text>
-                <TouchableOpacity style={styles.more_area}>
+                {/* <TouchableOpacity style={styles.more_area}>
                   <Text style={styles.txtLabelSm}>See all</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.state.activityData}
+                  data={this.props.activityTotalData}
                   renderItem={this._renderActivityItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
@@ -165,7 +181,7 @@ class HomeScreen extends Component {
             <View style={styles.section}>
               <View style={styles.section_header}>
                 <Text style={styles.txtSectionTitle}>Top Destinations</Text>
-                <TouchableOpacity style={styles.more_area}>
+                <TouchableOpacity style={styles.more_area} onPress={this._seeAllPlaces}>
                   <Text style={styles.txtLabelSm}>See all</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
                 </TouchableOpacity>
@@ -182,27 +198,27 @@ class HomeScreen extends Component {
             <View style={styles.section}>
               <View style={styles.section_header}>
                 <Text style={styles.txtSectionTitle}>Trending Now</Text>
-                <TouchableOpacity style={styles.more_area}>
+                {/* <TouchableOpacity style={styles.more_area}>
                   <Text style={styles.txtLabelSm}>See all</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.state.trendData}
+                  data={this.props.trendTotalData}
                   renderItem={this._renderTrendItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
             </View>
-            
+{/*             
             <View style={styles.deactive_section}>
               <Redeem />
             </View>
 
             <View style={styles.deactive_section}>
               <FreeCredit />
-            </View>
+            </View> */}
           </View>
         </ScrollView>
       </View>
@@ -210,12 +226,14 @@ class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = ({main, category, hotel, place}) => {
+const mapStateToProps = ({main, category, hotel, place, activity, trend}) => {
   return {
     errorMsg : main.errorMsg,
     categoryData : category.categoryData,
     hotelTotalData : hotel.hotelTotalData,
     placeTotalData : place.placeTotalData,
+    activityTotalData : activity.activityTotalData,
+    trendTotalData : trend.trendTotalData,
   }
 }
 

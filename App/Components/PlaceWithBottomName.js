@@ -18,13 +18,13 @@ export default class PlaceWithBottomName extends Component {
   render () {
     const {title, img_url} = this.props.data
     return (
-      <TouchableOpacity style={styles.container}>
+      <View style={styles.container}>
         <Image 
           style={styles.place_img}
           source={img_url}
           resizeMode='cover'/>
         <Text style={styles.place_title}>{title}</Text>
-      </TouchableOpacity>
+      </View>
     )
   }
 }

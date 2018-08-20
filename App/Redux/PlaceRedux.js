@@ -6,9 +6,11 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   placeRequest: null,
   placeSuccess: ['payload'],
-  placeCategorySuccess: ['payload'],
+  placeCategorySuccess: ['hotel', 'restaurant'],
   placeFailure: ['errorMsg'],
   getHotelByPlace : ['placeId'],
+  getRestaurantPlace : ['placeId'],
+  placeRestaurantSuccess : ['payload']
 })
 
 export const PlaceTypes = Types
@@ -21,7 +23,8 @@ export const INITIAL_STATE = Immutable({
   placeTotalData: null,
   error: null,
   errorMsg : null,
-  placeCategoryData : null,
+  placeHotelData : null,
+  placeRestaurantData : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -43,8 +46,13 @@ export const success = (state, action) => {
 }
 
 export const categorySuccess = (state, action) => {
+  const { hotel, restaurant } = action
+  return state.merge({ fetching: false, error: null, placeHotelData :hotel, placeRestaurantData :restaurant, errorMsg: null })
+}
+
+export const placeRestaurantSuccess = (state, action) => {
   const { payload } = action
-  return state.merge({ fetching: false, error: null, placeCategoryData :payload, errorMsg: null })
+  return state.merge({ fetching: false, error: null, placeRestaurantData :payload, errorMsg: null })
 }
 
 // Something went wrong somewhere.
@@ -60,4 +68,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.PLACE_CATEGORY_SUCCESS]: categorySuccess,
   [Types.PLACE_FAILURE]: failure,
   [Types.GET_HOTEL_BY_PLACE]: request,
+  [Types.GET_RESTAURANT_PLACE]: request,
+  [Types.PLACE_RESTAURANT_SUCCESS]: placeRestaurantSuccess,
 })

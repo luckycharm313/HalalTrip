@@ -11,15 +11,19 @@ import { MainTypes } from '../Redux/MainRedux'
 import { PlaceTypes } from '../Redux/PlaceRedux'
 import { HotelTypes } from '../Redux/HotelRedux'
 import { RestaurantTypes } from '../Redux/RestaurantRedux'
+import { ActivityTypes } from '../Redux/ActivityRedux'
+import { TrendTypes } from '../Redux/TrendRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout } from './UserSagas'
 import { loadData } from './MainSagas'
-import { getHotelByPlace } from './PlaceSagas'
+import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
 import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail} from './RestaurantSagas'
+import { getActivityDetail } from './ActivitySagas'
+import { getTrendDetail } from './TrendSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -47,7 +51,8 @@ export default function * root () {
 
     // place saga:
     takeLatest(PlaceTypes.GET_HOTEL_BY_PLACE, getHotelByPlace, main_api),
-    
+    takeLatest(PlaceTypes.GET_RESTAURANT_PLACE, getRestaurantPlace, main_api),
+
     // hotel saga:
     takeLatest(HotelTypes.GET_HOTEL_DETAIL, getHotelDetail, main_api),
     takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
@@ -60,6 +65,13 @@ export default function * root () {
     takeLatest(RestaurantTypes.SAVE_RESTAURANT_TOTAL, saveRestaurantTotal, main_api),
     takeLatest(RestaurantTypes.LOAD_SAVED_DATA, loadSavedData, main_api),
     takeLatest(RestaurantTypes.GET_SAVED_DETAIL, getSavedDetail, main_api),
+
+    // activity
+    takeLatest(ActivityTypes.GET_ACTIVITY_DETAIL, getActivityDetail, main_api),
+    
+    // trend
+    takeLatest(TrendTypes.GET_TREND_DETAIL, getTrendDetail, main_api),
+    
     
   ])
 }

@@ -104,22 +104,32 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   const _getHotel = (token) => api.get('api/hotel/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getPlace = (token) => api.get('api/place/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getHotelByPlace = (param, token) => api.post('api/place/hotel', param, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getRestaurantByPlace = (param, token) => api.post('api/place/restaurant', param, { headers : {'Authorization': `Bearer ${token}`} })
   const _getHotelDetail = (param, token) => api.post('api/hotel/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
   const _getCuisine = (token) => api.get('api/restaurant/cuisine', {}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getRestaurant = (token) => api.get('api/restaurant/all', {}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getRestaurantDetail = (param, token) => api.post('api/restaurant/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
   const _socialRegister = (param) => api.post('api/user/socialRegister', param)
+  const _getActivity = (token) => api.get('api/activity/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getActivityDetail = (param, token) => api.post('api/activity/detail',param, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getTrend = (token) => api.get('api/trend/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getTrendDetail = (param, token) => api.post('api/trend/detail',param, { headers : {'Authorization': `Bearer ${token}`} })
 
   return {
     _getCategory,
     _getHotel,
     _getPlace,
     _getHotelByPlace,
+    _getRestaurantByPlace,
     _getHotelDetail,
     _getCuisine,
     _getRestaurant,
     _getRestaurantDetail,
-    _socialRegister
+    _socialRegister,
+    _getActivity,
+    _getActivityDetail,
+    _getTrend,
+    _getTrendDetail
   }
 }
 

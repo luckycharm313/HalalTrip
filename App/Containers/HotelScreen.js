@@ -35,22 +35,24 @@ class HotelScreen extends Component {
   }
 
   render () {
+    const hotelTotalData = this.props.hotelTotalData ? this.props.hotelTotalData : []
     const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
     const {title, rating, location, detailImages} = __data
     let _detailImages = detailImages ? detailImages : []
     const cost = '$239'
     const review = '8.8'
+   
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.header_section}>
             <View style={styles.label_section}>
               <Text style={styles.header_txt_title}>Hotels</Text>
-              <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
+              {/* <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
                 <Text style={styles.txtFilter}>Filters</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
-            <View style={styles.search_section}>
+            {/* <View style={styles.search_section}>
               <Icon name="search" style = {styles.icon_search} />
               <TextInput
                 ref = {'search'}
@@ -67,7 +69,7 @@ class HotelScreen extends Component {
                 onChangeText = {(_search) => { this.setState({_search: _search})}}
                 onChange = {this._onSearch}
                 maxLength = {100}/>
-            </View>
+            </View> 
             <View style={styles.action_section}>
               <View style={styles.filter_actions}>
                 {
@@ -81,17 +83,17 @@ class HotelScreen extends Component {
               <TouchableOpacity style={styles.map_location}>
                 <Icon name="location-on" style = {styles.icon_location} />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
           <View style={styles.featured_hotel_section}>
             <Text style={styles.header_txt_title_md}>Featured Hotel</Text>
             <ScrollView horizontal={true} style={styles.hotel_img_section} showsHorizontalScrollIndicator={false}>
-                {
-                  _detailImages.map(element => (
-                    <Image style={styles.img_featured_hotel} source={{uri : element}} key={element}/>
-                  ))
-                }
+              {
+                _detailImages.map(element => (
+                  <Image style={styles.img_featured_hotel} source={{uri : element}} key={element}/>
+                ))
+              }
             </ScrollView>
             <TouchableOpacity onPress={this._onHotelDetail}>
               <Text style={styles.txt_rating}>{rating} Stars</Text>
@@ -112,7 +114,7 @@ class HotelScreen extends Component {
             <Text style={styles.header_txt_title_md}>All Hotels</Text>
             <View style={styles.hotel_list_view}>
               <FlatList
-                data={this.props.hotelTotalData}
+                data={hotelTotalData}
                 renderItem={this._renderHotelItem}
                 keyExtractor={(item, index) => index.toString()}
               />

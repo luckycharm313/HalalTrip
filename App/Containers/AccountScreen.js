@@ -54,7 +54,7 @@ class AccountScreen extends Component {
               <Text style={styles.txt_setting}>Notifications</Text>
               <Icon name="notifications" style = {styles.icon_setting} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.setting_option} >
+            {/* <TouchableOpacity style={styles.setting_option} >
               <Text style={styles.txt_setting}>Coupon Code</Text>
               <Icon name="beenhere" style = {styles.icon_setting} />
             </TouchableOpacity>
@@ -73,14 +73,14 @@ class AccountScreen extends Component {
             <TouchableOpacity style={styles.setting_option} >
               <Text style={styles.txt_setting}>About</Text>
               <Icon name="info" style = {styles.icon_setting} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'logout')} >
               <Text style={styles.txt_setting}>Logout</Text>
               <Icon name="settings-power" style = {styles.icon_setting} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.setting_option} >
+            {/* <TouchableOpacity style={styles.setting_option} >
               <Text style={styles.txt_setting}></Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </ScrollView>
         </View>
       </View>

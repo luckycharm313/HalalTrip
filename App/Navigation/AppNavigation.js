@@ -2,6 +2,9 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import TrendDetailScreen from '../Containers/TrendDetailScreen'
+import ActivityDetailScreen from '../Containers/ActivityDetailScreen'
+import RestaurantPlaceScreen from '../Containers/RestaurantPlaceScreen'
 import HotelSavedDetailScreen from '../Containers/HotelSavedDetailScreen'
 import RestaurantSavedDetailScreen from '../Containers/RestaurantSavedDetailScreen'
 import NotificationScreen from '../Containers/NotificationScreen'
@@ -26,6 +29,8 @@ import { Colors, Metrics, Fonts } from '../Themes/'
 
 const HomeStack = StackNavigator({
   HomeScreen: { screen: HomeScreen },
+  ActivityDetailScreen: { screen: ActivityDetailScreen },
+  TrendDetailScreen: { screen: TrendDetailScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -98,6 +103,7 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({  
+  RestaurantPlaceScreen: { screen: RestaurantPlaceScreen },
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },
   LaunchInterestScreen: { screen: LaunchInterestScreen },

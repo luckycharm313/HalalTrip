@@ -4,6 +4,8 @@ import MainActions from '../Redux/MainRedux'
 import CategoryActions from '../Redux/CategoryRedux'
 import HotelActions from '../Redux/HotelRedux'
 import PlaceActions from '../Redux/PlaceRedux'
+import ActivityActions from '../Redux/ActivityRedux'
+import TrendActions from '../Redux/TrendRedux'
 import {AsyncStorage} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
 
@@ -63,6 +65,46 @@ export function * loadData (api, action) {
     }
     
   } else {
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
+  }
+  
+  /*** activity part **/
+  const responseActivity = yield call(api._getActivity, token)
+  
+  if (responseActivity.ok) {
+    const { data, code, message } = responseActivity.data    
+    if(code == 'success'){
+      yield put(ActivityActions.activitySuccess(data))
+    }
+    else{
+      alert(message)
+      yield put(MainActions.mainFailure(message))
+      return
+    }
+    
+  } else {
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
+  }
+  
+  /*** trend part **/
+  const responseTrend = yield call(api._getTrend, token)
+  console.log("response Trend ", responseTrend)
+  if (responseTrend.ok) {
+    const { data, code, message } = responseTrend.data    
+    if(code == 'success'){
+      yield put(TrendActions.trendSuccess(data))
+    }
+    else{
+      alert(message)
+      yield put(MainActions.mainFailure(message))
+      return
+    }
+    
+  } else {
+    alert("Internet Error")
     yield put(MainActions.mainFailure("Internet Error"))
     return
   }

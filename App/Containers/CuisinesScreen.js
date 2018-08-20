@@ -33,10 +33,14 @@ class CuisinesScreen extends Component {
     }
   }
 
+  _goToRestaurantPlace = (id, title) =>{
+    this.props.navigation.navigate('RestaurantPlaceScreen', {placeId : id, placeTitle : title});
+  }
+
   _renderCuisinesList = ({item}) =>{
-    const {title, restaurant_count, img_url} = item
+    const {id, title, restaurant_count, img_url} = item
     return (
-      <TouchableOpacity style={styles.view_cuisines}>
+      <TouchableOpacity style={styles.view_cuisines} onPress={this._goToRestaurantPlace.bind(this, id, title)}>
         <View style={styles.resturant_view}>
           <View style={styles.opacity_view} >
             <Image style={styles.img_review} source={{uri :img_url}}/>

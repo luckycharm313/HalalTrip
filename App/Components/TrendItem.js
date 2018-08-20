@@ -4,28 +4,21 @@ import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
 import styles from './Styles/TrendItemStyle'
 
 export default class TrendItem extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  _goToTrendDetail =()=>{
+    this.props.nav.navigate('TrendDetailScreen', {trendId : this.props.data.id});
+  }
 
   render () {
-    const {title, detail, img_url} = this.props.data
+    const {title, img_url} = this.props.data
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this._goToTrendDetail}>
           <ImageBackground 
             style={styles.img}
             imageStyle={{ borderRadius: 10}}
             source={img_url}>
             <View style={styles.opacity_view} >
               <Text style={styles.txt_title}>{title}</Text>
-              <Text style={styles.txt_detail}>{detail}</Text>
+              {/* <Text style={styles.txt_detail}>{description}</Text> */}
             </View>
           </ImageBackground>        
       </TouchableOpacity>
