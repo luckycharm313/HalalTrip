@@ -39,7 +39,7 @@ class SavedScreen extends Component {
             initialPage={0}
           >
             <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} data = {this.props.savedHotelData} /> 
-            <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} /> 
+            <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} data={this.props.savedActivityData} /> 
             <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} data = {this.props.savedRestaurantData}/> 
           </ScrollableTabView>
         </View>
@@ -48,10 +48,11 @@ class SavedScreen extends Component {
   }
 }
 
-const mapStateToProps = ({restaurant, hotel}) => {
+const mapStateToProps = ({restaurant, hotel, activity}) => {
   return {
     savedRestaurantData : restaurant.savedRestaurantData,
     savedHotelData: hotel.savedHotelData,
+    savedActivityData: activity.savedActivityData,
   }
 }
 

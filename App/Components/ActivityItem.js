@@ -1,25 +1,37 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
 import styles from './Styles/ActivityItemStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
+import ActivityAction from '../Redux/ActivityRedux'
 
-export default class ActivityItem extends Component {
+class ActivityItem extends Component {
   
   _onActivityDetail = () => {
     this.props.nav.navigate('ActivityDetailScreen', {activityId : this.props.data.id});
   }
 
+  _onSave=()=>{
+    const id = this.props.data.id
+    this.props.saveActivityTotal(this.props.data)
+  }
+
   render () {
-    const {title, sub_title, location,rating, img_url} = this.props.data
+    const {id, title, location,rating, img_url} = this.props.data
     
     const cost = '$239'
     const review = '8.8'
     let _rating = Number.parseFloat(rating)
     let icon = <Icon name="heart" style = {styles.icon_heart} />
+    
+    this.props.savedIds.forEach(element => {
+      if(element == id){
+        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
+      }  
+    })
 
     return (
       <TouchableOpacity style={styles.container} onPress={this._onActivityDetail}>
@@ -31,7 +43,7 @@ export default class ActivityItem extends Component {
           { icon }            
           </TouchableOpacity> 
         </ImageBackground>
-        <Text style={styles.txt_rating}>{sub_title}</Text>          
+        {/* <Text style={styles.txt_rating}>{sub_title}</Text>           */}
         <Text style={styles.txt_title}>{title}</Text>          
         <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>
           <Icon name="location-pin" style = {styles.icon_location} />
@@ -56,3 +68,16 @@ export default class ActivityItem extends Component {
     )
   }
 }
+
+const mapStateToProps = ({activity}) => {
+  return {
+    savedIds : activity.savedIds
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveActivityTotal : (data) =>dispatch(ActivityAction.saveActivityTotal(data)),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityItem)

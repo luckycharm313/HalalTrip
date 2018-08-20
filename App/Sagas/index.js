@@ -22,7 +22,7 @@ import { loadData } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
 import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail} from './RestaurantSagas'
-import { getActivityDetail } from './ActivitySagas'
+import { getActivityDetail, saveActivityTotal, getSavedActivityDetail } from './ActivitySagas'
 import { getTrendDetail } from './TrendSagas'
 
 /* ------------- API ------------- */
@@ -68,6 +68,8 @@ export default function * root () {
 
     // activity
     takeLatest(ActivityTypes.GET_ACTIVITY_DETAIL, getActivityDetail, main_api),
+    takeLatest(ActivityTypes.SAVE_ACTIVITY_TOTAL, saveActivityTotal, main_api),
+    takeLatest(ActivityTypes.GET_SAVED_ACTIVITY_DETAIL, getSavedActivityDetail, main_api),
     
     // trend
     takeLatest(TrendTypes.GET_TREND_DETAIL, getTrendDetail, main_api),

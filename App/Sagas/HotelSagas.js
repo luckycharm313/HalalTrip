@@ -141,6 +141,6 @@ export function * getSavedHotelDetail (api, action) {
     yield put(HotelActions.loadDetailSuccess(allHotelDetail[0]))
   }
   else{
-    yield put(HotelActions.restaurantFailure("Data doesn't exist!"))
+    yield put(HotelActions.hotelFailure("Data doesn't exist!"))
   }
 }

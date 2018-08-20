@@ -3,10 +3,19 @@ import { RestaurantTotalSchema, PlaceSchema, RESTAURANT_TOTAL_SCHEMA, PLACEL_SCH
 import { RestaurantDetailSchema, RESTAURANT_DETAIL_SCHEMA } from './restaurantDetailSchema'
 import { HotelTotalSchema, HOTEL_TOTAL_SCHEMA } from './hotelTotalSchema'
 import { HotelDetailSchema, HOTEL_DETAIL_SCHEMA } from './hotelDetailSchema'
+import { ActivityTotalSchema, ACTIVITY_TOTAL_SCHEMA } from './activityTotalSchema'
+import { ActivityDetailSchema, ACTIVITY_DETAIL_SCHEMA } from './activityDetailSchema'
 
 const databaseOptions = {
     path : 'halaltrip.realm',
-    schema : [RestaurantTotalSchema, PlaceSchema, RestaurantDetailSchema, HotelTotalSchema, HotelDetailSchema ],
+    schema : [
+        RestaurantTotalSchema, 
+        PlaceSchema, 
+        RestaurantDetailSchema, 
+        HotelTotalSchema, 
+        HotelDetailSchema,
+        ActivityTotalSchema,
+        ActivityDetailSchema],
     schemaVersion : 0
 }
 /*** restaurant Total ***/
@@ -182,4 +191,74 @@ export const querySelectHotelDetail = query => new Promise((resolve, reject)=>{
 })
 
 /*** End hotel Detail ***/
+
+/*** Activity Total ***/
+export const insertNewActivityTotal = newData => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            realm.create(ACTIVITY_TOTAL_SCHEMA, newData)
+            resolve(newData)
+        })
+    }).catch((error)=>reject(error))
+})
+export const deleteActivityTotal = ActivityTotalId => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            let deletingActivityTotal = realm.objectForPrimaryKey(ACTIVITY_TOTAL_SCHEMA, ActivityTotalId)
+            realm.delete(deletingActivityTotal)
+            resolve()
+        })
+    }).catch((error)=>reject(error))
+})
+
+export const queryAllActivityTotal = () => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            let allActivityTotal = realm.objects(ACTIVITY_TOTAL_SCHEMA)
+            resolve(allActivityTotal)
+        })
+    }).catch((error)=>reject(error))
+})
+
+export const querySelectActivityTotal = query => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            let temp = realm.objects(ACTIVITY_TOTAL_SCHEMA).filtered(query)
+            resolve(temp)
+        })
+    }).catch((error)=>reject(error))
+})
+
+/*** End activity Total ***/
+
+/*** activity Detail ***/
+export const insertNewActivityDetail = newData => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            realm.create(ACTIVITY_DETAIL_SCHEMA, newData)
+            resolve(newData)
+        })
+    }).catch((error)=>reject(error))
+})
+export const deleteActivityDetail = ActivityDetailId => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            let deletingActivityDetail = realm.objectForPrimaryKey(ACTIVITY_DETAIL_SCHEMA, ActivityDetailId)
+            realm.delete(deletingActivityDetail)
+            resolve()
+        })
+    }).catch((error)=>reject(error))
+})
+
+export const querySelectActivityDetail = query => new Promise((resolve, reject)=>{
+    Realm.open(databaseOptions).then(realm =>{
+        realm.write(()=>{
+            let temp = realm.objects(ACTIVITY_DETAIL_SCHEMA).filtered(query)
+            resolve(temp)
+        })
+    }).catch((error)=>reject(error))
+})
+
+/*** End Activity Detail ***/
+
 export default new Realm(databaseOptions)
