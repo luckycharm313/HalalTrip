@@ -40,6 +40,8 @@ target 'HalalTripThailand' do
 
   pod 'RNGoogleSignin', :path => '../node_modules/react-native-google-signin'
 
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
 end
 
 target 'HalalTripThailand-tvOS' do

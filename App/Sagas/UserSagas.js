@@ -120,7 +120,7 @@ export function * signUpWithGoogle (api, action) {
     }
 
   } catch (error) {
-    alert("GoogleSignin error")
+    alert(error)
     yield put(UserActions.userFailure())
     return
   }

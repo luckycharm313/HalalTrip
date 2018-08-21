@@ -1,6 +1,8 @@
 import { call, put } from 'redux-saga/effects'
 import HotelActions from '../Redux/HotelRedux'
 import {AsyncStorage} from 'react-native'
+import RNFetchBlob from 'rn-fetch-blob'
+
 // import { HotelSelectors } from '../Redux/HotelRedux'
 import {
   insertNewHotelTotal,
@@ -89,11 +91,23 @@ export function * saveHotelTotal (api, action) {
 
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-  const { id, rating } = data
-  let _data = {...data,  'rating' : rating == null ? "" : rating}
+  const { id, rating, img_url } = data  
 
   const queryResult = yield querySelectHotelTotal(" id ='"+id+"'")
+  let imgPath = ""
+  if(img_url != "" && img_url != null ){ 
+    const resPath = yield RNFetchBlob.config({
+      fileCache : true,
+      appendExt : 'png'
+    })
+    .fetch('GET', img_url, {
+      Authorization : `Bearer ${token}`,
+    })
+
+    imgPath = resPath.path()
+  }
   
+  let _data = {...data,  'rating' : rating == null ? "" : rating, 'img_url' : imgPath}
   
   if(queryResult.length == 0){
     let param = new FormData();
@@ -106,13 +120,43 @@ export function * saveHotelTotal (api, action) {
         console.log(" datail data =>", data)
         const queryDetailResult = yield querySelectHotelDetail(" id ='"+data.id+"'")
 
+
         if(queryDetailResult.length == 0){
-          const { rating, amenity, detailImages } = data
-          let __data = {...data,  'rating' : rating == null ? "" : rating, 'amenity' : JSON.stringify(amenity), 'detailImages': JSON.stringify(detailImages)}
+          const { rating, amenity, detailImages, img_url } = data
+          let mainImgPath = ""
+          if(img_url != "" && img_url != null ){ 
+            const _mainImgPath = yield RNFetchBlob.config({
+              fileCache : true,
+              appendExt : 'png'
+            })
+            .fetch('GET', img_url, {
+              Authorization : `Bearer ${token}`,
+            })
+          
+            mainImgPath = _mainImgPath.path()
+          }          
+
+          let _detailImages = []
+          for(let i=0 ; i < detailImages.length ; i++)
+          {
+            if(detailImages[i] != "" && detailImages[i] != null ){              
+              const res_Path = yield RNFetchBlob.config({
+                fileCache : true,
+                appendExt : 'png'
+              })
+              .fetch('GET', detailImages[i], {
+                Authorization : `Bearer ${token}`,
+              })
+              _detailImages.push(res_Path.path())
+            }
+          }
+
+          console.log("detail images=> ", _detailImages)
+          let __data = {...data,  'rating' : rating == null ? "" : rating, 'amenity' : JSON.stringify(amenity), 'detailImages': JSON.stringify(_detailImages), 'img_url' : mainImgPath}
           const savedDetail = yield insertNewHotelDetail(__data)             
           console.log(" savedDetail data =>",savedDetail)
         }
-        const savedData = yield insertNewHotelTotal(_data)              
+       const savedData = yield insertNewHotelTotal(_data)              
         
         yield put(HotelActions.saveSuccess(savedData.id))
       }

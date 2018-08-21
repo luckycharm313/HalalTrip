@@ -1,3 +1,8 @@
+plugins {
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' version '0.8.1'
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
@@ -71,7 +76,15 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-
+//buildscript {
+//    repositories {
+//        maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal
+//    }
+//    dependencies {
+//        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.10.1, 0.99.99]'
+//    }
+//}
+//apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 project.ext.react = [
     entryFile: "index.js"
 ]
@@ -107,7 +120,9 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
         multiDexEnabled true
-
+        manifestPlaceholders = [
+                onesignal_app_id: "fd27f86f-5d5a-45a6-894f-b25e6e0e59a9",
+                onesignal_google_project_number: "1095187564794"]
     }
     splits {
         abi {
@@ -150,9 +165,11 @@ android {
 }
 
 dependencies {
+//    compile project(':react-native-onesignal')
     compile (project(':react-native-google-signin')){
         exclude group: "com.google.android.gms" // very important
     }
+    compile project(':rn-fetch-blob')
     compile project(':react-native-splash-screen')
     compile project(':realm')
     compile project(':react-native-config')

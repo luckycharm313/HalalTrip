@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList } from 'react-native'
+import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList, Platform } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -41,7 +41,7 @@ class ActivitySavedDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri : img_url}} />
+          <ImageBackground style={styles.view_photo} source={{uri : Platform.OS === 'android' ? 'file://' + img_url : '' + img_url}} />
           <View style={styles.title_location_section}>
             <View style={styles.hotel_review_view}>
               <StarRating
@@ -65,7 +65,7 @@ class ActivitySavedDetailScreen extends Component {
                 <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                   {
                     _detailImages.map(element => (
-                      <Image style={styles.img_filter} source={{uri :element}} key={element}/>
+                      <Image style={styles.img_filter} source={{uri :Platform.OS === 'android' ? 'file://' + element : '' + element}} key={element}/>
                     ))
                   }
                 </ScrollView>

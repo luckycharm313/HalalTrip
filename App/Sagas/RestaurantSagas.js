@@ -3,6 +3,7 @@ import { call, put, select } from 'redux-saga/effects'
 import RestaurantActions from '../Redux/RestaurantRedux'
 import HotelActions from '../Redux/HotelRedux'
 import ActivityActions from '../Redux/ActivityRedux'
+import RNFetchBlob from 'rn-fetch-blob'
 // import { RestaurantSelectors } from '../Redux/RestaurantRedux'
 import {
   insertNewResTotal, 
@@ -110,10 +111,23 @@ export function * saveRestaurantTotal (api, action) {
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const { id, img_url, location, placeName, rating, street_lat, street_lng, title } = data
-  let _data = {...data,  'rating' : rating == null ? "" : rating}
-
-  const queryResult = yield querySelectResTotal(" id ='"+id+"'")
   
+  let imgPath = ""
+  if(img_url != "" && img_url != null ){ 
+    const resPath = yield RNFetchBlob.config({
+      fileCache : true,
+      appendExt : 'png'
+    })
+    .fetch('GET', img_url, {
+      Authorization : `Bearer ${token}`,
+    })
+
+    imgPath = resPath.path()
+  }
+
+  let _data = {...data,  'rating' : rating == null ? "" : rating, 'img_url' : imgPath}
+
+  const queryResult = yield querySelectResTotal(" id ='"+id+"'")  
   
   if(queryResult.length == 0){
     let param = new FormData();
@@ -126,8 +140,22 @@ export function * saveRestaurantTotal (api, action) {
         const queryDetailResult = yield querySelectResDetail(" id ='"+data.id+"'")
 
         if(queryDetailResult.length == 0){
-          const { rating } = data
-          let __data = {...data,  'rating' : rating == null ? "" : rating}
+          const { rating, img_url } = data
+          
+          let mainImgPath = ""
+          if(img_url != "" && img_url != null ){ 
+            const _mainImgPath = yield RNFetchBlob.config({
+              fileCache : true,
+              appendExt : 'png'
+            })
+            .fetch('GET', img_url, {
+              Authorization : `Bearer ${token}`,
+            })
+          
+            mainImgPath = _mainImgPath.path()
+          }          
+
+          let __data = {...data,  'rating' : rating == null ? "" : rating,  'img_url' : mainImgPath}
           const savedDetail = yield insertNewResDetail(__data)             
         }
         const savedData = yield insertNewResTotal(_data)              

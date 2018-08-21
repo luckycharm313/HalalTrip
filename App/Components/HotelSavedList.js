@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
+import { View, Text, TouchableOpacity, ImageBackground, Platform} from 'react-native'
 import styles from './Styles/HotelSavedListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
@@ -34,7 +34,7 @@ class HotelSavedList extends Component {
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={{uri: img_url}} >
+          source={{uri: Platform.OS === 'android' ? 'file://' + img_url : '' + img_url}} >
           <TouchableOpacity onPress = {this._onSave}>
           { icon }            
           </TouchableOpacity> 

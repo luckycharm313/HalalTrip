@@ -1,6 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import ActivityActions from '../Redux/ActivityRedux'
 import {AsyncStorage} from 'react-native'
+import RNFetchBlob from 'rn-fetch-blob'
 
 import {
   insertNewActivityTotal,
@@ -47,13 +48,27 @@ export function * getActivityDetail (api, action) {
 export function * saveActivityTotal (api, action) {
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-  const { id, rating, location, street_lat, street_lng } = data
+  const { id, rating, location, street_lat, street_lng, img_url } = data
+  let imgPath = ""
+  if(img_url != "" && img_url != null ){ 
+    const resPath = yield RNFetchBlob.config({
+      fileCache : true,
+      appendExt : 'png'
+    })
+    .fetch('GET', img_url, {
+      Authorization : `Bearer ${token}`,
+    })
+
+    imgPath = resPath.path()
+  }
+
   let _data = {
     ...data,  
     'rating' : rating == null ? "" : rating,
     'location' : location == null ? "" : location, 
     'street_lat' : street_lat == null ? "" : street_lat, 
     'street_lng' : street_lng == null ? "" : street_lng, 
+    'img_url' : imgPath
   }
 
   const queryResult = yield querySelectActivityTotal(" id ='"+id+"'")
@@ -71,14 +86,44 @@ export function * saveActivityTotal (api, action) {
         const queryDetailResult = yield querySelectActivityDetail(" id ='"+data.id+"'")
 
         if(queryDetailResult.length == 0){
-          const { rating, detailImages, location, street_lat, street_lng } = data
+          const { rating, detailImages, location, street_lat, street_lng, img_url } = data
+          
+          let mainImgPath = ""
+          if(img_url != "" && img_url != null ){ 
+            const _mainImgPath = yield RNFetchBlob.config({
+              fileCache : true,
+              appendExt : 'png'
+            })
+            .fetch('GET', img_url, {
+              Authorization : `Bearer ${token}`,
+            })
+          
+            mainImgPath = _mainImgPath.path()
+          }          
+
+          let _detailImages = []
+          for(let i=0 ; i < detailImages.length ; i++)
+          {
+            if(detailImages[i] != "" && detailImages[i] != null ){              
+              const res_Path = yield RNFetchBlob.config({
+                fileCache : true,
+                appendExt : 'png'
+              })
+              .fetch('GET', detailImages[i], {
+                Authorization : `Bearer ${token}`,
+              })
+              _detailImages.push(res_Path.path())
+            }
+          }
+
           let __data = {
             ...data,  
             'rating' : rating == null ? "" : rating, 
             'location' : location == null ? "" : location, 
             'street_lat' : street_lat == null ? "" : street_lat, 
             'street_lng' : street_lng == null ? "" : street_lng, 
-            'detailImages': JSON.stringify(detailImages)
+            'detailImages': JSON.stringify(_detailImages),
+            'img_url' : mainImgPath
           }
           const savedDetail = yield insertNewActivityDetail(__data)             
           console.log(" savedDetail data =>",savedDetail)
