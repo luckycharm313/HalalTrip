@@ -137,6 +137,7 @@ export default StyleSheet.create({
     color: Colors.font.dark,
     fontSize        : Fonts.size.medium,
     fontFamily      : Fonts.type.base,
+    marginTop : Metrics.baseMargin
   },
   txt_description_detail : {
     marginTop : Metrics.baseMargin,

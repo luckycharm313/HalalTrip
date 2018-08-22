@@ -121,8 +121,8 @@ android {
         }
         multiDexEnabled true
         manifestPlaceholders = [
-                onesignal_app_id: "fd27f86f-5d5a-45a6-894f-b25e6e0e59a9",
-                onesignal_google_project_number: "1095187564794"]
+                onesignal_app_id: "180a6e93-3a86-42de-813d-282a113a4fc3",
+                onesignal_google_project_number: "410347491994"]
     }
     splits {
         abi {
@@ -165,7 +165,7 @@ android {
 }
 
 dependencies {
-//    compile project(':react-native-onesignal')
+    compile project(':react-native-onesignal')
     compile (project(':react-native-google-signin')){
         exclude group: "com.google.android.gms" // very important
     }

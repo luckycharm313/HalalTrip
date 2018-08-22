@@ -75,16 +75,16 @@ export function * signUpWithGoogle (api, action) {
   }
   try {      
     const userData = yield GoogleSignin.signIn();
-    const {idToken, user} = userData
+    const {accessToken, user} = userData
     const {email, name } = user
     console.log("google signin data => ", userData)
-    console.log("google signin idToken => ", idToken)
+    console.log("google signin accessToken => ", accessToken)
     console.log("google signin email => ", email)
     let push_token = ''
 
     let param = new FormData();
     param.append("user_email", email)
-    param.append("user_token", idToken)
+    param.append("user_token", accessToken)
     param.append("user_push_token", push_token)
     
     const res = yield call(api._socialRegister, param)
@@ -104,7 +104,7 @@ export function * signUpWithGoogle (api, action) {
         let _temp = {
           user_email : email,
           user_display_name : name,
-          token : idToken
+          token : accessToken
         }
         yield put(UserActions.userSuccess(_temp))
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));

@@ -1,29 +1,21 @@
 {
   "project_info": {
-    "project_number": "1095187564794",
-    "firebase_url": "https://halaltripthailand.firebaseio.com",
-    "project_id": "halaltripthailand",
-    "storage_bucket": "halaltripthailand.appspot.com"
+    "project_number": "410347491994",
+    "firebase_url": "https://halaltrip-c5363.firebaseio.com",
+    "project_id": "halaltrip-c5363",
+    "storage_bucket": "halaltrip-c5363.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1095187564794:android:dd30e733b5b13903",
+        "mobilesdk_app_id": "1:410347491994:android:dd30e733b5b13903",
         "android_client_info": {
           "package_name": "com.halaltripthailand"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1095187564794-r2if1nsi3jf0usu3l1np4dqcgnkt9i25.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.halaltripthailand",
-            "certificate_hash": "5faf78b6362f568d7b0a2b6ce35751cb284f4187"
-          }
-        },
-        {
-          "client_id": "1095187564794-la4fnnmi4sj54buse0gagf129mqa6sv3.apps.googleusercontent.com",
+          "client_id": "410347491994-tb9pmg8775nq2bvv5h03ckeogaucm1as.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.halaltripthailand",
@@ -31,13 +23,21 @@
           }
         },
         {
-          "client_id": "1095187564794-pv6o0lch5khn27pt8cvu709vo3chebb7.apps.googleusercontent.com",
+          "client_id": "410347491994-k3cmbf2i2n2ncsi0f95ckktddpfkoupo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.halaltripthailand",
+            "certificate_hash": "5faf78b6362f568d7b0a2b6ce35751cb284f4187"
+          }
+        },
+        {
+          "client_id": "410347491994-5a0vsi64ecc5bdpptdec0mhktu5sp4q7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCkEM8zS21u7nffII84WivLzuYvn6lhgp8"
+          "current_key": "AIzaSyDlwTVMczDLNsjDwoiMDd3vp_k84Z64vjQ"
         }
       ],
       "services": {
@@ -48,7 +48,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1095187564794-pv6o0lch5khn27pt8cvu709vo3chebb7.apps.googleusercontent.com",
+              "client_id": "410347491994-5a0vsi64ecc5bdpptdec0mhktu5sp4q7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

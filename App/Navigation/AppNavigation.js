@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import MapViewScreen from '../Containers/MapViewScreen'
 import ActivitySavedDetailScreen from '../Containers/ActivitySavedDetailScreen'
 import TrendDetailScreen from '../Containers/TrendDetailScreen'
 import ActivityDetailScreen from '../Containers/ActivityDetailScreen'
@@ -63,6 +64,7 @@ const RestaurantStack = StackNavigator({
   RestaurantScreen: { screen: RestaurantScreen },
   CuisinesScreen: { screen: CuisinesScreen },
   RestaurantDetailScreen: { screen: RestaurantDetailScreen },
+  MapViewScreen: { screen: MapViewScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {

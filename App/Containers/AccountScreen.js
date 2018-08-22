@@ -21,7 +21,7 @@ class AccountScreen extends Component {
         this.props.navigation.navigate('SavedScreen')
         break
       case 'notification':
-        // this.props.navigation.navigate('NotificationScreen')
+        this.props.navigation.navigate('NotificationScreen')
         break
       case 'logout':
         this.props.logOut()

@@ -8,9 +8,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
-//import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
+import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
-//import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import io.realm.react.RealmReactPackage;
 
@@ -43,7 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-//            new ReactNativeOneSignalPackage(),
+            new ReactNativeOneSignalPackage(),
               new RNFetchBlobPackage(),
       new RNGoogleSigninPackage(),
             new SplashScreenReactPackage(),

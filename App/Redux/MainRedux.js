@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   mainRequest: ['data'],
   mainSuccess: null,
   loadData: null,
-  mainFailure: ['errorMsg']
+  mainFailure: ['errorMsg'],
 })
 
 export const MainTypes = Types

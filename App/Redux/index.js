@@ -15,6 +15,7 @@ export const reducers = combineReducers({
   restaurant: require('./RestaurantRedux').reducer,
   activity: require('./ActivityRedux').reducer,
   trend : require('./TrendRedux').reducer,
+  startup : require('./StartupRedux').reducer,
 })
 
 export default () => {

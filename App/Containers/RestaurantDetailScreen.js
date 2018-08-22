@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList } from 'react-native'
+import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -53,6 +53,19 @@ class RestaurantDetailScreen extends Component {
   _renderRestaurantData = ({item})=> {
       return( <RestaurantList data = {item} nav={this.props.navigation} /> )
   }
+  _onMapView =()=>{
+    this.props.navigation.navigate('MapViewScreen',{
+      street_lat : this.props.restaurantDetailData.street_lat, 
+      street_lng : this.props.restaurantDetailData.street_lng,
+      title : this.props.restaurantDetailData.title
+    });
+  }
+  _onDial =()=>{
+    const phoneNumber = this.props.restaurantDetailData.phone
+    let url = `tel:${phoneNumber}`
+    console.log('url => ', url)
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
+  }
 
   render () {
     const restaurantDetailData = this.props.restaurantDetailData? this.props.restaurantDetailData:[]
@@ -68,9 +81,9 @@ class RestaurantDetailScreen extends Component {
           </View>
           <ImageBackground style={styles.view_photo} source={{uri: img_url}}>
             <View style={styles.photo_action}> 
-              <View style={styles.photo_number}>
+              {/* <View style={styles.photo_number}>
                 <Text style={styles.txt_number}>1/5</Text>
-              </View>
+              </View> */}
             </View>
           </ImageBackground>
 
@@ -129,14 +142,14 @@ class RestaurantDetailScreen extends Component {
 
               <View style={styles.action_view}>
                 <Text style={styles.txt_action}>{location}</Text>
-                <TouchableOpacity style={styles.btn_action}>
+                <TouchableOpacity style={styles.btn_action} onPress={this._onMapView}>
                   <Icon name="near-me" style = {styles.icon_action} />
                 </TouchableOpacity>
               </View>
 
               <View style={styles.action_view}>
                 <Text style={styles.txt_action}>{phone}</Text>
-                <TouchableOpacity style={styles.btn_action}>
+                <TouchableOpacity style={styles.btn_action} onPress={this._onDial}>
                   <Icon name="local-phone" style = {styles.icon_action} />
                 </TouchableOpacity>
               </View>

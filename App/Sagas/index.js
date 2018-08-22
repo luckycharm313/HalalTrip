@@ -16,7 +16,7 @@ import { TrendTypes } from '../Redux/TrendRedux'
 
 /* ------------- Sagas ------------- */
 
-import { startup } from './StartupSagas'
+import { startup, receivedNotification } from './StartupSagas'
 import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
@@ -38,7 +38,7 @@ export default function * root () {
   yield all([
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
-
+    takeLatest(StartupTypes.RECEIVED_NOTIFICATION, receivedNotification, main_api),
     // user sagas
     takeLatest(UserTypes.USER_SIGNUP, signUp, user_api),
     takeLatest(UserTypes.USER_LOGIN, logIn, user_api),
@@ -47,7 +47,7 @@ export default function * root () {
     takeLatest(UserTypes.USER_FACEBOOK_SIGNUP, signUpWithFacebook, main_api),
     
     // main saga : category, hotel, activity, restaurant
-    takeLatest(MainTypes.LOAD_DATA, loadData, main_api),
+    takeLatest(MainTypes.LOAD_DATA, loadData, main_api),    
 
     // place saga:
     takeLatest(PlaceTypes.GET_HOTEL_BY_PLACE, getHotelByPlace, main_api),
