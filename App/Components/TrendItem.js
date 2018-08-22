@@ -15,7 +15,7 @@ export default class TrendItem extends Component {
           <ImageBackground 
             style={styles.img}
             imageStyle={{ borderRadius: 10}}
-            source={img_url}>
+            source={{uri: img_url==null?"":img_url}}>
             <View style={styles.opacity_view} >
               <Text style={styles.txt_title}>{title}</Text>
               {/* <Text style={styles.txt_detail}>{description}</Text> */}

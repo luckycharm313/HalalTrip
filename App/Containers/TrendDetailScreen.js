@@ -37,7 +37,7 @@ class TrendDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri : img_url}} />
+          <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}} />
           <View style={styles.title_location_section}>
             <View style={styles.hotel_title_view}>
               <Text style={styles.txt_hotel_title}>{title}</Text>
@@ -47,7 +47,7 @@ class TrendDetailScreen extends Component {
                 <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                   {
                     _detailImages.map(element => (
-                      <Image style={styles.img_filter} source={{uri :element}} key={element}/>
+                      <Image style={styles.img_filter} source={{uri: element==null?"":element}} key={element}/>
                     ))
                   }
                 </ScrollView>

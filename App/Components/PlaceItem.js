@@ -39,7 +39,7 @@ export default class PlaceItem extends Component {
           style={[styles.img, {width: imageWidth, height: imageHeight}]}
           imageStyle={{ borderRadius: 10}}
           resizeMode={'contain'}
-          source={{uri : img_url}}>
+          source={{uri: img_url==null?"":img_url}}>
           <View style={styles.opacity_view} >
             <Text style={styles.txt_title}>{title}</Text>
             {/* <Text style={styles.txt_detail}>From {cost}</Text> */}

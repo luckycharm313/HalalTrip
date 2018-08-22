@@ -54,7 +54,7 @@ class RestaurantAllList extends Component {
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={{uri : img_url}} >
+          source={{uri: img_url==null?"":img_url}} >
           <TouchableOpacity onPress = {this._onSave}>
           { icon }            
           </TouchableOpacity> 

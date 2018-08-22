@@ -14,7 +14,7 @@ export default class CuisinesItem extends Component {
       <TouchableOpacity onPress={this._goToRestaurantPlace.bind(this, id, title)}>
         <ImageBackground 
           style={styles.container}
-          source={{uri :img_url}}
+          source={{uri: img_url==null?"":img_url}}
           imageStyle={{ borderRadius: 8 }} >
           <View style={styles.opacity_view} >
             <Text style={styles.txt_title}>{title}</Text>

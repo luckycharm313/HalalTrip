@@ -6,20 +6,22 @@ import HotelActions from '../Redux/HotelRedux'
 import PlaceActions from '../Redux/PlaceRedux'
 import ActivityActions from '../Redux/ActivityRedux'
 import TrendActions from '../Redux/TrendRedux'
-import {AsyncStorage, PermissionsAndroid} from 'react-native'
+import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
 
 export function * loadData (api, action) {
   
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-
-  const granted = yield PermissionsAndroid.request(
-    PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-    {
-      'title': 'App Storage Read Permission',
-      'message': 'App needs access to your storage '
-    }
-  )
+  if(Platform.OS == "android"){
+    const granted = yield PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+        {
+          'title': 'App Storage Read Permission',
+          'message': 'App needs access to your storage '
+        }
+    )
+  }
+  
 
   // if (granted === PermissionsAndroid.RESULTS.DENIED) {
   //   alert("Please set storage permission in your app setting")

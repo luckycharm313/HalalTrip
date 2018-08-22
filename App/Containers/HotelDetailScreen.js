@@ -62,7 +62,7 @@ class HotelDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri : img_url}}>
+          <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}}>
             {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
                 <Text style={styles.txt_number}>1/5</Text>
@@ -151,7 +151,7 @@ class HotelDetailScreen extends Component {
               <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                 {
                   _detailImages.map(element => (
-                    <Image style={styles.img_filter} source={{uri :element}} key={element}/>
+                    <Image style={styles.img_filter} source={{uri: element==null?"":element}} key={element}/>
                   ))
                 }
               </ScrollView>

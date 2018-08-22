@@ -43,7 +43,7 @@ class CuisinesScreen extends Component {
       <TouchableOpacity style={styles.view_cuisines} onPress={this._goToRestaurantPlace.bind(this, id, title)}>
         <View style={styles.resturant_view}>
           <View style={styles.opacity_view} >
-            <Image style={styles.img_review} source={{uri :img_url}}/>
+            <Image style={styles.img_review} source={{uri: img_url==null?"":img_url}}/>
           </View>
           <View style={styles.item_view}>
             <Text style={styles.txt_label}>{title}</Text>

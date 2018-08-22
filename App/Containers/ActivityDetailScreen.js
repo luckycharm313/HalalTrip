@@ -42,7 +42,7 @@ class ActivityDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri : img_url}} />
+          <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}} />
           <View style={styles.title_location_section}>
             <View style={styles.hotel_review_view}>
               <StarRating

@@ -91,7 +91,7 @@ class HotelScreen extends Component {
             <ScrollView horizontal={true} style={styles.hotel_img_section} showsHorizontalScrollIndicator={false}>
               {
                 _detailImages.map(element => (
-                  <Image style={styles.img_featured_hotel} source={{uri : element}} key={element}/>
+                  <Image style={styles.img_featured_hotel} source={{uri: element==null?"":element}} key={element}/>
                 ))
               }
             </ScrollView>

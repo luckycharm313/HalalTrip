@@ -118,6 +118,12 @@ class HomeScreen extends Component {
       return <Spinkit size={30} type="FadingCircle" color={Colors.primary} />
     }
 
+    const categoryData = this.props.categoryData ? this.props.categoryData:[]
+    const hotelTotalData = this.props.hotelTotalData ? this.props.hotelTotalData:[]
+    const activityTotalData = this.props.activityTotalData ? this.props.activityTotalData:[]
+    const placeTotalData = this.props.placeTotalData ? this.props.placeTotalData:[]
+    const trendTotalData = this.props.trendTotalData ? this.props.trendTotalData:[]
+
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
@@ -138,7 +144,7 @@ class HomeScreen extends Component {
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.props.categoryData}
+                  data={categoryData}
                   renderItem={this._renderCategoryItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
@@ -155,7 +161,7 @@ class HomeScreen extends Component {
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.props.hotelTotalData}
+                  data={hotelTotalData}
                   renderItem={this._renderHotelItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
@@ -172,7 +178,7 @@ class HomeScreen extends Component {
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.props.activityTotalData}
+                  data={activityTotalData}
                   renderItem={this._renderActivityItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
@@ -189,7 +195,7 @@ class HomeScreen extends Component {
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.props.placeTotalData}
+                  data={placeTotalData}
                   renderItem={this._renderDestinationItem}
                   keyExtractor={(item, index) => index.toString()}
                 />
@@ -206,7 +212,7 @@ class HomeScreen extends Component {
               <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.props.trendTotalData}
+                  data={trendTotalData}
                   renderItem={this._renderTrendItem}
                   keyExtractor={(item, index) => index.toString()}
                 />

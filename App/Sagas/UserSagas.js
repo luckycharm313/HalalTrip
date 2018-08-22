@@ -57,7 +57,7 @@ export function * signUpWithGoogle (api, action) {
     const configPlatform = {
       ...Platform.select({
         ios: {
-          iosClientId: "738581788549-32gb3hbo5atr0o8nqppbu1ej5amc3b9p.apps.googleusercontent.com",
+          iosClientId: "410347491994-f0kkvn20rpumjtdoqmt08aiber9vqg6r.apps.googleusercontent.com",
         },
         android: {},
       }),
