@@ -165,6 +165,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-immediate-phone-call')
     compile project(':react-native-onesignal')
     compile (project(':react-native-google-signin')){
         exclude group: "com.google.android.gms" // very important

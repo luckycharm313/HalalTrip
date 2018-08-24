@@ -30,19 +30,20 @@ class AccountScreen extends Component {
   }
 
   render () {
+    const {avatar, displayname, email} = this.props.userData
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
           <ImageBackground style={styles.view_wallpaper} source={Images.wallpaper}>
             <View style={styles.view_avatar} >
-              <Image style={styles.img_avatar} source={Images.avatar} />
+              <Image style={styles.img_avatar} source={{uri: avatar==null?"":avatar}} />
             </View>
-            <Text style={styles.txt_authour}>Lindsay Dune</Text>
-            <Text style={styles.txt_email}>lindsay@email.com</Text>
-            <TouchableOpacity style={styles.view_edit_btn} >
+            <Text style={styles.txt_authour}>{displayname}</Text>
+            <Text style={styles.txt_email}>{email}</Text>
+            {/* <TouchableOpacity style={styles.view_edit_btn} >
               <Icon name="edit" style = {styles.icon_edit} />
               <Text style={styles.txt_btn}>Edit</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </ImageBackground>
           
           <ScrollView style={styles.view_options} showsVerticalScrollIndicator={false}>
@@ -88,8 +89,9 @@ class AccountScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({user}) => {
   return {
+    userData : user.userData
   }
 }
 

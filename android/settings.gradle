@@ -1,4 +1,6 @@
 rootProject.name = 'HalalTripThailand'
+include ':react-native-immediate-phone-call'
+project(':react-native-immediate-phone-call').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-immediate-phone-call/android')
 include ':react-native-onesignal'
 project(':react-native-onesignal').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-onesignal/android')
 include ':rn-fetch-blob'

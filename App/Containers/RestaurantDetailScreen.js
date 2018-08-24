@@ -11,6 +11,7 @@ import { Images, Colors } from '../Themes'
 import NavBar from '../Components/NavBar'
 import RestaurantList from '../Components/RestaurantList'
 import RestaurantAction from '../Redux/RestaurantRedux'
+import RNImmediatePhoneCall from 'react-native-immediate-phone-call'
 
 class RestaurantDetailScreen extends Component {
   static navigationOptions = {
@@ -62,9 +63,10 @@ class RestaurantDetailScreen extends Component {
   }
   _onDial =()=>{
     const phoneNumber = this.props.restaurantDetailData.phone
-    let url = `tel:${phoneNumber}`
-    console.log('url => ', url)
-    Linking.openURL(url).catch(err => console.error('An error occurred', err));
+    RNImmediatePhoneCall.immediatePhoneCall(phoneNumber);
+    // let url = `tel:${phoneNumber}`
+    // console.log('url => ', url)
+    // Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
 
   render () {
@@ -73,6 +75,21 @@ class RestaurantDetailScreen extends Component {
     const {title, description, phone, rating, location, img_url} = restaurantDetailData
     // const detailImages = restaurantDetailData.detailImages? restaurantDetailData.detailImages :[]
     const _rating = Number.parseFloat(rating)
+    let similarRestaurantView = null
+    if(subRestaurantData.length > 0 ){
+      similarRestaurantView = (
+        <View style={styles.section}>
+          <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={subRestaurantData}
+              renderItem={this._renderRestaurantData}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
     return (
       <ScrollView style={styles.mainContainer}>
         <View style = {styles.container}>
@@ -155,16 +172,7 @@ class RestaurantDetailScreen extends Component {
               </View>
           </View>
 
-          <View style={styles.section}>
-            <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
-            <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={subRestaurantData}
-                renderItem={this._renderRestaurantData}
-                keyExtractor={(item, index) => index.toString()}
-              />
-          </View>
+         {similarRestaurantView}
 
           <View style={styles.reservation_section}>
             <View style={styles.reservation_rating}>

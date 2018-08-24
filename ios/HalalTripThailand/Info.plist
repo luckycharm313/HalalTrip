@@ -32,10 +32,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.410347491994-f0kkvn20rpumjtdoqmt08aiber9vqg6r</string>
+			<string>com.googleusercontent.apps.410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.410347491994-f0kkvn20rpumjtdoqmt08aiber9vqg6r</string>
+				<string>com.googleusercontent.apps.410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8</string>
 			</array>
 		</dict>
 		<dict>
@@ -54,14 +54,14 @@
 	<key>FacebookAppID</key>
 	<string>292524561324868</string>
 	<key>FacebookDisplayName</key>
-	<string>HalalTripThailand</string>  
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>fbapi</string>
-    <string>fb-messenger-share-api</string>
-    <string>fbauth2</string>
-    <string>fbshareextension</string>
-  </array>
+	<string>HalalTripThailand</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>410347491994-f0kkvn20rpumjtdoqmt08aiber9vqg6r.apps.googleusercontent.com</string>
+	<string>410347491994-m0ej7g0c5f41h2o1t5tj2b448l7ake0f.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.410347491994-f0kkvn20rpumjtdoqmt08aiber9vqg6r</string>
+	<string>com.googleusercontent.apps.410347491994-m0ej7g0c5f41h2o1t5tj2b448l7ake0f</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAIgTQ3pl94CEIAfo6L3EDAbZDPM3SDRVQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -23,15 +23,15 @@
 	<key>STORAGE_BUCKET</key>
 	<string>halaltrip-c5363.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:410347491994:ios:dd30e733b5b13903</string>
 	<key>DATABASE_URL</key>

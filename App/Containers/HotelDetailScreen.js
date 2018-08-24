@@ -55,7 +55,21 @@ class HotelDetailScreen extends Component {
     let _detailImages = detailImages ? detailImages : []
     let _amenity = amenity ? amenity : []
     let _rating = Number.parseFloat(rating)
-
+    let similarHotelView = null
+    if(this.props.hotelTotalData.length > 0){
+      similarHotelView = (
+        <View style={styles.reviews_section}>
+          <Text style={[styles.txt_description_label,{marginBottom : 15}]}>Similar Hotels Nearby</Text>
+          <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={this.props.hotelTotalData}
+                renderItem={this._renderHotelItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
+        </View>
+      )
+    }
     return (
       <View style={styles.mainContainer}>
         <ScrollView style = {styles.container}>
@@ -236,17 +250,7 @@ class HotelDetailScreen extends Component {
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
           </View>
-
-          <View style={styles.reviews_section}>
-            <Text style={[styles.txt_description_label,{marginBottom : 15}]}>Similar Hotels Nearby</Text>
-            <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={this.props.hotelTotalData}
-                  renderItem={this._renderHotelItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-          </View>
+          {similarHotelView}
         </ScrollView>
       </View>
     )

@@ -8213,6 +8213,10 @@ react-native-google-signin@^1.0.0-rc3:
   version "1.0.0-rc3"
   resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-1.0.0-rc3.tgz#9b31e893f69450099a965064e073eed1483e604f"
 
+react-native-immediate-phone-call@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-immediate-phone-call/-/react-native-immediate-phone-call-1.0.0.tgz#ad1f5e2bd686a1a495ed68e8a4c96205bdfa2247"
+
 react-native-injectable-component@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/react-native-injectable-component/-/react-native-injectable-component-0.1.2.tgz#44ee28262c79789254ce5708b3477c134b2610c0"

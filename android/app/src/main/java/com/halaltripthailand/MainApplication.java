@@ -8,6 +8,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
+import com.github.wumke.RNImmediatePhoneCall.RNImmediatePhoneCallPackage;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -42,6 +43,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNImmediatePhoneCallPackage(),
             new ReactNativeOneSignalPackage(),
               new RNFetchBlobPackage(),
       new RNGoogleSigninPackage(),
