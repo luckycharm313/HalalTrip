@@ -23,7 +23,6 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      appLoading : false,
       activityData : [
         {
           title : 'Deepest Diving Pool in Indonesia',
@@ -105,18 +104,10 @@ class HomeScreen extends Component {
   )
 
   componentWillMount(){
-    this.setState({appLoading : true})
     this.props.loadData()
   }
 
-  componentWillReceiveProps(nextProps){
-    this.setState({appLoading : nextProps.fetching})
-  }
-  render () {
-    console.log(" appLoading => ", this.state.appLoading)
-    if (this.state.appLoading) {
-      return <Spinkit size={30} type="FadingCircle" color={Colors.primary} />
-    }
+  render () {    
 
     const categoryData = this.props.categoryData ? this.props.categoryData:[]
     const hotelTotalData = this.props.hotelTotalData ? this.props.hotelTotalData:[]

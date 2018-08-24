@@ -2,6 +2,7 @@ import { call, put } from 'redux-saga/effects'
 import HotelActions from '../Redux/HotelRedux'
 import {AsyncStorage} from 'react-native'
 import RNFetchBlob from 'rn-fetch-blob'
+import StartupActions from '../Redux/StartupRedux'
 
 // import { HotelSelectors } from '../Redux/HotelRedux'
 import {
@@ -88,7 +89,9 @@ export function * getHotelDetail (api, action) {
 }
 
 export function * saveHotelTotal (api, action) {
-
+  
+  yield put(StartupActions.loadBar())
+  
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const { id, rating, img_url } = data  
@@ -159,32 +162,43 @@ export function * saveHotelTotal (api, action) {
        const savedData = yield insertNewHotelTotal(_data)              
         
         yield put(HotelActions.saveSuccess(savedData.id))
+        yield put(StartupActions.loadBarSuccess("isload"))
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
+        alert(message)
         yield put(HotelActions.hotelFailure(message))
         return
       }
       
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
+      alert("Internet Error")
       yield put(HotelActions.hotelFailure("Internet Error"))
       return
     }
   }else{
     const deletedResult = yield deleteHotelTotal(id)    
     yield put(HotelActions.deleteSuccess(id))
+    yield put(StartupActions.loadBarSuccess("isload"))
   }
 
 }
 
 export function * getSavedHotelDetail (api, action) {
+  yield put(StartupActions.loadBar())
+  
   const { hotelId } = action
   const _allHotelDetail = yield querySelectHotelDetail(" id ='"+hotelId+"'")
   const allHotelDetail = Array.from(_allHotelDetail)
   if(allHotelDetail.length > 0){
     console.log(" all allHotelDetail =>", allHotelDetail[0])
     yield put(HotelActions.loadDetailSuccess(allHotelDetail[0]))
+    yield put(StartupActions.loadBarSuccess("isload"))
   }
   else{
+    yield put(StartupActions.loadBarSuccess("isload"))
+    alert("Data doesn't exist!")
     yield put(HotelActions.hotelFailure("Data doesn't exist!"))
   }
 }

@@ -10,6 +10,7 @@ import { Images, Colors } from '../Themes'
 import SignIn from '../Components/SignIn'
 import SignUp from '../Components/SignUp'
 import UserAction from '../Redux/UserRedux'
+import Spinkit from '../Components/Spinkit'
 
 class SignInScreen extends Component {
   constructor(props) {
@@ -50,21 +51,8 @@ class SignInScreen extends Component {
     this.props.userGoogleSignup()
   }
   
-  componentWillReceiveProps (nextProps){
-    if(nextProps.error){
-      alert("Something Error")
-      return
-    }
-      
-    if(nextProps.isRegistered){
-      alert("Signup successful")
-      this.setState({routeIndex : 1})
-    }
-      
-  }
-  
-
   render () {
+    
     let renderTabView = null
     if(this.state.routeIndex == 1)
       renderTabView = <SignIn nav = {this.props.navigation} signIn = {(_email, _password)=>this._signIn(_email, _password)} signInWithFacebook = {this._SignInWithFacebook} signInWithGoogle = {this._SignInWithGoogle}/>

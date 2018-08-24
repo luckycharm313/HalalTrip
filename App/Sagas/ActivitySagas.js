@@ -14,6 +14,8 @@ import {
   querySelectActivityDetail,
 } from '../../databases/allSchemas'
 
+import StartupActions from '../Redux/StartupRedux'
+
 export function * getActivityDetail (api, action) {
 
   const { activityId } = action
@@ -46,6 +48,8 @@ export function * getActivityDetail (api, action) {
 }
 
 export function * saveActivityTotal (api, action) {
+  yield put(StartupActions.loadBar())
+
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const { id, rating, location, street_lat, street_lng, img_url } = data
@@ -131,19 +135,25 @@ export function * saveActivityTotal (api, action) {
         const savedData = yield insertNewActivityTotal(_data)              
         
         yield put(ActivityActions.saveSuccess(savedData.id))
+        yield put(StartupActions.loadBarSuccess("isload"))
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
+        alert(message)
         yield put(ActivityActions.activityFailure(message))
         return
       }
       
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
+      alert("Internet Error")
       yield put(ActivityActions.activityFailure("Internet Error"))
       return
     }
   }else{
     const deletedResult = yield deleteActivityTotal(id)    
     yield put(ActivityActions.deleteSuccess(id))
+    yield put(StartupActions.loadBarSuccess("isload"))
   }
 }
 

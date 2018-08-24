@@ -17,7 +17,7 @@ import { TrendTypes } from '../Redux/TrendRedux'
 /* ------------- Sagas ------------- */
 
 import { startup, receivedNotification } from './StartupSagas'
-import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout } from './UserSagas'
+import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout, loadProfile } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
@@ -45,6 +45,7 @@ export default function * root () {
     takeLatest(UserTypes.LOG_OUT, logout, user_api),
     takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, main_api),
     takeLatest(UserTypes.USER_FACEBOOK_SIGNUP, signUpWithFacebook, main_api),
+    takeLatest(UserTypes.LOAD_PROFILE, loadProfile, main_api),
     
     // main saga : category, hotel, activity, restaurant
     takeLatest(MainTypes.LOAD_DATA, loadData, main_api),    

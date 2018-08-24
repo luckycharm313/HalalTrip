@@ -13,7 +13,12 @@ const {
   AccessToken
 } = FBSDK;
 
+import StartupActions from '../Redux/StartupRedux'
+
 export function * signUp (api, action) {
+  
+  yield put(StartupActions.loadBar())
+
   const { username, email, password } = action
   const resNonce = yield call(api._getNonce)
   console.log("resNonce => ", resNonce)
@@ -32,12 +37,18 @@ export function * signUp (api, action) {
   
     if (response.ok) {
       yield put(UserActions.userRegister())
+      yield put(StartupActions.loadBarSuccess("isload"))
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
+      
       alert("sign up error")
       yield put(UserActions.userFailure())
     }
   }
   else{
+    
+    yield put(StartupActions.loadBarSuccess("isload"))
+    
     alert("sign up error")
     yield put(UserActions.userFailure())
   }
@@ -130,10 +141,12 @@ export function * signUpWithGoogle (api, action) {
 }
 
 export function * signUpWithFacebook (api, action) {
+  yield put(StartupActions.loadBar())
 
   let _result = yield LoginManager.logInWithReadPermissions(['public_profile','email'])
   
   if (_result.isCancelled) {
+    yield put(StartupActions.loadBarSuccess("isload"))
     alert('Login was cancelled');
   } else {
     const data = yield AccessToken.getCurrentAccessToken()
@@ -161,6 +174,7 @@ export function * signUpWithFacebook (api, action) {
         try {
           yield AsyncStorage.setItem('token', JSON.stringify(accessToken))        
         } catch (error) {
+          yield put(StartupActions.loadBarSuccess("isload"))
           yield put(UserActions.userFailure())  
         }
 
@@ -171,15 +185,25 @@ export function * signUpWithFacebook (api, action) {
           token : accessToken
         }
         console.log("_temp ", _temp)
+        try {
+          yield AsyncStorage.setItem('user_profile', JSON.stringify(_temp))        
+        } catch (error) {
+          yield put(StartupActions.loadBarSuccess("isload"))
+          yield put(UserActions.userFailure())  
+        }
+
+        yield put(StartupActions.loadBarSuccess("isload"))
         yield put(UserActions.userSuccess(_temp))
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
         alert("Facebook error")
         yield put(UserActions.userFailure())
         return
       }
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
       alert("Facebook error")
       yield put(UserActions.userFailure())
       return
@@ -224,24 +248,37 @@ export function * logIn (api, action) {
           try {
             yield AsyncStorage.setItem('token', JSON.stringify(cookie))        
           } catch (error) {
+            yield put(StartupActions.loadBarSuccess("isload"))
             alert(error)
             yield put(UserActions.userFailure())
             return
           }
+
+          try {
+            yield AsyncStorage.setItem('user_profile', JSON.stringify(temp.user))        
+          } catch (error) {
+            yield put(StartupActions.loadBarSuccess("isload"))
+            yield put(UserActions.userFailure())  
+          }
+          
+          yield put(StartupActions.loadBarSuccess("isload"))
           yield put(UserActions.userSuccess(temp.user))
           yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
         }
         else{
+          yield put(StartupActions.loadBarSuccess("isload"))
           alert("login error")
           yield put(UserActions.userFailure())
           return
         }
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
         alert("Invaild username and password")
         return
       }
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
       alert("login error")
       yield put(UserActions.userFailure())
       return
@@ -258,4 +295,10 @@ export function * logIn (api, action) {
 export function * logout (api, action) {
   const token = yield AsyncStorage.clear()
   yield put(NavigationActions.navigate({ routeName: 'LaunchScreen'} ));
+}
+
+export function * loadProfile (api, action) {
+  const user_profile = JSON.parse(yield AsyncStorage.getItem('user_profile'))
+  console.log(" user_profile", user_profile)
+  yield put(UserActions.userSuccess(user_profile))
 }

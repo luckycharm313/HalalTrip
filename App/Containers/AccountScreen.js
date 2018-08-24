@@ -15,6 +15,10 @@ class AccountScreen extends Component {
     super(props);
   }
   
+  componentWillMount(){
+    this.props.loadProfile()
+  }
+
   _onSelectMenu = (index) => {
     switch (index) {
       case 'saved':
@@ -30,7 +34,8 @@ class AccountScreen extends Component {
   }
 
   render () {
-    const {avatar, displayname, email} = this.props.userData
+    userData = this.props.userData ? this.props.userData :[]
+    const {avatar, displayname, email} = userData
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
@@ -98,6 +103,7 @@ const mapStateToProps = ({user}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => dispatch(UserAction.logOut()),
+    loadProfile: () => dispatch(UserAction.loadProfile()),
   }
 }
 

@@ -7,6 +7,8 @@ const { Types, Creators } = createActions({
   receivedNotification:['notification'],
   startupSuccess: ['payload'],
   startupFailure: ['errorMsg'],
+  loadBar: null,
+  loadBarSuccess: ['payload'],
 })
 
 export const StartupTypes = Types
@@ -18,6 +20,7 @@ export const INITIAL_STATE = Immutable({
   fetching : null,
   errorMsg : null,
   notifications : null,
+  isLoading : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -43,8 +46,13 @@ export const failure = (state, action) => {
   return state.merge({ fetching: false, error: true, errorMsg })
 }
 
+export const loadBarRequest = (state, action) => state.merge({isLoading : true})
+export const loadBarSuccess = (state, action) => state.merge({isLoading : false})
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.RECEIVED_NOTIFICATION]: request,
   [Types.STARTUP_SUCCESS]: success,
   [Types.STARTUP_FAILURE]: failure,
+  [Types.LOAD_BAR]: loadBarRequest,
+  [Types.LOAD_BAR_SUCCESS]: loadBarSuccess,
 })

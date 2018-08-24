@@ -12,6 +12,7 @@ const { Types, Creators } = createActions({
   userRegister: null,
   userFailure: null,
   logOut : null,
+  loadProfile : null,
 })
 
 export const UserTypes = Types
@@ -22,7 +23,8 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   userData: null,
   error: null,
-  isRegistered : null
+  isRegistered : null,
+  fetching : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -32,21 +34,21 @@ export const UserSelectors = {
 }
 
 /* ------------- Reducers ------------- */
-export const request = (state, action) => state.merge({error : null, isRegistered : null})
+export const request = (state, action) => state.merge({error : null, isRegistered : null, fetching: true,})
 
 // successful api lookup
 export const success = (state, action) => {
   const { payload } = action
-  return state.merge({ error: null, userData : payload, isRegistered : null })
+  return state.merge({ error: null, userData : payload, isRegistered : null, fetching: false, })
 }
 
 export const register = (state, action) => {
-  return state.merge({ error: null, isRegistered : true })
+  return state.merge({ error: null, isRegistered : true, fetching: false, })
 }
 
 // Something went wrong somewhere.
 export const failure = state =>
-  state.merge({ error: true, isRegistered: null })
+  state.merge({ error: true, isRegistered: null, fetching: false, })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -59,4 +61,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USER_SUCCESS]: success,
   [Types.USER_FAILURE]: failure,
   [Types.LOG_OUT]: request,
+  [Types.LOAD_PROFILE]: request,
 })

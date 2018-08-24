@@ -6,10 +6,13 @@ import HotelActions from '../Redux/HotelRedux'
 import PlaceActions from '../Redux/PlaceRedux'
 import ActivityActions from '../Redux/ActivityRedux'
 import TrendActions from '../Redux/TrendRedux'
+import StartupActions from '../Redux/StartupRedux'
 import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
 
 export function * loadData (api, action) {
+  
+  yield put(StartupActions.loadBar())
   
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   if(Platform.OS == "android"){
@@ -123,4 +126,6 @@ export function * loadData (api, action) {
   }
 
   yield put(MainActions.mainSuccess())
+  
+  yield put(StartupActions.loadBarSuccess("isload"))
 }

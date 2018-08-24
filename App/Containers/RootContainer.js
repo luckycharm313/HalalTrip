@@ -4,12 +4,15 @@ import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import ReduxPersist from '../Config/ReduxPersist'
+import Spinkit from '../Components/Spinkit'
+import { Colors } from '../Themes'
 // import OneSignal from 'react-native-onesignal';
 // Styles
 import styles from './Styles/RootContainerStyles'
 
 let obj = null;
 class RootContainer extends Component {
+  
   componentDidMount () {
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
@@ -49,14 +52,28 @@ class RootContainer extends Component {
   // onIds(device) {
   // console.log('Device info: ', device);
   // }
-
+   
   render () {
+    
+    let maybeSpinkit = null
+    
+    if (this.props.isLoading) {
+      maybeSpinkit = <Spinkit style={{position: 'absolute'}} size={30} type="FadingCircle" color={Colors.primary} />
+    }
+  
     return (
       <View style={styles.applicationView}>
+        {maybeSpinkit}
         <StatusBar barStyle='dark-content'/>
         <ReduxNavigation />
       </View>
     )
+  }
+}
+
+const mapStateToProps = ({startup}) => {
+  return {
+    isLoading : startup.isLoading,
   }
 }
 
@@ -66,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
  // receivedNotification: (notification) => dispatch(StartupActions.receivedNotification(notification))
 })
 
-export default connect(null, mapDispatchToProps)(RootContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)

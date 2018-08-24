@@ -5,6 +5,8 @@ import HotelActions from '../Redux/HotelRedux'
 import ActivityActions from '../Redux/ActivityRedux'
 import RNFetchBlob from 'rn-fetch-blob'
 // import { RestaurantSelectors } from '../Redux/RestaurantRedux'
+import StartupActions from '../Redux/StartupRedux'
+
 import {
   insertNewResTotal, 
   querySelectResTotal, 
@@ -107,6 +109,8 @@ export function * getRestaurantDetail (api, action) {
 }
 
 export function * saveRestaurantTotal (api, action) {
+  
+  yield put(StartupActions.loadBar())
 
   const {data } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
@@ -161,13 +165,18 @@ export function * saveRestaurantTotal (api, action) {
         const savedData = yield insertNewResTotal(_data)              
         
         yield put(RestaurantActions.saveSuccess(savedData.id))
+        yield put(StartupActions.loadBarSuccess("isload"))
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
+        alert(message)
         yield put(RestaurantActions.restaurantFailure(message))
         return
       }
       
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
+      alert("Internet Error")
       yield put(RestaurantActions.restaurantFailure("Internet Error"))
       return
     }
@@ -177,11 +186,13 @@ export function * saveRestaurantTotal (api, action) {
     const deletedDetailResult = yield deleteResDetail(id)
     
     yield put(RestaurantActions.deleteSuccess(id))
+    yield put(StartupActions.loadBarSuccess("isload"))
   }
 }
 
 export function * loadSavedData (api, action) {
-
+  yield put(StartupActions.loadBar())
+  
   const _allResTotal = yield queryAllResTotal()
   const allResTotal = Array.from(_allResTotal)
   console.log(" all Res Total =>", allResTotal)
@@ -196,6 +207,8 @@ export function * loadSavedData (api, action) {
   const allActivityTotal = Array.from(_allActivityTotal)
   console.log(" all Activity Total =>", allActivityTotal)
   yield put(ActivityActions.loadActivitySuccess(allActivityTotal))
+
+  yield put(StartupActions.loadBarSuccess("isload"))
 }
 
 export function * getSavedDetail (api, action) {

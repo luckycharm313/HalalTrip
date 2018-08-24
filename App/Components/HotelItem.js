@@ -7,16 +7,20 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import HotelAction from '../Redux/HotelRedux'
 
 class HotelItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   _goToHotelDetail=()=>{
     this.props.nav.navigate('HotelDetailScreen', {hotelId : this.props.data.id});
   }
   
   _onSave=()=>{
-    const id = this.props.data.id
     this.props.saveHotelTotal(this.props.data)
   }
 
   render () {
+    
     const {id, title, rating, location, img_url} = this.props.data
 
     const cost = '$239'

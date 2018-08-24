@@ -7,8 +7,8 @@ export default class Spinkit extends Component {
 
   render () {
     return (
-      <View style={[styles.spinner, typeof this.props.color != 'undefined' ? this.props.css : null]}>
-        <ActivityIndicator color={Colors.spin} />
+      <View style={styles.spinner}>
+        <ActivityIndicator color={Colors.primary} />
       </View>
     )
   }
