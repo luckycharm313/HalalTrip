@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList } from 'react-native'
+import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList, Linking } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import StarRating from 'react-native-star-rating';
-import { Images, Colors } from '../Themes'
+import HTML from 'react-native-render-html'
+
+import { Images, Colors, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
 import ActivityAction from '../Redux/ActivityRedux'
 // Styles
@@ -29,6 +31,16 @@ class ActivityDetailScreen extends Component {
   componentWillMount(){
     this.props.getActivityDetail(this.state.activityId)
   }
+  
+  externalLink(url) {
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+      }
+      else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
 
   render () {
     const activityDetailData = this.props.activityDetailData ? this.props.activityDetailData : []
@@ -36,6 +48,16 @@ class ActivityDetailScreen extends Component {
     let _detailImages = detailImages ? detailImages : []
     let _rating = Number.parseFloat(rating)
     
+    const _renderers = {
+      img: (htmlAttribs, children, passProps) => {
+        return (
+          <Image
+            source={{uri: htmlAttribs.src?htmlAttribs.src:"", width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{marginVertical : 10}}
+            {...passProps} />)
+      },
+    }
+
     return (
       <View style={styles.mainContainer}>
         <ScrollView style = {styles.container}>
@@ -83,7 +105,12 @@ class ActivityDetailScreen extends Component {
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
               <Text style={styles.txt_description_label}>Description</Text>              
-              <Text style={styles.txt_description_detail} >{description}</Text>
+              {/* <Text style={styles.txt_description_detail} >{description}</Text> */}
+              <HTML
+                html={description}
+                renderers={_renderers}
+                onLinkPress={(evt, href) => this.externalLink(href)}
+                />
             </View>
           </View>          
         </ScrollView>

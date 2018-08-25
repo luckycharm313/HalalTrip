@@ -55,10 +55,12 @@ export function * signUp (api, action) {
 }
 
 export function * signUpWithGoogle (api, action) {
+  yield put(StartupActions.loadBar())
 
   try {
     yield GoogleSignin.hasPlayServices();
   } catch (error) {
+    yield put(StartupActions.loadBarSuccess("isload"))
     yield put(UserActions.userFailure())
     alert("GoogleSignin error")
     return
@@ -80,6 +82,7 @@ export function * signUpWithGoogle (api, action) {
       offlineAccess: false,
     })  
   } catch (error) {
+    yield put(StartupActions.loadBarSuccess("isload"))
     alert("GoogleSignin error")
     yield put(UserActions.userFailure())
     return
@@ -89,7 +92,7 @@ export function * signUpWithGoogle (api, action) {
     const userData = yield GoogleSignin.signIn();
     
     const {accessToken, user} = userData
-    const {email, name } = user
+    const {email, name, photo } = user
     console.log("google signin data => ", userData)
     console.log("google signin accessToken => ", accessToken)
     console.log("google signin email => ", email)
@@ -115,25 +118,38 @@ export function * signUpWithGoogle (api, action) {
         }
 
         let _temp = {
-          user_email : email,
-          user_display_name : name,
+          email : email,
+          displayname : name,
+          avatar : photo,
           token : accessToken
         }
+
+        try {
+          yield AsyncStorage.setItem('user_profile', JSON.stringify(_temp))        
+        } catch (error) {
+          yield put(StartupActions.loadBarSuccess("isload"))
+          yield put(UserActions.userFailure())  
+        }
+
+        yield put(StartupActions.loadBarSuccess("isload"))
         yield put(UserActions.userSuccess(_temp))
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
       }
       else{
+        yield put(StartupActions.loadBarSuccess("isload"))
+        alert("GoogleSignin Error")
         yield put(UserActions.userFailure())
         return
       }
     } else {
+      yield put(StartupActions.loadBarSuccess("isload"))
       alert("GoogleSignin error")
       yield put(UserActions.userFailure())
       return
     }
 
   } catch (error) {
-    console.log("error", error)
+    yield put(StartupActions.loadBarSuccess("isload"))
     alert(error)
     yield put(UserActions.userFailure())
     return
@@ -260,7 +276,7 @@ export function * logIn (api, action) {
             yield put(StartupActions.loadBarSuccess("isload"))
             yield put(UserActions.userFailure())  
           }
-          
+
           yield put(StartupActions.loadBarSuccess("isload"))
           yield put(UserActions.userSuccess(temp.user))
           yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));

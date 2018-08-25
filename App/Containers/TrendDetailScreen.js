@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList } from 'react-native'
+import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking } from 'react-native'
 import { connect } from 'react-redux'
-import { Images, Colors } from '../Themes'
+import { Images, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
 import TrendAction from '../Redux/TrendRedux'
 // Styles
 import styles from './Styles/TrendDetailScreenStyle'
+import HTML from 'react-native-render-html'
 
 class TrendDetailScreen extends Component {
   static navigationOptions = {
@@ -25,11 +26,31 @@ class TrendDetailScreen extends Component {
   componentWillMount(){
     this.props.getTrendDetail(this.state.trendId)
   }
+  
+  externalLink(url) {
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+      }
+      else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
 
   render () {
     const trendDetailData = this.props.trendDetailData ? this.props.trendDetailData : []
     const {title, rating, location, detailImages, description, img_url} = trendDetailData
     let _detailImages = detailImages ? detailImages : []
+
+    const _renderers = {
+      img: (htmlAttribs, children, passProps) => {
+        return (
+          <Image
+            source={{uri: htmlAttribs.src?htmlAttribs.src:"", width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{marginVertical : 10}}
+            {...passProps} />)
+      },
+    }
 
     return (
       <View style={styles.mainContainer}>
@@ -37,7 +58,7 @@ class TrendDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}} />
+          <ImageBackground style={styles.view_photo} source={{uri: img_url?img_url:""}} />
           <View style={styles.title_location_section}>
             <View style={styles.hotel_title_view}>
               <Text style={styles.txt_hotel_title}>{title}</Text>
@@ -64,7 +85,11 @@ class TrendDetailScreen extends Component {
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
               <Text style={styles.txt_description_label}>Description</Text>              
-              <Text style={styles.txt_description_detail} >{description}</Text>
+              <HTML
+                html={description}
+                renderers={_renderers}
+                onLinkPress={(evt, href) => this.externalLink(href)}
+                />
             </View>
           </View>          
         </ScrollView>

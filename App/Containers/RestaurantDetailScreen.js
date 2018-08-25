@@ -5,9 +5,12 @@ import { connect } from 'react-redux'
 // import YourActions from '../Redux/YourRedux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import StarRating from 'react-native-star-rating';
+
+import HTML from 'react-native-render-html'
+
 // Styles
 import styles from './Styles/RestaurantDetailScreenStyle'
-import { Images, Colors } from '../Themes'
+import { Images, Colors, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
 import RestaurantList from '../Components/RestaurantList'
 import RestaurantAction from '../Redux/RestaurantRedux'
@@ -68,6 +71,16 @@ class RestaurantDetailScreen extends Component {
     // console.log('url => ', url)
     // Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
+  
+  externalLink(url) {
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+      }
+      else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
 
   render () {
     const restaurantDetailData = this.props.restaurantDetailData? this.props.restaurantDetailData:[]
@@ -75,6 +88,7 @@ class RestaurantDetailScreen extends Component {
     const {title, description, phone, rating, location, img_url} = restaurantDetailData
     // const detailImages = restaurantDetailData.detailImages? restaurantDetailData.detailImages :[]
     const _rating = Number.parseFloat(rating)
+    
     let similarRestaurantView = null
     if(subRestaurantData.length > 0 ){
       similarRestaurantView = (
@@ -90,6 +104,17 @@ class RestaurantDetailScreen extends Component {
         </View>
       )
     }
+
+    const _renderers = {
+      img: (htmlAttribs, children, passProps) => {
+        return (
+          <Image
+            source={{uri: htmlAttribs.src?htmlAttribs.src:"", width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{marginVertical : 10}}
+            {...passProps} />)
+      },
+    }
+
     return (
       <ScrollView style={styles.mainContainer}>
         <View style = {styles.container}>
@@ -151,7 +176,11 @@ class RestaurantDetailScreen extends Component {
 
           <View style={styles.description_section}>
               <Text style={styles.txt_description_label}>Description</Text>
-              <Text style={styles.txt_description_detail}>{description}</Text>
+              <HTML
+                html={description}
+                renderers={_renderers}
+                onLinkPress={(evt, href) => this.externalLink(href)}
+                />
 
               <Text style={styles.txt_description_label}>Information</Text>
               <Text style={styles.txt_description_detail}>Monday - Thursday &nbsp;&nbsp;&nbsp; 10:00 AM - 11:00 PM</Text>
