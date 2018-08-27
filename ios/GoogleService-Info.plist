@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>410347491994-m0ej7g0c5f41h2o1t5tj2b448l7ake0f.apps.googleusercontent.com</string>
+	<string>410347491994-esl2ihfers241pcr1kuqvmh3ujvldos8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.410347491994-m0ej7g0c5f41h2o1t5tj2b448l7ake0f</string>
+	<string>com.googleusercontent.apps.410347491994-esl2ihfers241pcr1kuqvmh3ujvldos8</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAIgTQ3pl94CEIAfo6L3EDAbZDPM3SDRVQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,23 +17,23 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.halaltripthailand</string>
+	<string>com.halaltrip.thailand</string>
 	<key>PROJECT_ID</key>
 	<string>halaltrip-c5363</string>
 	<key>STORAGE_BUCKET</key>
 	<string>halaltrip-c5363.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:410347491994:ios:dd30e733b5b13903</string>
+	<string>1:410347491994:ios:a409f8fc98c54a71</string>
 	<key>DATABASE_URL</key>
 	<string>https://halaltrip-c5363.firebaseio.com</string>
 </dict>

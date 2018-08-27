@@ -15,7 +15,7 @@
 #import "RNSplashScreen.h"
 
 @implementation AppDelegate
-
+@synthesize oneSignal = _oneSignal;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
@@ -36,6 +36,11 @@
   [self.window makeKeyAndVisible];
   [GMSServices provideAPIKey:@"AIzaSyCZAsvwKmqVVk2KPKYT_YidlYKEPPyHwa4"];
   [RNSplashScreen show];
+  
+  self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
+                                                         appId:@"180a6e93-3a86-42de-813d-282a113a4fc3"
+                                                      settings:@{kOSSettingsKeyAutoPrompt: @false}];
+  
   return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url

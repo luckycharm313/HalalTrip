@@ -23,11 +23,11 @@
           }
         },
         {
-          "client_id": "410347491994-k3cmbf2i2n2ncsi0f95ckktddpfkoupo.apps.googleusercontent.com",
+          "client_id": "410347491994-tj60rb311e2c44t2l2aptlq2e7admhp7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.halaltripthailand",
-            "certificate_hash": "5faf78b6362f568d7b0a2b6ce35751cb284f4187"
+            "certificate_hash": "4dec8fa19951ba726a0dc58baa4fe990db7459ed"
           }
         },
         {
@@ -48,8 +48,15 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "410347491994-5a0vsi64ecc5bdpptdec0mhktu5sp4q7.apps.googleusercontent.com",
+              "client_id": "410347491994-b5p30vs0upblnnjkvjtbjfpaomjeuj3e.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.halaltripthailand"
+              }
             }
           ]
         },

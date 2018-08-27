@@ -38,8 +38,8 @@ class MapViewScreen extends Component {
                 style={{flex : 1}}
                 provider={ PROVIDER_GOOGLE }
                 initialRegion={{
-                  latitude: parseFloat(street_lat),
-                  longitude: parseFloat(street_lng),
+                  latitude: parseFloat(street_lat?street_lat:''),
+                  longitude: parseFloat(street_lng?street_lng:''),
                   latitudeDelta: 0.0922 + (0.0922 / 0.7),
                   longitudeDelta: 0.0421 + (0.0421/ 0.7),
                 }}

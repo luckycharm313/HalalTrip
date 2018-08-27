@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.halaltripthailand</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -32,20 +32,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.googleusercontent.apps.410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8</string>
+			<string>com.googleusercontent.apps.410347491994-esl2ihfers241pcr1kuqvmh3ujvldos8</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8</string>
+				<string>com.googleusercontent.apps.410347491994-esl2ihfers241pcr1kuqvmh3ujvldos8</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.halaltripthailand</string>
+			<string>com.halaltrip.thailand</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.halaltripthailand</string>
+				<string>com.halaltrip.thailand</string>
 			</array>
 		</dict>
 	</array>
@@ -83,6 +83,10 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

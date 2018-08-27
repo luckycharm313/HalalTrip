@@ -69,9 +69,29 @@ export function * getRestaurantDetail (api, action) {
   const {restaurantId } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
 
-  const globalState = yield select()
-  const restaurantRedux = globalState.restaurant
-  const restaurantData = restaurantRedux.restaurantData
+  // const globalState = yield select()
+  // const restaurantRedux = globalState.restaurant
+  // const restaurantData = restaurantRedux.restaurantData
+  let restaurantData = []
+  const responseRestaurant = yield call(api._getRestaurant, token)
+  console.log(" response restaurant => ", responseRestaurant)
+
+  // success?
+  if (responseRestaurant.ok) {
+    const { data, code, message } = responseRestaurant.data    
+    if(code == 'success'){
+      restaurantData = data
+    }
+    else{
+      yield put(RestaurantActions.restaurantFailure(message))
+      return
+    }
+    
+  } else {
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
+  }
+
 
   let param = new FormData();
   param.append("restaurantId", restaurantId)
@@ -192,7 +212,7 @@ export function * saveRestaurantTotal (api, action) {
 
 export function * loadSavedData (api, action) {
   yield put(StartupActions.loadBar())
-  
+
   const _allResTotal = yield queryAllResTotal()
   const allResTotal = Array.from(_allResTotal)
   console.log(" all Res Total =>", allResTotal)

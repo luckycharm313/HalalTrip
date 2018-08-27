@@ -70,7 +70,7 @@ export function * signUpWithGoogle (api, action) {
     const configPlatform = {
       ...Platform.select({
         ios: {
-          iosClientId: "410347491994-njmd69f4l7v5kcmhmqu57pv18rj13sn8.apps.googleusercontent.com",
+          iosClientId: "410347491994-esl2ihfers241pcr1kuqvmh3ujvldos8.apps.googleusercontent.com",
         },
         android: {},
       }),

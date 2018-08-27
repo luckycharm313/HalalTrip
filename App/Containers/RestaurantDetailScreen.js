@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
+import { PermissionsAndroid, Platform, ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -64,7 +64,22 @@ class RestaurantDetailScreen extends Component {
       title : this.props.restaurantDetailData.title
     });
   }
-  _onDial =()=>{
+  async _onDial () {
+    if(Platform.OS == "android"){
+      const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CALL_PHONE,
+          {
+            'title': 'App Phone Call Permission',
+            'message': 'App needs access to your phone call '
+          }
+      )
+    }
+
+    if (granted === PermissionsAndroid.RESULTS.DENIED) {
+      alert("Please set phone call permission in your app setting")
+      return
+    } 
+
     const phoneNumber = this.props.restaurantDetailData.phone
     RNImmediatePhoneCall.immediatePhoneCall(phoneNumber);
     // let url = `tel:${phoneNumber}`
