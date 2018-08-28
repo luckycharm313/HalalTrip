@@ -22,7 +22,7 @@ export default class PlaceItem extends Component {
   }
 
   _onFindHotel=()=>{
-    this.props.nav.navigate('MapHotelScreen', {placeTitle : this.props.data.title, placeId : this.props.data.id});
+    this.props.nav.navigate('MapHotelScreen', {placeTitle : this.props.data.title, placeId : this.props.data.id, place_lat: this.props.data.place_lat, place_lng: this.props.data.place_lng});
     
   }
 

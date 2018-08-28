@@ -24,6 +24,8 @@ class MapHotelScreen extends Component {
     this.state = {
       placeId : params.placeId,
       placeTitle : params.placeTitle,
+      place_lat : params.place_lat,
+      place_lng : params.place_lng,
     }
   }
   componentWillMount(){
@@ -109,6 +111,9 @@ class MapHotelScreen extends Component {
         })
       )
     }
+
+    const {place_lat, place_lng} = this.state
+
     return (
         <View style = {styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -120,8 +125,8 @@ class MapHotelScreen extends Component {
                 style={{flex : 1}}
                 provider={ PROVIDER_GOOGLE }
                 initialRegion={{
-                  latitude: 51.532083540964,
-                  longitude: -0.10918060010135,
+                  latitude: parseFloat(place_lat),
+                  longitude: parseFloat(place_lng),
                   latitudeDelta: 0.0922 + (0.0922 / 0.7),
                   longitudeDelta: 0.0421 + (0.0421/ 0.7),
                 }}

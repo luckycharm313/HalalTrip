@@ -40,11 +40,15 @@ export function * loadData (api, action) {
       yield put(CategoryActions.categorySuccess(data))
     }
     else{
+      yield put(StartupActions.loadBarSuccess("isload"))
+      alert(message)
       yield put(MainActions.mainFailure(message))
       return
     }
     
   } else {
+    yield put(StartupActions.loadBarSuccess("isload"))
+    alert("Internet Error")
     yield put(MainActions.mainFailure("Internet Error"))
     return
   }
@@ -58,48 +62,58 @@ export function * loadData (api, action) {
       yield put(HotelActions.hotelSuccess(data))
     }
     else{
-      yield put(MainActions.mainFailure(message))
-      return
-    }
-    
-  } else {
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
-  }
-  
-  /*** place part **/
-  const responsePlace = yield call(api._getPlace, token)
-  
-  if (responsePlace.ok) {
-    const { data, code, message } = responsePlace.data    
-    if(code == 'success'){
-      yield put(PlaceActions.placeSuccess(data))
-    }
-    else{
-      yield put(MainActions.mainFailure(message))
-      return
-    }
-    
-  } else {
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
-  }
-  
-  /*** activity part **/
-  const responseActivity = yield call(api._getActivity, token)
-  
-  if (responseActivity.ok) {
-    const { data, code, message } = responseActivity.data    
-    if(code == 'success'){
-      yield put(ActivityActions.activitySuccess(data))
-    }
-    else{
+      yield put(StartupActions.loadBarSuccess("isload"))
       alert(message)
       yield put(MainActions.mainFailure(message))
       return
     }
     
   } else {
+    yield put(StartupActions.loadBarSuccess("isload"))
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
+  }
+  
+  /*** place part **/
+  const responsePlace = yield call(api._getPlace, token)
+  console.log(" responsePlace => ", responsePlace)
+  if (responsePlace.ok) {
+    const { data, code, message } = responsePlace.data    
+    if(code == 'success'){
+      yield put(PlaceActions.placeSuccess(data))
+    }
+    else{
+      yield put(StartupActions.loadBarSuccess("isload")) 
+      alert(message)
+      yield put(MainActions.mainFailure(message))
+      return
+    }
+    
+  } else {
+    yield put(StartupActions.loadBarSuccess("isload"))
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
+  }
+  
+  /*** activity part **/
+  const responseActivity = yield call(api._getActivity, token)
+  console.log(" responseActivity => ", responseActivity)
+  if (responseActivity.ok) {
+    const { data, code, message } = responseActivity.data    
+    if(code == 'success'){
+      yield put(ActivityActions.activitySuccess(data))
+    }
+    else{
+      yield put(StartupActions.loadBarSuccess("isload"))
+      alert(message)
+      yield put(MainActions.mainFailure(message))
+      return
+    }
+    
+  } else {
+    yield put(StartupActions.loadBarSuccess("isload"))
     alert("Internet Error")
     yield put(MainActions.mainFailure("Internet Error"))
     return
@@ -114,12 +128,14 @@ export function * loadData (api, action) {
       yield put(TrendActions.trendSuccess(data))
     }
     else{
+      yield put(StartupActions.loadBarSuccess("isload"))
       alert(message)
       yield put(MainActions.mainFailure(message))
       return
     }
     
   } else {
+    yield put(StartupActions.loadBarSuccess("isload"))
     alert("Internet Error")
     yield put(MainActions.mainFailure("Internet Error"))
     return

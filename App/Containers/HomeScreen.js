@@ -115,6 +115,109 @@ class HomeScreen extends Component {
     const placeTotalData = this.props.placeTotalData ? this.props.placeTotalData:[]
     const trendTotalData = this.props.trendTotalData ? this.props.trendTotalData:[]
 
+    let categoryView = null
+    if( categoryData.length > 0){
+      categoryView = (
+        <View style={styles.section}>
+          <Text style={styles.txtSectionTitle}>Categories</Text>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={categoryData}
+              renderItem={this._renderCategoryItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
+    
+    let hotelView = null
+    if( hotelTotalData.length > 0){
+      hotelView = (
+        <View style={styles.section}>
+          <View style={styles.section_header}>
+            <Text style={styles.txtSectionTitle}>Popular Hotels</Text>
+            <TouchableOpacity style={styles.more_area} onPress={this._seeAllHotels}>
+              <Text style={styles.txtLabelSm}>See all</Text>
+              <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
+            </TouchableOpacity>
+          </View>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={hotelTotalData}
+              renderItem={this._renderHotelItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
+    
+    let activityView = null
+    if( activityTotalData.length > 0){
+      activityView = (
+        <View style={styles.section}>
+          <View style={styles.section_header}>
+            <Text style={styles.txtSectionTitle}>Popular Actvities</Text>
+            {/* <TouchableOpacity style={styles.more_area}>
+              <Text style={styles.txtLabelSm}>See all</Text>
+              <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
+            </TouchableOpacity> */}
+          </View>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={activityTotalData}
+              renderItem={this._renderActivityItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
+    
+    let placeView = null
+    if( placeTotalData.length > 0){
+      placeView = (
+        <View style={styles.section}>
+          <View style={styles.section_header}>
+            <Text style={styles.txtSectionTitle}>Top Destinations</Text>
+            <TouchableOpacity style={styles.more_area} onPress={this._seeAllPlaces}>
+              <Text style={styles.txtLabelSm}>See all</Text>
+              <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
+            </TouchableOpacity>
+          </View>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={placeTotalData}
+              renderItem={this._renderDestinationItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
+    
+    let trendView = null
+    if( trendTotalData.length > 0){
+      trendView = (
+        <View style={styles.section}>
+          <View style={styles.section_header}>
+            <Text style={styles.txtSectionTitle}>Trending Now</Text>
+            {/* <TouchableOpacity style={styles.more_area}>
+              <Text style={styles.txtLabelSm}>See all</Text>
+              <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
+            </TouchableOpacity> */}
+          </View>
+          <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              data={trendTotalData}
+              renderItem={this._renderTrendItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+        </View>
+      )
+    }
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
@@ -129,85 +232,11 @@ class HomeScreen extends Component {
                 </TouchableOpacity>
               </View>
             </ImageBackground>
-
-            <View style={styles.section}>
-              <Text style={styles.txtSectionTitle}>Categories</Text>
-              <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={categoryData}
-                  renderItem={this._renderCategoryItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
-            
-            <View style={styles.section}>
-              <View style={styles.section_header}>
-                <Text style={styles.txtSectionTitle}>Popular Hotels</Text>
-                <TouchableOpacity style={styles.more_area} onPress={this._seeAllHotels}>
-                  <Text style={styles.txtLabelSm}>See all</Text>
-                  <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={hotelTotalData}
-                  renderItem={this._renderHotelItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
-            
-            <View style={styles.section}>
-              <View style={styles.section_header}>
-                <Text style={styles.txtSectionTitle}>Popular Actvities</Text>
-                {/* <TouchableOpacity style={styles.more_area}>
-                  <Text style={styles.txtLabelSm}>See all</Text>
-                  <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity> */}
-              </View>
-              <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={activityTotalData}
-                  renderItem={this._renderActivityItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
-
-            <View style={styles.section}>
-              <View style={styles.section_header}>
-                <Text style={styles.txtSectionTitle}>Top Destinations</Text>
-                <TouchableOpacity style={styles.more_area} onPress={this._seeAllPlaces}>
-                  <Text style={styles.txtLabelSm}>See all</Text>
-                  <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity>
-              </View>
-              <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={placeTotalData}
-                  renderItem={this._renderDestinationItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
-
-            <View style={styles.section}>
-              <View style={styles.section_header}>
-                <Text style={styles.txtSectionTitle}>Trending Now</Text>
-                {/* <TouchableOpacity style={styles.more_area}>
-                  <Text style={styles.txtLabelSm}>See all</Text>
-                  <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-                </TouchableOpacity> */}
-              </View>
-              <FlatList
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  data={trendTotalData}
-                  renderItem={this._renderTrendItem}
-                  keyExtractor={(item, index) => index.toString()}
-                />
-            </View>
+            {categoryView}
+            {hotelView}
+            {activityView}
+            {placeView}
+            {trendView}
 {/*             
             <View style={styles.deactive_section}>
               <Redeem />

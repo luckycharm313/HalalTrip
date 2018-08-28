@@ -27,30 +27,33 @@ export function * loadHotelData (api, action) {
     if(code == 'success'){
       yield put(HotelActions.hotelSuccess(data))
 
-      data.sort(function(a, b) {
-          return b.rating - a.rating;
-      })
-      
-      let featuredCategoryId = data[0].id
-      let param = new FormData();
-      param.append("hotelId", featuredCategoryId)
-      const responseHotelDetail = yield call(api._getHotelDetail, param, token)
+      if (data.length > 0){
+        data.sort(function(a, b) {
+            return b.rating - a.rating;
+        })
+        
+        let featuredCategoryId = data[0].id
+        let param = new FormData();
+        param.append("hotelId", featuredCategoryId)
+        const responseHotelDetail = yield call(api._getHotelDetail, param, token)
 
-      if (responseHotelDetail.ok) {
-        const { data, code, message } = responseHotelDetail.data 
+        if (responseHotelDetail.ok) {
+          const { data, code, message } = responseHotelDetail.data 
 
-        if(code == 'success'){
-          yield put(HotelActions.hotelDetailSuccess(data))
+          if(code == 'success'){
+            yield put(HotelActions.hotelDetailSuccess(data))
+          }
+          else{
+            yield put(HotelActions.hotelFailure(message))
+            return    
+          }
         }
         else{
-          yield put(HotelActions.hotelFailure(message))
+          yield put(HotelActions.hotelFailure("Internet Error"))
           return    
         }
       }
-      else{
-        yield put(HotelActions.hotelFailure("Internet Error"))
-        return    
-      }
+      
     }
     else{
       yield put(HotelActions.hotelFailure(message))

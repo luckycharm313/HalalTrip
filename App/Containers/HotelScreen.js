@@ -42,6 +42,50 @@ class HotelScreen extends Component {
     const cost = '$239'
     const review = '8.8'
    
+    let featureHotelView=null
+    if(__data.length > 0){
+      featureHotelView = (
+        <View style={styles.featured_hotel_section}>
+            <Text style={styles.header_txt_title_md}>Featured Hotel</Text>
+            <ScrollView horizontal={true} style={styles.hotel_img_section} showsHorizontalScrollIndicator={false}>
+              {
+                _detailImages.map(element => (
+                  <Image style={styles.img_featured_hotel} source={{uri: element==null?"":element}} key={element}/>
+                ))
+              }
+            </ScrollView>
+            <TouchableOpacity onPress={this._onHotelDetail}>
+              <Text style={styles.txt_rating}>{rating} Stars</Text>
+              <Text style={styles.txt_title}>{title}</Text>
+              <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>
+                <Icon name="location-on" style = {styles.icon_location} />
+                &nbsp;&nbsp;{location}
+              </Text>
+              <Text style={styles.txt_cost}>{cost} per night</Text>
+              <View style={styles.review_section}>
+                <Text style={styles.txt_review}>{review}</Text>
+                <Text style={styles.txt_md}> Very Good</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+      )
+    }
+
+    let allHotel = null
+    if(hotelTotalData.length > 0){
+      allHotel = (
+        <View style={styles.hotel_list_section}>
+          <Text style={styles.header_txt_title_md}>All Hotels</Text>
+          <View style={styles.hotel_list_view}>
+            <FlatList
+              data={hotelTotalData}
+              renderItem={this._renderHotelItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        </View>
+      )
+    }
     return (
       <ScrollView style={styles.mainContainer}>
         <View style={styles.container}>
@@ -86,40 +130,8 @@ class HotelScreen extends Component {
             </View> */}
           </View>
 
-          <View style={styles.featured_hotel_section}>
-            <Text style={styles.header_txt_title_md}>Featured Hotel</Text>
-            <ScrollView horizontal={true} style={styles.hotel_img_section} showsHorizontalScrollIndicator={false}>
-              {
-                _detailImages.map(element => (
-                  <Image style={styles.img_featured_hotel} source={{uri: element==null?"":element}} key={element}/>
-                ))
-              }
-            </ScrollView>
-            <TouchableOpacity onPress={this._onHotelDetail}>
-              <Text style={styles.txt_rating}>{rating} Stars</Text>
-              <Text style={styles.txt_title}>{title}</Text>
-              <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>
-                <Icon name="location-on" style = {styles.icon_location} />
-                &nbsp;&nbsp;{location}
-              </Text>
-              <Text style={styles.txt_cost}>{cost} per night</Text>
-              <View style={styles.review_section}>
-                <Text style={styles.txt_review}>{review}</Text>
-                <Text style={styles.txt_md}> Very Good</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.hotel_list_section}>
-            <Text style={styles.header_txt_title_md}>All Hotels</Text>
-            <View style={styles.hotel_list_view}>
-              <FlatList
-                data={hotelTotalData}
-                renderItem={this._renderHotelItem}
-                keyExtractor={(item, index) => index.toString()}
-              />
-            </View>
-          </View>
+          {featureHotelView}
+          {allHotel}
         </View>
       </ScrollView>
     )
