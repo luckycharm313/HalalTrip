@@ -43,8 +43,8 @@ export default function * root () {
     takeLatest(UserTypes.USER_SIGNUP, signUp, user_api),
     takeLatest(UserTypes.USER_LOGIN, logIn, user_api),
     takeLatest(UserTypes.LOG_OUT, logout, user_api),
-    takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, main_api),
-    takeLatest(UserTypes.USER_FACEBOOK_SIGNUP, signUpWithFacebook, main_api),
+    takeLatest(UserTypes.USER_GOOGLE_SIGNUP, signUpWithGoogle, user_api),
+    takeLatest(UserTypes.USER_FACEBOOK_SIGNUP, signUpWithFacebook, user_api),
     takeLatest(UserTypes.LOAD_PROFILE, loadProfile, main_api),
     
     // main saga : category, hotel, activity, restaurant

@@ -78,10 +78,12 @@ const user = (baseURL = 'http://www.halaltripthailand.com/') => {
   const _signUp = (param) => api.post('api/user/register/', param )
   const _logIn = (param) => api.post('/api/user/generate_auth_cookie', param )
   const _registerToken = (param) => api.post('halaltrip/api/user/registerToken', param )
+  const _fbRegister = (param) => api.post('api/user/fb_connect', param)
   return {
     _signUp,
     _logIn,
     _registerToken,  
+    _fbRegister,
     _getNonce  
   }
 }
@@ -110,6 +112,7 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   const _getRestaurant = (token) => api.get('api/restaurant/all', {}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getRestaurantDetail = (param, token) => api.post('api/restaurant/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
   const _socialRegister = (param) => api.post('api/user/socialRegister', param)
+  
   const _getActivity = (token) => api.get('api/activity/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
   const _getActivityDetail = (param, token) => api.post('api/activity/detail',param, { headers : {'Authorization': `Bearer ${token}`} })
   const _getTrend = (token) => api.get('api/trend/all',{}, { headers : {'Authorization': `Bearer ${token}`} })
@@ -125,11 +128,11 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
     _getCuisine,
     _getRestaurant,
     _getRestaurantDetail,
-    _socialRegister,
     _getActivity,
     _getActivityDetail,
     _getTrend,
-    _getTrendDetail
+    _getTrendDetail,
+    _socialRegister
   }
 }
 

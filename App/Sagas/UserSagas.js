@@ -90,7 +90,7 @@ export function * signUpWithGoogle (api, action) {
   try {      
     
     const userData = yield GoogleSignin.signIn();
-    
+    console.log("userData", userData)
     const {accessToken, user} = userData
     const {email, name, photo } = user
     console.log("google signin data => ", userData)
@@ -98,19 +98,32 @@ export function * signUpWithGoogle (api, action) {
     console.log("google signin email => ", email)
     let push_token = ''
 
-    let param = new FormData();
-    param.append("user_email", email)
-    param.append("user_token", accessToken)
-    param.append("user_push_token", push_token)
+    // let param = new FormData();
+    // param.append("user_email", email)
+    // param.append("user_token", accessToken)
+    // param.append("user_push_token", push_token)
     
-    const res = yield call(api._socialRegister, param)
+    // const res = yield call(api._socialRegister, param)
+
+    const resNonce = yield call(api._getNonce)
+    const { nonce } = resNonce.data
+
+    let param = new FormData();
+    param.append("insecure", "cool")
+    param.append("nonce", nonce)
+    param.append("email", email)
+    param.append("username", email)
+    param.append("display_name", name)
+    // param.append("user_pass", 'password')
+
+    const res = yield call(api._signUp, param)
 
     console.log("google signin server register => ", res)
     
-    if (res.ok) {
-      const { data, code, message } = res.data
+    // if (res.ok) {
+      // const { data, code, message } = res.data
       
-      if(code == 'success'){
+      // if(code == 'success'){
         try {
           yield AsyncStorage.setItem('token', JSON.stringify(accessToken))        
         } catch (error) {
@@ -134,19 +147,19 @@ export function * signUpWithGoogle (api, action) {
         yield put(StartupActions.loadBarSuccess("isload"))
         yield put(UserActions.userSuccess(_temp))
         yield put(NavigationActions.navigate({ routeName: 'mainNavigator'} ));
-      }
-      else{
-        yield put(StartupActions.loadBarSuccess("isload"))
-        alert("GoogleSignin Error")
-        yield put(UserActions.userFailure())
-        return
-      }
-    } else {
-      yield put(StartupActions.loadBarSuccess("isload"))
-      alert("GoogleSignin error")
-      yield put(UserActions.userFailure())
-      return
-    }
+      // }
+      // else{
+      //   yield put(StartupActions.loadBarSuccess("isload"))
+      //   alert("GoogleSignin Error")
+      //   yield put(UserActions.userFailure())
+      //   return
+      // }
+    // } else {
+    //   yield put(StartupActions.loadBarSuccess("isload"))
+    //   alert("GoogleSignin error")
+    //   yield put(UserActions.userFailure())
+    //   return
+    // }
 
   } catch (error) {
     yield put(StartupActions.loadBarSuccess("isload"))
@@ -178,15 +191,17 @@ export function * signUpWithFacebook (api, action) {
         
     let push_token = ''
     let param = new FormData();
-    param.append("user_email", temp.email)
-    param.append("user_token", accessToken)
-    param.append("user_push_token", push_token)
+    param.append("access_token", accessToken)
+    param.append("insecure", "cool")
+    // param.append("user_email", temp.email)
+    // param.append("user_token", accessToken)
+    // param.append("user_push_token", push_token)
     
-    const res = yield call(api._socialRegister, param)
+    const res = yield call(api._fbRegister, param)
     if (res.ok) {
-      const { data, code, message } = res.data
+      const {msg, wp_user_id } = res.data
       
-      if(code == 'success'){
+      if(wp_user_id){
         try {
           yield AsyncStorage.setItem('token', JSON.stringify(accessToken))        
         } catch (error) {
@@ -214,7 +229,7 @@ export function * signUpWithFacebook (api, action) {
       }
       else{
         yield put(StartupActions.loadBarSuccess("isload"))
-        alert("Facebook error")
+        alert(msg)
         yield put(UserActions.userFailure())
         return
       }

@@ -66,22 +66,27 @@ class RestaurantDetailScreen extends Component {
   }
   async _onDial () {
     if(Platform.OS == "android"){
-      const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.CALL_PHONE,
-          {
-            'title': 'App Phone Call Permission',
-            'message': 'App needs access to your phone call '
-          }
-      )
+      // const granted = await PermissionsAndroid.request(
+      //     PermissionsAndroid.PERMISSIONS.CALL_PHONE,
+      //     {
+      //       'title': 'App Phone Call Permission',
+      //       'message': 'App needs access to your phone call '
+      //     }
+      // )
+      let url = `tel:${phoneNumber}`
+      // console.log('url => ', url)
+      Linking.openURL(url).catch(err => console.error('An error occurred', err));
     }
+    else{
+      const phoneNumber = this.props.restaurantDetailData.phone
+      RNImmediatePhoneCall.immediatePhoneCall(phoneNumber);
+    }
+    // if (granted === PermissionsAndroid.RESULTS.DENIED) {
+    //   alert("Please set phone call permission in your app setting")
+    //   return
+    // } 
 
-    if (granted === PermissionsAndroid.RESULTS.DENIED) {
-      alert("Please set phone call permission in your app setting")
-      return
-    } 
-
-    const phoneNumber = this.props.restaurantDetailData.phone
-    RNImmediatePhoneCall.immediatePhoneCall(phoneNumber);
+    
     // let url = `tel:${phoneNumber}`
     // console.log('url => ', url)
     // Linking.openURL(url).catch(err => console.error('An error occurred', err));
