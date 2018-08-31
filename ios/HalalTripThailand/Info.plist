@@ -70,7 +70,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Location services used for customized experience</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location services used for customized experience</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location services used for customized experience</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

@@ -1,4 +1,3 @@
-import {AsyncStorage} from 'react-native'
 import { call, put, select } from 'redux-saga/effects'
 import RestaurantActions from '../Redux/RestaurantRedux'
 import HotelActions from '../Redux/HotelRedux'
@@ -6,6 +5,7 @@ import ActivityActions from '../Redux/ActivityRedux'
 import RNFetchBlob from 'rn-fetch-blob'
 // import { RestaurantSelectors } from '../Redux/RestaurantRedux'
 import StartupActions from '../Redux/StartupRedux'
+import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 
 import {
   insertNewResTotal, 
@@ -65,6 +65,22 @@ export function * loadRestaurantData (api, action) {
 }
 
 export function * getRestaurantDetail (api, action) {
+
+  if(Platform.OS == "android"){
+    const granted = yield PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          'title': 'App Location Permission',
+          'message': 'App needs access to your location '
+        }
+    )
+
+    if (granted === PermissionsAndroid.RESULTS.DENIED) {
+      alert("Please set location permission in your app setting")
+      return
+    } 
+  }
+   
 
   const {restaurantId } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))

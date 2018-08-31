@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View } from 'react-native'
+import { ScrollView, Platform, View } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -7,6 +7,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 // Styles
 import styles from './Styles/MapViewScreenStyle'
 import NavBar from '../Components/NavBar'
+import { Metrics } from '../Themes'
 
 class MapViewScreen extends Component {
   static navigationOptions = {
@@ -22,11 +23,72 @@ class MapViewScreen extends Component {
       street_lat : params.street_lat,
       street_lng : params.street_lng,
       title : params.title,
+      latitude :null,
+      longitude: null,
+      error:null,
     }
   }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+       (position) => {
+         console.log(position);
+         this.setState({
+           latitude: position.coords.latitude,
+           longitude: position.coords.longitude,
+           error: null,
+         });
+       },
+       (error) => this.setState({ error: error.message }),
+       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+     );
+   }
+
   render () {
-    const {street_lat, street_lng, title} = this.state
+    const {street_lat, street_lng, title, latitude, longitude} = this.state
+    let mapMarker = null
+
+    if(latitude && longitude){
+      mapMarker = (
+        <MapView
+            style={{height : (Platform.OS === 'ios') ? Metrics.screenHeight-20 : Metrics.screenHeight}}
+            provider={ PROVIDER_GOOGLE }
+            initialRegion={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.0922 + (0.0922 / 0.2),
+              longitudeDelta: 0.0421 + (0.0421/ 0.2),
+            }}
+            compassStyle={{
+              bottom: 10,
+              left: 10,
+            }}
+            showsCompass={true}
+            liteMode={true}
+            showsUserLocation={ true }
+            followsUserLocation={ true }
+            toolbarEnabled={ true }
+            loadingEnabled={ true }
+            zoomEnabled={true}
+          >
+          <MapView.Marker
+              coordinate={{
+                latitude: parseFloat(latitude),
+                longitude: parseFloat(longitude)
+              }}
+              pinColor={'#c8ef0a'}
+              // title={"Your Location"}
+          />
+          <MapView.Marker
+              coordinate={{
+                latitude: parseFloat(street_lat),
+                longitude: parseFloat(street_lng)
+              }}
+              title={title}
+          />
+        </MapView>
+      )
+    }
     return (
       <View style = {styles.mainContainer}>
           <ScrollView style={styles.container}>
@@ -34,27 +96,17 @@ class MapViewScreen extends Component {
               <NavBar nav = {this.props.navigation} />
             </View>
             <View style = {styles.map_view}>
-              <MapView
-                style={{flex : 1}}
-                provider={ PROVIDER_GOOGLE }
-                initialRegion={{
-                  latitude: parseFloat(street_lat?street_lat:''),
-                  longitude: parseFloat(street_lng?street_lng:''),
-                  latitudeDelta: 0.0922 + (0.0922 / 0.7),
-                  longitudeDelta: 0.0421 + (0.0421/ 0.7),
-                }}
-                zoomEnabled = {true}
-                showsUserLocation={ true }
-              >
-                <MapView.Marker
+              
+              {mapMarker}
+                {/* <MapView.Marker
                   title ={title}
                   coordinate={ {
                     latitude: parseFloat(street_lat),
                     longitude: parseFloat(street_lng),
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421, }}
-                />  
-              </MapView>
+                />   */}
+             
             </View>
           </ScrollView>
         </View>
