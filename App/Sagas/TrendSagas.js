@@ -2,6 +2,7 @@
 import { call, put } from 'redux-saga/effects'
 import TrendActions from '../Redux/TrendRedux'
 import {AsyncStorage} from 'react-native'
+import { NavigationActions } from 'react-navigation';
 
 export function * getTrendDetail (api, action) {
   const { trendId } = action
@@ -28,7 +29,8 @@ export function * getTrendDetail (api, action) {
     }
     
   } else {
-    alert("Internet Error")
-    yield put(TrendActions.trendFailure())
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(TrendActions.trendFailure())
   }
 }

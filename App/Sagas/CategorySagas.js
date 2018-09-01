@@ -13,6 +13,7 @@
 import { call, put } from 'redux-saga/effects'
 import CategoryActions from '../Redux/CategoryRedux'
 // import { CategorySelectors } from '../Redux/CategoryRedux'
+import { NavigationActions } from 'react-navigation';
 
 export function * getCategory (api, action) {
   const { data } = action
@@ -27,6 +28,7 @@ export function * getCategory (api, action) {
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CategoryActions.categorySuccess(response.data))
   } else {
-    yield put(CategoryActions.categoryFailure())
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(CategoryActions.categoryFailure())
   }
 }

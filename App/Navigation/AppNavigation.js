@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import ReloadScreen from '../Containers/ReloadScreen'
 import MapViewScreen from '../Containers/MapViewScreen'
 import ActivitySavedDetailScreen from '../Containers/ActivitySavedDetailScreen'
 import TrendDetailScreen from '../Containers/TrendDetailScreen'
@@ -107,6 +108,7 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({  
+  ReloadScreen: { screen: ReloadScreen },
   RestaurantPlaceScreen: { screen: RestaurantPlaceScreen },
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },

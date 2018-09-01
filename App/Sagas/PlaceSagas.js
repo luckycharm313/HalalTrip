@@ -3,6 +3,7 @@ import { call, put } from 'redux-saga/effects'
 import {AsyncStorage} from 'react-native'
 import PlaceActions from '../Redux/PlaceRedux'
 // import { PlaceSelectors } from '../Redux/PlaceRedux'
+import { NavigationActions } from 'react-navigation';
 
 export function * getHotelByPlace (api, action) {
   const { placeId } = action
@@ -32,9 +33,10 @@ export function * getHotelByPlace (api, action) {
         }
       }
       else{
-        alert("Network Error")
-        yield put(PlaceActions.placeFailure("Network Error"))
-        return    
+        yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+        // alert("Network Error")
+        // yield put(PlaceActions.placeFailure("Network Error"))
+        // return    
       }
     }
     else{
@@ -44,8 +46,9 @@ export function * getHotelByPlace (api, action) {
     }
     
   } else {
-    yield put(PlaceActions.placeFailure("Network Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(PlaceActions.placeFailure("Network Error"))
+    // return
   }
 }
 export function * getRestaurantPlace (api, action) {
@@ -70,8 +73,9 @@ export function * getRestaurantPlace (api, action) {
     }
   }
   else{
-    alert("Network Error")
-    yield put(PlaceActions.placeFailure("Network Error"))
-    return    
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Network Error")
+    // yield put(PlaceActions.placeFailure("Network Error"))
+    // return    
   }
 }

@@ -7,6 +7,8 @@ import RNFetchBlob from 'rn-fetch-blob'
 import StartupActions from '../Redux/StartupRedux'
 import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 
+import { NavigationActions } from 'react-navigation';
+
 import {
   insertNewResTotal, 
   querySelectResTotal, 
@@ -35,13 +37,15 @@ export function * loadRestaurantData (api, action) {
       yield put(RestaurantActions.cuisineSuccess(data))
     }
     else{
+      alert(message)
       yield put(RestaurantActions.restaurantFailure(message))
       return
     }
     
   } else {
-    yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
   }
 
   const responseRestaurant = yield call(api._getRestaurant, token)
@@ -54,13 +58,16 @@ export function * loadRestaurantData (api, action) {
       yield put(RestaurantActions.restaurantSuccess(data))
     }
     else{
+      alert(message)
       yield put(RestaurantActions.restaurantFailure(message))
       return
     }
     
   } else {
-    yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
   }
 }
 
@@ -99,13 +106,15 @@ export function * getRestaurantDetail (api, action) {
       restaurantData = data
     }
     else{
+      alert(message)
       yield put(RestaurantActions.restaurantFailure(message))
       return
     }
     
   } else {
-    yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
   }
 
 
@@ -133,13 +142,15 @@ export function * getRestaurantDetail (api, action) {
       yield put(RestaurantActions.detailSuccess(data, temp))
     }
     else{
+      alert(message)
       yield put(RestaurantActions.restaurantFailure(message))
       return
     }
     
   } else {
-    yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
   }
 
 }
@@ -212,9 +223,10 @@ export function * saveRestaurantTotal (api, action) {
       
     } else {
       yield put(StartupActions.loadBarSuccess("isload"))
-      alert("Internet Error")
-      yield put(RestaurantActions.restaurantFailure("Internet Error"))
-      return
+      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      // alert("Internet Error")
+      // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+      // return
     }
   }else{
     const deletedPlace = yield deletePlace(id)

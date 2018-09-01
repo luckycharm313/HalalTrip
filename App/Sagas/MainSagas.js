@@ -9,6 +9,7 @@ import TrendActions from '../Redux/TrendRedux'
 import StartupActions from '../Redux/StartupRedux'
 import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
+import { NavigationActions } from 'react-navigation';
 
 export function * loadData (api, action) {
   
@@ -48,9 +49,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Internet Error")
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(MainActions.mainFailure("Internet Error"))
+    // return
   }
   console.log(" responseCategory => ", responseCategory)
   /*** Hotel part **/
@@ -70,9 +72,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Internet Error")
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(MainActions.mainFailure("Internet Error"))
+    // return
   }
   
   /*** place part **/
@@ -92,9 +95,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Internet Error")
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(MainActions.mainFailure("Internet Error"))
+    // return
   }
   
   /*** activity part **/
@@ -114,9 +118,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Internet Error")
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(MainActions.mainFailure("Internet Error"))
+    // return
   }
   
   /*** trend part **/
@@ -136,9 +141,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Internet Error")
-    yield put(MainActions.mainFailure("Internet Error"))
-    return
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // alert("Internet Error")
+    // yield put(MainActions.mainFailure("Internet Error"))
+    // return
   }
 
   yield put(MainActions.mainSuccess())
