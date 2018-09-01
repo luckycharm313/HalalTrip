@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Platform, View } from 'react-native'
+import { ScrollView, Platform, View, TouchableOpacity, Image } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -7,7 +7,8 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 // Styles
 import styles from './Styles/MapViewScreenStyle'
 import NavBar from '../Components/NavBar'
-import { Metrics } from '../Themes'
+import { Metrics, Images } from '../Themes'
+import getDirections from 'react-native-google-maps-directions'
 
 class MapViewScreen extends Component {
   static navigationOptions = {
@@ -42,8 +43,33 @@ class MapViewScreen extends Component {
        (error) => this.setState({ error: error.message }),
        { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
      );
-   }
+  }
+  _onDirection = () =>{
+    const {street_lat, street_lng, latitude, longitude} = this.state
+    const data = {
+      source: {
+       latitude: latitude,
+       longitude: longitude
+     },
+     destination: {
+        latitude: parseFloat(street_lat),
+        longitude: parseFloat(street_lng)
+     },
+     params: [
+       {
+         key: "travelmode",
+         value: "driving"        // may be "walking", "bicycling" or "transit" as well
+       },
+       {
+         key: "dir_action",
+         value: "navigate"       // this instantly initializes navigation using the given travel mode 
+       }
+      ]
+    }
 
+    getDirections(data)
+  }
+  
   render () {
     const {street_lat, street_lng, title, latitude, longitude} = this.state
     let mapMarker = null
@@ -95,19 +121,15 @@ class MapViewScreen extends Component {
             <View style = {styles.navbar}>
               <NavBar nav = {this.props.navigation} />
             </View>
-            <View style = {styles.map_view}>
-              
-              {mapMarker}
-                {/* <MapView.Marker
-                  title ={title}
-                  coordinate={ {
-                    latitude: parseFloat(street_lat),
-                    longitude: parseFloat(street_lng),
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421, }}
-                />   */}
-             
+            <View style = {styles.map_view}>              
+              {mapMarker}             
             </View>
+            <TouchableOpacity style={styles.direct_view} onPress={this._onDirection}>
+              <Image 
+                  style={styles.icon_map}
+                  source={Images.icon_map}
+                  resizeMode='cover'/>
+            </TouchableOpacity>
           </ScrollView>
         </View>
     )

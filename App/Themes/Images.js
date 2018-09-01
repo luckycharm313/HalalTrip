@@ -23,6 +23,7 @@ const images = {
   icon_money : require('../Images/icon_money.png'),  
   wallpaper : require('../Images/wallpaper.png'),
   avatar : require('../Images/avatar.png'),
+  icon_map : require('../Images/icon_map.png'),
 }
 
 export default images

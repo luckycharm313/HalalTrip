@@ -6,7 +6,15 @@ import { Images } from '../Themes'
 export default class CategoryItem extends Component {
   
   _goToPlace =()=>{
-    this.props.nav.navigate('PlaceScreen')
+    if(this.props.data.name == "Hotel"){
+      this.props.nav.navigate('HotelScreen')
+    }
+    else if(this.props.data.name == "Restaurant"){
+      this.props.nav.navigate('RestaurantScreen')
+    }
+    else{
+      this.props.nav.navigate('PlaceScreen')
+    }
   }
 
   render () {

@@ -17,4 +17,16 @@ export default StyleSheet.create({
     // flex : 1,   
     height : Metrics.screenHeight,
   },
+
+  direct_view : {
+    position : 'absolute',
+    bottom : 30,
+    right : 20,
+  },
+
+  icon_map : {
+    width : 50,
+    height : 50,
+  },
+
 })
