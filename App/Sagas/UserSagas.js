@@ -34,22 +34,21 @@ export function * signUp (api, action) {
     param.append("user_pass", password)
 
     const response = yield call(api._signUp, param)
-  
+    console.log("sdfsdf ", response)
     if (response.ok) {
       yield put(UserActions.userRegister())
       yield put(StartupActions.loadBarSuccess("isload"))
     } else {
+      const {error} = response.data
       yield put(StartupActions.loadBarSuccess("isload"))
-      
-      alert("sign up error")
+      alert(error)
       yield put(UserActions.userFailure())
+      return
     }
   }
   else{
-    
     yield put(StartupActions.loadBarSuccess("isload"))
-    
-    alert("sign up error")
+    alert("Network error")
     yield put(UserActions.userFailure())
   }
 }

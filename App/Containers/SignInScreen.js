@@ -19,6 +19,16 @@ class SignInScreen extends Component {
       routeIndex : 1
     };
   }
+
+  componentWillReceiveProps (nextProps){
+      
+    if(nextProps.isRegistered){
+      alert("Signup successful")
+      this.setState({routeIndex : 1})
+    }
+      
+  }
+
   _onClickSigninTab =()=>{
     this.setState({routeIndex : 1})
   }
