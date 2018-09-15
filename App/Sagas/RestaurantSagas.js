@@ -86,6 +86,19 @@ export function * getRestaurantDetail (api, action) {
       alert("Please set location permission in your app setting")
       return
     } 
+    
+    const grantedPhone = yield PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CALL_PHONE,
+        {
+          'title': 'App Phone Call Permission',
+          'message': 'App needs access to your phone call '
+        }
+    )
+
+    if (grantedPhone === PermissionsAndroid.RESULTS.DENIED) {
+      alert("Please set phone call permission in your app setting")
+      return
+    } 
   }
    
 
@@ -270,4 +283,38 @@ export function * getSavedDetail (api, action) {
   else{
     yield put(RestaurantActions.restaurantFailure("Data doesn't exist!"))
   }  
+}
+
+export function * setRate (api, action) {
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const {id, rate} = action
+
+  let param = new FormData();
+  param.append("id", id)
+  param.append("rate", rate)
+  
+  const response = yield call(api._setRate, param, token)
+ 
+  if (response.ok) {
+    const { data, code, message } = response.data    
+    if(code == 'success'){
+
+      if(data){
+        yield put(RestaurantActions.rateSuccess(id, rate))
+      }
+      else{
+        alert("Database Error")
+      }
+    }
+    else{
+      alert(message)
+      yield put(RestaurantActions.restaurantFailure(message))
+      return
+    }
+    
+  } else {
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
+  }
 }

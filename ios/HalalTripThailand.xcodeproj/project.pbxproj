@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -43,6 +42,8 @@
 		41BD1716F32E48B9895867A1 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D107E56A73E748468D312C93 /* Entypo.ttf */; };
 		5014F31821348B2800DFFA2D /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5014F31721348B1400DFFA2D /* libRCTOneSignal.a */; };
 		5014F31C2134927400DFFA2D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5014F31B2134927300DFFA2D /* GoogleService-Info.plist */; };
+		504F612B2149B0A6006BAAE2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F612A2149B0A6006BAAE2 /* Social.framework */; };
+		504F612D2149B0B5006BAAE2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 504F612C2149B0B5006BAAE2 /* MessageUI.framework */; };
 		505ED596212D54A10034E9A5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505ED595212D547D0034E9A5 /* libRNFetchBlob.a */; };
 		505ED5E2212DE82C0034E9A5 /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 505ED5DB212DE82C0034E9A5 /* GoogleSignIn.bundle */; };
 		505ED5E3212DE82C0034E9A5 /* GoogleSymbolUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505ED5DC212DE82C0034E9A5 /* GoogleSymbolUtilities.framework */; };
@@ -461,6 +462,8 @@
 		5014F3112134883000DFFA2D /* HalalTripThailand.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HalalTripThailand.entitlements; path = HalalTripThailand/HalalTripThailand.entitlements; sourceTree = "<group>"; };
 		5014F31221348B1400DFFA2D /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		5014F31B2134927300DFFA2D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		504F612A2149B0A6006BAAE2 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		504F612C2149B0B5006BAAE2 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		505ED590212D547C0034E9A5 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		505ED5DB212DE82C0034E9A5 /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleSignIn.bundle; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleSignIn.bundle"; sourceTree = "<group>"; };
 		505ED5DC212DE82C0034E9A5 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = "../node_modules/react-native-google-signin/ios/GoogleSdk/GoogleSymbolUtilities.framework"; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504F612D2149B0B5006BAAE2 /* MessageUI.framework in Frameworks */,
+				504F612B2149B0A6006BAAE2 /* Social.framework in Frameworks */,
 				5014F31821348B2800DFFA2D /* libRCTOneSignal.a in Frameworks */,
 				505ED5F5212DE9100034E9A5 /* SystemConfiguration.framework in Frameworks */,
 				505ED5F3212DE9080034E9A5 /* SafariServices.framework in Frameworks */,
@@ -709,6 +714,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				504F612C2149B0B5006BAAE2 /* MessageUI.framework */,
+				504F612A2149B0A6006BAAE2 /* Social.framework */,
 				505ED5F4212DE9100034E9A5 /* SystemConfiguration.framework */,
 				505ED5F2212DE9080034E9A5 /* SafariServices.framework */,
 				505ED5F0212DE8FB0034E9A5 /* AddressBook.framework */,
@@ -1725,7 +1732,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1754,7 +1760,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1865,7 +1870,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1904,7 +1908,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1942,7 +1945,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1980,7 +1982,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

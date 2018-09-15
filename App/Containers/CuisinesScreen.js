@@ -64,7 +64,7 @@ class CuisinesScreen extends Component {
             <NavBar nav = {this.props.navigation} />
           </View>
           <View style={styles.header_section}>
-            <Text style={styles.header_txt_title}>All Cuisines</Text>
+            <Text style={styles.header_txt_title}>All Cities</Text>
           </View>
           <View style={styles.body_section}>
             <FlatList

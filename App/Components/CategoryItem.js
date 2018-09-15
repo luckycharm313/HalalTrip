@@ -13,13 +13,23 @@ export default class CategoryItem extends Component {
       this.props.nav.navigate('RestaurantScreen')
     }
     else{
-      this.props.nav.navigate('PlaceScreen')
+      this.props.nav.navigate('TouristScreen')
     }
   }
 
   render () {
     const {name, count} = this.props.data
-    const img_url = Images.image1
+    let img_url = Images.image1
+
+    if(name == "Hotel"){
+      img_url = Images.image2
+    }
+    else if(name == "Restaurant"){
+      img_url = Images.image3
+    }
+    else{
+      img_url = Images.image4
+    }
 
     return (
       <TouchableOpacity style={styles.container} onPress={this._goToPlace}>

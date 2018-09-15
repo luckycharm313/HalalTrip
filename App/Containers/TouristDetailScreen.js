@@ -1,26 +1,21 @@
 import React, { Component } from 'react'
-import { Share, ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
+import { Share, Platform, ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons'
 import StarRating from 'react-native-star-rating';
-// import Share, {ShareSheet, Button} from 'react-native-share';
 
 import HTML from 'react-native-render-html'
-
 // Styles
-import styles from './Styles/RestaurantDetailScreenStyle'
+import styles from './Styles/TouristDetailScreenStyle'
 import { Images, Colors, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
-import RestaurantList from '../Components/RestaurantList'
-import RestaurantAction from '../Redux/RestaurantRedux'
+import TouristHList from '../Components/TouristHList'
+import TouristAction from '../Redux/TouristRedux'
 import RNImmediatePhoneCall from 'react-native-immediate-phone-call'
-import Modal from "react-native-modal";
 
-class RestaurantDetailScreen extends Component {
+class TouristDetailScreen extends Component {
   static navigationOptions = {
     tabBarVisible: false,
   };
@@ -30,14 +25,10 @@ class RestaurantDetailScreen extends Component {
     const { state : {params}} = navigation
     const _name = this._getPlaceName(params.placeName)
     this.state = {
-      restaurantId : params.restaurantId,
+      touristId : params.touristId,
       placeName : _name,
-      roomOrderData : ["7:30 AM", "8:00 AM", "8:30 AM"],
-      modalVisible: false,
-      starCount : 0,
     }
   }
-
   _getPlaceName = (arrName) =>{
     if(arrName){
       let full_name= ''
@@ -57,35 +48,28 @@ class RestaurantDetailScreen extends Component {
   }
 
   componentWillMount(){
-    this.props.getRestaurantDetail(this.state.restaurantId)
+    this.props.getTouristDetail(this.state.touristId)
   }
 
-  _renderRestaurantData = ({item})=> {
-      return( <RestaurantList data = {item} nav={this.props.navigation} /> )
+  _renderTouristData = ({item})=> {
+      return( <TouristHList data = {item} nav={this.props.navigation} /> )
   }
   _onMapView =()=>{
     this.props.navigation.navigate('MapViewScreen',{
-      street_lat : this.props.restaurantDetailData.street_lat, 
-      street_lng : this.props.restaurantDetailData.street_lng,
-      title : this.props.restaurantDetailData.title
+      street_lat : this.props.touristDetailData.street_lat, 
+      street_lng : this.props.touristDetailData.street_lng,
+      title : this.props.touristDetailData.title
     });
-  }
-  
-  _onGiveRating =()=>{
-    this.setState({modalVisible: true})
   }
 
   _onDial=()=> {
-    const phoneNumber = this.props.restaurantDetailData.phone
+    const phoneNumber = this.props.touristDetailData.phone
     RNImmediatePhoneCall.immediatePhoneCall(phoneNumber);
-    // let url = `tel:${phoneNumber}`
-    // console.log('url => ', url)
-    // Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
   
   _onShare=()=> {
     Share.share({
-      message : this.props.restaurantDetailData.post_url
+      message : this.props.touristDetailData.post_url
     }).then(this._result);
   }
   
@@ -103,45 +87,23 @@ class RestaurantDetailScreen extends Component {
     }).catch(err => console.error('An error occurred', err));
   }
 
-  onStarRatingPress = (rating)=> {
-    this.setState({
-      starCount: rating
-    });
-  }
-  _onModalCancel =()=>{
-    this.setState({modalVisible: false})
-  }
-  _onModalOK =()=>{
-    this.setState({modalVisible: false})
-    let id = this.props.restaurantDetailData.id
-    let rate = this.state.starCount
-    this.props.setRate(id, rate)
-  }
-
-  componentWillReceiveProps(nextProps){
-    const restaurantDetailData = nextProps.restaurantDetailData? nextProps.restaurantDetailData:[]
-    const {rating} = restaurantDetailData
-    const _rating = Number.parseFloat(rating)
-    this.setState({starCount : _rating})
-  }
-  
   render () {
-    const restaurantDetailData = this.props.restaurantDetailData? this.props.restaurantDetailData:[]
-    const subRestaurantData = this.props.subRestaurantData? this.props.subRestaurantData:[]
-    const {id, title, description, phone, rating, location, img_url, post_url} = restaurantDetailData
+    const touristDetailData = this.props.touristDetailData? this.props.touristDetailData:[]
+    const subTouristData = this.props.subTouristData? this.props.subTouristData:[]
+    const {id, title, description, phone, rating, location, img_url, post_url} = touristDetailData
     // const detailImages = restaurantDetailData.detailImages? restaurantDetailData.detailImages :[]
     const _rating = Number.parseFloat(rating)
-    
-    let similarRestaurantView = null
-    if(subRestaurantData.length > 0 ){
-      similarRestaurantView = (
+
+    let similarTouristView = null
+    if(subTouristData.length > 0 ){
+      similarTouristView = (
         <View style={styles.section}>
-          <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
+          <Text style={styles.txtSectionTitle}>Similar Tourist Attractions in {this.state.placeName}</Text>
           <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
-              data={subRestaurantData}
-              renderItem={this._renderRestaurantData}
+              data={subTouristData}
+              renderItem={this._renderTouristData}
               keyExtractor={(item, index) => index.toString()}
             />
         </View>
@@ -159,11 +121,11 @@ class RestaurantDetailScreen extends Component {
     }
 
     let icon = <SimpleIcon name="heart" style = {styles.icon_heart} />
-    this.props.savedIds.forEach(element => {
-      if(element == id){
-        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
-      }  
-    })
+    // this.props.savedIds.forEach(element => {
+    //   if(element == id){
+    //     icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
+    //   }  
+    // })
 
     return (
       <ScrollView style={styles.mainContainer}>
@@ -171,40 +133,6 @@ class RestaurantDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <Modal
-            animationType="fade"
-            transparent={true}
-            isVisible={this.state.modalVisible}
-            onBackdropPress={() => this.setState({ modalVisible: false })}
-            style={styles.modal}>
-            <View style={styles.modalView}>
-              <View style={styles.modal_section}>
-                <Text style={styles.modal_title_text}>Please rate to the {title}</Text>
-              </View>
-              <View style={styles.modal_section}>
-                <StarRating
-                    disabled={false}
-                    maxStars={5}
-                    rating={this.state.starCount}
-                    fullStarColor={Colors.primary}
-                    emptyStar={'ios-star-outline'}
-                    fullStar={'ios-star'}
-                    halfStar={'ios-star-half'}
-                    iconSet={'Ionicons'}
-                    starSize = {25}
-                    selectedStar={(rating) => this.onStarRatingPress(rating)}
-                  />
-              </View>
-              <View style={styles.modal_section_btn}>
-                <TouchableOpacity style={styles.modal_btn_cancel} onPress={this._onModalCancel}>
-                  <Text style={styles.modal_btn_txt}>Cancel</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.modal_btn_ok} onPress={this._onModalOK}>
-                  <Text style={styles.modal_btn_txt}>OK</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
           <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}}>
             {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
@@ -217,7 +145,7 @@ class RestaurantDetailScreen extends Component {
           <View style={styles.restaurant_header_section}>
             <Text style={styles.txt_country}>{this.state.placeName}</Text>
             <Text style={styles.txt_restaurant_label}>{title}</Text>
-            <TouchableOpacity style={styles.rating_view} onPress={this._onGiveRating}>
+            <View style={styles.rating_view}>
               <StarRating
                   disabled={false}
                   maxStars={5}
@@ -228,10 +156,9 @@ class RestaurantDetailScreen extends Component {
                   halfStar={'ios-star-half'}
                   iconSet={'Ionicons'}
                   starSize = {25}
-                  selectedStar={() => this._onGiveRating()}
                 />
               <Text style={styles.txt_rating}>{rating}</Text>
-            </TouchableOpacity>
+            </View>
             <View style={styles.price_view}>
               {/* <Image style={styles.icon_money} source={Images.icon_money} resizeMode='contain' />
               <View style={styles.price_detail_view}>
@@ -292,7 +219,7 @@ class RestaurantDetailScreen extends Component {
                 />
           </View>
 
-         {similarRestaurantView}
+         {similarTouristView}
 
           <View style={styles.reservation_section}>
             <View style={styles.reservation_rating}>
@@ -322,19 +249,18 @@ class RestaurantDetailScreen extends Component {
   }
 }
 
-const mapStateToProps = ({restaurant}) => {
+const mapStateToProps = ({tourist}) => {
   return {
-    restaurantDetailData : restaurant.restaurantDetailData,
-    subRestaurantData : restaurant.subRestaurantData,
-    savedIds : restaurant.savedIds
+    touristDetailData : tourist.touristDetailData,
+    subTouristData : tourist.subTouristData,
+    savedIds : tourist.savedIds
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getRestaurantDetail : (restaurantId) => dispatch(RestaurantAction.getRestaurantDetail(restaurantId)),
-    setRate : (id, rate) => dispatch(RestaurantAction.setRate(id, rate)),
+    getTouristDetail : (touristId) => dispatch(TouristAction.getTouristDetail(touristId)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantDetailScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(TouristDetailScreen)

@@ -54,8 +54,8 @@ class RestaurantSavedList extends Component {
           </TouchableOpacity> 
         </ImageBackground>
         <View style={styles.detail_view}>
-          <Text style={styles.txt_rating}>{country}</Text>          
-          <Text style={styles.txt_title}>{title}</Text>
+          <Text style={styles.txt_rating} numberOfLines={1} ellipsizeMode ={'tail'}>{country}</Text>          
+          <Text style={styles.txt_title} numberOfLines={1} ellipsizeMode ={'tail'}>{title}</Text>
           <View style ={styles.view_location}>
             <Icon name="location-pin" style = {styles.icon_location} />
             <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>

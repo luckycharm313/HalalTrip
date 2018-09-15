@@ -10,6 +10,7 @@ import { Images } from '../Themes'
 import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
 import RestaurantList from '../Components/RestaurantList'
+import TouristHList from '../Components/TouristHList'
 
 class MapHotelScreen extends Component {
   static navigationOptions = {
@@ -45,18 +46,29 @@ class MapHotelScreen extends Component {
       nav ={this.props.navigation}
     />
   )
+  
+  _renderTouristItem = ({item}) => (
+    <TouristHList
+      data = {item}
+      nav ={this.props.navigation}
+    />
+  )
 
 
   render () {
     const placeHotelData = this.props.placeHotelData ? this.props.placeHotelData : []
     const hotelData = placeHotelData.hotelData? placeHotelData.hotelData:[]
-    
+        
     const placeRestaurantData = this.props.placeRestaurantData ? this.props.placeRestaurantData : []
     const restaurantData = placeRestaurantData.restaurantData? placeRestaurantData.restaurantData:[]
+    
+    const placeTouristData = this.props.placeTouristData ? this.props.placeTouristData : []
+    const touristData = placeTouristData.touristData? placeTouristData.touristData:[]
 
-    let location = [...hotelData, ...restaurantData]
+    let location = [...hotelData, ...restaurantData, ...touristData]
     let hotelView = null
     let restaurantView = null
+    let touristView = null
 
     if(hotelData.length > 0){
       hotelView =( <View style={styles.section}>
@@ -87,6 +99,22 @@ class MapHotelScreen extends Component {
                 showsHorizontalScrollIndicator={false}
                 data={restaurantData}
                 renderItem={this._renderRestaurantItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
+          </View>)
+    }
+    
+    if(touristData.length > 0 ){
+      touristView = 
+          (<View style={styles.section}>
+            <View style={styles.section_header}>
+              <Text style={styles.txtSectionTitle}>Find tourist in {this.state.placeTitle}</Text>
+            </View>
+            <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={touristData}
+                renderItem={this._renderTouristItem}
                 keyExtractor={(item, index) => index.toString()}
               />
           </View>)
@@ -141,6 +169,7 @@ class MapHotelScreen extends Component {
             <View style={styles.body_section}>
               {hotelView}       
               {restaurantView}       
+              {touristView}       
             </View>
           </ScrollView>
         </View>
@@ -151,7 +180,8 @@ class MapHotelScreen extends Component {
 const mapStateToProps = ({place}) => {
   return {
     placeHotelData : place.placeHotelData,
-    placeRestaurantData : place.placeRestaurantData
+    placeRestaurantData : place.placeRestaurantData,
+    placeTouristData : place.placeTouristData,
   }
 }
 

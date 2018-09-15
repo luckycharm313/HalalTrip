@@ -97,7 +97,7 @@ class HotelDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
-          <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}}>
+          <ImageBackground style={styles.view_photo} source={{uri: img_url?img_url:""}}>
             {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
                 <Text style={styles.txt_number}>1/5</Text>

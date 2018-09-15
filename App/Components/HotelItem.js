@@ -44,7 +44,7 @@ class HotelItem extends Component {
           </TouchableOpacity> 
         </ImageBackground>
         <Text style={styles.txt_rating}>{rating} Stars</Text>          
-        <Text style={styles.txt_title}>{title}</Text>          
+        <Text style={styles.txt_title} numberOfLines={1} ellipsizeMode ={'tail'}>{title}</Text>          
         <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>
           <Icon name="location-pin" style = {styles.icon_location} />
           &nbsp;&nbsp;{location}

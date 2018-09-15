@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
-import styles from './Styles/RestaurantListStyle'
+import styles from './Styles/TouristHListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
-import {Colors} from '../Themes/'
-import RestaurantAction from '../Redux/RestaurantRedux'
+import {Colors, Images} from '../Themes/'
+import TouristAction from '../Redux/TouristRedux'
 
-class RestaurantList extends Component {
-  
-  _onRestaurantDetail =()=>{
-    this.props.nav.navigate('RestaurantDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
-  }
-
-  _onSave=()=>{
-    const id = this.props.data.id
-    this.props.saveRestaurantTotal(this.props.data)
+class TouristHList extends Component {
+  _onTouristDetail =()=>{
+    this.props.nav.navigate('TouristDetailScreen', {touristId : this.props.data.id, placeName : this.props.data.placeName})
   }
 
   _getPlaceName = (arrName) =>{
@@ -44,18 +38,20 @@ class RestaurantList extends Component {
     
     // const review=''
     let icon = <Icon name="heart" style = {styles.icon_heart} />
-    this.props.savedIds.forEach(element => {
-      if(element == id){
-        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
-      }  
-    })
+    // this.props.savedIds.forEach(element => {
+    //   if(element == id){
+    //     icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
+    //   }  
+    // })
 
     return (
-      <TouchableOpacity style={styles.container} onPress = {this._onRestaurantDetail}>
+      <TouchableOpacity style={styles.container} onPress = {this._onTouristDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
-          source={{uri: img_url==null?"":img_url}} >
+          source={{uri: img_url==null?"":img_url}} 
+          // source={img_url?{uri: img_url}:Images.loading} 
+          >
           <TouchableOpacity onPress = {this._onSave}>
           { icon }            
           </TouchableOpacity>
@@ -84,17 +80,15 @@ class RestaurantList extends Component {
     )
   }
 }
-
-const mapStateToProps = ({restaurant}) => {
+const mapStateToProps = ({tourist}) => {
   return {
-    savedIds : restaurant.savedIds
+    savedIds : tourist.savedIds
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveRestaurantTotal : (data) =>dispatch(RestaurantAction.saveRestaurantTotal(data)),
+    
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantList)
+export default connect(mapStateToProps, mapDispatchToProps)(TouristHList)

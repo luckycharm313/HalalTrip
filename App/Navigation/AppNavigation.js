@@ -2,6 +2,8 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import TouristDetailScreen from '../Containers/TouristDetailScreen'
+import TouristScreen from '../Containers/TouristScreen'
 import ReloadScreen from '../Containers/ReloadScreen'
 import MapViewScreen from '../Containers/MapViewScreen'
 import ActivitySavedDetailScreen from '../Containers/ActivitySavedDetailScreen'
@@ -34,6 +36,8 @@ const HomeStack = StackNavigator({
   HomeScreen: { screen: HomeScreen },
   ActivityDetailScreen: { screen: ActivityDetailScreen },
   TrendDetailScreen: { screen: TrendDetailScreen },
+  TouristDetailScreen: { screen: TouristDetailScreen },
+  TouristScreen: { screen: TouristScreen },
 }, {
   headerMode: 'none',
   navigationOptions: {

@@ -89,7 +89,7 @@ class RestaurantScreen extends Component {
 
           <View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>Cuisines</Text>
+              <Text style={styles.txtSectionTitle}>Cities</Text>
               <TouchableOpacity style={styles.more_area} onPress = {this._onCuisines}>
                 <Text style={styles.txtLabelSm}>See all</Text>
                 <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -107,10 +107,10 @@ class RestaurantScreen extends Component {
           <View style={styles.section}>
             <View style={styles.section_header}>
               <Text style={styles.txtSectionTitle}>Trending This Week</Text>
-              <TouchableOpacity style={styles.more_area}>
+              {/* <TouchableOpacity style={styles.more_area}>
                 <Text style={styles.txtLabelSm}>See all</Text>
                 <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
             <FlatList
                 horizontal

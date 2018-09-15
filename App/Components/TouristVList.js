@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, ImageBackground} from 'react-native'
-import styles from './Styles/RestaurantAllListStyle'
+import styles from './Styles/TouristVListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import StarRating from 'react-native-star-rating';
 import {Colors} from '../Themes/'
-import RestaurantAction from '../Redux/RestaurantRedux'
 
-class RestaurantAllList extends Component {
-  _onRestaurantDetail =()=>{
-    this.props.nav.navigate('RestaurantDetailScreen', {restaurantId : this.props.data.id, placeName : this.props.data.placeName})
-  }
-  
-  _onSave=()=>{
-    const id = this.props.data.id
-    this.props.saveRestaurantTotal(this.props.data)
+class TouristVList extends Component {
+  _onTouristDetail =()=>{
+    this.props.nav.navigate('TouristDetailScreen', {touristId : this.props.data.id, placeName : this.props.data.placeName})
   }
 
   _getPlaceName = (arrName) =>{
@@ -40,17 +34,15 @@ class RestaurantAllList extends Component {
     const {id, title, placeName, location, rating, img_url} = this.props.data
     const _rating = Number.parseFloat(rating)
     let country = this._getPlaceName(placeName)
-    
-    // const review=''
-    let icon = <Icon name="heart" style = {styles.icon_heart} />
-    this.props.savedIds.forEach(element => {
-      if(element == id){
-        icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
-      }  
-    })
 
+    let icon = <Icon name="heart" style = {styles.icon_heart} />
+    // this.props.savedIds.forEach(element => {
+    //   if(element == id){
+    //     icon = <FontAwesome name="heart" style = {styles.icon_heart_save} />
+    //   }  
+    // })
     return (
-      <TouchableOpacity style={styles.container} onPress = {this._onRestaurantDetail}>
+      <TouchableOpacity style={styles.container} onPress = {this._onTouristDetail}>
         <ImageBackground 
           style={styles.img}
           imageStyle={{ borderRadius: 10}}
@@ -88,16 +80,16 @@ class RestaurantAllList extends Component {
   }
 }
 
-const mapStateToProps = ({restaurant}) => {
+const mapStateToProps = (state) => {
   return {
-    savedIds : restaurant.savedIds
+    
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveRestaurantTotal : (data) =>dispatch(RestaurantAction.saveRestaurantTotal(data)),
+    
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantAllList)
+export default connect(mapStateToProps, mapDispatchToProps)(TouristVList)

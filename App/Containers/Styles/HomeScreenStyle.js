@@ -13,9 +13,11 @@ export default StyleSheet.create({
   },
   header_txt_section : {
     flex : 1,
+    position: "relative",
     alignItems : 'center',
     justifyContent : 'center',  
     backgroundColor: 'rgba(0,0,0,0.5)',
+    marginBottom : 10,
   },
   header_txt_title : {
     color: Colors.font.default,
@@ -30,26 +32,33 @@ export default StyleSheet.create({
     fontFamily      : Fonts.type.base,
     textAlign : 'center',
   },
-  btnDiscover :{
+  search_view :{
+    position: "absolute",
     flexDirection : 'row',
     alignItems : 'center',
     justifyContent : 'space-between',
-    backgroundColor : Colors.primary,
-    borderRadius : 20,
-    paddingVertical : Metrics.smallMargin+2,
-    paddingLeft : Metrics.paddingHorizontal,
-    paddingRight : Metrics.baseMargin,
-    marginTop : Metrics.paddingHorizontal,
+    backgroundColor : Colors.font.default,
+    borderRadius : 5,
+    marginHorizontal : 25,
+    padding : 5,
+    bottom : -20,
+    borderWidth : 2,
+    borderColor: Colors.grey,
   },
-  txtDiscover :{
-    color: Colors.font.default,
-    fontSize        : Fonts.size.medium,
-    fontFamily      : Fonts.type.base,
-    marginRight : Metrics.baseMargin,
-  },
-  icon_arrow :{
-    color: Colors.font.default,
+  input_area :{
+    color: Colors.font.dark,
     fontSize        : Fonts.size.input,
+    fontFamily      : Fonts.type.base,
+    paddingVertical : Metrics.smallMargin+2,
+    paddingHorizontal : 10,
+    flex: 1,
+  },
+  btnSearch :{
+    padding: 5,
+  },
+  icon_search :{
+    color: Colors.font.dark,
+    fontSize        : Fonts.size.h4,
     fontFamily      : Fonts.type.base,
   },
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, ImageBackground, TouchableOpacity, View, FlatList} from 'react-native'
+import { ScrollView, Text, TextInput, ImageBackground, TouchableOpacity, View, FlatList} from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -23,6 +23,7 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchKey: null,
       activityData : [
         {
           title : 'Deepest Diving Pool in Indonesia',
@@ -56,9 +57,9 @@ class HomeScreen extends Component {
     };
   }
 
-  _discoverDestinations = () => (
-    this.props.navigation.navigate('PlaceScreen')
-  )
+  // _discoverDestinations = () => (
+  //   this.props.navigation.navigate('PlaceScreen')
+  // )
   
   _seeAllPlaces = () => (
     this.props.navigation.navigate('PlaceScreen')
@@ -136,7 +137,7 @@ class HomeScreen extends Component {
       hotelView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Popular Hotels</Text>
+            <Text style={styles.txtSectionTitle}>Top Destinations</Text>
             <TouchableOpacity style={styles.more_area} onPress={this._seeAllHotels}>
               <Text style={styles.txtLabelSm}>See all</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -180,7 +181,7 @@ class HomeScreen extends Component {
       placeView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Top Destinations</Text>
+            <Text style={styles.txtSectionTitle}>Cities</Text>
             <TouchableOpacity style={styles.more_area} onPress={this._seeAllPlaces}>
               <Text style={styles.txtLabelSm}>See all</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -226,16 +227,35 @@ class HomeScreen extends Component {
               <View style={styles.header_txt_section}>
                 <Text style={styles.header_txt_title}>Explore the world</Text>
                 <Text style={styles.header_txt_description}>Discover and book everything that make your joyful</Text>
-                <TouchableOpacity style={styles.btnDiscover} onPress={this._discoverDestinations}>
+                {/* <TouchableOpacity style={styles.btnDiscover} onPress={this._discoverDestinations}>
                   <Text style={styles.txtDiscover}>Discover destinations</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow} />
+                </TouchableOpacity> */}                
+              </View>
+              <View style={styles.search_view}>
+                <TextInput
+                    ref = {'search_text'}
+                    name = {'Search' }
+                    type = {'TextInput'}
+                    underlineColorAndroid = {Colors.transparent}
+                    autoCapitalize = {'none'}
+                    autoCorrect = {false}
+                    placeholder = {'Search'}
+                    placeholderTextColor = {Colors.textHintColor}
+                    style = {styles.input_area}
+                    returnKeyType = 'go'
+                    selectionColor = {Colors.textHintColor}
+                    onChangeText = {(searchKey) => { this.setState({searchKey})}}
+                    maxLength = {100}/>
+                <TouchableOpacity style={styles.btnSearch} onPress={this._onSearch}>
+                  <Icon name="search" style = {styles.icon_search} />
                 </TouchableOpacity>
               </View>
             </ImageBackground>
             {categoryView}
+            {placeView}
             {hotelView}
             {activityView}
-            {placeView}
             {trendView}
 {/*             
             <View style={styles.deactive_section}>

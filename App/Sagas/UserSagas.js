@@ -162,7 +162,7 @@ export function * signUpWithGoogle (api, action) {
 
   } catch (error) {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert(error)
+    alert("Google Sign in Failure")
     yield put(UserActions.userFailure())
     return
   }

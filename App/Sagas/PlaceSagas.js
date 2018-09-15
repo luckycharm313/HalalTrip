@@ -24,7 +24,23 @@ export function * getHotelByPlace (api, action) {
       if(res.ok){
         const { data, code, message } = res.data
         if(code == 'success'){
-          yield put(PlaceActions.placeCategorySuccess(response.data.data, data))
+          const resTourist = yield call(api._getTouristByPlace, param, token)
+          console.log("place tourist response => ", resTourist)
+          if(resTourist.ok){
+            const { data, code, message } = resTourist.data
+            
+            if(code == 'success'){
+                yield put(PlaceActions.placeCategorySuccess(response.data.data, res.data.data, data))
+            }
+            else{
+              alert(message)
+              yield put(PlaceActions.placeFailure(message))
+              return   
+            }
+          }
+          else{
+            yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+          }          
         }
         else{
           alert(message)

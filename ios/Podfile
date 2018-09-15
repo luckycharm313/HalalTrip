@@ -41,6 +41,8 @@ target 'HalalTripThailand' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
 end
 
 target 'HalalTripThailand-tvOS' do

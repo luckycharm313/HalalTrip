@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   placeRequest: null,
   placeSuccess: ['payload'],
-  placeCategorySuccess: ['hotel', 'restaurant'],
+  placeCategorySuccess: ['hotel', 'restaurant', 'tourist'],
   placeFailure: ['errorMsg'],
   getHotelByPlace : ['placeId'],
   getRestaurantPlace : ['placeId'],
@@ -25,6 +25,7 @@ export const INITIAL_STATE = Immutable({
   errorMsg : null,
   placeHotelData : null,
   placeRestaurantData : null,
+  placeTouristData : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -46,8 +47,8 @@ export const success = (state, action) => {
 }
 
 export const categorySuccess = (state, action) => {
-  const { hotel, restaurant } = action
-  return state.merge({ fetching: false, error: null, placeHotelData :hotel, placeRestaurantData :restaurant, errorMsg: null })
+  const { hotel, restaurant, tourist } = action
+  return state.merge({ fetching: false, error: null, placeHotelData :hotel, placeRestaurantData :restaurant, placeTouristData:tourist, errorMsg: null })
 }
 
 export const placeRestaurantSuccess = (state, action) => {
