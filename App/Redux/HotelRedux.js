@@ -16,6 +16,8 @@ const { Types, Creators } = createActions({
   loadHotelSuccess : ['payload'],
   getSavedHotelDetail : ['hotelId'],
   loadDetailSuccess : ['payload'],
+  setRate :['id', 'rate'],
+  rateSuccess :['id', 'rate'],
 })
 
 export const HotelTypes = Types
@@ -46,6 +48,9 @@ export const HotelSelectors = {
 // request the data from an api
 export const request = (state, action) =>
   state.merge({ fetching: true, error: null, errorMsg: null, hotelDetailData : null })
+
+export const _request = (state, { data }) =>
+  state.merge({ fetching: true, data})
 
 // successful api lookup
 export const success = (state, action) => {
@@ -95,6 +100,37 @@ export const loadDetailSuccess = (state, action) => {
   return state.merge({ fetching: false, error: null, hotelSavedDetailData: payload, errorMsg: null, CF : cf })
 }
 
+export const rateSuccess = (state, action) => {
+  const { rate, id } = action
+  
+  let temp={}
+  Object.keys(state.hotelDetailData).map(function(key, index) {
+    if(key== 'rating'){
+      temp[key] = rate
+    }
+    else{
+      temp[key] = state.hotelDetailData[key]
+    }
+  });
+  
+  let _temp = []
+  Array.prototype.forEach.call(state.hotelTotalData, element => {
+    let _t ={}
+    Object.keys(element).map(function(key, index) {
+      if(key== 'rating' && element['id'] == id){
+        _t[key] = rate
+      }
+      else{
+        _t[key] = element[key]
+      }
+    });
+    _temp.push(_t)
+  });
+  
+  let cf = state.CF * (-1)
+  return state.merge({ fetching: false, error: null, hotelDetailData: temp,hotelTotalData: _temp, errorMsg: null, CF : cf })
+}
+
 // Something went wrong somewhere.
 export const failure = (state, action) => {
   const { errorMsg } = action
@@ -116,4 +152,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOAD_HOTEL_SUCCESS]: loadTotalSuccess,
   [Types.GET_SAVED_HOTEL_DETAIL]: request,
   [Types.LOAD_DETAIL_SUCCESS]: loadDetailSuccess,
+  [Types.SET_RATE]: _request,
+  [Types.RATE_SUCCESS]: rateSuccess,
 })

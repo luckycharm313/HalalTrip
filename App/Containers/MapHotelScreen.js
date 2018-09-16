@@ -167,9 +167,9 @@ class MapHotelScreen extends Component {
               </MapView>
             </View>
             <View style={styles.body_section}>
-              {hotelView}       
-              {restaurantView}       
               {touristView}       
+              {restaurantView}       
+              {hotelView}       
             </View>
           </ScrollView>
         </View>

@@ -10,12 +10,16 @@ import styles from './Styles/HotelScreenStyle'
 import { Images, Colors } from '../Themes'
 import HotelList from '../Components/HotelList'
 import HotelAction from '../Redux/HotelRedux'
+import InfiniteScroll from 'react-native-infinite-scroll'
 
 class HotelScreen extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      hotelTotalData :[],
+      tempHotelData:[],
+      pageHotel: 0,
       filterData: ['Jun 6-9', '2 guests'],
     }
   }
@@ -32,6 +36,39 @@ class HotelScreen extends Component {
 
   componentWillMount(){
     this.props.loadHotelData()
+  }
+
+  componentWillReceiveProps(nextProps){
+    const hotelTotalData = nextProps.hotelTotalData? nextProps.hotelTotalData:[]    
+    
+    if(hotelTotalData.length>0){
+      this.setState({hotelTotalData})
+
+      let _temp=[]
+      hotelTotalData.forEach(function (value, index) {
+        if(index < 6){
+          _temp.push(value)
+        }
+      });
+      this.setState({tempHotelData:_temp})
+    }    
+  }
+
+  loadMoreHotels =()=>{
+    var _rd = this.state.hotelTotalData
+    var _pg = this.state.pageHotel
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*6){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempHotelData:_temp})
+      this.setState({pageHotel: _pg})
+    }
   }
 
   render () {
@@ -77,17 +114,22 @@ class HotelScreen extends Component {
         <View style={styles.hotel_list_section}>
           <Text style={styles.header_txt_title_md}>All Hotels</Text>
           <View style={styles.hotel_list_view}>
-            <FlatList
-              data={hotelTotalData}
-              renderItem={this._renderHotelItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
+              <FlatList
+                data={this.state.tempHotelData}
+                renderItem={this._renderHotelItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
           </View>
         </View>
       )
     }
     return (
-      <ScrollView style={styles.mainContainer}>
+      <InfiniteScroll 
+        horizontal={false}
+        onLoadMoreAsync={this.loadMoreHotels}
+        style={styles.mainContainer}
+        distanceFromEnd={10}
+        >
         <View style={styles.container}>
           <View style={styles.header_section}>
             <View style={styles.label_section}>
@@ -133,7 +175,7 @@ class HotelScreen extends Component {
           {featureHotelView}
           {allHotel}
         </View>
-      </ScrollView>
+      </InfiniteScroll>
     )
   }
 }

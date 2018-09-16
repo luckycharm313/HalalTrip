@@ -13,6 +13,9 @@ import styles from './Styles/HotelDetailScreenStyle'
 import { Images, Colors, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
+import Modal from "react-native-modal";
+import InfiniteScroll from 'react-native-infinite-scroll'
+
 
 class HotelDetailScreen extends Component {
   static navigationOptions = {
@@ -26,6 +29,11 @@ class HotelDetailScreen extends Component {
 
     this.state = {
       hotelId : params.hotelId,
+      modalVisible: false,
+      hotelTotalData :[],
+      tempHotelData:[],
+      pageHotel: 0,
+      starCount : 0,
       filterData : ['Breakfast included', '2 Beds', 'Bookable', 'Free Cancellation'],
       filterImage : [Images.image1, Images.image2, Images.image3, Images.image4, Images.image1, Images.image3, ],
     }
@@ -66,6 +74,63 @@ class HotelDetailScreen extends Component {
       }
     }).catch(err => console.error('An error occurred', err));
   }
+  
+  _onGiveRating =()=>{
+    this.setState({modalVisible: true})
+  }
+
+  onStarRatingPress = (rating)=> {
+    this.setState({
+      starCount: rating
+    });
+  }
+
+  _onModalCancel =()=>{
+    this.setState({modalVisible: false})
+  }
+  _onModalOK =()=>{
+    this.setState({modalVisible: false})
+    let id = this.props.hotelDetailData.id
+    let rate = this.state.starCount
+    this.props.setRate(id, rate)
+  }
+
+  componentWillReceiveProps(nextProps){
+    const hotelDetailData = nextProps.hotelDetailData? nextProps.hotelDetailData:[]
+    const hotelTotalData = nextProps.hotelTotalData? nextProps.hotelTotalData:[]
+    const {rating} = hotelDetailData
+    const _rating = Number.parseFloat(rating)
+    this.setState({starCount : _rating})
+    
+    if(hotelTotalData.length>0){
+      this.setState({hotelTotalData})
+
+      let _temp=[]
+      hotelTotalData.forEach(function (value, index) {
+        if(index < 2){
+          _temp.push(value)
+        }
+      });
+      this.setState({tempHotelData:_temp})
+    }    
+  }
+
+  loadMoreSimilarHotels =()=>{
+    var _rd = this.state.hotelTotalData
+    var _pg = this.state.pageHotel
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*2){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempHotelData:_temp})
+      this.setState({pageHotel: _pg})
+    }
+  }
 
   render () {
     const __data = this.props.hotelDetailData ? this.props.hotelDetailData : []
@@ -78,17 +143,37 @@ class HotelDetailScreen extends Component {
       similarHotelView = (
         <View style={styles.reviews_section}>
           <Text style={[styles.txt_description_label,{marginBottom : 15}]}>Similar Hotels Nearby</Text>
-          <FlatList
+          <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreSimilarHotels}
+              distanceFromEnd={10}>
+              <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.props.hotelTotalData}
+                data={this.state.tempHotelData}
                 renderItem={this._renderHotelItem}
                 keyExtractor={(item, index) => index.toString()}
               />
+          </InfiniteScroll>          
         </View>
       )
     }
 
+    let amentityView = null
+    if(_amenity.length > 0 ){
+      amentityView = (
+        <View style={styles.description_view}>
+          <Text style={styles.txt_description_label}>Amenities</Text>
+          <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
+            {
+              _amenity.map(element => (
+                <Text style={styles.txt_amenity} key={element}>{element}</Text>
+              ))
+            }
+          </ScrollView>    
+        </View>          
+      )
+    }
     const _renderers = {
       img: (htmlAttribs, children, passProps) => {
         return (
@@ -105,6 +190,40 @@ class HotelDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            isVisible={this.state.modalVisible}
+            onBackdropPress={() => this.setState({ modalVisible: false })}
+            style={styles.modal}>
+            <View style={styles.modalView}>
+              <View style={styles.modal_section}>
+                <Text style={styles.modal_title_text}>Please rate to the {title}</Text>
+              </View>
+              <View style={styles.modal_section}>
+                <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={this.state.starCount}
+                    fullStarColor={Colors.primary}
+                    emptyStar={'ios-star-outline'}
+                    fullStar={'ios-star'}
+                    halfStar={'ios-star-half'}
+                    iconSet={'Ionicons'}
+                    starSize = {25}
+                    selectedStar={(rating) => this.onStarRatingPress(rating)}
+                  />
+              </View>
+              <View style={styles.modal_section_btn}>
+                <TouchableOpacity style={styles.modal_btn_cancel} onPress={this._onModalCancel}>
+                  <Text style={styles.modal_btn_txt}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.modal_btn_ok} onPress={this._onModalOK}>
+                  <Text style={styles.modal_btn_txt}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
           <ImageBackground style={styles.view_photo} source={{uri: img_url?img_url:""}}>
             {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
@@ -118,7 +237,7 @@ class HotelDetailScreen extends Component {
           </ImageBackground>
 
           <View style={styles.title_location_section}>
-            <View style={styles.hotel_review_view}>
+            <TouchableOpacity style={styles.hotel_review_view} onPress={this._onGiveRating}>
               <Text style={styles.txt_review}>{rating} Stars Hotel</Text>
               <StarRating
                 disabled={false}
@@ -130,8 +249,9 @@ class HotelDetailScreen extends Component {
                 halfStar={'ios-star-half'}
                 iconSet={'Ionicons'}
                 starSize = {25}
-              />
-            </View>
+                selectedStar={() => this._onGiveRating()}
+              />           
+            </TouchableOpacity>
             <View style={styles.hotel_title_view}>
               <Text style={styles.txt_hotel_title}>{title}</Text>
             </View>
@@ -176,16 +296,7 @@ class HotelDetailScreen extends Component {
                 onLinkPress={(evt, href) => this.externalLink(href)}
                 />
             </View>
-            <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Amenities</Text>
-              <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
-                {
-                  _amenity.map(element => (
-                    <Text style={styles.txt_amenity} key={element}>{element}</Text>
-                  ))
-                }
-              </ScrollView>
-            </View>
+            {amentityView}
           </View>
 
           <View style={styles.filter_section}>
@@ -303,6 +414,7 @@ const mapStateToProps = ({hotel}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getHotelDetail: (hotelId) => dispatch(HotelAction.getHotelDetail(hotelId)),
+    setRate : (id, rate) => dispatch(HotelAction.setRate(id, rate)),
   }
 }
 

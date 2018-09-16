@@ -74,7 +74,7 @@ export default StyleSheet.create({
   txt_hotel_title : {
     color: Colors.font.dark,
     fontSize        : Fonts.size.h4,
-    fontFamily      : Fonts.type.base,
+    fontFamily      : Fonts.type.bold,
   },
   hotel_location_view : {
     flexDirection : 'row',
@@ -191,7 +191,7 @@ export default StyleSheet.create({
   txt_description_label : {
     color: Colors.font.dark,
     fontSize        : Fonts.size.input,
-    fontFamily      : Fonts.type.base,
+    fontFamily      : Fonts.type.bold,
   },
   txt_description_detail : {
     marginTop : Metrics.baseMargin,
@@ -383,5 +383,56 @@ export default StyleSheet.create({
     color: Colors.font.textHintColor,
     fontSize        : Fonts.size.input,
     fontFamily      : Fonts.type.base,
+  },
+  modal :{
+    flex: 1,
+    alignItems:"center",
+    justifyContent :'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    margin : 0,
+  },
+  modalView :{
+    height : "auto",
+    width: 250,
+    backgroundColor: Colors.font.default,
+    borderRadius : 5,
+    paddingHorizontal : 15,
+    paddingVertical : 20,
+  },
+  modal_section:{
+    paddingVertical : 10,
+  },
+  modal_title_text : {
+    color: Colors.font.dark,
+    fontSize        : Fonts.size.regular,
+    fontFamily      : Fonts.type.base,
+    textAlign : 'center'
+  },
+  modal_section_btn:{
+    flexDirection: "row",
+    alignItems : 'center',
+    justifyContent : 'space-between',
+    paddingVertical : 10,
+    // paddingHorizontal : 10,
+  },
+  modal_btn_cancel:{
+    width: 100,
+    paddingVertical : 5,
+    paddingHorizontal : 10,
+    backgroundColor : Colors.grey,
+    borderRadius : 5,
+  },
+  modal_btn_txt:{
+    color: Colors.font.default,
+    fontSize        : Fonts.size.regular,
+    fontFamily      : Fonts.type.base,
+    textAlign : 'center',
+  },
+  modal_btn_ok:{
+    width: 100,
+    paddingVertical : 5,
+    paddingHorizontal : 10,
+    backgroundColor : Colors.primary,
+    borderRadius : 5,
   },
 })

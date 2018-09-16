@@ -68,8 +68,7 @@ const HotelStack = StackNavigator({
 const RestaurantStack = StackNavigator({
   RestaurantScreen: { screen: RestaurantScreen },
   CuisinesScreen: { screen: CuisinesScreen },
-  RestaurantDetailScreen: { screen: RestaurantDetailScreen },
-  MapViewScreen: { screen: MapViewScreen },
+  RestaurantDetailScreen: { screen: RestaurantDetailScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -113,6 +112,7 @@ const mainNavigator = TabNavigator({
 
 const PrimaryNav = StackNavigator({  
   ReloadScreen: { screen: ReloadScreen },
+  MapViewScreen: { screen: MapViewScreen },
   RestaurantPlaceScreen: { screen: RestaurantPlaceScreen },
   ForgotPasswordScreen: { screen: ForgotPasswordScreen },
   SignInScreen: { screen: SignInScreen },

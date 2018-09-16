@@ -61,6 +61,7 @@ export default function * root () {
     takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
     takeLatest(HotelTypes.SAVE_HOTEL_TOTAL, saveHotelTotal, main_api),
     takeLatest(HotelTypes.GET_SAVED_HOTEL_DETAIL, getSavedHotelDetail, main_api),
+    takeLatest(HotelTypes.SET_RATE, setRate, main_api),
 
     // restaurant saga :
     takeLatest(RestaurantTypes.LOAD_RESTAURANT_DATA, loadRestaurantData, main_api),

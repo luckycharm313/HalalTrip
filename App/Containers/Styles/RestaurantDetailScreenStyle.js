@@ -150,7 +150,7 @@ export default StyleSheet.create({
   txt_description_label : {
     color: Colors.font.dark,
     fontSize        : Fonts.size.h6,
-    fontFamily      : Fonts.type.base,
+    fontFamily      : Fonts.type.bold,
     marginTop : Metrics.baseMargin
   },
   txt_description_detail : {
@@ -190,7 +190,7 @@ export default StyleSheet.create({
   txtSectionTitle : {
     color: Colors.font.dark,
     fontSize        : Fonts.size.h6,
-    fontFamily      : Fonts.type.base,
+    fontFamily      : Fonts.type.bold,
     marginBottom : Metrics.baseMargin,
   },
 
