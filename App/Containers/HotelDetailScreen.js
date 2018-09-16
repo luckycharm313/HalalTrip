@@ -35,6 +35,14 @@ class HotelDetailScreen extends Component {
     this.props.getHotelDetail(this.state.hotelId)
   }
 
+  _onMapView =()=>{
+    this.props.navigation.navigate('MapViewScreen',{
+      street_lat : this.props.hotelDetailData.street_lat, 
+      street_lng : this.props.hotelDetailData.street_lng,
+      title : this.props.hotelDetailData.title
+    });
+  }
+
   _moreComponentRender = (element) =>{
     return(
       <TouchableOpacity style={styles.view_more_component}>
@@ -121,7 +129,7 @@ class HotelDetailScreen extends Component {
                 fullStar={'ios-star'}
                 halfStar={'ios-star-half'}
                 iconSet={'Ionicons'}
-                starSize = {15}
+                starSize = {25}
               />
             </View>
             <View style={styles.hotel_title_view}>
@@ -131,19 +139,22 @@ class HotelDetailScreen extends Component {
               <View style={styles.hotel_location_section}>
                 <Text style={styles.txt_location_label}>Location</Text>
                 <Text style={styles.txt_location_detail}>{location}</Text>
-                <TouchableOpacity style={styles.btn_nearby}>
+                {/* <TouchableOpacity style={styles.btn_nearby}>
                   <Text style={styles.txt_nearby}>Explore Nearby</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
               <View style={styles.hotel_location_map}>
-                <ImageBackground style={styles.img_map} source={Images.map_default} imageStyle = {{borderRadius : 40 }}>
+                {/* <ImageBackground style={styles.img_map} source={Images.map_default} imageStyle = {{borderRadius : 40 }}>
                   <Icon name="location-on" style = {styles.icon_map} />
-                </ImageBackground>
+                </ImageBackground> */}
+                <TouchableOpacity style={styles.btn_action} onPress={this._onMapView}>
+                  <Icon name="location-on" style = {styles.icon_action} />
+                </TouchableOpacity>
               </View>
             </View>
           </View>
 
-          <View style={styles.rating_section}>
+          {/* <View style={styles.rating_section}>
             <View style={styles.rating_view}>
               <Text style={styles.txt_rating}>8.8</Text>
               <View style={styles.comment_section}>
@@ -154,7 +165,7 @@ class HotelDetailScreen extends Component {
             <TouchableOpacity>
               <Text style={styles.txt_review_rating}>See reviews</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
@@ -187,13 +198,13 @@ class HotelDetailScreen extends Component {
                   ))
                 }
               </ScrollView> */}
-              <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
+              {/* <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                 {
                   _detailImages.map(element => (
                     <Image style={styles.img_filter} source={{uri: element==null?"":element}} key={element}/>
                   ))
                 }
-              </ScrollView>
+              </ScrollView> */}
               {/* <View style={styles.description_filter_view}>
                 <Text style={styles.txt_filter}>
                   <Image style={styles.img_shape} source={Images.icon_shape}/> 
@@ -260,7 +271,7 @@ class HotelDetailScreen extends Component {
             </View>
           </View> */}
 
-          <View style={styles.reviews_section}>
+          {/* <View style={styles.reviews_section}>
             <Text style={styles.txt_description_label}>More Options</Text>
             <TouchableOpacity style={styles.option_view}>
               <Text style={styles.txt_more_option}>Popular Attractions Nearby</Text>
@@ -274,7 +285,7 @@ class HotelDetailScreen extends Component {
               <Text style={styles.txt_more_option}>Important Information</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
-          </View>
+          </View> */}
           {similarHotelView}
         </ScrollView>
       </View>

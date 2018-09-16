@@ -8,7 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons'
 import StarRating from 'react-native-star-rating';
 // import Share, {ShareSheet, Button} from 'react-native-share';
-
+import InfiniteScroll from 'react-native-infinite-scroll'
 import HTML from 'react-native-render-html'
 
 // Styles
@@ -35,6 +35,9 @@ class RestaurantDetailScreen extends Component {
       roomOrderData : ["7:30 AM", "8:00 AM", "8:30 AM"],
       modalVisible: false,
       starCount : 0,
+      subRestaurantData: [],
+      tempRestaurantData: [],
+      pageRestaurant: 0,
     }
   }
 
@@ -120,11 +123,41 @@ class RestaurantDetailScreen extends Component {
 
   componentWillReceiveProps(nextProps){
     const restaurantDetailData = nextProps.restaurantDetailData? nextProps.restaurantDetailData:[]
+    const subRestaurantData = nextProps.subRestaurantData? nextProps.subRestaurantData:[]
     const {rating} = restaurantDetailData
     const _rating = Number.parseFloat(rating)
     this.setState({starCount : _rating})
+    
+    if(subRestaurantData.length>0){
+      this.setState({subRestaurantData})
+
+      let _temp=[]
+      subRestaurantData.forEach(function (value, index) {
+        if(index < 3){
+          _temp.push(value)
+        }
+      });
+      this.setState({tempRestaurantData:_temp})
+    }    
   }
   
+  loadMoreSimilarRestaurants =()=>{
+    var _rd = this.state.subRestaurantData
+    var _pg = this.state.pageRestaurant
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*3){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempRestaurantData:_temp})
+      this.setState({pageRestaurant: _pg})
+    }
+  }
+
   render () {
     const restaurantDetailData = this.props.restaurantDetailData? this.props.restaurantDetailData:[]
     const subRestaurantData = this.props.subRestaurantData? this.props.subRestaurantData:[]
@@ -137,13 +170,18 @@ class RestaurantDetailScreen extends Component {
       similarRestaurantView = (
         <View style={styles.section}>
           <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
-          <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={subRestaurantData}
-              renderItem={this._renderRestaurantData}
-              keyExtractor={(item, index) => index.toString()}
-            />
+          <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreSimilarRestaurants}
+              distanceFromEnd={10}>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={this.state.tempRestaurantData}
+                renderItem={this._renderRestaurantData}
+                keyExtractor={(item, index) => index.toString()}
+              />
+          </InfiniteScroll>          
         </View>
       )
     }

@@ -8235,6 +8235,10 @@ react-native-immediate-phone-call@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-immediate-phone-call/-/react-native-immediate-phone-call-1.0.0.tgz#ad1f5e2bd686a1a495ed68e8a4c96205bdfa2247"
 
+react-native-infinite-scroll@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-infinite-scroll/-/react-native-infinite-scroll-1.0.6.tgz#d29ca2bee421469e209bcba05a6a21a0458e4a49"
+
 react-native-injectable-component@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/react-native-injectable-component/-/react-native-injectable-component-0.1.2.tgz#44ee28262c79789254ce5708b3477c134b2610c0"

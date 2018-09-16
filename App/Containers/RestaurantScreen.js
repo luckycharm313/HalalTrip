@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { ScrollView, Text, KeyboardAvoidingView, Image, View, TouchableOpacity, FlatList, TextInput } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import InfiniteScroll from 'react-native-infinite-scroll'
 // Styles
 import styles from './Styles/RestaurantScreenStyle'
 import { Images, Colors } from '../Themes'
@@ -17,7 +17,12 @@ class RestaurantScreen extends Component {
     super(props);
     this.state = {
       filterData: ['Dates', 'Guests'],
-    }
+      restaurantData: [],
+      tempRestaurantData: [],
+      pageRestaurant: 0,
+      tempWeekRestaurantData: [],
+      pageWeekRestaurant: 0,
+    }    
   }
   _renderCuisinesItem = ({item})=> {
     return( <CuisinesItem data = {item} nav ={this.props.navigation} /> ) 
@@ -39,12 +44,71 @@ class RestaurantScreen extends Component {
     this.props.loadRestaurantData()
   }
 
+  componentWillReceiveProps(nextProps){
+    const restaurantData = nextProps.restaurantData ? nextProps.restaurantData : []    
+
+    if(restaurantData.length>0){
+      this.setState({restaurantData})
+      let _temp=[]
+      let _weektemp=[]
+      restaurantData.forEach(function (value, index) {
+        if(index < 3){
+          _weektemp.push(value)
+        }
+
+        if(index < 5){
+          _temp.push(value)
+        }
+      });
+      this.setState({tempRestaurantData:_temp})
+      this.setState({tempWeekRestaurantData:_weektemp})
+    }
+  }
+  
+  loadMoreRestaurants =()=>{
+    var _rd = this.state.restaurantData
+    var _pg = this.state.pageRestaurant
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*5){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempRestaurantData:_temp})
+      this.setState({pageRestaurant: _pg})
+    }
+  }
+  
+  loadMoreWeekRestaurants =()=>{
+    var _rd = this.state.restaurantData
+    var _pg = this.state.pageWeekRestaurant
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*3){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempWeekRestaurantData:_temp})
+      this.setState({pageWeekRestaurant: _pg})
+    }
+  }
+
   render () {
     const cuisineData = this.props.cuisineData ? this.props.cuisineData : []
     const restaurantData = this.props.restaurantData ? this.props.restaurantData : []
 
     return (
-      <ScrollView style={styles.mainContainer}>
+      <InfiniteScroll
+        horizontal={false}
+        onLoadMoreAsync={this.loadMoreRestaurants}
+        distanceFromEnd={10}
+        style={styles.mainContainer}>
         <View style={styles.container}>
           <View style={styles.header_section}>
             <View style={styles.label_section}>
@@ -101,6 +165,7 @@ class RestaurantScreen extends Component {
                 data={cuisineData}
                 renderItem={this._renderCuisinesItem}
                 keyExtractor={(item, index) => index.toString()}
+                
               />
           </View>
 
@@ -108,31 +173,40 @@ class RestaurantScreen extends Component {
             <View style={styles.section_header}>
               <Text style={styles.txtSectionTitle}>Trending This Week</Text>
               {/* <TouchableOpacity style={styles.more_area}>
-                <Text style={styles.txtLabelSm}>See all</Text>
+                <Text j
+                
+                style={styles.txtLabelSm}>See all</Text>
                 <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
               </TouchableOpacity> */}
             </View>
-            <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={restaurantData}
-                renderItem={this._renderTrendingData}
-                keyExtractor={(item, index) => index.toString()}
-              />
+            <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreWeekRestaurants}
+              distanceFromEnd={10}>
+                <FlatList
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  data={this.state.tempWeekRestaurantData}
+                  renderItem={this._renderTrendingData}
+                  keyExtractor={(item, index) => index.toString()}                  
+                />
+            </InfiniteScroll>
+            
           </View>
 
           <View style={styles.section}>
             <View style={styles.section_header}>
               <Text style={styles.txtSectionTitle}>All Restaurants</Text>
             </View>
-            <FlatList
-              data={restaurantData}
-              renderItem={this._renderAllRestaurants}
-              keyExtractor={(item, index) => index.toString()}
-            />
+              <FlatList
+                data={this.state.tempRestaurantData}
+                renderItem={this._renderAllRestaurants}
+                keyExtractor={(item, index) => index.toString()}
+              />
           </View>
         </View>
-      </ScrollView>
+      </InfiniteScroll>
+      
     )
   }
 }

@@ -39,6 +39,7 @@
     "react-native-google-maps-directions": "^2.0.0",
     "react-native-google-signin": "^1.0.0-rc3",
     "react-native-immediate-phone-call": "^1.0.0",
+    "react-native-infinite-scroll": "^1.0.6",
     "react-native-maps": "^0.21.0",
     "react-native-masonry": "^0.5.0-alpha.1",
     "react-native-modal": "^6.5.0",
