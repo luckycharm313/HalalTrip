@@ -285,7 +285,7 @@ export function * getSavedDetail (api, action) {
   }  
 }
 
-export function * setRate (api, action) {
+export function * setRestaurantRate (api, action) {
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const {id, rate} = action
 

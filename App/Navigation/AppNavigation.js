@@ -2,6 +2,7 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import SearchResultScreen from '../Containers/SearchResultScreen'
 import TouristDetailScreen from '../Containers/TouristDetailScreen'
 import TouristScreen from '../Containers/TouristScreen'
 import ReloadScreen from '../Containers/ReloadScreen'
@@ -33,11 +34,7 @@ import styles from './Styles/NavigationStyles'
 import { Colors, Metrics, Fonts } from '../Themes/'
 
 const HomeStack = StackNavigator({
-  HomeScreen: { screen: HomeScreen },
-  ActivityDetailScreen: { screen: ActivityDetailScreen },
-  TrendDetailScreen: { screen: TrendDetailScreen },
-  TouristDetailScreen: { screen: TouristDetailScreen },
-  TouristScreen: { screen: TouristScreen },
+  HomeScreen: { screen: HomeScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -46,8 +43,7 @@ const HomeStack = StackNavigator({
 });
 
 const PlaceStack = StackNavigator({
-  PlaceScreen: { screen: PlaceScreen },
-  MapHotelScreen: { screen: MapHotelScreen },
+  PlaceScreen: { screen: PlaceScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -56,8 +52,7 @@ const PlaceStack = StackNavigator({
 });
 
 const HotelStack = StackNavigator({
-  HotelScreen: { screen: HotelScreen },
-  HotelDetailScreen: { screen: HotelDetailScreen },
+  HotelScreen: { screen: HotelScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -66,9 +61,7 @@ const HotelStack = StackNavigator({
 });
 
 const RestaurantStack = StackNavigator({
-  RestaurantScreen: { screen: RestaurantScreen },
-  CuisinesScreen: { screen: CuisinesScreen },
-  RestaurantDetailScreen: { screen: RestaurantDetailScreen },  
+  RestaurantScreen: { screen: RestaurantScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -77,12 +70,7 @@ const RestaurantStack = StackNavigator({
 });
 
 const AccountStack = StackNavigator({
-  AccountScreen: { screen: AccountScreen },
-  NotificationScreen: { screen: NotificationScreen },
-  SavedScreen: { screen: SavedScreen },
-  RestaurantSavedDetailScreen: { screen: RestaurantSavedDetailScreen },
-  HotelSavedDetailScreen: { screen: HotelSavedDetailScreen },
-  ActivitySavedDetailScreen: { screen: ActivitySavedDetailScreen },
+  AccountScreen: { screen: AccountScreen },  
 }, {
   headerMode: 'none',
   navigationOptions: {
@@ -111,6 +99,25 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({  
+  ActivityDetailScreen: { screen: ActivityDetailScreen },
+  TrendDetailScreen: { screen: TrendDetailScreen },
+  TouristDetailScreen: { screen: TouristDetailScreen },
+  TouristScreen: { screen: TouristScreen },
+  SearchResultScreen: { screen: SearchResultScreen },
+  
+  MapHotelScreen: { screen: MapHotelScreen },
+
+  HotelDetailScreen: { screen: HotelDetailScreen },
+
+  CuisinesScreen: { screen: CuisinesScreen },
+  RestaurantDetailScreen: { screen: RestaurantDetailScreen },  
+
+  NotificationScreen: { screen: NotificationScreen },
+  SavedScreen: { screen: SavedScreen },
+  RestaurantSavedDetailScreen: { screen: RestaurantSavedDetailScreen },
+  HotelSavedDetailScreen: { screen: HotelSavedDetailScreen },
+  ActivitySavedDetailScreen: { screen: ActivitySavedDetailScreen },
+
   ReloadScreen: { screen: ReloadScreen },
   MapViewScreen: { screen: MapViewScreen },
   RestaurantPlaceScreen: { screen: RestaurantPlaceScreen },

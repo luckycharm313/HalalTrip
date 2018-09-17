@@ -127,3 +127,37 @@ export function * getTouristDetail (api, action) {
   }
 
 }
+
+export function * setTouristRate (api, action) {
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const {id, rate} = action
+
+  let param = new FormData();
+  param.append("id", id)
+  param.append("rate", rate)
+  
+  const response = yield call(api._setRate, param, token)
+ 
+  if (response.ok) {
+    const { data, code, message } = response.data    
+    if(code == 'success'){
+
+      if(data){
+        yield put(TouristActions.rateTouristSuccess(id, rate))
+      }
+      else{
+        alert("Database Error")
+      }
+    }
+    else{
+      alert(message)
+      yield put(TouristActions.touristFailure(message))
+      return
+    }
+    
+  } else {
+    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    // return
+  }
+}

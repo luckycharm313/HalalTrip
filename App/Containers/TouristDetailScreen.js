@@ -14,6 +14,7 @@ import NavBar from '../Components/NavBar'
 import TouristHList from '../Components/TouristHList'
 import TouristAction from '../Redux/TouristRedux'
 import RNImmediatePhoneCall from 'react-native-immediate-phone-call'
+import Modal from "react-native-modal";
 
 class TouristDetailScreen extends Component {
   static navigationOptions = {
@@ -27,6 +28,8 @@ class TouristDetailScreen extends Component {
     this.state = {
       touristId : params.touristId,
       placeName : _name,
+      modalVisible: false,
+      starCount : 0,
     }
   }
   _getPlaceName = (arrName) =>{
@@ -87,6 +90,32 @@ class TouristDetailScreen extends Component {
     }).catch(err => console.error('An error occurred', err));
   }
 
+  componentWillReceiveProps(nextProps){
+    const touristDetailData = nextProps.touristDetailData? nextProps.touristDetailData:[]
+    
+    const {rating} = touristDetailData
+    const _rating = Number.parseFloat(rating)
+    this.setState({starCount : _rating}) 
+  }
+
+  _onGiveRating =()=>{
+    this.setState({modalVisible: true})
+  }
+  onStarRatingPress = (rating)=> {
+    this.setState({
+      starCount: rating
+    });
+  }
+  _onModalCancel =()=>{
+    this.setState({modalVisible: false})
+  }
+  _onModalOK =()=>{
+    this.setState({modalVisible: false})
+    let id = this.props.touristDetailData.id
+    let rate = this.state.starCount
+    this.props.setTouristRate(id, rate)
+  }
+
   render () {
     const touristDetailData = this.props.touristDetailData? this.props.touristDetailData:[]
     const subTouristData = this.props.subTouristData? this.props.subTouristData:[]
@@ -133,6 +162,40 @@ class TouristDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            isVisible={this.state.modalVisible}
+            onBackdropPress={() => this.setState({ modalVisible: false })}
+            style={styles.modal}>
+            <View style={styles.modalView}>
+              <View style={styles.modal_section}>
+                <Text style={styles.modal_title_text}>Please rate to the {title}</Text>
+              </View>
+              <View style={styles.modal_section}>
+                <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={this.state.starCount}
+                    fullStarColor={Colors.primary}
+                    emptyStar={'ios-star-outline'}
+                    fullStar={'ios-star'}
+                    halfStar={'ios-star-half'}
+                    iconSet={'Ionicons'}
+                    starSize = {25}
+                    selectedStar={(rating) => this.onStarRatingPress(rating)}
+                  />
+              </View>
+              <View style={styles.modal_section_btn}>
+                <TouchableOpacity style={styles.modal_btn_cancel} onPress={this._onModalCancel}>
+                  <Text style={styles.modal_btn_txt}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.modal_btn_ok} onPress={this._onModalOK}>
+                  <Text style={styles.modal_btn_txt}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
           <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}}>
             {/* <View style={styles.photo_action}> 
               <View style={styles.photo_number}>
@@ -145,7 +208,7 @@ class TouristDetailScreen extends Component {
           <View style={styles.restaurant_header_section}>
             <Text style={styles.txt_country}>{this.state.placeName}</Text>
             <Text style={styles.txt_restaurant_label}>{title}</Text>
-            <View style={styles.rating_view}>
+            <TouchableOpacity style={styles.rating_view} onPress={this._onGiveRating}>
               <StarRating
                   disabled={false}
                   maxStars={5}
@@ -156,9 +219,10 @@ class TouristDetailScreen extends Component {
                   halfStar={'ios-star-half'}
                   iconSet={'Ionicons'}
                   starSize = {25}
+                  selectedStar={() => this._onGiveRating()}
                 />
               <Text style={styles.txt_rating}>{rating}</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.price_view}>
               {/* <Image style={styles.icon_money} source={Images.icon_money} resizeMode='contain' />
               <View style={styles.price_detail_view}>
@@ -260,6 +324,7 @@ const mapStateToProps = ({tourist}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getTouristDetail : (touristId) => dispatch(TouristAction.getTouristDetail(touristId)),
+    setTouristRate : (id, rate) => dispatch(TouristAction.setTouristRate(id, rate)),
   }
 }
 

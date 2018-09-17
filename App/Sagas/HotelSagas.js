@@ -214,7 +214,7 @@ export function * getSavedHotelDetail (api, action) {
   }
 }
 
-export function * setRate (api, action) {
+export function * setHotelRate (api, action) {
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const {id, rate} = action
 
@@ -229,7 +229,7 @@ export function * setRate (api, action) {
     if(code == 'success'){
 
       if(data){
-        yield put(HotelActions.rateSuccess(id, rate))
+        yield put(HotelActions.rateHotelSuccess(id, rate))
       }
       else{
         alert("Database Error")

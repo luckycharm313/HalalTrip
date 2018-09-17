@@ -14,6 +14,7 @@ import { RestaurantTypes } from '../Redux/RestaurantRedux'
 import { ActivityTypes } from '../Redux/ActivityRedux'
 import { TrendTypes } from '../Redux/TrendRedux'
 import { TouristTypes } from '../Redux/TouristRedux'
+import { SearchTypes } from '../Redux/SearchRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -21,11 +22,12 @@ import { startup, receivedNotification } from './StartupSagas'
 import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout, loadProfile } from './UserSagas'
 import { loadData } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
-import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail } from './HotelSagas'
-import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail, setRate} from './RestaurantSagas'
+import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail, setHotelRate } from './HotelSagas'
+import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail, setRestaurantRate} from './RestaurantSagas'
 import { getActivityDetail, saveActivityTotal, getSavedActivityDetail } from './ActivitySagas'
 import { getTrendDetail } from './TrendSagas'
-import { loadTouristData, getTouristDetail } from './TouristSagas'
+import { loadTouristData, getTouristDetail, setTouristRate } from './TouristSagas'
+import { searchData } from './SearchSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -61,7 +63,7 @@ export default function * root () {
     takeLatest(HotelTypes.LOAD_HOTEL_DATA, loadHotelData, main_api),
     takeLatest(HotelTypes.SAVE_HOTEL_TOTAL, saveHotelTotal, main_api),
     takeLatest(HotelTypes.GET_SAVED_HOTEL_DETAIL, getSavedHotelDetail, main_api),
-    takeLatest(HotelTypes.SET_RATE, setRate, main_api),
+    takeLatest(HotelTypes.SET_RATE, setHotelRate, main_api),
 
     // restaurant saga :
     takeLatest(RestaurantTypes.LOAD_RESTAURANT_DATA, loadRestaurantData, main_api),
@@ -69,11 +71,12 @@ export default function * root () {
     takeLatest(RestaurantTypes.SAVE_RESTAURANT_TOTAL, saveRestaurantTotal, main_api),
     takeLatest(RestaurantTypes.LOAD_SAVED_DATA, loadSavedData, main_api),
     takeLatest(RestaurantTypes.GET_SAVED_DETAIL, getSavedDetail, main_api),
-    takeLatest(RestaurantTypes.SET_RATE, setRate, main_api),
+    takeLatest(RestaurantTypes.SET_RATE, setRestaurantRate, main_api),
 
     // tourist saga :
     takeLatest(TouristTypes.LOAD_TOURIST_DATA, loadTouristData, main_api),
     takeLatest(TouristTypes.GET_TOURIST_DETAIL, getTouristDetail, main_api),
+    takeLatest(TouristTypes.SET_TOURIST_RATE, setTouristRate, main_api),
 
     // activity
     takeLatest(ActivityTypes.GET_ACTIVITY_DETAIL, getActivityDetail, main_api),
@@ -82,6 +85,9 @@ export default function * root () {
     
     // trend
     takeLatest(TrendTypes.GET_TREND_DETAIL, getTrendDetail, main_api),
+
+    // search
+    takeLatest(SearchTypes.SEARCH_DATA, searchData, main_api),
     
     
   ])

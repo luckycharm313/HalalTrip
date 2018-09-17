@@ -17,7 +17,7 @@ const { Types, Creators } = createActions({
   getSavedHotelDetail : ['hotelId'],
   loadDetailSuccess : ['payload'],
   setRate :['id', 'rate'],
-  rateSuccess :['id', 'rate'],
+  rateHotelSuccess :['id', 'rate'],
 })
 
 export const HotelTypes = Types
@@ -153,5 +153,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_SAVED_HOTEL_DETAIL]: request,
   [Types.LOAD_DETAIL_SUCCESS]: loadDetailSuccess,
   [Types.SET_RATE]: _request,
-  [Types.RATE_SUCCESS]: rateSuccess,
+  [Types.RATE_HOTEL_SUCCESS]: rateSuccess,
 })

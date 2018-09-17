@@ -17,43 +17,17 @@ import TrendItem from '../Components/TrendItem'
 import Redeem from '../Components/Redeem'
 import FreeCredit from '../Components/FreeCredit'
 import Spinkit from '../Components/Spinkit'
-
+import InfiniteScroll from 'react-native-infinite-scroll'
+import SearchAction from '../Redux/SearchRedux'
 
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchKey: null,
-      activityData : [
-        {
-          title : 'Deepest Diving Pool in Indonesia',
-          sub_title : 'Submarine',
-          location : 'Raja Ampat Islands',
-          cost : '$126',
-          review : '128',
-          img_url : Images.image3,
-        },
-        {
-          title : 'Enjoy Traditional Tea & Music',
-          sub_title : 'Entertainment',
-          location : 'Raja Ampat Islands',
-          cost : '$126',
-          review : '130',
-          img_url : Images.image4,
-        },
-      ],
-      trendData : [
-        {
-          title : 'Explore Forest',
-          detail : 'Explore the forest with fun outdoor activities without fear with anything anywhere for everyon',
-          img_url : Images.image1,
-        },
-        {
-          title : 'Color Run Now',
-          detail : 'Find new friends everywhere with a beautiful colorful by running together and always smiling',
-          img_url : Images.image2,
-        },
-      ]
+      hotelData:[],
+      tempHotelData:[],
+      hotelPage: 0,
     };
   }
 
@@ -108,6 +82,44 @@ class HomeScreen extends Component {
     this.props.loadData()
   }
 
+  componentWillReceiveProps(nextProps){
+    // hotel
+    const hotelData = nextProps.hotelTotalData ? nextProps.hotelTotalData : []
+        
+    if(hotelData.length>0){
+      this.setState({hotelData})
+
+      let tempHotelData=[]
+      hotelData.forEach(function (value, index) {
+        if(index < 2){
+          tempHotelData.push(value)
+        }
+      });
+      this.setState({tempHotelData})
+    }
+  }
+
+  _onSearch = ()=>{
+    this.props.searchData(this.state.searchKey)
+  }
+
+  loadMoreHotel =()=>{
+    var _rd = this.state.hotelData
+    var _pg = this.state.hotelPage
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*2){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempHotelData:_temp})
+      this.setState({hotelPage: _pg})
+    }
+  }
+
   render () {    
 
     const categoryData = this.props.categoryData ? this.props.categoryData:[]
@@ -143,13 +155,19 @@ class HomeScreen extends Component {
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
           </View>
-          <FlatList
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              data={hotelTotalData}
-              renderItem={this._renderHotelItem}
-              keyExtractor={(item, index) => index.toString()}
-            />
+          <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreHotel}
+              distanceFromEnd={10}>
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={this.state.tempHotelData}
+                renderItem={this._renderHotelItem}
+                keyExtractor={(item, index) => index.toString()}
+              />
+          </InfiniteScroll>
+          
         </View>
       )
     }
@@ -286,6 +304,7 @@ const mapStateToProps = ({main, category, hotel, place, activity, trend}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadData: () => dispatch(MainAction.loadData()),
+    searchData: (searchKey) => dispatch(SearchAction.searchData(searchKey)),
   }
 }
 

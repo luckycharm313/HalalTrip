@@ -17,6 +17,7 @@ export const reducers = combineReducers({
   trend : require('./TrendRedux').reducer,
   startup : require('./StartupRedux').reducer,
   tourist : require('./TouristRedux').reducer,
+  search : require('./SearchRedux').reducer,
 })
 
 export default () => {

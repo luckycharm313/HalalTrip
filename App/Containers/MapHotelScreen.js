@@ -11,6 +11,7 @@ import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
 import RestaurantList from '../Components/RestaurantList'
 import TouristHList from '../Components/TouristHList'
+import InfiniteScroll from 'react-native-infinite-scroll'
 
 class MapHotelScreen extends Component {
   static navigationOptions = {
@@ -27,6 +28,16 @@ class MapHotelScreen extends Component {
       placeTitle : params.placeTitle,
       place_lat : params.place_lat,
       place_lng : params.place_lng,
+      hotelData:[],
+      tempHotelData:[],
+      hotelPage: 0,
+      restaurantData:[],
+      tempRestaurantData:[],
+      restaurantPage: 0,
+      touristData:[],
+      tempTouristData:[],
+      touristPage: 0,
+
     }
   }
   componentWillMount(){
@@ -54,6 +65,104 @@ class MapHotelScreen extends Component {
     />
   )
 
+  componentWillReceiveProps(nextProps){
+    // hotel
+    const placeHotelData = nextProps.placeHotelData ? nextProps.placeHotelData : []
+    const hotelData = placeHotelData.hotelData? placeHotelData.hotelData:[]
+    
+    if(hotelData.length>0){
+      this.setState({hotelData})
+
+      let tempHotelData=[]
+      hotelData.forEach(function (value, index) {
+        if(index < 2){
+          tempHotelData.push(value)
+        }
+      });
+      this.setState({tempHotelData})
+    }
+    //tourist
+    const placeTouristData = nextProps.placeTouristData ? nextProps.placeTouristData : []
+    const touristData = placeTouristData.touristData? placeTouristData.touristData:[]
+    
+    if(touristData.length>0){
+      this.setState({touristData})
+
+      let tempTouristData=[]
+      touristData.forEach(function (value, index) {
+        if(index < 3){
+          tempTouristData.push(value)
+        }
+      });
+      this.setState({tempTouristData})
+    }
+    // restaurant
+    const placeRestaurantData = nextProps.placeRestaurantData ? nextProps.placeRestaurantData : []
+    const restaurantData = placeRestaurantData.restaurantData? placeRestaurantData.restaurantData:[]
+    
+    if(restaurantData.length>0){
+      this.setState({restaurantData})
+
+      let tempRestaurantData=[]
+      restaurantData.forEach(function (value, index) {
+        if(index < 3){
+          tempRestaurantData.push(value)
+        }
+      });
+      this.setState({tempRestaurantData})
+    }
+  }
+
+  loadMoreTourist =()=>{
+    var _rd = this.state.touristData
+    var _pg = this.state.touristPage
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*3){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempTouristData:_temp})
+      this.setState({touristPage: _pg})
+    }
+  }
+
+  loadMoreRestaurant =()=>{
+    var _rd = this.state.restaurantData
+    var _pg = this.state.restaurantPage
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*3){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempRestaurantData:_temp})
+      this.setState({restaurantPage: _pg})
+    }
+  }
+  
+  loadMoreHotel =()=>{
+    var _rd = this.state.hotelData
+    var _pg = this.state.hotelPage
+    _pg++
+
+    let _temp=[]
+    _rd.forEach(function (value, index) {
+      if(index < (_pg+1)*2){
+        _temp.push(value)
+      }
+    })
+    if(_temp.length > 0){      
+      this.setState({tempHotelData:_temp})
+      this.setState({hotelPage: _pg})
+    }
+  }
 
   render () {
     const placeHotelData = this.props.placeHotelData ? this.props.placeHotelData : []
@@ -78,13 +187,18 @@ class MapHotelScreen extends Component {
                         <Text style={styles.txtLabelSm}>Hide info</Text>
                       </TouchableOpacity> */}
                     </View>
-                    <FlatList
+                    <InfiniteScroll
+                      horizontal={true}
+                      onLoadMoreAsync={this.loadMoreHotel}
+                      distanceFromEnd={10}>
+                      <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={hotelData}
+                        data={this.state.tempHotelData}
                         renderItem={this._renderHotelItem}
                         keyExtractor={(item, index) => index.toString()}
                       />
+                    </InfiniteScroll>                    
                   </View>)
     }
 
@@ -94,13 +208,18 @@ class MapHotelScreen extends Component {
             <View style={styles.section_header}>
               <Text style={styles.txtSectionTitle}>Find restaurant in {this.state.placeTitle}</Text>
             </View>
-            <FlatList
+            <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreRestaurant}
+              distanceFromEnd={10}>
+              <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={restaurantData}
+                data={this.state.tempRestaurantData}
                 renderItem={this._renderRestaurantItem}
                 keyExtractor={(item, index) => index.toString()}
               />
+            </InfiniteScroll>            
           </View>)
     }
     
@@ -110,16 +229,21 @@ class MapHotelScreen extends Component {
             <View style={styles.section_header}>
               <Text style={styles.txtSectionTitle}>Find tourist in {this.state.placeTitle}</Text>
             </View>
-            <FlatList
+            <InfiniteScroll
+              horizontal={true}
+              onLoadMoreAsync={this.loadMoreTourist}
+              distanceFromEnd={10}>
+              <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={touristData}
+                data={this.state.tempTouristData}
                 renderItem={this._renderTouristItem}
                 keyExtractor={(item, index) => index.toString()}
               />
+            </InfiniteScroll>            
           </View>)
     }
-    console.log("location => ", location)
+    
     let mapViewMarker = null
     if(location.length > 0){
       mapViewMarker = (
