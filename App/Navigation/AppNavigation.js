@@ -2,6 +2,8 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {Platform} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
+import WeatherScreen from '../Containers/WeatherScreen'
+import EmergencyContactScreen from '../Containers/EmergencyContactScreen'
 import SearchResultScreen from '../Containers/SearchResultScreen'
 import TouristDetailScreen from '../Containers/TouristDetailScreen'
 import TouristScreen from '../Containers/TouristScreen'
@@ -99,6 +101,8 @@ const mainNavigator = TabNavigator({
 })
 
 const PrimaryNav = StackNavigator({  
+  WeatherScreen: { screen: WeatherScreen },
+  EmergencyContactScreen: { screen: EmergencyContactScreen },
   ActivityDetailScreen: { screen: ActivityDetailScreen },
   TrendDetailScreen: { screen: TrendDetailScreen },
   TouristDetailScreen: { screen: TouristDetailScreen },

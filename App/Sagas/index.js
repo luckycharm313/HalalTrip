@@ -27,11 +27,12 @@ import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSaved
 import { getActivityDetail, saveActivityTotal, getSavedActivityDetail } from './ActivitySagas'
 import { getTrendDetail } from './TrendSagas'
 import { loadTouristData, getTouristDetail, setTouristRate } from './TouristSagas'
-import { searchData } from './SearchSagas'
+import { searchData, getWeather } from './SearchSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
 const main_api = API.main()
+const rest_api = API.rest()
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 // const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
@@ -88,6 +89,7 @@ export default function * root () {
 
     // search
     takeLatest(SearchTypes.SEARCH_DATA, searchData, main_api),
+    takeLatest(SearchTypes.GET_WEATHER, getWeather, rest_api),
     
     
   ])

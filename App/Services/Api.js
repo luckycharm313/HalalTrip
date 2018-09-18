@@ -148,9 +148,31 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   }
 }
 
+const rest = (baseURL = 'https://api.openweathermap.org/data/2.5') => {
+  
+  const api = apisauce.create({
+    // base URL is read from the "constructor"
+    baseURL,
+    // here are some default headers
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/json',
+    },
+    // 10 second timeout...
+    timeout: 10000
+  })
+  
+  const _getWeather = (lat, long) => api.get(`/forecast?lat=${lat}&lon=${long}&AppID=5db98f0e720334b2c71ea68bf4944402&units=metric`, {} )
+  
+  return {
+    _getWeather,  
+  }
+}
+
 // let's return back our create method as the default.
 export default {
   create,
   user,
   main,
+  rest
 }

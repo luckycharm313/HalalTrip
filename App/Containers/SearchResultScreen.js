@@ -75,7 +75,7 @@ class SearchResultScreen extends Component {
   render () {
     return (
       <InfiniteScroll 
-        style={styles.container}
+        style={styles.mainContainer}
         horizontal={true}
         onLoadMoreAsync={this.loadMore}
         distanceFromEnd={10}>

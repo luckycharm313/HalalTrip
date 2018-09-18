@@ -27,6 +27,12 @@ class AccountScreen extends Component {
       case 'notification':
         this.props.navigation.navigate('NotificationScreen')
         break
+      case 'emergency':
+        this.props.navigation.navigate('EmergencyContactScreen')
+        break
+      case 'weather':
+        this.props.navigation.navigate('WeatherScreen')
+        break
       case 'logout':
         this.props.logOut()
         break
@@ -60,15 +66,15 @@ class AccountScreen extends Component {
               <Text style={styles.txt_setting}>Notifications</Text>
               <Icon name="notifications" style = {styles.icon_setting} />
             </TouchableOpacity>
+            <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'emergency')} >
+              <Text style={styles.txt_setting}>EmergencyContact</Text>
+              <Icon name="warning" style = {styles.icon_setting} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'weather')} >
+              <Text style={styles.txt_setting}>Weather</Text>
+              <Icon name="wb-sunny" style = {styles.icon_setting} />
+            </TouchableOpacity>
             {/* <TouchableOpacity style={styles.setting_option} >
-              <Text style={styles.txt_setting}>Coupon Code</Text>
-              <Icon name="beenhere" style = {styles.icon_setting} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.setting_option} >
-              <Text style={styles.txt_setting}>Settings</Text>
-              <Icon name="receipt" style = {styles.icon_setting} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.setting_option} >
               <Text style={styles.txt_setting}>Privacy</Text>
               <Icon name="lock" style = {styles.icon_setting} />
             </TouchableOpacity>
