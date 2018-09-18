@@ -43,9 +43,9 @@ export function * loadRestaurantData (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 
   const responseRestaurant = yield call(api._getRestaurant, token)
@@ -64,10 +64,10 @@ export function * loadRestaurantData (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
 
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 }
 
@@ -125,9 +125,9 @@ export function * getRestaurantDetail (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 
 
@@ -161,9 +161,9 @@ export function * getRestaurantDetail (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 
 }
@@ -236,10 +236,10 @@ export function * saveRestaurantTotal (api, action) {
       
     } else {
       yield put(StartupActions.loadBarSuccess("isload"))
-      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-      // alert("Internet Error")
-      // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-      // return
+      // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      alert("Internet Error")
+      yield put(RestaurantActions.restaurantFailure("Internet Error"))
+      return
     }
   }else{
     const deletedPlace = yield deletePlace(id)
@@ -313,8 +313,8 @@ export function * setRestaurantRate (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 }

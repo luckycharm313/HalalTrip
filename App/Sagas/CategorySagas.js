@@ -28,7 +28,7 @@ export function * getCategory (api, action) {
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
     yield put(CategoryActions.categorySuccess(response.data))
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(CategoryActions.categoryFailure())
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(CategoryActions.categoryFailure())
   }
 }

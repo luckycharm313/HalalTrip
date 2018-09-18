@@ -10,6 +10,8 @@ const { Types, Creators } = createActions({
   searchData: ['searchKey'],
   getWeather: ['lat', 'long'],
   weatherSuccess: ['data'],
+  getEmergencyNumbers: null,
+  emergencySuccess: ['data'],
 })
 
 export const SearchTypes = Types
@@ -24,6 +26,7 @@ export const INITIAL_STATE = Immutable({
   error: null,
   searchResult:null,
   weatherData: null,
+  emergencyNumbers : null,
 })
 
 /* ------------- Selectors ------------- */
@@ -49,6 +52,11 @@ export const weatherSuccess = (state, action) => {
   return state.merge({ fetching: false, error: null, weatherData: data })
 }
 
+export const emergencySuccess = (state, action) => {
+  const { data } = action
+  return state.merge({ fetching: false, error: null, emergencyNumbers: data })
+}
+
 // Something went wrong somewhere.
 export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
@@ -61,5 +69,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEARCH_FAILURE]: failure,
   [Types.SEARCH_DATA]: request,
   [Types.GET_WEATHER]: request,
-  [Types.WEATHER_SUCCESS]: weatherSuccess
+  [Types.WEATHER_SUCCESS]: weatherSuccess,
+  [Types.GET_EMERGENCY_NUMBERS]: request,
+  [Types.EMERGENCY_SUCCESS]: emergencySuccess
 })

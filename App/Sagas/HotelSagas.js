@@ -44,29 +44,29 @@ export function * loadHotelData (api, action) {
             yield put(HotelActions.hotelDetailSuccess(data))
           }
           else{
-            //yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+            // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
             alert(message)
             yield put(HotelActions.hotelFailure(message))
             return    
           }
         }
         else{
-          yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-          // yield put(HotelActions.hotelFailure("Internet Error"))
-          // return    
+          // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+          yield put(HotelActions.hotelFailure("Internet Error"))
+          return    
         }
       }
       
     }
     else{
-      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-      // yield put(HotelActions.hotelFailure(message))
-      // return
+      // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      yield put(HotelActions.hotelFailure(message))
+      return
     }    
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(HotelActions.hotelFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(HotelActions.hotelFailure("Internet Error"))
+    return
   }
 }
 
@@ -92,9 +92,9 @@ export function * getHotelDetail (api, action) {
     }
   }
   else{
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(HotelActions.hotelFailure("Internet Error"))
-    // return    
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(HotelActions.hotelFailure("Internet Error"))
+    return    
   }
 }
 
@@ -183,10 +183,10 @@ export function * saveHotelTotal (api, action) {
       
     } else {
       yield put(StartupActions.loadBarSuccess("isload"))
-      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-      // alert("Internet Error")
-      // yield put(HotelActions.hotelFailure("Internet Error"))
-      // return
+      // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      alert("Internet Error")
+      yield put(HotelActions.hotelFailure("Internet Error"))
+      return
     }
   }else{
     const deletedResult = yield deleteHotelTotal(id)    
@@ -242,8 +242,8 @@ export function * setHotelRate (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 }

@@ -49,10 +49,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(MainActions.mainFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
   }
   console.log(" responseCategory => ", responseCategory)
   /*** Hotel part **/
@@ -72,10 +72,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(MainActions.mainFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
   }
   
   /*** place part **/
@@ -95,10 +95,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(MainActions.mainFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
   }
   
   /*** activity part **/
@@ -118,10 +118,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(MainActions.mainFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
   }
   
   /*** trend part **/
@@ -141,10 +141,10 @@ export function * loadData (api, action) {
     
   } else {
     yield put(StartupActions.loadBarSuccess("isload"))
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(MainActions.mainFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(MainActions.mainFailure("Internet Error"))
+    return
   }
 
   yield put(MainActions.mainSuccess())

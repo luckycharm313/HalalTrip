@@ -128,3 +128,23 @@ export function * getWeather (api, action) {
     yield put(SearchActions.searchFailure())
   }
 }
+
+export function * getEmergencyNumbers (api, action) {
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const response = yield call(api._getEmergencyNumbers, token)
+  if (response.ok) {
+    const { data, code, message } = response.data
+    console.log("data=>", data)
+    if(code == 'success'){
+      yield put(SearchActions.emergencySuccess(data))
+    }
+    else{
+      alert(message)
+      yield put(SearchActions.searchFailure())
+    }
+  }
+  else{
+    alert("Network Error")
+    yield put(SearchActions.searchFailure())
+  }
+}

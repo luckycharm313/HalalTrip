@@ -39,7 +39,7 @@ export function * getHotelByPlace (api, action) {
             }
           }
           else{
-            yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+            // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
           }          
         }
         else{
@@ -49,10 +49,10 @@ export function * getHotelByPlace (api, action) {
         }
       }
       else{
-        yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-        // alert("Network Error")
-        // yield put(PlaceActions.placeFailure("Network Error"))
-        // return    
+        // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+        alert("Network Error")
+        yield put(PlaceActions.placeFailure("Network Error"))
+        return    
       }
     }
     else{
@@ -63,8 +63,8 @@ export function * getHotelByPlace (api, action) {
     
   } else {
     yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(PlaceActions.placeFailure("Network Error"))
-    // return
+    yield put(PlaceActions.placeFailure("Network Error"))
+    return
   }
 }
 export function * getRestaurantPlace (api, action) {
@@ -89,9 +89,9 @@ export function * getRestaurantPlace (api, action) {
     }
   }
   else{
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Network Error")
-    // yield put(PlaceActions.placeFailure("Network Error"))
-    // return    
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Network Error")
+    yield put(PlaceActions.placeFailure("Network Error"))
+    return    
   }
 }

@@ -36,16 +36,16 @@ export function * getActivityDetail (api, action) {
       yield put(ActivityActions.detailSuccess(data))
     }
     else{
-      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-      // alert(message)
-      // yield put(ActivityActions.activityFailure(message))
-      // return    
+      // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      alert(message)
+      yield put(ActivityActions.activityFailure(message))
+      return    
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(ActivityActions.activityFailure())
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(ActivityActions.activityFailure())
   }
 }
 
@@ -141,19 +141,19 @@ export function * saveActivityTotal (api, action) {
       }
       else{
         yield put(StartupActions.loadBarSuccess("isload"))
-        yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-        // alert(message)
-        // yield put(ActivityActions.activityFailure(message))
-        // return
+        // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+        alert(message)
+        yield put(ActivityActions.activityFailure(message))
+        return
       }
       
     } else {
       yield put(StartupActions.loadBarSuccess("isload"))
-      yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+      // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
 
-      // alert("Internet Error")
-      // yield put(ActivityActions.activityFailure("Internet Error"))
-      // return
+      alert("Internet Error")
+      yield put(ActivityActions.activityFailure("Internet Error"))
+      return
     }
   }else{
     const deletedResult = yield deleteActivityTotal(id)    

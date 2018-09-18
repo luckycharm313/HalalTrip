@@ -29,8 +29,8 @@ export function * getTrendDetail (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // alert("Internet Error")
-    // yield put(TrendActions.trendFailure())
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    alert("Internet Error")
+    yield put(TrendActions.trendFailure())
   }
 }

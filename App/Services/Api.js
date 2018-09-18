@@ -124,6 +124,7 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
   const _getTouristDetail = (param, token) => api.post('api/tourist/detail', param, { headers : {'Authorization': `Bearer ${token}`} })
   
   const _searchData = (param, token) => api.post('api/search', param, { headers : {'Authorization': `Bearer ${token}`} })
+  const _getEmergencyNumbers = (token) => api.post('api/emergency', {}, { headers : {'Authorization': `Bearer ${token}`} })
   
   return {
     _getCategory,
@@ -144,7 +145,8 @@ const main = (baseURL = 'http://www.halaltripthailand.com/halaltrip/') => {
     _getTouristDetail,
     _getTouristByPlace,
     _setRate,
-    _searchData
+    _searchData,
+    _getEmergencyNumbers
   }
 }
 

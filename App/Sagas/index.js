@@ -27,7 +27,7 @@ import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSaved
 import { getActivityDetail, saveActivityTotal, getSavedActivityDetail } from './ActivitySagas'
 import { getTrendDetail } from './TrendSagas'
 import { loadTouristData, getTouristDetail, setTouristRate } from './TouristSagas'
-import { searchData, getWeather } from './SearchSagas'
+import { searchData, getWeather, getEmergencyNumbers } from './SearchSagas'
 
 /* ------------- API ------------- */
 const user_api = API.user()
@@ -90,6 +90,7 @@ export default function * root () {
     // search
     takeLatest(SearchTypes.SEARCH_DATA, searchData, main_api),
     takeLatest(SearchTypes.GET_WEATHER, getWeather, rest_api),
+    takeLatest(SearchTypes.GET_EMERGENCY_NUMBERS, getEmergencyNumbers, main_api),
     
     
   ])

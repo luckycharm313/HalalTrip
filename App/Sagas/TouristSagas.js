@@ -40,7 +40,7 @@ export function * loadTouristData (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
   }
 }
 
@@ -90,7 +90,7 @@ export function * getTouristDetail (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
   }
 
   let param = new FormData();
@@ -123,7 +123,7 @@ export function * getTouristDetail (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
   }
 
 }
@@ -156,8 +156,8 @@ export function * setTouristRate (api, action) {
     }
     
   } else {
-    yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
-    // yield put(RestaurantActions.restaurantFailure("Internet Error"))
-    // return
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(RestaurantActions.restaurantFailure("Internet Error"))
+    return
   }
 }

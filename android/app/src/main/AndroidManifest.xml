@@ -19,6 +19,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCZAsvwKmqVVk2KPKYT_YidlYKEPPyHwa4"/>
+        <meta-data android:name="com.onesignal.BadgeCount" android:value="DISABLE" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
