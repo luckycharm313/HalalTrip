@@ -23,8 +23,12 @@ export function * getTourist (api, action) {
 
 export function * loadTouristData (api, action) {
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-  
-  const response = yield call(api._getTourist, token)
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+
+  let param = new FormData();
+  param.append("lang", lang)
+
+  const response = yield call(api._getTourist, param, token)
 
   console.log(" response Tourist => ", response)
   // success?
@@ -75,9 +79,13 @@ export function * getTouristDetail (api, action) {
 
   const {touristId } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-  
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+
+  let param1 = new FormData();
+  param1.append("lang", lang)
+
   let touristData = []
-  const response = yield call(api._getTourist, token)
+  const response = yield call(api._getTourist, param1, token)
   if (response.ok) {
     const { data, code, message } = response.data    
     if(code == 'success'){

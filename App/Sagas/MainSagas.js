@@ -16,6 +16,12 @@ export function * loadData (api, action) {
   yield put(StartupActions.loadBar())
   
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
+
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+  let param = new FormData();
+  param.append("lang", lang)
+
+
   if(Platform.OS == "android"){
     const granted = yield PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
@@ -54,9 +60,9 @@ export function * loadData (api, action) {
     yield put(MainActions.mainFailure("Internet Error"))
     return
   }
-  console.log(" responseCategory => ", responseCategory)
+  
   /*** Hotel part **/
-  const responseHotel = yield call(api._getHotel, token)
+  const responseHotel = yield call(api._getHotel, param, token)
   
   if (responseHotel.ok) {
     const { data, code, message } = responseHotel.data    
@@ -79,7 +85,7 @@ export function * loadData (api, action) {
   }
   
   /*** place part **/
-  const responsePlace = yield call(api._getPlace, token)
+  const responsePlace = yield call(api._getPlace, param, token)
   console.log(" responsePlace => ", responsePlace)
   if (responsePlace.ok) {
     const { data, code, message } = responsePlace.data    
@@ -102,7 +108,7 @@ export function * loadData (api, action) {
   }
   
   /*** activity part **/
-  const responseActivity = yield call(api._getActivity, token)
+  const responseActivity = yield call(api._getActivity, param, token)
   console.log(" responseActivity => ", responseActivity)
   if (responseActivity.ok) {
     const { data, code, message } = responseActivity.data    
@@ -125,7 +131,7 @@ export function * loadData (api, action) {
   }
   
   /*** trend part **/
-  const responseTrend = yield call(api._getTrend, token)
+  const responseTrend = yield call(api._getTrend, param, token)
   console.log("response Trend ", responseTrend)
   if (responseTrend.ok) {
     const { data, code, message } = responseTrend.data    
@@ -150,4 +156,31 @@ export function * loadData (api, action) {
   yield put(MainActions.mainSuccess())
   
   yield put(StartupActions.loadBarSuccess("isload"))
+}
+
+export function * setLanguage (api, action) {
+  const { lang } = action
+  try {
+    yield AsyncStorage.setItem('lang', JSON.stringify(lang))  
+    yield put(MainActions.mainSuccess())      
+  } catch (error) {
+    yield put(MainActions.mainFailure())
+  }
+} 
+
+export function * preLoad (api, action) {
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+  
+  if(lang === null){
+    try {
+      yield AsyncStorage.setItem('lang', JSON.stringify("th"))        
+    } catch (error) {
+      yield put(MainActions.mainFailure())
+    }
+  }
+  
+  if(token !== null){
+    yield put(NavigationActions.navigate({ routeName: 'HomeScreen'} ));
+  }
 }

@@ -7,6 +7,8 @@ const { Types, Creators } = createActions({
   mainSuccess: null,
   loadData: null,
   mainFailure: ['errorMsg'],
+  setLanguage: ['lang'],
+  preLoad: null,
 })
 
 export const MainTypes = Types
@@ -19,6 +21,7 @@ export const INITIAL_STATE = Immutable({
   error: null,
   fetching : null,
   errorMsg : null,
+  lang : "th"
 })
 
 /* ------------- Selectors ------------- */
@@ -50,4 +53,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.MAIN_SUCCESS]: success,
   [Types.MAIN_FAILURE]: failure,
   [Types.LOAD_DATA]: request,
+  [Types.SET_LANGUAGE]: request,
+  [Types.PRE_LOAD]: request,
 })

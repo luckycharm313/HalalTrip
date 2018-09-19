@@ -8310,6 +8310,10 @@ react-native-share@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.1.1.tgz#8c50c67c3fa519607f3352c03f56076c0481edeb"
 
+react-native-simple-radio-button@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-simple-radio-button/-/react-native-simple-radio-button-2.7.3.tgz#c7227c0f963d6bbcfa245255d18a5a8b98fde41f"
+
 react-native-splash-screen@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.1.1.tgz#1a4e46c9fdce53ff52af2a2cb4181788c4e30b30"

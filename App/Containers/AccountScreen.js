@@ -4,22 +4,33 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
 // Styles
 import styles from './Styles/AccountScreenStyle'
 import { Images, Colors } from '../Themes'
 import UserAction from '../Redux/UserRedux'
+import MainAction from '../Redux/MainRedux'
+import Modal from "react-native-modal";
 
 class AccountScreen extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      modalVisible: false,
+      multi_lang :[
+        {label: 'Thaidland', value: 0 },
+        {label: 'English', value: 1 },
+        {label: 'Malay', value: 2 },
+      ],
+      langIndex : 0,
+    }
   }
   
   componentWillMount(){
-    this.props.loadProfile()
+    this.props.loadProfile()    
   }
 
-  _onSelectMenu = (index) => {
+  _onSelectMenu = (index) => {    
     switch (index) {
       case 'saved':
         this.props.navigation.navigate('SavedScreen')
@@ -33,10 +44,31 @@ class AccountScreen extends Component {
       case 'weather':
         this.props.navigation.navigate('WeatherScreen')
         break
+      case 'multiLang':
+        this.setState({modalVisible: true})
+        break
       case 'logout':
         this.props.logOut()
         break
     }
+  }
+
+  _onSelectLang = (index) => {
+    this.setState({langIndex : index})
+    this.setState({modalVisible: false})
+    let lang_code = null
+    switch (index) {
+      case 0:
+        lang_code = "th"
+        break
+      case 1:
+        lang_code = "en"
+        break
+      case 2:
+        lang_code = "ms"
+        break
+    }
+    this.props.setLanguage(lang_code)
   }
 
   render () {
@@ -45,6 +77,23 @@ class AccountScreen extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.container}>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            isVisible={this.state.modalVisible}
+            onBackdropPress={() => this.setState({ modalVisible: false })}
+            style={styles.modal}>
+            <View style={styles.modalView}>
+              <RadioForm
+                radio_props={this.state.multi_lang}
+                initial={0}
+                labelColor={Colors.primary}
+                onPress={(value) => this._onSelectLang(value)}
+                radioStyle={{marginBottom: 20}}
+              />
+            </View>
+            
+          </Modal>
           <ImageBackground style={styles.view_wallpaper} source={Images.wallpaper}>
             <View style={styles.view_avatar} >
               <Image style={styles.img_avatar} source={{uri: avatar==null?"":avatar}} />
@@ -73,6 +122,10 @@ class AccountScreen extends Component {
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'weather')} >
               <Text style={styles.txt_setting}>Weather</Text>
               <Icon name="wb-sunny" style = {styles.icon_setting} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'multiLang')} >
+              <Text style={styles.txt_setting}>Multiple Language</Text>
+              <Icon name="language" style = {styles.icon_setting} />
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.setting_option} >
               <Text style={styles.txt_setting}>Privacy</Text>
@@ -110,6 +163,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => dispatch(UserAction.logOut()),
     loadProfile: () => dispatch(UserAction.loadProfile()),
+    setLanguage: (lang_code) => dispatch(MainAction.setLanguage(lang_code)),
   }
 }
 

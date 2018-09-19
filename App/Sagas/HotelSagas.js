@@ -19,8 +19,13 @@ import {
 export function * loadHotelData (api, action) {
   
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+  let param = new FormData();
+  param.append("lang", lang)
+
   /*** Hotel part **/
-  const responseHotel = yield call(api._getHotel, token)
+  const responseHotel = yield call(api._getHotel, param, token)
   
   if (responseHotel.ok) {
     const { data, code, message } = responseHotel.data    

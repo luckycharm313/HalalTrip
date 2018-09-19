@@ -27,9 +27,11 @@ export function * searchData (api, action) {
 
   const {searchKey} = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
 
   let param = new FormData();
   param.append("searchKey", searchKey)
+  param.append("lang", lang)
 
   const response = yield call(api._searchData, param, token)
   console.log("search Result => ", response)

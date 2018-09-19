@@ -90,4 +90,19 @@ export default StyleSheet.create({
     fontSize        : Fonts.size.h6,
     fontFamily      : Fonts.type.base,
   },
+  modal :{
+    flex: 1,
+    alignItems:"center",
+    justifyContent :'center',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    margin : 0,
+  },
+  modalView :{
+    height : "auto",
+    width: 200,
+    backgroundColor: Colors.font.default,
+    borderRadius : 5,
+    paddingHorizontal : 15,
+    paddingVertical : 20,
+  },
 })

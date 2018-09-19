@@ -26,8 +26,12 @@ import {
 
 export function * loadRestaurantData (api, action) {
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
-  
-  const responseCuisine = yield call(api._getCuisine, token)
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+
+  let param = new FormData();
+  param.append("lang", lang)
+
+  const responseCuisine = yield call(api._getCuisine, param, token)
 
   console.log(" response cuisine => ", responseCuisine)
   // success?
@@ -48,7 +52,7 @@ export function * loadRestaurantData (api, action) {
     return
   }
 
-  const responseRestaurant = yield call(api._getRestaurant, token)
+  const responseRestaurant = yield call(api._getRestaurant, param, token)
   console.log(" response restaurant => ", responseRestaurant)
 
   // success?
@@ -105,11 +109,16 @@ export function * getRestaurantDetail (api, action) {
   const {restaurantId } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
 
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+
+  let param1 = new FormData();
+  param1.append("lang", lang)
+
   // const globalState = yield select()
   // const restaurantRedux = globalState.restaurant
   // const restaurantData = restaurantRedux.restaurantData
   let restaurantData = []
-  const responseRestaurant = yield call(api._getRestaurant, token)
+  const responseRestaurant = yield call(api._getRestaurant, param1, token)
   console.log(" response restaurant => ", responseRestaurant)
 
   // success?

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { TouchableOpacity, Text, Image, View, ImageBackground, FlatList, AsyncStorage} from 'react-native'
 import { Images } from '../Themes'
 import SplashScreen from 'react-native-splash-screen'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 import PlaceWithBottomName from '../Components/PlaceWithBottomName'
+import MainAction from '../Redux/MainRedux'
 
-export default class LaunchScreen extends Component {
+class LaunchScreen extends Component {
   
   constructor(props) {
     super(props);
@@ -42,12 +44,13 @@ export default class LaunchScreen extends Component {
     />
   )
   componentWillMount(){
-    AsyncStorage.getItem('token', (err, token) => {
-      console.log(" app token => ", token)
-      if(token !== null){
-        this.props.navigation.navigate('HomeScreen')
-      }
-    });
+    this.props.preLoad()
+    // AsyncStorage.getItem('token', (err, token) => {
+    //   console.log(" app token => ", token)
+    //   if(token !== null){
+    //     this.props.navigation.navigate('HomeScreen')
+    //   }
+    // });
   }
   _onClickNext = () => {
     // this.props.navigation.navigate('LaunchInterestScreen')
@@ -108,3 +111,16 @@ export default class LaunchScreen extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    preLoad: () => dispatch(MainAction.preLoad()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchScreen)

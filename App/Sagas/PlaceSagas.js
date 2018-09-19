@@ -9,9 +9,11 @@ export function * getHotelByPlace (api, action) {
   const { placeId } = action
   
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
 
   let param = new FormData();
   param.append("placeId", placeId)
+  param.append("lang", lang)
   const response = yield call(api._getHotelByPlace, param, token)
 
   console.log("place response => ", response)
@@ -70,9 +72,11 @@ export function * getHotelByPlace (api, action) {
 export function * getRestaurantPlace (api, action) {
   const {placeId } = action
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
 
   let param = new FormData();
   param.append("placeId", placeId)
+  param.append("lang", lang)
   
   const response = yield call(api._getRestaurantByPlace, param, token)
 
