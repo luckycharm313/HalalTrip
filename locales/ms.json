@@ -1,0 +1,58 @@
+{
+  "global" : {
+    "next" : "Seterusnya",
+    "categories" : "kategori",
+    "hotel" : "hotel",
+    "restaurant" : "Restoran",
+    "tourist" : "Tarikan pelancong",
+    "cities" : "bandar-bandar",
+    "see_all" : "Lihat semua",
+    "destination" : "Top Destinasi",
+    "place" : "Place",
+    "account" : "akaun",
+    "save" : "disimpan",
+    "notification" : "pemberitahuan",
+    "emergency" : "Talian kecemasan",
+    "weather" : "cuaca",
+    "multi_lang" : "pelbagai bahasa",
+    "log_out" : "Log keluar",
+    "description" : "Huraian",
+    "location":"lokasi",
+    "thailand":"Thailand",
+    "english":"bahasa inggeris",
+    "malay":"Malay",
+    "home":"Rumah"
+  },
+  "launch" :{
+    "choose_wonderful_place":"Pilih tempat yang indah",
+    "find_best_place":"Mencari tempat yang terbaik yang anda mahu dan enjob percutian anda dengan kekasih anda"    
+  },
+  "sign" :{
+    "always_beautiful":"Sentiasa tahu destinasi indah untuk percutian anda",
+    "sign_in":"menyanyi di",
+    "sign_up":"terus menyanyi",
+    "facebook_sign_in":"daftar masuk dengan Facebook",
+    "google_sign_in":"singin dengan google",
+    "email":"e-mel",
+    "name":"nama",
+    "password":"kata laluan",
+    "policy":"Dengan mengklik mendaftar, anda akan membuat akaun dan menerima semua Terma kita perkhidmatan dan Dasar Privasi"
+  },
+  "home" :{
+    "explore_world":"Meneroka dunia",
+    "discover":"Temui dan menempah segala-galanya yang membuat gembira anda",
+    "search":"carian",
+    "popular_activity" : "aktiviti yang popular",
+    "trending_now" : "trending Now"
+  },
+  "restaurant" :{
+    "all_restaurant" :"semua Restoran",
+    "trend_this_week" :"Tren Minggu ini"
+  },
+  "hotel" :{
+    "similar_hotel":"hotel sama oleh berdekatan",
+    "amenities":"kemudahan",
+    "information":"maklumat",
+    "direction":"pergi arah"
+  }
+}

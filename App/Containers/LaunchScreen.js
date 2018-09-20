@@ -7,7 +7,7 @@ import SplashScreen from 'react-native-splash-screen'
 import styles from './Styles/LaunchScreenStyles'
 import PlaceWithBottomName from '../Components/PlaceWithBottomName'
 import MainAction from '../Redux/MainRedux'
-
+import { strings } from '../../locales/i18n';
 class LaunchScreen extends Component {
   
   constructor(props) {
@@ -45,12 +45,6 @@ class LaunchScreen extends Component {
   )
   componentWillMount(){
     this.props.preLoad()
-    // AsyncStorage.getItem('token', (err, token) => {
-    //   console.log(" app token => ", token)
-    //   if(token !== null){
-    //     this.props.navigation.navigate('HomeScreen')
-    //   }
-    // });
   }
   _onClickNext = () => {
     // this.props.navigation.navigate('LaunchInterestScreen')
@@ -78,8 +72,8 @@ class LaunchScreen extends Component {
                 </TouchableOpacity>
               </View> */}
               <View style={styles.title_section}>
-                <Text style={styles.txt_place_title}>Choose a wonderful place</Text>
-                <Text style={styles.txt_place_description}>Find the best place you want and enjoy your trip with your lover</Text>
+                <Text style={styles.txt_place_title}>{strings('launch.choose_wonderful_place')}</Text>
+                <Text style={styles.txt_place_description}>{strings('launch.find_best_place')}</Text>
               </View>
               <View style={styles.place_section}>
                 <FlatList
@@ -102,7 +96,7 @@ class LaunchScreen extends Component {
               </View> */}
               <View style={styles.bottom_section}>
                 <TouchableOpacity onPress={this._onClickNext} style={styles.btn_skip}>
-                  <Text style={styles.txt_skip}>Next</Text>
+                  <Text style={styles.txt_skip}>{strings('global.next')}</Text>
                 </TouchableOpacity>
               </View>
            </View>
@@ -112,8 +106,9 @@ class LaunchScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({main}) => {
   return {
+    lang: main.lang
   }
 }
 

@@ -4,6 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvo
 import styles from './Styles/SignInStyle'
 
 import { Images, Colors } from '../Themes'
+import { strings } from '../../locales/i18n';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class SignIn extends Component {
           underlineColorAndroid = {Colors.transparent}
           autoCapitalize = {'none'}
           autoCorrect = {false}
-          placeholder = {'Email'}
+          placeholder = {strings('sign.email')}
           validators = {'isEmail'}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
@@ -59,7 +60,7 @@ export default class SignIn extends Component {
           underlineColorAndroid = {Colors.transparent}
           autoCapitalize = {'none'}
           autoCorrect = {false}
-          placeholder = {'Password'}
+          placeholder = {strings('sign.password')}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
           returnKeyType = 'go'
@@ -68,22 +69,22 @@ export default class SignIn extends Component {
           maxLength = {100}/>
         
         <TouchableOpacity style={styles.btnSignIn} onPress={this._onSignIn}>
-          <Text style={styles.txtSignIn}>Sign In</Text>
+          <Text style={styles.txtSignIn}>{strings('sign.sign_in')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.btnForgot} onPress={this._onForgotPassword}>
-          <Text style={styles.txtForgot}>Forgot Password?</Text>
+          {/* <Text style={styles.txtForgot}>Forgot Password?</Text> */}
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]} onPress={this._SignInWithFacebook.bind(this)}>
           <Image style={styles.social_icon} source={Images.facebook} resizeMode='contain' />
-          <Text style={styles.social_txt}>Signin with Facebook</Text>
+          <Text style={styles.social_txt}>{strings('sign.facebook_sign_in')}</Text>
           <View style={styles.hiddenView} />
         </TouchableOpacity>
 
         <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#cf4332'}]} onPress={this._SignInWithGoogle.bind(this)}>
           <Image style={styles.social_icon} source={Images.googleplus} resizeMode='contain' />
-          <Text style={styles.social_txt}>Signin with Google</Text>
+          <Text style={styles.social_txt}>{strings('sign.google_sign_in')}</Text>
           <View style={styles.hiddenView} />
         </TouchableOpacity>
         </KeyboardAvoidingView>

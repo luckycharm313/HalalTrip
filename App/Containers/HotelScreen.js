@@ -12,6 +12,8 @@ import HotelList from '../Components/HotelList'
 import HotelAction from '../Redux/HotelRedux'
 import InfiniteScroll from 'react-native-infinite-scroll'
 
+import { strings } from '../../locales/i18n';
+
 class HotelScreen extends Component {
 
   constructor(props) {
@@ -112,7 +114,7 @@ class HotelScreen extends Component {
     if(hotelTotalData.length > 0){
       allHotel = (
         <View style={styles.hotel_list_section}>
-          <Text style={styles.header_txt_title_md}>All Hotels</Text>
+          {/* <Text style={styles.header_txt_title_md}>All Hotels</Text> */}
           <View style={styles.hotel_list_view}>
               <FlatList
                 data={this.state.tempHotelData}
@@ -133,7 +135,7 @@ class HotelScreen extends Component {
         <View style={styles.container}>
           <View style={styles.header_section}>
             <View style={styles.label_section}>
-              <Text style={styles.header_txt_title}>Hotels</Text>
+              <Text style={styles.header_txt_title}>{strings('global.hotel')}</Text>
               {/* <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
                 <Text style={styles.txtFilter}>Filters</Text>
               </TouchableOpacity> */}

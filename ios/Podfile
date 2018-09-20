@@ -43,6 +43,8 @@ target 'HalalTripThailand' do
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
 end
 
 target 'HalalTripThailand-tvOS' do

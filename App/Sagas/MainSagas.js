@@ -10,6 +10,9 @@ import StartupActions from '../Redux/StartupRedux'
 import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
 import { NavigationActions } from 'react-navigation';
+import RNRestart from 'react-native-restart'; 
+import I18n from 'react-native-i18n';
+import SyncStorage from 'sync-storage';
 
 export function * loadData (api, action) {
   
@@ -160,9 +163,13 @@ export function * loadData (api, action) {
 
 export function * setLanguage (api, action) {
   const { lang } = action
+  // yield SyncStorage.set('language', lang);
   try {
-    yield AsyncStorage.setItem('lang', JSON.stringify(lang))  
-    yield put(MainActions.mainSuccess())      
+    yield AsyncStorage.setItem('lang', JSON.stringify(lang))   
+    // I18n.locale = lang; 
+    yield put(MainActions.langSuccess(lang))
+    RNRestart.Restart(); 
+      
   } catch (error) {
     yield put(MainActions.mainFailure())
   }
@@ -172,15 +179,28 @@ export function * preLoad (api, action) {
   const token = JSON.parse(yield AsyncStorage.getItem('token'))
   const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
   
+  let _lang = lang
+  
   if(lang === null){
+    _lang = "th"
     try {
-      yield AsyncStorage.setItem('lang', JSON.stringify("th"))        
+      yield AsyncStorage.setItem('lang', JSON.stringify("th"))
+      
     } catch (error) {
       yield put(MainActions.mainFailure())
     }
   }
+
+  console.log(' locale set => ', _lang)
   
+  // I18n.locale = _lang;
+
   if(token !== null){
     yield put(NavigationActions.navigate({ routeName: 'HomeScreen'} ));
   }
+}
+
+export function * loadLanguage (api, action) {
+  const lang = JSON.parse(yield AsyncStorage.getItem('lang'))
+  yield put(MainActions.langSuccess(lang))
 }

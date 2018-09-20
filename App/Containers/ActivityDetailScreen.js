@@ -12,6 +12,8 @@ import ActivityAction from '../Redux/ActivityRedux'
 // Styles
 import styles from './Styles/ActivityDetailScreenStyle'
 
+import { strings } from '../../locales/i18n';
+
 class ActivityDetailScreen extends Component {
 
   static navigationOptions = {
@@ -96,7 +98,7 @@ class ActivityDetailScreen extends Component {
             </View>
             <View style={styles.hotel_location_view}>
               <View style={styles.hotel_location_section}>
-                <Text style={styles.txt_location_label}>Location</Text>
+                <Text style={styles.txt_location_label}>{strings('global.location')}</Text>
                 <Text style={styles.txt_location_detail}>{location}</Text>
               </View>
             </View>
@@ -104,7 +106,7 @@ class ActivityDetailScreen extends Component {
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Description</Text>              
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>              
               {/* <Text style={styles.txt_description_detail} >{description}</Text> */}
               <HTML
                 html={description}

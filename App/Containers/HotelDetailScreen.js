@@ -15,7 +15,7 @@ import NavBar from '../Components/NavBar'
 import HotelItem from '../Components/HotelItem'
 import Modal from "react-native-modal";
 import InfiniteScroll from 'react-native-infinite-scroll'
-
+import { strings } from '../../locales/i18n';
 
 class HotelDetailScreen extends Component {
   static navigationOptions = {
@@ -142,7 +142,7 @@ class HotelDetailScreen extends Component {
     if(this.props.hotelTotalData.length > 0){
       similarHotelView = (
         <View style={styles.reviews_section}>
-          <Text style={[styles.txt_description_label,{marginBottom : 15}]}>Similar Hotels Nearby</Text>
+          <Text style={[styles.txt_description_label,{marginBottom : 15}]}>{strings('hotel.similar_hotel')}</Text>
           <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreSimilarHotels}
@@ -163,7 +163,7 @@ class HotelDetailScreen extends Component {
     if(_amenity.length > 0 ){
       amentityView = (
         <View style={styles.description_view}>
-          <Text style={styles.txt_description_label}>Amenities</Text>
+          <Text style={styles.txt_description_label}>{strings('hotel.amenities')}</Text>
           <ScrollView horizontal={true} style={styles.description_view} showsHorizontalScrollIndicator={false}>
             {
               _amenity.map(element => (
@@ -257,7 +257,7 @@ class HotelDetailScreen extends Component {
             </View>
             <View style={styles.hotel_location_view}>
               <View style={styles.hotel_location_section}>
-                <Text style={styles.txt_location_label}>Location</Text>
+                <Text style={styles.txt_location_label}>{strings('global.location')}</Text>
                 <Text style={styles.txt_location_detail}>{location}</Text>
                 {/* <TouchableOpacity style={styles.btn_nearby}>
                   <Text style={styles.txt_nearby}>Explore Nearby</Text>
@@ -289,7 +289,7 @@ class HotelDetailScreen extends Component {
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Description</Text>              
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>              
               <HTML
                 html={description}
                 renderers={_renderers}

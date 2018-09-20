@@ -20,7 +20,7 @@ import { SearchTypes } from '../Redux/SearchRedux'
 
 import { startup, receivedNotification } from './StartupSagas'
 import { signUp, signUpWithGoogle, signUpWithFacebook, logIn, logout, loadProfile } from './UserSagas'
-import { loadData, setLanguage, preLoad } from './MainSagas'
+import { loadData, setLanguage, preLoad, loadLanguage } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail, setHotelRate } from './HotelSagas'
 import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail, setRestaurantRate} from './RestaurantSagas'
@@ -56,6 +56,7 @@ export default function * root () {
     takeLatest(MainTypes.LOAD_DATA, loadData, main_api),    
     takeLatest(MainTypes.SET_LANGUAGE, setLanguage, main_api),    
     takeLatest(MainTypes.PRE_LOAD, preLoad, main_api),    
+    takeLatest(MainTypes.LOAD_LANGUAGE, loadLanguage, main_api),    
 
     // place saga:
     takeLatest(PlaceTypes.GET_HOTEL_BY_PLACE, getHotelByPlace, main_api),

@@ -1,6 +1,6 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {Platform} from "react-native"
+import {Platform, View, Text, TouchableOpacity} from "react-native"
 import { TabNavigator, StackNavigator, TabBarBottom } from 'react-navigation'
 import WeatherScreen from '../Containers/WeatherScreen'
 import EmergencyContactScreen from '../Containers/EmergencyContactScreen'
@@ -34,50 +34,36 @@ import LaunchScreen from '../Containers/LaunchScreen'
 
 import styles from './Styles/NavigationStyles'
 import { Colors, Metrics, Fonts } from '../Themes/'
+import { strings } from '../../locales/i18n';
 
 const HomeStack = StackNavigator({
   HomeScreen: { screen: HomeScreen },  
 }, {
   headerMode: 'none',
-  navigationOptions: {
-    tabBarIcon: ({tintColor}) => <Icon name="home" style = {{color : tintColor, fontSize : Metrics.icons.medium }}/>,
-  } 
 });
 
 const PlaceStack = StackNavigator({
   PlaceScreen: { screen: PlaceScreen },  
 }, {
   headerMode: 'none',
-  navigationOptions: {
-    tabBarIcon: ({tintColor}) => <Icon name="account-balance" style = {{color : tintColor, fontSize : Metrics.icons.medium }}/>,
-  }
 });
 
 const HotelStack = StackNavigator({
   HotelScreen: { screen: HotelScreen },  
 }, {
   headerMode: 'none',
-  navigationOptions: {
-    tabBarIcon: ({tintColor}) => <Icon name="widgets" style = {{color : tintColor, fontSize : Metrics.icons.medium }}/>,
-  }
 });
 
 const RestaurantStack = StackNavigator({
   RestaurantScreen: { screen: RestaurantScreen },  
 }, {
   headerMode: 'none',
-  navigationOptions: {
-    tabBarIcon: ({tintColor}) => <Icon name="local-dining" style = {{color : tintColor, fontSize : Metrics.icons.medium }}/>,
-  }
 });
 
 const AccountStack = StackNavigator({
   AccountScreen: { screen: AccountScreen },  
 }, {
   headerMode: 'none',
-  navigationOptions: {
-    tabBarIcon: ({tintColor}) => <Icon name="person" style = {{color : tintColor, fontSize : Metrics.icons.medium }}/>,
-  }
 });
 
 const mainNavigator = TabNavigator({
@@ -88,7 +74,81 @@ const mainNavigator = TabNavigator({
   Account : { screen: AccountStack },
 },
 {
-  tabBarComponent: TabBarBottom,
+  tabBarComponent: (props) => {
+    console.log('props.naviagtion =', props)
+    return  (
+      <View style={{
+        height: 50,
+        backgroundColor: 'white',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'space-around',
+        borderColor: Colors.grey,
+        borderTopWidth: 1,
+        shadowColor: Colors.grey,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+      }}>
+        {
+          props.navigation.state.routes.map((route, index) => {
+              const color = props.navigation.state.index == index ? Colors.primary : Colors.grey
+              let _view = null
+              switch(index){
+                case 0:
+                  _view = (
+                    <TouchableOpacity style={{alignItems: 'center', width :60}}       
+                      onPress={() => {props.jumpToIndex(index)}}>
+                      <Icon name="home" style = {{fontSize : Metrics.icons.medium }} color={color}/>
+                      <Text style={{fontSize: 10, color: color}}>{strings('global.home')}</Text>
+                    </TouchableOpacity>
+                  )
+                  break;
+                case 1:
+                  _view = (
+                    <TouchableOpacity style={{alignItems: 'center', width :60}}       
+                      onPress={() => {props.jumpToIndex(index)}}>
+                      <Icon name="account-balance" style = {{fontSize : Metrics.icons.medium }} color={color}/>
+                      <Text style={{fontSize: 10, color: color}}>{strings('global.place')}</Text>
+                    </TouchableOpacity>
+                  )
+                  break;
+                case 2:
+                  _view = (
+                    <TouchableOpacity style={{alignItems: 'center', width :60}}       
+                      onPress={() => {props.jumpToIndex(index)}}>
+                      <Icon name="widgets" style = {{fontSize : Metrics.icons.medium }} color={color}/>
+                      <Text style={{fontSize: 10, color: color}}>{strings('global.hotel')}</Text>
+                    </TouchableOpacity>
+                  )
+                  break;
+                case 3:
+                  _view = (
+                    <TouchableOpacity style={{alignItems: 'center', width :60}}       
+                      onPress={() => {props.jumpToIndex(index)}}>
+                      <Icon name="local-dining" style = {{fontSize : Metrics.icons.medium }} color={color}/>
+                      <Text style={{fontSize: 10, color: color}}>{strings('global.restaurant')}</Text>
+                    </TouchableOpacity>
+                  )
+                  break;
+                case 4:
+                  _view = (
+                    <TouchableOpacity style={{alignItems: 'center', width :60}}       
+                      onPress={() => {props.jumpToIndex(index)}}>
+                      <Icon name="person" style = {{fontSize : Metrics.icons.medium }} color={color}/>
+                      <Text style={{fontSize: 10, color: color}}>{strings('global.account')}</Text>
+                    </TouchableOpacity>
+                  )
+                  break;
+              }
+
+              return _view
+            }
+          )
+        }
+      </View>
+    )
+  },
   tabBarPosition: 'bottom',
   animationEnabled: Platform.OS !== 'ios' ? false : true,
   swipeEnabled: false,

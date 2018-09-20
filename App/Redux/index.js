@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { persistReducer } from 'redux-persist'
+import { persistReducer, persistStore } from 'redux-persist'
 import configureStore from './CreateStore'
 import rootSaga from '../Sagas/'
 import ReduxPersist from '../Config/ReduxPersist'
@@ -29,6 +29,7 @@ export default () => {
   }
 
   let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
+  let persistor = persistStore(store)
 
   if (module.hot) {
     module.hot.accept(() => {
@@ -43,5 +44,5 @@ export default () => {
     })
   }
 
-  return store
+  return {store, persistor}
 }

@@ -1,0 +1,58 @@
+{
+  "global" : {
+    "next" : "Next",
+    "categories" : "Categories",
+    "hotel" : "Hotel",
+    "restaurant" : "Restaurant",
+    "tourist" : "Tourist Attraction",
+    "cities" : "Cities",
+    "see_all" : "See all",
+    "destination" : "Top Destinations",
+    "place" : "Place",
+    "account" : "Account",
+    "save" : "Saved",
+    "notification" : "Notifications",
+    "emergency" : "Emergency Contact",
+    "weather" : "Weather",
+    "multi_lang" : "Multiple language",
+    "log_out" : "Log out",
+    "description" : "Description",
+    "location":"Location",
+    "thailand":"Thailand",
+    "english":"English",
+    "malay":"Malay",
+    "home":"Home"
+  },
+  "launch" :{
+    "choose_wonderful_place":"Choose a wonderful place",
+    "find_best_place":"Find the best place you want and enjob your trip with your lover"    
+  },
+  "sign" :{
+    "always_beautiful":"Always know beautiful destinations for your trip",
+    "sign_in":"Sign in",
+    "sign_up":"Sign up",
+    "facebook_sign_in":"Signin with Facebook",
+    "google_sign_in":"Signin with Google",
+    "email":"Email",
+    "name":"Name",
+    "password":"Password",
+    "policy":"By clicking sign up, you will create an account and agree to ours Terms of service and Privacy Policy"
+  },
+  "home" :{
+    "explore_world":"Explore the world",
+    "discover":"Discover and book everything that make your joyful",
+    "search":"Search",
+    "popular_activity" : "Popular activities",
+    "trending_now" : "Trending Now"
+  },
+  "restaurant" :{
+    "all_restaurant" :"All Restaurant",
+    "trend_this_week" :"Trending This week"
+  },
+  "hotel" :{
+    "similar_hotel":"similar hotels by nearby",
+    "amenities":"Amenities",
+    "information":"Information",
+    "direction":"Go direction"
+  }
+}

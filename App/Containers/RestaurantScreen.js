@@ -12,6 +12,8 @@ import RestaurantList from '../Components/RestaurantList'
 import RestaurantAllList from '../Components/RestaurantAllList'
 import RestaurantAction from '../Redux/RestaurantRedux'
 
+import { strings } from '../../locales/i18n';
+
 class RestaurantScreen extends Component {
   constructor(props) {
     super(props);
@@ -112,7 +114,7 @@ class RestaurantScreen extends Component {
         <View style={styles.container}>
           <View style={styles.header_section}>
             <View style={styles.label_section}>
-              <Text style={styles.header_txt_title}>Restaurants</Text>
+              <Text style={styles.header_txt_title}>{strings('global.restaurant')}</Text>
               {/* <TouchableOpacity style={styles.btnFilter} onPress={this._onFilterBtn}>
                 <Text style={styles.txtFilter}>Filters</Text>
               </TouchableOpacity> */}
@@ -153,9 +155,9 @@ class RestaurantScreen extends Component {
 
           <View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>Cities</Text>
+              <Text style={styles.txtSectionTitle}>{strings('global.cities')}</Text>
               <TouchableOpacity style={styles.more_area} onPress = {this._onCuisines}>
-                <Text style={styles.txtLabelSm}>See all</Text>
+                <Text style={styles.txtLabelSm}>{strings('global.see_all')}</Text>
                 <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
               </TouchableOpacity>
             </View>
@@ -171,7 +173,7 @@ class RestaurantScreen extends Component {
 
           <View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>Trending This Week</Text>
+              <Text style={styles.txtSectionTitle}>{strings('restaurant.trend_this_week')}</Text>
               {/* <TouchableOpacity style={styles.more_area}>
                 <Text j
                 
@@ -196,7 +198,7 @@ class RestaurantScreen extends Component {
 
           <View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>All Restaurants</Text>
+              <Text style={styles.txtSectionTitle}>{strings('restaurant.all_restaurant')}</Text>
             </View>
               <FlatList
                 data={this.state.tempRestaurantData}

@@ -11,6 +11,7 @@ import SignIn from '../Components/SignIn'
 import SignUp from '../Components/SignUp'
 import UserAction from '../Redux/UserRedux'
 import Spinkit from '../Components/Spinkit'
+import { strings } from '../../locales/i18n';
 
 class SignInScreen extends Component {
   constructor(props) {
@@ -74,14 +75,14 @@ class SignInScreen extends Component {
           <ImageBackground style={styles.header_section} source={Images.image1}>
             <View style={styles.header_txt_section}>
               <Text style={styles.header_txt_title}>Halal Trip Thailand</Text>
-              <Text style={styles.header_txt_description}>Always know beautiful destinations for your trip</Text>
+              <Text style={styles.header_txt_description}>{strings('sign.always_beautiful')}</Text>
             </View>
             <View style={styles.tab_bar_section} >
               <TouchableOpacity onPress={this._onClickSigninTab} style={this.state.routeIndex == 1 ? styles.bar_section_active : styles.bar_section}>
-                <Text style={this.state.routeIndex == 1 ? styles.txt_tab_active : styles.txt_tab}>SIGN IN</Text>
+                <Text style={this.state.routeIndex == 1 ? styles.txt_tab_active : styles.txt_tab}>{strings('sign.sign_in')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={this._onClickSignupTab} style={this.state.routeIndex == 2 ? styles.bar_section_active : styles.bar_section}>
-                <Text style={this.state.routeIndex == 2 ? styles.txt_tab_active : styles.txt_tab}>SIGN UP</Text>
+                <Text style={this.state.routeIndex == 2 ? styles.txt_tab_active : styles.txt_tab}>{strings('sign.sign_up')}</Text>
               </TouchableOpacity>
             </View>
           </ImageBackground>

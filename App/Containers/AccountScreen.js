@@ -11,6 +11,7 @@ import { Images, Colors } from '../Themes'
 import UserAction from '../Redux/UserRedux'
 import MainAction from '../Redux/MainRedux'
 import Modal from "react-native-modal";
+import { strings } from '../../locales/i18n';
 
 class AccountScreen extends Component {
   constructor(props) {
@@ -18,11 +19,10 @@ class AccountScreen extends Component {
     this.state = {
       modalVisible: false,
       multi_lang :[
-        {label: 'Thaidland', value: 0 },
-        {label: 'English', value: 1 },
-        {label: 'Malay', value: 2 },
-      ],
-      langIndex : 0,
+        {label: strings('global.thailand'), value: 0 },
+        {label: strings('global.english'), value: 1 },
+        {label: strings('global.malay'), value: 2 },
+      ],      
     }
   }
   
@@ -70,7 +70,7 @@ class AccountScreen extends Component {
     }
     this.props.setLanguage(lang_code)
   }
-
+  
   render () {
     userData = this.props.userData ? this.props.userData :[]
     const {avatar, displayname, email} = userData
@@ -86,7 +86,7 @@ class AccountScreen extends Component {
             <View style={styles.modalView}>
               <RadioForm
                 radio_props={this.state.multi_lang}
-                initial={0}
+                initial={this.props.lang}
                 labelColor={Colors.primary}
                 onPress={(value) => this._onSelectLang(value)}
                 radioStyle={{marginBottom: 20}}
@@ -108,23 +108,23 @@ class AccountScreen extends Component {
           
           <ScrollView style={styles.view_options} showsVerticalScrollIndicator={false}>
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'saved')}>
-              <Text style={styles.txt_setting}>Saved</Text>
+              <Text style={styles.txt_setting}>{strings('global.save')}</Text>
               <Icon name="receipt" style = {styles.icon_setting} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'notification')} >
-              <Text style={styles.txt_setting}>Notifications</Text>
+              <Text style={styles.txt_setting}>{strings('global.notification')}</Text>
               <Icon name="notifications" style = {styles.icon_setting} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'emergency')} >
-              <Text style={styles.txt_setting}>EmergencyContact</Text>
+              <Text style={styles.txt_setting}>{strings('global.emergency')}</Text>
               <Icon name="warning" style = {styles.icon_setting} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'weather')} >
-              <Text style={styles.txt_setting}>Weather</Text>
+              <Text style={styles.txt_setting}>{strings('global.weather')}</Text>
               <Icon name="wb-sunny" style = {styles.icon_setting} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'multiLang')} >
-              <Text style={styles.txt_setting}>Multiple Language</Text>
+              <Text style={styles.txt_setting}>{strings('global.multi_lang')}</Text>
               <Icon name="language" style = {styles.icon_setting} />
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.setting_option} >
@@ -140,7 +140,7 @@ class AccountScreen extends Component {
               <Icon name="info" style = {styles.icon_setting} />
             </TouchableOpacity> */}
             <TouchableOpacity style={styles.setting_option} onPress = {this._onSelectMenu.bind(this, 'logout')} >
-              <Text style={styles.txt_setting}>Logout</Text>
+              <Text style={styles.txt_setting}>{strings('global.log_out')}</Text>
               <Icon name="settings-power" style = {styles.icon_setting} />
             </TouchableOpacity>
             {/* <TouchableOpacity style={styles.setting_option} >
@@ -153,9 +153,10 @@ class AccountScreen extends Component {
   }
 }
 
-const mapStateToProps = ({user}) => {
+const mapStateToProps = ({user, main}) => {
   return {
-    userData : user.userData
+    userData : user.userData,
+    lang : main.lang
   }
 }
 
@@ -163,7 +164,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logOut: () => dispatch(UserAction.logOut()),
     loadProfile: () => dispatch(UserAction.loadProfile()),
-    setLanguage: (lang_code) => dispatch(MainAction.setLanguage(lang_code)),
+    setLanguage: (lang_code) => dispatch(MainAction.setLanguage(lang_code)),    
   }
 }
 

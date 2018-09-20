@@ -4986,6 +4986,10 @@ hyphenate-style-name@^1.0.1, hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
 
+i18n-js@3.0.11:
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.0.11.tgz#f9e96bdb641c5b9d6be12759d7c422089987ef02"
+
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -8231,6 +8235,12 @@ react-native-google-signin@^1.0.0-rc3:
   version "1.0.0-rc3"
   resolved "https://registry.yarnpkg.com/react-native-google-signin/-/react-native-google-signin-1.0.0-rc3.tgz#9b31e893f69450099a965064e073eed1483e604f"
 
+react-native-i18n@^2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-2.0.15.tgz#09b5a9836116fa7dbd0054c46e2d1014c1ef3c65"
+  dependencies:
+    i18n-js "3.0.11"
+
 react-native-immediate-phone-call@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-immediate-phone-call/-/react-native-immediate-phone-call-1.0.0.tgz#ad1f5e2bd686a1a495ed68e8a4c96205bdfa2247"
@@ -8291,6 +8301,10 @@ react-native-render-html@^3.10.0:
     html-entities "^1.2.0"
     htmlparser2 "^3.9.0"
     stream "0.0.2"
+
+react-native-restart@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.7.tgz#e2ec764dcb0a82918a301c8664c30df75225f7e3"
 
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
@@ -9705,6 +9719,10 @@ sync-request@^3.0.1:
     concat-stream "^1.4.7"
     http-response-object "^1.0.1"
     then-request "^2.0.1"
+
+sync-storage@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/sync-storage/-/sync-storage-0.2.2.tgz#a32f32e43a220f88e05f82c1608ad06564a30acf"
 
 table@^3.7.8:
   version "3.8.3"

@@ -4,6 +4,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvo
 import styles from './Styles/SignUpStyle'
 
 import { Images, Colors } from '../Themes'
+import { strings } from '../../locales/i18n';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class SignUp extends Component {
           underlineColorAndroid = {Colors.transparent}
           autoCapitalize = {'none'}
           autoCorrect = {false}
-          placeholder = {'Name'}
+          placeholder = {strings('sign.name')}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
           returnKeyType = 'go'
@@ -57,7 +58,7 @@ export default class SignUp extends Component {
           validators = {'isEmail'}
           autoCapitalize = {'none'}
           autoCorrect = {false}
-          placeholder = {'Email'}
+          placeholder = {strings('sign.email')}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
           returnKeyType = 'go'
@@ -71,7 +72,7 @@ export default class SignUp extends Component {
           underlineColorAndroid = {Colors.transparent}
           autoCapitalize = {'none'}
           autoCorrect = {false}
-          placeholder = {'Password'}
+          placeholder = {strings('sign.password')}
           placeholderTextColor = {Colors.textHintColor}
           style = {styles.input_area}
           returnKeyType = 'go'
@@ -81,11 +82,11 @@ export default class SignUp extends Component {
           maxLength = {100}/>
         
         <TouchableOpacity style={styles.btnSignIn} onPress={this._signUp}>
-          <Text style={styles.txtSignIn}>Sign Up</Text>
+          <Text style={styles.txtSignIn}>{strings('sign.sign_up')}</Text>
         </TouchableOpacity>
 
         <View style={styles.policy_section}>
-          <Text style={styles.text_policy}>By clicking Sign up, you will create an account and agree to ours Terms of Service and Privacy Policy</Text>
+          <Text style={styles.text_policy}>{strings('sign.policy')}</Text>
         </View>
 
         {/* <TouchableOpacity style={[styles.btnSocial, {backgroundColor:'#3c66c4'}]} onPress={this._SignUpWithFacebook.bind(this)}>

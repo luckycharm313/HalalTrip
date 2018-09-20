@@ -15,6 +15,7 @@ import TouristHList from '../Components/TouristHList'
 import TouristAction from '../Redux/TouristRedux'
 import RNImmediatePhoneCall from 'react-native-immediate-phone-call'
 import Modal from "react-native-modal";
+import { strings } from '../../locales/i18n';
 
 class TouristDetailScreen extends Component {
   static navigationOptions = {
@@ -229,7 +230,7 @@ class TouristDetailScreen extends Component {
                 <Text style={styles.txt_price_detail_label}>Price Range</Text>
                 <Text style={styles.txt_price_detail}>Around $80 per person</Text>
               </View> */}
-              <Text style={styles.txt_description_label}>Information</Text>
+              <Text style={styles.txt_description_label}>{strings('hotel.information')}</Text>
               <View style={styles.action_view}>
                 <View>
                   <Text style={styles.txt_description_detail}>Monday - Thursday &nbsp;&nbsp;&nbsp; 10:00 AM - 11:00 PM</Text>
@@ -275,7 +276,7 @@ class TouristDetailScreen extends Component {
           </ScrollView> */}
 
           <View style={styles.description_section}>
-              <Text style={styles.txt_description_label}>Description</Text>
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>
               <HTML
                 html={description}
                 renderers={_renderers}
@@ -304,7 +305,7 @@ class TouristDetailScreen extends Component {
               </View>
             </View>
             <TouchableOpacity style={styles.btn_reservation} onPress={this._onMapView}>
-              <Text style={styles.txt_room}>Get Direction</Text>
+              <Text style={styles.txt_room}>{strings('hotel.direction')}</Text>
             </TouchableOpacity>
           </View>
         </View>

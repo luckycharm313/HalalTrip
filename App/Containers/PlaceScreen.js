@@ -6,7 +6,10 @@ import { connect } from 'react-redux'
 import styles from './Styles/PlaceScreenStyle'
 import { Images } from '../Themes'
 import PlaceItem from '../Components/PlaceItem'
+
+import { strings } from '../../locales/i18n';
 class PlaceScreen extends Component {
+
   constructor(props) {
     super(props);
   }

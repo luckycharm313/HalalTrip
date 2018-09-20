@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import styles from './Styles/CuisinesScreenStyle'
 import { Images, Colors } from '../Themes'
 import NavBar from '../Components/NavBar'
+import { strings } from '../../locales/i18n';
 
 class CuisinesScreen extends Component {
   static navigationOptions = {
@@ -47,7 +48,7 @@ class CuisinesScreen extends Component {
           </View>
           <View style={styles.item_view}>
             <Text style={styles.txt_label}>{title}</Text>
-            <Text style={styles.txt_detail}>{restaurant_count} Restaurants</Text>
+            <Text style={styles.txt_detail}>{restaurant_count} {strings('global.restaurant')}</Text>
           </View>
         </View>
         <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />

@@ -7,7 +7,7 @@ import TrendAction from '../Redux/TrendRedux'
 // Styles
 import styles from './Styles/TrendDetailScreenStyle'
 import HTML from 'react-native-render-html'
-
+import { strings } from '../../locales/i18n';
 class TrendDetailScreen extends Component {
   static navigationOptions = {
     tabBarVisible: false,
@@ -76,7 +76,7 @@ class TrendDetailScreen extends Component {
             </View>
             <View style={styles.hotel_location_view}>
               <View style={styles.hotel_location_section}>
-                <Text style={styles.txt_location_label}>Location</Text>
+                <Text style={styles.txt_location_label}>{strings('global.location')}</Text>
                 <Text style={styles.txt_location_detail}>{location}</Text>
               </View>
             </View>
@@ -84,7 +84,7 @@ class TrendDetailScreen extends Component {
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Description</Text>              
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>              
               <HTML
                 html={description}
                 renderers={_renderers}

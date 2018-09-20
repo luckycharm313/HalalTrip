@@ -19,8 +19,10 @@ import FreeCredit from '../Components/FreeCredit'
 import Spinkit from '../Components/Spinkit'
 import InfiniteScroll from 'react-native-infinite-scroll'
 import SearchAction from '../Redux/SearchRedux'
+import { strings } from '../../locales/i18n';
 
 class HomeScreen extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -132,7 +134,7 @@ class HomeScreen extends Component {
     if( categoryData.length > 0){
       categoryView = (
         <View style={styles.section}>
-          <Text style={styles.txtSectionTitle}>Categories</Text>
+          <Text style={styles.txtSectionTitle}>{strings('global.categories')}</Text>
           <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -149,9 +151,9 @@ class HomeScreen extends Component {
       hotelView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Top Destinations</Text>
+            <Text style={styles.txtSectionTitle}>{strings('global.destination')}</Text>
             <TouchableOpacity style={styles.more_area} onPress={this._seeAllHotels}>
-              <Text style={styles.txtLabelSm}>See all</Text>
+              <Text style={styles.txtLabelSm}>{strings('global.see_all')}</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
           </View>
@@ -177,7 +179,7 @@ class HomeScreen extends Component {
       activityView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Popular Actvities</Text>
+            <Text style={styles.txtSectionTitle}>{strings('home.popular_activity')}</Text>
             {/* <TouchableOpacity style={styles.more_area}>
               <Text style={styles.txtLabelSm}>See all</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -199,9 +201,9 @@ class HomeScreen extends Component {
       placeView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Cities</Text>
+            <Text style={styles.txtSectionTitle}>{strings('global.cities')}</Text>
             <TouchableOpacity style={styles.more_area} onPress={this._seeAllPlaces}>
-              <Text style={styles.txtLabelSm}>See all</Text>
+              <Text style={styles.txtLabelSm}>{strings('global.see_all')}</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
           </View>
@@ -221,7 +223,7 @@ class HomeScreen extends Component {
       trendView = (
         <View style={styles.section}>
           <View style={styles.section_header}>
-            <Text style={styles.txtSectionTitle}>Trending Now</Text>
+            <Text style={styles.txtSectionTitle}>{strings('home.trending_now')}</Text>
             {/* <TouchableOpacity style={styles.more_area}>
               <Text style={styles.txtLabelSm}>See all</Text>
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
@@ -243,8 +245,8 @@ class HomeScreen extends Component {
           <View style={styles.container}>
             <ImageBackground style={styles.header_section} source={Images.image1}>
               <View style={styles.header_txt_section}>
-                <Text style={styles.header_txt_title}>Explore the world</Text>
-                <Text style={styles.header_txt_description}>Discover and book everything that make your joyful</Text>
+                <Text style={styles.header_txt_title}>{strings('home.explore_world')}</Text>
+                <Text style={styles.header_txt_description}>{strings('home.discover')}</Text>
                 {/* <TouchableOpacity style={styles.btnDiscover} onPress={this._discoverDestinations}>
                   <Text style={styles.txtDiscover}>Discover destinations</Text>
                   <Icon name="keyboard-arrow-right" style = {styles.icon_arrow} />
@@ -258,7 +260,7 @@ class HomeScreen extends Component {
                     underlineColorAndroid = {Colors.transparent}
                     autoCapitalize = {'none'}
                     autoCorrect = {false}
-                    placeholder = {'Search'}
+                    placeholder = {strings('home.search')}
                     placeholderTextColor = {Colors.textHintColor}
                     style = {styles.input_area}
                     returnKeyType = 'go'

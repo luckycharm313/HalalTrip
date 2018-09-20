@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 // Styles
 import styles from './Styles/NotificationScreenStyle'
 import NavBar from '../Components/NavBar'
-
+import { strings } from '../../locales/i18n';
 class NotificationsScreen extends Component {
   static navigationOptions = {
     tabBarVisible: false,

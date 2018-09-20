@@ -8,7 +8,7 @@ import TouristAction from '../Redux/TouristRedux'
 import TouristVList from '../Components/TouristVList'
 import InfiniteScroll from 'react-native-infinite-scroll'
 import NavBar from '../Components/NavBar'
-
+import { strings } from '../../locales/i18n';
 class TouristScreen extends Component {
   constructor(props) {
     super(props)
@@ -74,7 +74,7 @@ class TouristScreen extends Component {
     if(touristTotalData.length > 0){
       allTourist = (
         <View style={styles.hotel_list_section}>
-          <Text style={styles.header_txt_title_md}>All Tourist Attractions</Text>
+          <Text style={styles.header_txt_title_md}>{strings('global.tourist')}</Text>
           <View style={styles.hotel_list_view}>
             <FlatList
               data={this.state.tempTouristData}
