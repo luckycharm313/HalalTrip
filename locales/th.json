@@ -47,7 +47,8 @@
   },
   "restaurant" :{
     "all_restaurant" :"ร้านอาหารทั้งหมด",
-    "trend_this_week" :"แนวโน้มสัปดาห์นี้"
+    "trend_this_week" :"แนวโน้มสัปดาห์นี้",
+    "similar_restaurant":"ร้านอาหารที่คล้ายกัน"
   },
   "hotel" :{
     "similar_hotel":"โรงแรมที่คล้ายกันโดยอยู่บริเวณใกล้เคียง",

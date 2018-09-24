@@ -47,7 +47,8 @@
   },
   "restaurant" :{
     "all_restaurant" :"semua Restoran",
-    "trend_this_week" :"Tren Minggu ini"
+    "trend_this_week" :"Tren Minggu ini",
+    "similar_restaurant":"Restoran serupa"
   },
   "hotel" :{
     "similar_hotel":"hotel sama oleh berdekatan",

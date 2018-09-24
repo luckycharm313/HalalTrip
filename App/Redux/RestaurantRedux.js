@@ -18,7 +18,7 @@ const { Types, Creators } = createActions({
   loadTotalSuccess : ['payload'],
   getSavedDetail :['restaurantId'],
   loadDetailSuccess :['payload'],
-  setRate :['id', 'rate'],
+  setRestaurantRate :['id', 'rate'],
   rateSuccess :['id', 'rate'],
 })
 
@@ -166,6 +166,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOAD_TOTAL_SUCCESS]: loadTotalSuccess,
   [Types.GET_SAVED_DETAIL]: request,
   [Types.LOAD_DETAIL_SUCCESS]: loadDetailSuccess,
-  [Types.SET_RATE]: _request,
+  [Types.SET_RESTAURANT_RATE]: _request,
   [Types.RATE_SUCCESS]: rateSuccess,
 })

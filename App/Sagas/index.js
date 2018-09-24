@@ -75,7 +75,7 @@ export default function * root () {
     takeLatest(RestaurantTypes.SAVE_RESTAURANT_TOTAL, saveRestaurantTotal, main_api),
     takeLatest(RestaurantTypes.LOAD_SAVED_DATA, loadSavedData, main_api),
     takeLatest(RestaurantTypes.GET_SAVED_DETAIL, getSavedDetail, main_api),
-    takeLatest(RestaurantTypes.SET_RATE, setRestaurantRate, main_api),
+    takeLatest(RestaurantTypes.SET_RESTAURANT_RATE, setRestaurantRate, main_api),
 
     // tourist saga :
     takeLatest(TouristTypes.LOAD_TOURIST_DATA, loadTouristData, main_api),

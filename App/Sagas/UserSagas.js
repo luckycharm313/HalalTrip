@@ -61,7 +61,7 @@ export function * signUpWithGoogle (api, action) {
   } catch (error) {
     yield put(StartupActions.loadBarSuccess("isload"))
     yield put(UserActions.userFailure())
-    alert("GoogleSignin error")
+   // alert("GoogleSignin error")
     return
   }
   
@@ -82,7 +82,7 @@ export function * signUpWithGoogle (api, action) {
     })  
   } catch (error) {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("GoogleSignin error")
+  //  alert("GoogleSignin error")
     yield put(UserActions.userFailure())
     return
   }
@@ -162,7 +162,7 @@ export function * signUpWithGoogle (api, action) {
 
   } catch (error) {
     yield put(StartupActions.loadBarSuccess("isload"))
-    alert("Google Sign in Failure")
+ //   alert("Google Sign in Failure")
     yield put(UserActions.userFailure())
     return
   }
@@ -228,13 +228,13 @@ export function * signUpWithFacebook (api, action) {
       }
       else{
         yield put(StartupActions.loadBarSuccess("isload"))
-        alert(msg)
+        // alert(msg)
         yield put(UserActions.userFailure())
         return
       }
     } else {
       yield put(StartupActions.loadBarSuccess("isload"))
-      alert("Facebook error")
+      // alert("Facebook error")
       yield put(UserActions.userFailure())
       return
     }
@@ -279,7 +279,7 @@ export function * logIn (api, action) {
             yield AsyncStorage.setItem('token', JSON.stringify(cookie))        
           } catch (error) {
             yield put(StartupActions.loadBarSuccess("isload"))
-            alert(error)
+            //alert(error)
             yield put(UserActions.userFailure())
             return
           }

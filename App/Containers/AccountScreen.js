@@ -53,9 +53,10 @@ class AccountScreen extends Component {
     }
   }
 
+
   _onSelectLang = (index) => {
-    this.setState({langIndex : index})
     this.setState({modalVisible: false})
+    this.setState({langIndex : index})
     let lang_code = null
     switch (index) {
       case 0:

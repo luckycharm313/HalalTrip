@@ -120,7 +120,7 @@ class RestaurantDetailScreen extends Component {
     this.setState({modalVisible: false})
     let id = this.props.restaurantDetailData.id
     let rate = this.state.starCount
-    this.props.setRate(id, rate)
+    this.props.setRestaurantRate(id, rate)
   }
 
   componentWillReceiveProps(nextProps){
@@ -171,7 +171,7 @@ class RestaurantDetailScreen extends Component {
     if(subRestaurantData.length > 0 ){
       similarRestaurantView = (
         <View style={styles.section}>
-          <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
+          <Text style={styles.txtSectionTitle}>{strings('restaurant.similar_restaurant')} in {this.state.placeName}</Text>
           <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreSimilarRestaurants}
@@ -373,7 +373,7 @@ const mapStateToProps = ({restaurant}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getRestaurantDetail : (restaurantId) => dispatch(RestaurantAction.getRestaurantDetail(restaurantId)),
-    setRate : (id, rate) => dispatch(RestaurantAction.setRate(id, rate)),
+    setRestaurantRate : (id, rate) => dispatch(RestaurantAction.setRestaurantRate(id, rate)),
   }
 }
 

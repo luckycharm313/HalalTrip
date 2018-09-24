@@ -21,6 +21,10 @@ import InfiniteScroll from 'react-native-infinite-scroll'
 import SearchAction from '../Redux/SearchRedux'
 import { strings } from '../../locales/i18n';
 
+import OneSignal from 'react-native-onesignal'
+import StartupActions from '../Redux/StartupRedux'
+let obj = null;
+
 class HomeScreen extends Component {
   
   constructor(props) {
@@ -81,7 +85,40 @@ class HomeScreen extends Component {
   )
 
   componentWillMount(){
+    obj = this;
+    OneSignal.init("180a6e93-3a86-42de-813d-282a113a4fc3");
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('ids', this.onIds);
+    OneSignal.configure()
+
     this.props.loadData()
+  }
+  
+  componentWillUnmount() {
+    OneSignal.removeEventListener('received', this.onReceived);
+    OneSignal.removeEventListener('opened', this.onOpened);
+    OneSignal.removeEventListener('ids', this.onIds);
+  }
+
+  onReceived(notification) {
+    const {payload} = notification
+    const {body} = payload
+    console.log("Notification received: ", notification);
+    console.log("Notification body: ", body);
+    console.log("Notification object: ", obj);
+    obj.props.receivedNotification(body)
+  }
+
+  onOpened(openResult) {
+    console.log('Message: ', openResult.notification.payload.body);
+    console.log('Data: ', openResult.notification.payload.additionalData);
+    console.log('isActive: ', openResult.notification.isAppInFocus);
+    console.log('openResult: ', openResult);
+  }
+
+  onIds(device) {
+  console.log('Device info: ', device);
   }
 
   componentWillReceiveProps(nextProps){
@@ -307,6 +344,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadData: () => dispatch(MainAction.loadData()),
     searchData: (searchKey) => dispatch(SearchAction.searchData(searchKey)),
+    receivedNotification: (notification) => dispatch(StartupActions.receivedNotification(notification))
   }
 }
 

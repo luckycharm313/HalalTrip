@@ -7,7 +7,7 @@ import PlaceActions from '../Redux/PlaceRedux'
 import ActivityActions from '../Redux/ActivityRedux'
 import TrendActions from '../Redux/TrendRedux'
 import StartupActions from '../Redux/StartupRedux'
-import {AsyncStorage, PermissionsAndroid, Platform} from 'react-native'
+import {AsyncStorage, PermissionsAndroid, Platform, Alert, AlertIOS} from 'react-native'
 // import { MainSelectors } from '../Redux/MainRedux'
 import { NavigationActions } from 'react-navigation';
 import RNRestart from 'react-native-restart'; 
@@ -168,8 +168,20 @@ export function * setLanguage (api, action) {
     yield AsyncStorage.setItem('lang', JSON.stringify(lang))   
     // I18n.locale = lang; 
     yield put(MainActions.langSuccess(lang))
-    RNRestart.Restart(); 
-      
+    if(Platform.OS == "android"){
+      Alert.alert(
+        '',
+        'You must restart application',
+        [
+          {text: 'OK', onPress: () => RNRestart.Restart()},
+        ],
+        { cancelable: false }
+      )
+    }
+    else{
+      setTimeout(() => {RNRestart.Restart()}, 2000)
+    }
+    
   } catch (error) {
     yield put(MainActions.mainFailure())
   }
