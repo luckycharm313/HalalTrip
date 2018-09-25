@@ -8034,6 +8034,10 @@ randexp@0.4.6:
     discontinuous-range "1.0.0"
     ret "~0.1.10"
 
+random-string@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/random-string/-/random-string-0.2.0.tgz#a46e4375352beda9a0d7b0d19ed6d321ecd1d82d"
+
 randomatic@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.0.0.tgz#d35490030eb4f7578de292ce6dfb04a91a128923"
@@ -8291,6 +8295,12 @@ react-native-onesignal@^3.2.6:
 react-native-read-more-text@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.1.0.tgz#d6f02a5caff8c91297957be66ecb42287c084e96"
+
+react-native-recaptcha-v3@0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-recaptcha-v3/-/react-native-recaptcha-v3-0.0.13.tgz#484c5d0d939b9d518d052ac1117dc1f5104cc562"
+  dependencies:
+    prop-types "^15.6.1"
 
 react-native-render-html@^3.10.0:
   version "3.10.0"

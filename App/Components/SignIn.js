@@ -2,38 +2,64 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView} from 'react-native'
 import styles from './Styles/SignInStyle'
+import randomString from 'random-string'
 
 import { Images, Colors } from '../Themes'
 import { strings } from '../../locales/i18n';
-
 export default class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
       _email : null,
       _password : null,
+      _recaptcha : null,
+      captcha : null,
+      isRobot : false,
     };
+  }
+
+  _confirmCaptcha =()=>{
+    if(this.state.captcha == this.state._recaptcha){
+      this.setState({isRobot : true})
+    }
   }
 
   _onForgotPassword = () => {
     // this.props.nav.navigate('ForgotPasswordScreen')
   }
   _onSignIn = () => {
-    if(this.state._email == null || this.state._password == null)
-      alert('Invalid Input data')
-    else
-      this.props.signIn(this.state._email, this.state._password)    
+    if(this.state.isRobot){
+      if(this.state._email == null || this.state._password == null)
+        alert('Invalid Input data')
+      else
+        this.props.signIn(this.state._email, this.state._password)    
+    }
+    else{
+      alert("Invalid Captcha Code")
+    }    
   }
 
   _SignInWithFacebook (){
-    this.props.signInWithFacebook()
+    this.props.signInWithFacebook()  
   }
   
   _SignInWithGoogle (){
     this.props.signInWithGoogle()
   }
 
+  componentDidMount(){
+    var captcha = randomString({
+      length: 4,
+      numeric: true,
+      letters: true,
+      special: false,
+      exclude: []
+    });
+    this.setState({captcha})
+  }
   render () {
+    
+    
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>
@@ -68,6 +94,23 @@ export default class SignIn extends Component {
           onChangeText = {(_password) => { this.setState({_password: _password})}}
           maxLength = {100}/>
         
+        <View style={styles.view_captcha}>
+          <Text style={styles.txt_captcha}>{this.state.captcha}</Text>
+          <TextInput
+            ref = {'recaptcha'}
+            name = {'recaptcha' }
+            type = {'TextInput'}
+            underlineColorAndroid = {Colors.transparent}
+            autoCapitalize = {'none'}
+            autoCorrect = {false}
+            style = {styles.input_recaptcha}
+            returnKeyType = 'go'
+            selectionColor = {Colors.textHintColor}
+            onChangeText = {(_recaptcha) => { this.setState({_recaptcha})}}
+            onSubmitEditing={()=>this._confirmCaptcha()}
+            maxLength = {4}/>
+        </View>
+
         <TouchableOpacity style={styles.btnSignIn} onPress={this._onSignIn}>
           <Text style={styles.txtSignIn}>{strings('sign.sign_in')}</Text>
         </TouchableOpacity>

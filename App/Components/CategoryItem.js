@@ -39,7 +39,7 @@ export default class CategoryItem extends Component {
             source={img_url}>
             <View style={styles.opacity_view} >
               <Text style={styles.txt_title}>{name}</Text>
-              {/* <Text style={styles.txt_detail}>{count}&nbsp;{name}s</Text> */}
+              <Text style={styles.txt_detail}>{count}&nbsp;{name}s</Text>
             </View>
           </ImageBackground>        
       </TouchableOpacity>

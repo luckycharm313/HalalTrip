@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Share, ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList } from 'react-native'
+import { Share, ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking, FlatList,WebView } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -196,6 +196,16 @@ class RestaurantDetailScreen extends Component {
             style={{marginVertical : 10}}
             {...passProps} />)
       },
+      iframe: (htmlAttribs, children, passProps)=>{
+        return(
+          <WebView
+            style={{borderWidth: 1, borderColor: 'red', width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            source={{uri: htmlAttribs.src?htmlAttribs.src:""}}
+          />
+        )
+      }
     }
 
     let icon = <SimpleIcon name="heart" style = {styles.icon_heart} />

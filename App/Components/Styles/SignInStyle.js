@@ -57,4 +57,34 @@ export default StyleSheet.create({
     fontSize        : Fonts.size.regular,
     fontFamily      : Fonts.type.base,
   },
+  view_captcha : {
+    flexDirection : 'row',
+    justifyContent : 'space-around',
+    alignItems: 'center',
+    marginTop : 10,
+  },
+  txt_captcha : {
+    width : 130,
+    color: '#586069',
+    fontSize        : 22,
+    fontFamily      : Fonts.type.emphasis,
+    paddingHorizontal : Metrics.paddingHorizontal,
+    paddingVertical : Metrics.smallMargin,
+    textAlign : 'center',
+    backgroundColor : '#f6f8fa',
+    letterSpacing : 5,
+    borderWidth: 1,
+    borderColor: "#d1d5da"
+  },  
+  input_recaptcha : {
+    width : 130,
+    color: Colors.font.dark,
+    fontSize        : Fonts.size.regular,
+    fontFamily      : Fonts.type.base,
+    paddingHorizontal : Metrics.paddingHorizontal,
+    paddingVertical : Metrics.smallMargin,
+    padding: 0,
+    borderWidth: 1,
+    borderColor: "#d1d5da"
+  },
 })

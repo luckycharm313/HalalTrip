@@ -56,8 +56,6 @@ export  function strings(name, params = null) {
       break;
   }
   I18n.locale = lang
-  console.log("i18n=>", lang)
-
   return I18n.t(name);
 };
 

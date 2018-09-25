@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, Linking } from 'react-native'
+import { ScrollView, WebView, Text, View, ImageBackground, TouchableOpacity, Image, Linking } from 'react-native'
 import { connect } from 'react-redux'
 import { Images, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
@@ -50,6 +50,16 @@ class TrendDetailScreen extends Component {
             style={{marginVertical : 10}}
             {...passProps} />)
       },
+      iframe: (htmlAttribs, children, passProps)=>{
+        return(
+          <WebView
+            style={{borderWidth: 1, borderColor: 'red', width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            source={{uri: htmlAttribs.src?htmlAttribs.src:""}}
+          />
+        )
+      }
     }
 
     return (
