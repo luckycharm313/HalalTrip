@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, FlatList, Platform } from 'react-native'
+import { ScrollView, Text, View, ImageBackground, TouchableOpacity, Image, WebView, Platform } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -8,9 +8,11 @@ import StarRating from 'react-native-star-rating';
 
 // Styles
 import styles from './Styles/RestaurantSavedDetailScreenStyle'
-import { Images, Colors } from '../Themes'
+import { Metrics, Colors } from '../Themes'
 import NavBar from '../Components/NavBar'
 import RestaurantAction from '../Redux/RestaurantRedux'
+import { strings } from '../../locales/i18n';
+import HTML from 'react-native-render-html'
 
 class RestaurantSavedDetailScreen extends Component {
   static navigationOptions = {
@@ -57,6 +59,27 @@ class RestaurantSavedDetailScreen extends Component {
     const {title, description, phone, rating, location, img_url} = savedRestaurantDetailData
     // const detailImages = restaurantDetailData.detailImages? restaurantDetailData.detailImages :[]
     const _rating = Number.parseFloat(rating)
+
+    const _renderers = {
+      img: (htmlAttribs, children, passProps) => {
+        return (
+          <Image
+            source={{uri: htmlAttribs.src?htmlAttribs.src:"", width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{marginVertical : 10}}
+            {...passProps} />)
+      },
+      iframe: (htmlAttribs, children, passProps)=>{
+        return(
+          <WebView
+            style={{borderWidth: 1, borderColor: 'red', width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            source={{uri: htmlAttribs.src?htmlAttribs.src:""}}
+          />
+        )
+      }
+    }
+
     return (
       <ScrollView style={styles.mainContainer}>
         <View style = {styles.container}>
@@ -89,20 +112,31 @@ class RestaurantSavedDetailScreen extends Component {
               <Text style={styles.txt_rating}>{rating}</Text>
             </View>
             <View style={styles.price_view}>
-              <Image style={styles.icon_money} source={Images.icon_money} resizeMode='contain' />
-              <View style={styles.price_detail_view}>
-                <Text style={styles.txt_price_detail_label}>Price Range</Text>
-                <Text style={styles.txt_price_detail}>Around $80 per person</Text>
+              <Text style={styles.txt_description_label}>{strings('hotel.information')}</Text>
+              <View style={styles.action_view}>
+                <View>
+                  <Text style={styles.txt_description_detail}>Monday - Thursday &nbsp;&nbsp;&nbsp; 10:00 AM - 11:00 PM</Text>
+                  <Text style={styles.txt_description_detail}>Friday - Sunday &nbsp;&nbsp;&nbsp; 12:00 PM - 5:00 AM</Text>
+                </View>
+                <TouchableOpacity style={styles.btn_action}>
+                  <Icon name="share" style = {styles.icon_action} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.action_view}>
+                <Text style={styles.txt_action}>{location}</Text>
+                <TouchableOpacity style={styles.btn_action}>
+                  <Icon name="location-on" style = {styles.icon_action} />
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.action_view}>
+                <Text style={styles.txt_action}>{phone}</Text>
+                <TouchableOpacity style={styles.btn_action}>
+                  <Icon name="local-phone" style = {styles.icon_action} />
+                </TouchableOpacity>
               </View>
             </View>
-            {/* <View style={styles.order_section}>
-              <View style={styles.order_view}>
-                <Text style={styles.txt_order}>Table for 2 Jun 14</Text>
-              </View>
-              <TouchableOpacity style={styles.btn_view}>
-                <Text style={styles.change_btn_txt}>Change</Text>
-              </TouchableOpacity>
-            </View> */}
+           
           </View>
 
           {/* <ScrollView horizontal={true} style={styles.room_view} showsHorizontalScrollIndicator={false}>
@@ -117,38 +151,13 @@ class RestaurantSavedDetailScreen extends Component {
           </ScrollView> */}
 
           <View style={styles.description_section}>
-              <Text style={styles.txt_description_label}>Description</Text>
-              <Text style={styles.txt_description_detail}>{description}</Text>
-
-              <Text style={styles.txt_description_label}>Information</Text>
-              <Text style={styles.txt_description_detail}>Monday - Thursday &nbsp;&nbsp;&nbsp; 10:00 AM - 11:00 PM</Text>
-              <Text style={styles.txt_description_detail}>Friday - Sunday &nbsp;&nbsp;&nbsp; 12:00 PM - 5:00 AM</Text>
-
-              <View style={styles.action_view}>
-                <Text style={styles.txt_action}>{location}</Text>
-                <TouchableOpacity style={styles.btn_action}>
-                  <Icon name="near-me" style = {styles.icon_action} />
-                </TouchableOpacity>
-              </View>
-
-              <View style={styles.action_view}>
-                <Text style={styles.txt_action}>{phone}</Text>
-                <TouchableOpacity style={styles.btn_action}>
-                  <Icon name="local-phone" style = {styles.icon_action} />
-                </TouchableOpacity>
-              </View>
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>
+              <HTML
+                html={description}
+                renderers={_renderers}
+                onLinkPress={(evt, href) => this.externalLink(href)}
+                />
           </View>
-
-          {/* <View style={styles.section}>
-            <Text style={styles.txtSectionTitle}>Similar Restaurants in {this.state.placeName}</Text>
-            <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={subRestaurantData}
-                renderItem={this._renderRestaurantData}
-                keyExtractor={(item, index) => index.toString()}
-              />
-          </View> */}
 
           <View style={styles.reservation_section}>
             <View style={styles.reservation_rating}>
@@ -169,7 +178,7 @@ class RestaurantSavedDetailScreen extends Component {
               </View>
             </View>
             <TouchableOpacity style={styles.btn_reservation}>
-              <Text style={styles.txt_room}>Reservation</Text>
+              <Text style={styles.txt_room}>{strings('hotel.direction')}</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -49,7 +49,7 @@ class ActivityItem extends Component {
           <Icon name="location-pin" style = {styles.icon_location} />
           &nbsp;&nbsp;{location}
         </Text>
-        <Text style={styles.txt_cost}>{cost} per person</Text>
+        {/* <Text style={styles.txt_cost}>{cost} per person</Text> */}
         <View style={styles.review_section}>
           <StarRating
             disabled={false}
@@ -62,7 +62,7 @@ class ActivityItem extends Component {
             iconSet={'Ionicons'}
             starSize = {15}
           />
-          <Text style={styles.txt_md}>{review} reviews</Text>
+          <Text style={styles.txt_md}>{rating}</Text>
         </View>
       </TouchableOpacity>
     )

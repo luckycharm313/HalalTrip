@@ -62,8 +62,8 @@ export default StyleSheet.create({
   },
   price_view : {
     marginTop : Metrics.baseMargin,
-    flexDirection : 'row',
-    alignItems : 'center',
+    // flexDirection : 'row',
+    // alignItems : 'center',
   },
   icon_money : {
     width : 30,
@@ -135,8 +135,8 @@ export default StyleSheet.create({
   },
   txt_description_label : {
     color: Colors.font.dark,
-    fontSize        : Fonts.size.medium,
-    fontFamily      : Fonts.type.base,
+    fontSize        : Fonts.size.input,
+    fontFamily      : Fonts.type.bold,
   },
   txt_description_detail : {
     marginTop : Metrics.baseMargin,

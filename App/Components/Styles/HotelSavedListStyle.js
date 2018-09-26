@@ -38,6 +38,12 @@ export default StyleSheet.create({
     fontFamily      : Fonts.type.base,
     paddingVertical : 2,
   },
+  review_section : {
+    flexDirection : 'row',
+    alignItems : 'center',
+    paddingVertical : 2,
+  },
+  
   txt_rating : {
     color: Colors.lightGrey,
     fontSize        : Fonts.size.small,

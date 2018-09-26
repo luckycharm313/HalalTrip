@@ -15,6 +15,8 @@ const { Types, Creators } = createActions({
   loadActivitySuccess : ['payload'],
   getSavedActivityDetail : ['activityId'],
   loadDetailSuccess : ['payload'],
+  setActivityRate : ['id', 'rate'],
+  rateActivitySuccess :['id', 'rate'],
 })
 
 export const ActivityTypes = Types
@@ -48,6 +50,8 @@ export const ActivitySelectors = {
 export const request = (state, { data }) =>
   state.merge({ fetching: true, data, payload: null })
 
+export const _request = (state, { data }) =>
+  state.merge({ fetching: true, data})
 // successful api lookup
 export const success = (state, action) => {
   const { payload } = action
@@ -98,6 +102,38 @@ export const loadDetailSuccess = (state, action) => {
   return state.merge({ fetching: false, error: null, savedActivityDetailData: payload, errorMsg: null, CF : cf })
 }
 
+
+export const rateActivitySuccess = (state, action) => {
+  const { rate, id } = action
+  
+  let temp={}
+  Object.keys(state.activityDetailData).map(function(key, index) {
+    if(key== 'rating'){
+      temp[key] = rate
+    }
+    else{
+      temp[key] = state.activityDetailData[key]
+    }
+  });
+  
+  let _temp = []
+  Array.prototype.forEach.call(state.activityTotalData, element => {
+    let _t ={}
+    Object.keys(element).map(function(key, index) {
+      if(key== 'rating' && element['id'] == id){
+        _t[key] = rate
+      }
+      else{
+        _t[key] = element[key]
+      }
+    });
+    _temp.push(_t)
+  });
+  
+  let cf = state.CF * (-1)
+  return state.merge({ fetching: false, error: null, activityDetailData: temp,activityTotalData: _temp, errorMsg: null, CF : cf })
+}
+
 // Something went wrong somewhere.
 export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
@@ -116,4 +152,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOAD_ACTIVITY_SUCCESS]: loadTotalSuccess,
   [Types.GET_SAVED_ACTIVITY_DETAIL]: request,
   [Types.LOAD_DETAIL_SUCCESS]: loadDetailSuccess,
+  [Types.SET_ACTIVITY_RATE]: _request,
+  [Types.RATE_ACTIVITY_SUCCESS]: rateActivitySuccess,
 })

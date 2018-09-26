@@ -5,6 +5,8 @@ import styles from './Styles/HotelSavedListStyle'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import HotelAction from '../Redux/HotelRedux'
+import StarRating from 'react-native-star-rating';
+import {Colors} from '../Themes/'
 
 class HotelSavedList extends Component {
   _goToHotelDetail=()=>{
@@ -21,7 +23,7 @@ class HotelSavedList extends Component {
 
     const cost = '$239'
     const review = '8.8'
-
+    let _rating = Number.parseFloat(rating)
     let icon = <Icon name="heart" style = {styles.icon_heart} />
     this.props.savedIds.forEach(element => {
       if(element == id){
@@ -40,17 +42,31 @@ class HotelSavedList extends Component {
           </TouchableOpacity> 
         </ImageBackground>
         <View style={styles.detail}>
-          <Text style={styles.txt_rating}>{rating} Stars</Text>          
+          <View style={styles.review_section}>
+            <StarRating
+              disabled={false}
+              maxStars={5}
+              rating={_rating}
+              fullStarColor={Colors.primary}
+              emptyStar={'ios-star-outline'}
+              fullStar={'ios-star'}
+              halfStar={'ios-star-half'}
+              iconSet={'Ionicons'}
+              starSize = {15}
+            />
+            <Text style={styles.txt_rating}>  {rating} </Text>          
+          </View>
+          
           <Text style={styles.txt_title} numberOfLines={1} ellipsizeMode ={'tail'}>{title}</Text>          
           <Text style={styles.txt_location} numberOfLines={1} ellipsizeMode ={'tail'}>
             <Icon name="location-pin" style = {styles.icon_location} />
             &nbsp;&nbsp;{location}
           </Text>
-          <Text style={styles.txt_cost}>{cost} per night</Text>
+          {/* <Text style={styles.txt_cost}>{cost} per night</Text>
           <View style={styles.review_section}>
             <Text style={styles.txt_review}>{review}</Text>
             <Text style={styles.txt_md}> Very Good</Text>
-          </View>
+          </View> */}
         </View>        
       </TouchableOpacity>
     )

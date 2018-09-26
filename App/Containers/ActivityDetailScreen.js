@@ -13,6 +13,7 @@ import ActivityAction from '../Redux/ActivityRedux'
 import styles from './Styles/ActivityDetailScreenStyle'
 
 import { strings } from '../../locales/i18n';
+import Modal from "react-native-modal";
 
 class ActivityDetailScreen extends Component {
 
@@ -27,6 +28,8 @@ class ActivityDetailScreen extends Component {
 
     this.state = {
       activityId : params.activityId,
+      modalVisible: false,
+      starCount : 0,
     }
   }
 
@@ -43,7 +46,33 @@ class ActivityDetailScreen extends Component {
       }
     }).catch(err => console.error('An error occurred', err));
   }
+  
+  _onGiveRating =()=>{
+    this.setState({modalVisible: true})
+  }
 
+  onStarRatingPress = (rating)=> {
+    this.setState({
+      starCount: rating
+    });
+  }
+  _onModalCancel =()=>{
+    this.setState({modalVisible: false})
+  }
+  _onModalOK =()=>{
+    this.setState({modalVisible: false})
+    let id = this.props.activityDetailData.id
+    let rate = this.state.starCount
+    this.props.setActivityRate(id, rate)
+  }
+
+  componentWillReceiveProps(nextProps){
+    const activityDetailData = nextProps.activityDetailData? nextProps.activityDetailData:[]
+    const {rating} = activityDetailData
+    const _rating = Number.parseFloat(rating)
+    this.setState({starCount : _rating})    
+  }
+  
   render () {
     const activityDetailData = this.props.activityDetailData ? this.props.activityDetailData : []
     const {title, rating, location, detailImages, description, img_url} = activityDetailData
@@ -66,6 +95,40 @@ class ActivityDetailScreen extends Component {
           <View style = {styles.navbar}>
             <NavBar nav = {this.props.navigation} />
           </View>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            isVisible={this.state.modalVisible}
+            onBackdropPress={() => this.setState({ modalVisible: false })}
+            style={styles.modal}>
+            <View style={styles.modalView}>
+              <View style={styles.modal_section}>
+                <Text style={styles.modal_title_text}>Please rate to the {title}</Text>
+              </View>
+              <View style={styles.modal_section}>
+                <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={this.state.starCount}
+                    fullStarColor={Colors.primary}
+                    emptyStar={'ios-star-outline'}
+                    fullStar={'ios-star'}
+                    halfStar={'ios-star-half'}
+                    iconSet={'Ionicons'}
+                    starSize = {25}
+                    selectedStar={(rating) => this.onStarRatingPress(rating)}
+                  />
+              </View>
+              <View style={styles.modal_section_btn}>
+                <TouchableOpacity style={styles.modal_btn_cancel} onPress={this._onModalCancel}>
+                  <Text style={styles.modal_btn_txt}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.modal_btn_ok} onPress={this._onModalOK}>
+                  <Text style={styles.modal_btn_txt}>OK</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
           <ImageBackground style={styles.view_photo} source={{uri: img_url==null?"":img_url}} />
           <View style={styles.title_location_section}>
             <View style={styles.hotel_review_view}>
@@ -78,7 +141,8 @@ class ActivityDetailScreen extends Component {
                 fullStar={'ios-star'}
                 halfStar={'ios-star-half'}
                 iconSet={'Ionicons'}
-                starSize = {15}
+                starSize = {25}
+                selectedStar={() => this._onGiveRating()}
               />
               <Text style={styles.txt_review}>{rating}</Text>
             </View>
@@ -130,6 +194,7 @@ const mapStateToProps = ({activity}) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getActivityDetail: (activityId) => dispatch(ActivityAction.getActivityDetail(activityId)),
+    setActivityRate : (id, rate) => dispatch(ActivityAction.setActivityRate(id, rate)),
   }
 }
 

@@ -143,18 +143,18 @@ class HotelDetailScreen extends Component {
       similarHotelView = (
         <View style={styles.reviews_section}>
           <Text style={[styles.txt_description_label,{marginBottom : 15}]}>{strings('hotel.similar_hotel')}</Text>
-          <InfiniteScroll
+          {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreSimilarHotels}
-              distanceFromEnd={10}>
+              distanceFromEnd={10}> */}
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.tempHotelData}
+                data={this.state.hotelTotalData}
                 renderItem={this._renderHotelItem}
                 keyExtractor={(item, index) => index.toString()}
               />
-          </InfiniteScroll>          
+          {/* </InfiniteScroll>           */}
         </View>
       )
     }
@@ -185,7 +185,7 @@ class HotelDetailScreen extends Component {
       iframe: (htmlAttribs, children, passProps)=>{
         return(
           <WebView
-            style={{borderWidth: 1, borderColor: 'red', width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
             javaScriptEnabled={true}
             domStorageEnabled={true}
             source={{uri: htmlAttribs.src?htmlAttribs.src:""}}

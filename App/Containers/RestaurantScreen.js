@@ -181,18 +181,18 @@ class RestaurantScreen extends Component {
                 <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
               </TouchableOpacity> */}
             </View>
-            <InfiniteScroll
+            {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreWeekRestaurants}
-              distanceFromEnd={10}>
+              distanceFromEnd={10}> */}
                 <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
-                  data={this.state.tempWeekRestaurantData}
+                  data={this.state.restaurantData}
                   renderItem={this._renderTrendingData}
                   keyExtractor={(item, index) => index.toString()}                  
                 />
-            </InfiniteScroll>
+            {/* </InfiniteScroll> */}
             
           </View>
 

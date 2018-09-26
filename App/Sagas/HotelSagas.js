@@ -155,19 +155,19 @@ export function * saveHotelTotal (api, action) {
           }          
 
           let _detailImages = []
-          for(let i=0 ; i < detailImages.length ; i++)
-          {
-            if(detailImages[i] != "" && detailImages[i] != null ){              
-              const res_Path = yield RNFetchBlob.config({
-                fileCache : true,
-                appendExt : 'png'
-              })
-              .fetch('GET', detailImages[i], {
-                Authorization : `Bearer ${token}`,
-              })
-              _detailImages.push(res_Path.path())
-            }
-          }
+          // for(let i=0 ; i < detailImages.length ; i++)
+          // {
+          //   if(detailImages[i] != "" && detailImages[i] != null ){              
+          //     const res_Path = yield RNFetchBlob.config({
+          //       fileCache : true,
+          //       appendExt : 'png'
+          //     })
+          //     .fetch('GET', detailImages[i], {
+          //       Authorization : `Bearer ${token}`,
+          //     })
+          //     _detailImages.push(res_Path.path())
+          //   }
+          // }
 
           console.log("detail images=> ", _detailImages)
           let __data = {...data,  'rating' : rating == null ? "" : rating, 'amenity' : JSON.stringify(amenity), 'detailImages': JSON.stringify(_detailImages), 'img_url' : mainImgPath}

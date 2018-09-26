@@ -99,8 +99,8 @@ class AccountScreen extends Component {
             <View style={styles.view_avatar} >
               <Image style={styles.img_avatar} source={{uri: avatar==null?"":avatar}} />
             </View>
-            <Text style={styles.txt_authour}>{displayname}</Text>
-            <Text style={styles.txt_email}>{email}</Text>
+            {/* <Text style={styles.txt_authour}>{displayname}</Text>
+            <Text style={styles.txt_email}>{email}</Text> */}
             {/* <TouchableOpacity style={styles.view_edit_btn} >
               <Icon name="edit" style = {styles.icon_edit} />
               <Text style={styles.txt_btn}>Edit</Text>

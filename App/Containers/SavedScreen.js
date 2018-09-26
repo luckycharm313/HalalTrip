@@ -11,6 +11,7 @@ import ActivityTab from '../Components/ActivityTab'
 import RestaurantTab from '../Components/RestaurantTab'
 
 import RestaurantAction from '../Redux/RestaurantRedux'
+import { strings } from '../../locales/i18n';
 
 class SavedScreen extends Component {
   static navigationOptions = {
@@ -38,9 +39,9 @@ class SavedScreen extends Component {
             tabBarTextStyle = {{fontSize : Fonts.size.regular, fontFamily  : Fonts.type.base}}
             initialPage={0}
           >
-            <HotelTab ref="hotel" tabLabel='Hotels' nav={this.props.navigation} data = {this.props.savedHotelData} /> 
-            <ActivityTab ref="activity" tabLabel='Activities' nav={this.props.navigation} data={this.props.savedActivityData} /> 
-            <RestaurantTab ref="restaurant" tabLabel='Restaurants' nav={this.props.navigation} data = {this.props.savedRestaurantData}/> 
+            <HotelTab ref="hotel" tabLabel={strings('global.hotel')} nav={this.props.navigation} data = {this.props.savedHotelData} /> 
+            <ActivityTab ref="activity" tabLabel={strings('global.activity')} nav={this.props.navigation} data={this.props.savedActivityData} /> 
+            <RestaurantTab ref="restaurant" tabLabel={strings('global.restaurant')} nav={this.props.navigation} data = {this.props.savedRestaurantData}/> 
           </ScrollableTabView>
         </View>
       </View>

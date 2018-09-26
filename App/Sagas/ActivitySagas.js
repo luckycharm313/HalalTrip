@@ -108,19 +108,19 @@ export function * saveActivityTotal (api, action) {
           }          
 
           let _detailImages = []
-          for(let i=0 ; i < detailImages.length ; i++)
-          {
-            if(detailImages[i] != "" && detailImages[i] != null ){              
-              const res_Path = yield RNFetchBlob.config({
-                fileCache : true,
-                appendExt : 'png'
-              })
-              .fetch('GET', detailImages[i], {
-                Authorization : `Bearer ${token}`,
-              })
-              _detailImages.push(res_Path.path())
-            }
-          }
+          // for(let i=0 ; i < detailImages.length ; i++)
+          // {
+          //   if(detailImages[i] != "" && detailImages[i] != null ){              
+          //     const res_Path = yield RNFetchBlob.config({
+          //       fileCache : true,
+          //       appendExt : 'png'
+          //     })
+          //     .fetch('GET', detailImages[i], {
+          //       Authorization : `Bearer ${token}`,
+          //     })
+          //     _detailImages.push(res_Path.path())
+          //   }
+          // }
 
           let __data = {
             ...data,  
@@ -172,5 +172,40 @@ export function * getSavedActivityDetail (api, action) {
   }
   else{
     yield put(ActivityActions.activityFailure("Data doesn't exist!"))
+  }
+}
+
+export function * setActivityRate (api, action) {
+  const token = JSON.parse(yield AsyncStorage.getItem('token'))
+  const {id, rate} = action
+
+  let param = new FormData();
+  param.append("id", id)
+  param.append("rate", rate)
+  
+  const response = yield call(api._setRate, param, token)
+ 
+  if (response.ok) {
+    const { data, code, message } = response.data    
+    if(code == 'success'){
+
+      if(data){
+        console.log("sssss")
+        yield put(ActivityActions.rateActivitySuccess(id, rate))
+      }
+      else{
+        alert("Database Error")
+      }
+    }
+    else{
+      alert(message)
+      yield put(ActivityActions.activityFailure(message))
+      return
+    }
+    
+  } else {
+    // yield put(NavigationActions.navigate({ routeName: 'ReloadScreen'} ));
+    yield put(ActivityActions.activityFailure("Internet Error"))
+    return
   }
 }

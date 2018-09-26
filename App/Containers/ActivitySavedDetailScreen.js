@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import StarRating from 'react-native-star-rating';
-import { Images, Colors } from '../Themes'
+import { Images, Colors, Metrics } from '../Themes'
 import NavBar from '../Components/NavBar'
 import ActivityAction from '../Redux/ActivityRedux'
 // Styles
 import styles from './Styles/ActivitySavedDetailScreenStyle'
+import { strings } from '../../locales/i18n';
+import HTML from 'react-native-render-html'
 
 class ActivitySavedDetailScreen extends Component {
   static navigationOptions = {
@@ -35,6 +37,26 @@ class ActivitySavedDetailScreen extends Component {
     let _detailImages = detailImages ? JSON.parse(detailImages) : []
     let _rating = Number.parseFloat(rating)
     
+    const _renderers = {
+      img: (htmlAttribs, children, passProps) => {
+        return (
+          <Image
+            source={{uri: htmlAttribs.src?htmlAttribs.src:"", width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            style={{marginVertical : 10}}
+            {...passProps} />)
+      },
+      iframe: (htmlAttribs, children, passProps)=>{
+        return(
+          <WebView
+            style={{width: Metrics.screenWidth - 30, height: Metrics.screenWidth * 60 / 100}}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            source={{uri: htmlAttribs.src?htmlAttribs.src:""}}
+          />
+        )
+      }
+    }
+
     return (
       <View style={styles.mainContainer}>
         <ScrollView style = {styles.container}>
@@ -60,7 +82,7 @@ class ActivitySavedDetailScreen extends Component {
             <View style={styles.hotel_title_view}>
               <Text style={styles.txt_hotel_title}>{title}</Text>
             </View>
-            <View style={styles.filter_section}>
+            {/* <View style={styles.filter_section}>
               <View style={styles.description_view}>
                 <ScrollView horizontal={true} style={styles.filter_image_section} showsHorizontalScrollIndicator={false}>
                   {
@@ -70,18 +92,23 @@ class ActivitySavedDetailScreen extends Component {
                   }
                 </ScrollView>
               </View>          
-            </View>
+            </View> */}
             <View style={styles.hotel_location_view}>
               <View style={styles.hotel_location_section}>
-                <Text style={styles.txt_location_label}>Location</Text>
-                <Text style={styles.txt_location_detail}>{location}</Text>
+                <Text style={styles.txt_location_label}>{strings('global.location')}</Text>
+                <HTML
+                  html={description}
+                  renderers={_renderers}
+                // onLinkPress={(evt, href) => this.externalLink(href)}
+                />
+                {/* <Text style={styles.txt_location_detail}>{location}</Text> */}
               </View>
             </View>
           </View>
 
           <View style={styles.detail_section_part}>
             <View style={styles.description_view}>
-              <Text style={styles.txt_description_label}>Description</Text>              
+              <Text style={styles.txt_description_label}>{strings('global.description')}</Text>              
               <Text style={styles.txt_description_detail} >{description}</Text>
             </View>
           </View>          

@@ -32,7 +32,6 @@ export default StyleSheet.create({
     paddingVertical : 2,
   },
   txt_rating : {
-    marginTop : Metrics.baseMargin,
     color: Colors.lightGrey,
     fontSize        : Fonts.size.small,
     fontFamily      : Fonts.type.base,

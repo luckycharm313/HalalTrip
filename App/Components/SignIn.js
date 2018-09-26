@@ -108,6 +108,7 @@ export default class SignIn extends Component {
             selectionColor = {Colors.textHintColor}
             onChangeText = {(_recaptcha) => { this.setState({_recaptcha})}}
             onSubmitEditing={()=>this._confirmCaptcha()}
+            onEndEditing={()=>this._confirmCaptcha()}
             maxLength = {4}/>
         </View>
 

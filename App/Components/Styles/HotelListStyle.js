@@ -45,7 +45,8 @@ export default StyleSheet.create({
     paddingVertical : 2,
   },
   txt_location : {
-    width: Metrics.width_35,
+    // width: Metrics.width_35,
+    flex: 1,
     color: Colors.lightGrey,
     fontSize        : Fonts.size.small,
     fontFamily      : Fonts.type.base,

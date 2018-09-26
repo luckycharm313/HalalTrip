@@ -24,7 +24,7 @@ import { loadData, setLanguage, preLoad, loadLanguage } from './MainSagas'
 import { getHotelByPlace, getRestaurantPlace } from './PlaceSagas'
 import { loadHotelData, getHotelDetail, saveHotelTotal, getSavedHotelDetail, setHotelRate } from './HotelSagas'
 import { loadRestaurantData, getRestaurantDetail, saveRestaurantTotal, loadSavedData, getSavedDetail, setRestaurantRate} from './RestaurantSagas'
-import { getActivityDetail, saveActivityTotal, getSavedActivityDetail } from './ActivitySagas'
+import { getActivityDetail, saveActivityTotal, getSavedActivityDetail, setActivityRate } from './ActivitySagas'
 import { getTrendDetail } from './TrendSagas'
 import { loadTouristData, getTouristDetail, setTouristRate } from './TouristSagas'
 import { searchData, getWeather, getEmergencyNumbers } from './SearchSagas'
@@ -86,6 +86,7 @@ export default function * root () {
     takeLatest(ActivityTypes.GET_ACTIVITY_DETAIL, getActivityDetail, main_api),
     takeLatest(ActivityTypes.SAVE_ACTIVITY_TOTAL, saveActivityTotal, main_api),
     takeLatest(ActivityTypes.GET_SAVED_ACTIVITY_DETAIL, getSavedActivityDetail, main_api),
+    takeLatest(ActivityTypes.SET_ACTIVITY_RATE, setActivityRate, main_api),
     
     // trend
     takeLatest(TrendTypes.GET_TREND_DETAIL, getTrendDetail, main_api),

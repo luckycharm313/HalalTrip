@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, TextInput, ImageBackground, TouchableOpacity, View, FlatList} from 'react-native'
+import { ScrollView, Text, TextInput, ImageBackground, TouchableOpacity, View, FlatList, Dimensions} from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -194,18 +194,18 @@ class HomeScreen extends Component {
               <Icon name="keyboard-arrow-right" style = {styles.icon_arrow_sm} />
             </TouchableOpacity>
           </View>
-          <InfiniteScroll
+          {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreHotel}
-              distanceFromEnd={10}>
+              distanceFromEnd={1}> */}
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.tempHotelData}
+                data={this.state.hotelData}
                 renderItem={this._renderHotelItem}
-                keyExtractor={(item, index) => index.toString()}
+                keyExtractor={(item, index) => index.toString()}                
               />
-          </InfiniteScroll>
+          {/* </InfiniteScroll> */}
           
         </View>
       )

@@ -111,10 +111,21 @@ export default StyleSheet.create({
     fontFamily      : Fonts.type.base,
   },
   hotel_location_map : {
-    borderWidth : 1,    
-    borderColor : '#efefef',
+    // borderWidth : 1,    
+    // borderColor : '#efefef',
     padding : 4,
-    borderRadius : 45,
+    // borderRadius : 45,
+  },
+  btn_action : {
+    padding : Metrics.baseMargin,
+    borderColor : Colors.font.textHintColor,
+    borderRadius : 30,
+    borderWidth : 1,
+  },
+  icon_action : {
+    color: Colors.primary,
+    fontSize        : Fonts.size.h5,
+    fontFamily      : Fonts.type.base,
   },
   img_map :{
     height : 80,

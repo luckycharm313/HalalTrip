@@ -12,6 +12,7 @@ import HotelItem from '../Components/HotelItem'
 import RestaurantList from '../Components/RestaurantList'
 import TouristHList from '../Components/TouristHList'
 import InfiniteScroll from 'react-native-infinite-scroll'
+import { strings } from '../../locales/i18n';
 
 class MapHotelScreen extends Component {
   static navigationOptions = {
@@ -182,23 +183,23 @@ class MapHotelScreen extends Component {
     if(hotelData.length > 0){
       hotelView =( <View style={styles.section}>
                     <View style={styles.section_header}>
-                      <Text style={styles.txtSectionTitle}>Find hotel in {this.state.placeTitle}</Text>
+                      <Text style={styles.txtSectionTitle}>{strings('global.hotel')} in {this.state.placeTitle}</Text>
                       {/* <TouchableOpacity style={styles.more_area}>
                         <Text style={styles.txtLabelSm}>Hide info</Text>
                       </TouchableOpacity> */}
                     </View>
-                    <InfiniteScroll
+                    {/* <InfiniteScroll
                       horizontal={true}
                       onLoadMoreAsync={this.loadMoreHotel}
-                      distanceFromEnd={10}>
+                      distanceFromEnd={10}> */}
                       <FlatList
                         horizontal
                         showsHorizontalScrollIndicator={false}
-                        data={this.state.tempHotelData}
+                        data={this.state.hotelData}
                         renderItem={this._renderHotelItem}
                         keyExtractor={(item, index) => index.toString()}
                       />
-                    </InfiniteScroll>                    
+                    {/* </InfiniteScroll>                     */}
                   </View>)
     }
 
@@ -206,20 +207,20 @@ class MapHotelScreen extends Component {
       restaurantView = 
           (<View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>Find restaurant in {this.state.placeTitle}</Text>
+              <Text style={styles.txtSectionTitle}>{strings('global.restaurant')} in {this.state.placeTitle}</Text>
             </View>
-            <InfiniteScroll
+            {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreRestaurant}
-              distanceFromEnd={10}>
+              distanceFromEnd={10}> */}
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.tempRestaurantData}
+                data={this.state.restaurantData}
                 renderItem={this._renderRestaurantItem}
                 keyExtractor={(item, index) => index.toString()}
               />
-            </InfiniteScroll>            
+            {/* </InfiniteScroll>             */}
           </View>)
     }
     
@@ -227,20 +228,20 @@ class MapHotelScreen extends Component {
       touristView = 
           (<View style={styles.section}>
             <View style={styles.section_header}>
-              <Text style={styles.txtSectionTitle}>Find tourist in {this.state.placeTitle}</Text>
+              <Text style={styles.txtSectionTitle}>{strings('global.tourist')} in {this.state.placeTitle}</Text>
             </View>
-            <InfiniteScroll
+            {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreTourist}
-              distanceFromEnd={10}>
+              distanceFromEnd={10}> */}
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.tempTouristData}
+                data={this.state.touristData}
                 renderItem={this._renderTouristItem}
                 keyExtractor={(item, index) => index.toString()}
               />
-            </InfiniteScroll>            
+            {/* </InfiniteScroll>             */}
           </View>)
     }
     

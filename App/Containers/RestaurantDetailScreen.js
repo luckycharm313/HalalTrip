@@ -172,18 +172,18 @@ class RestaurantDetailScreen extends Component {
       similarRestaurantView = (
         <View style={styles.section}>
           <Text style={styles.txtSectionTitle}>{strings('restaurant.similar_restaurant')} in {this.state.placeName}</Text>
-          <InfiniteScroll
+          {/* <InfiniteScroll
               horizontal={true}
               onLoadMoreAsync={this.loadMoreSimilarRestaurants}
-              distanceFromEnd={10}>
+              distanceFromEnd={10}> */}
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
-                data={this.state.tempRestaurantData}
+                data={this.state.subRestaurantData}
                 renderItem={this._renderRestaurantData}
                 keyExtractor={(item, index) => index.toString()}
               />
-          </InfiniteScroll>          
+          {/* </InfiniteScroll>           */}
         </View>
       )
     }
